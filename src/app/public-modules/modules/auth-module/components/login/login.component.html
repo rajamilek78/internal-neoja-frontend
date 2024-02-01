@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <mat-card>
+                <mat-card-content>
+                    <!-- <div class="row"> -->
+                        <h2>Login</h2>
+                    <div>
+                        <small>Welcome back ! please enter your credential here</small>
+                    </div>
+                    <div class="form-group MB-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Username</mat-label>
+                            <input
+                              placeholder="Enter your username"
+                              matInput
+                              type="email"
+                              autocomplete="off"/>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group MB-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input
+                              placeholder="Enter your password"
+                              matInput
+                              type="password"
+                              autocomplete="off"/>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <button mat-raised-button color="primary" (click)="login()">Login</button>
+                    </div>
+                    <!-- </div> -->
+                </mat-card-content>
+            </mat-card>
+        </div>
+        
+    </div>
+</div>

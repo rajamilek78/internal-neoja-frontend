@@ -1,0 +1,611 @@
+@import "../abstracts/abstracts";
+
+* {
+  font-family: $font-family;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  letter-spacing: unset !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-size: 10px;
+
+  @include respond("small-desktop") {
+    font-size: 7px;
+  }
+
+  @include respond("regular-desktop") {
+    font-size: 8px;
+  }
+
+  @include respond("tab-port") {
+    font-size: 8.5px;
+  }
+
+  @include respond("phone") {
+    font-size: 8px;
+  }
+
+}
+
+body {
+  background-color: var(--white-color);
+  overflow-y: auto;
+  overflow-x: hidden !important;
+  margin: 0;
+
+  font: {
+    size: 1.8rem;
+    weight: 400;
+  }
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.cursor-text {
+  cursor: text;
+}
+
+.align-top {
+  vertical-align: top !important;
+}
+
+.align-middle {
+  vertical-align: middle !important;
+}
+
+.display-inline {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+
+  @include respond("tab-port"){
+    width: 95%;
+  }
+}
+
+.search {
+  .container {
+    min-height: 600px;
+
+    position: relative;
+  }
+}
+
+.material-icons {
+  font-family: "Material Icons" !important;
+}
+
+.material-icons-outline {
+  font-family: "Material Icons Outlined" !important;
+}
+
+.primary-link {
+  color: $french_rose;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+app-header{
+  .display-inline{
+    @include respond("phone"){
+      width: auto !important;
+    }
+  }
+
+  .home__logo{
+    h4{
+      @include respond("phone"){
+        display: none;
+      }
+
+      @include respond("tab-port"){
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+.search-row{
+  .display-inline{
+    button{
+      @include respond("phone"){
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+app-home, app-family-search-filter{
+  .col-md-3.PL-0.MB-2{
+    @include respond("phone"){
+      padding-right: 0 !important;
+    }
+  }
+}
+
+.home {
+  .MT-20{
+    @include respond("phone"){
+      margin-top: 2rem !important;
+    }
+  }
+  &__logo {
+    img {
+      vertical-align: middle;
+      margin-right: 1.6rem;
+    }
+
+    h4 {
+      color: $french_rose;
+      border-bottom: 2px solid $french_rose;
+      display: inline-block;
+      font-size: 2.4rem;
+      font-weight: 500;
+      margin: 0;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  &__menu {
+    ul {
+      li {
+        list-style-type: none;
+        display: inline-block;
+        margin-right: 6.4rem;
+
+        @include respond("phone"){
+          margin-right: 1rem;
+        }
+
+        @include respond("tab-port"){
+          margin-right: 1rem;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        a {
+          color: $black-color;
+          text-decoration: none;
+          font-size: 1.6rem;
+          font-weight: 500;
+
+          &.active {
+            color: $french_rose;
+          }
+        }
+      }
+    }
+  }
+
+  &__sub-footer {
+    p {
+      color: rgba($black-color, 0.5);
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 1.6rem 0;
+    }
+
+    ul {
+      li {
+        list-style-type: none;
+        display: inline-block;
+        margin-right: 1.6rem;
+        padding-top: 1.6rem;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        a {
+          @include flex(center, center, null);
+          background: $french_rose;
+          display: inline-flex;
+          text-decoration: none;
+          padding: 0.8rem;
+          border-radius: 50%;
+
+          img {
+            width: 1.4rem;
+          }
+
+          &.active {
+            color: $french_rose;
+          }
+        }
+      }
+    }
+  }
+}
+
+.no-data-search {
+  &__flex {
+    @include flex(center, center, column);
+
+    img {
+      @include square(20rem);
+    }
+
+    b {
+      font-size: 2.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+
+  &__height {
+    overflow-y: scroll;
+    height: calc(100vh - 54rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  h5 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+.edit-profile {
+  margin-top: 4.8rem;
+
+  &__left {
+    width: 30rem;
+
+    @include respond("phone"){
+      margin-bottom: 1.5rem;
+    }
+
+    @include respond("tab-port"){
+      margin-bottom: 1.5rem;
+    }
+
+    img {
+      height: 18rem;
+    }
+  }
+
+  &__right {
+    // width: calc(100% - 30rem);
+    width: 90rem;
+
+    @include respond("phone"){
+      width: 100%;
+    }
+
+    @include respond("tab-port"){
+      width: 100%;
+    }
+  }
+
+  h3 {
+    font-size: 3.2rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+
+  p {
+    color: rgba($black-color, 0.4);
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+  }
+
+  h5 {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  &__add-img {
+    @include flex(center, null, null);
+    // width: 30rem;
+    // height: 18rem;
+    // display: inline-flex;
+    position: relative;
+    border-radius: 1rem;
+    margin-right: 2.4rem;
+
+    img {
+      border-radius: 1rem;
+      width: 100%;
+    }
+  }
+
+  &__img-position {
+    @include flex(center, center, null);
+    @include pos(absolute, 0, null, null, 0);
+    background-color: rgba($black-color, 0.2);
+    color: $white-color;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    border-radius: 1rem;
+
+    a {
+      .material-icon-font-outlined {
+        font-size: 2.2rem;
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__flex {
+    @include flex(center, null, null);
+  }
+
+  &__registration {
+    background: rgba($black-color, 0.03);
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 0.8rem;
+    padding: 1.6rem;
+
+    img {
+      vertical-align: middle;
+    }
+
+    span {
+      @include pos(absolute, null, 1.6rem, null, null);
+      color: rgba($black-color, 0.5);
+      position: absolute;
+      right: 1.6rem;
+    }
+
+    div {
+      &:last-child {
+        @include flex(null, null, column);
+        padding-left: 2rem;
+      }
+    }
+  }
+}
+
+.view-profile {
+  padding: 2.4rem;
+
+  &__header {
+    h3 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      color: rgba($black-color, 0.5);
+      font-size: 1.6rem;
+      font-weight: 500;
+
+      span {
+        font-size: 2rem;
+        vertical-align: text-bottom;
+      }
+    }
+
+    a {
+      span {}
+    }
+  }
+
+  &__flex {
+    display: flex;
+    margin-bottom: 1.6rem;
+  }
+
+  &__details {
+    display: flex;
+    width: 25%;
+
+    span {
+      color: rgba($black-color, 0.5);
+      vertical-align: middle;
+      font-size: 2rem;
+      margin-right: 0.8rem;
+    }
+
+    .info-icon {
+      font-size: 1.4rem;
+      margin-left: 0.8rem;
+    }
+
+    ul {
+      li {
+        color: rgba($black-color, 0.5);
+        list-style-type: none;
+        display: inline-block;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-right: 0.5rem;
+      }
+    }
+
+    a {
+      color: $french_rose;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-left: 0.8rem;
+    }
+  }
+
+  &__content {
+    margin-bottom: 2.4rem;
+
+    h4 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: rgba($black-color, 0.5);
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    ul {
+      li {
+        display: inline-block;
+        list-style-type: none;
+        width: 30%;
+
+        span {
+          vertical-align: middle;
+          font-size: 2rem;
+          margin-right: 0.8rem;
+        }
+      }
+    }
+  }
+
+  @media(max-width:767px) {
+    padding: 1.4rem;
+  }
+}
+
+.view-profile-right-dialog {
+  position: fixed !important;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 60% !important;
+
+  @media(max-width:767px) {
+    width: 100% !important;
+  }
+
+  @media (max-width: 1024px) and (min-width: 768px) {
+    width: 100% !important;
+  }
+}
+
+.other-images-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 2rem;
+
+  &__box {
+    position: relative;
+    // width: 25%;
+
+    &:hover {
+      a {
+        opacity: 1;
+      }
+    }
+
+    a {
+      color: $white-color;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      font-size: 1.6rem;
+
+      span {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    height: 18rem;
+    width: 30rem;
+  }
+}
+
+.empty-img-view {
+  height: 18rem;
+  width: 30rem;
+  @include flex(center, null, null);
+  background: $chinese_Silver;
+  border-radius: 1rem;
+}
+
+.pink-tag,
+.red-tag {
+  border-radius: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 1.2rem;
+
+  svg {
+    vertical-align: middle;
+    width: 1.6rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.pink-tag {
+  background: rgba($french_rose, 0.1) !important;
+  color: $french_rose !important;
+  margin-right: 1.6rem;
+}
+
+.red-tag {
+  background: rgba($tag-red-color, 0.1);
+  color: $tag-red-color;
+}
+
+app-image-view-slider {
+  position: relative;
+  z-index: 1;
+}
+
+.mdc-dialog__container .max-image-profile {
+  height: 14rem !important;
+  width: 100% !important;
+}
+
+.xs-display-none{
+  @include respond("phone"){
+    display: none;
+  }
+}
+
+.center-img-box{
+  height: 30rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

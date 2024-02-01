@@ -1,0 +1,81 @@
+@import "../abstracts/abstracts";
+
+
+$directions: (top, left, right, bottom);
+$spaceList: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50);
+
+@each $space in $spaceList {
+  @each $direction in $directions {
+    .M#{to_upper_case(str_slice($direction,0,1))}-#{$space} {
+      margin-#{$direction}: #{$space}rem !important;
+    }
+
+    .P#{to_upper_case(str_slice($direction,0,1))}-#{$space} {
+      padding-#{$direction}: #{$space}rem !important;
+    }
+  }
+}
+
+@include respond("phone") {
+  .xs-PR-0 {
+    padding-right: 0 !important;
+  }
+
+  .xs-PL-0 {
+    padding-left: 0 !important;
+  }
+}
+
+@include respond("tab-port") {
+  .sm-PR-0 {
+    padding-right: 0 !important;
+  }
+
+  .sm-PL-0 {
+    padding-left: 0 !important;
+  }
+
+  .sm-display {
+    display: none !important;
+  }
+}
+
+.PLR-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.MB-2-half {
+  margin-bottom: 2.4rem !important;
+}
+
+.MT-4-half {
+  margin-top: 4.5rem;
+}
+
+.MB-1-half {
+  margin-bottom: 1.5rem !important;
+}
+
+.MT-1-half {
+  margin-top: 1.5rem !important;
+}
+
+.MT-2-half {
+  margin-top: 2.4rem !important;
+}
+
+.MR-1-half {
+  margin-right: 1.5rem !important;
+}
+
+.display-inline,
+.display-inline-one {
+  display: inline-block;
+}
+
+@media(max-width: 767px) {
+  .display-inline {
+    width: 100%;
+  }
+}

@@ -1,0 +1,20 @@
+@import '../../../../../../assets/scss/abstracts/abstracts';
+.flex{
+    display: flex !important;
+    align-items: center !important;
+}
+.container{
+    height: 100vh;
+    .row{
+        mat-card{
+            mat-card-content{
+                h2{
+                    margin-bottom: 1rem;
+                }
+                .mat-mdc-form-field{
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}

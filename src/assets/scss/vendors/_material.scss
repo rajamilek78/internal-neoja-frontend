@@ -1,0 +1,237 @@
+@import '../abstracts/abstracts';
+
+
+.material-icon-font {
+  font-family: "Material Icons" !important;
+}
+
+.material-icon-font-outlined {
+  font-family: "Material Icons Outlined" !important;
+}
+
+.material-icon-two-tone {
+  font-family: "Material Icons Two Tone" !important;
+}
+
+textarea {
+  resize: none !important;
+  // height: 10rem !important;
+}
+
+//Checkbox
+.mat-mdc-checkbox label {
+  color: rgba($black-color, 0.45);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.mat-checkbox-frame {
+  border-color: $chinese_Silver;
+}
+
+.mdc-checkbox__background {
+  border-color: $chinese_Silver !important;
+}
+
+.mat-mdc-checkbox-checked {
+  .mdc-checkbox__background {
+    background-color: #ff4b91 !important;
+    border-color: #ff4b91 !important;
+  }
+}
+
+//Radio
+.mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle,
+.mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
+  border-color: $french_rose !important;
+}
+
+.mat-mdc-radio-button.mat-accent {
+  color: rgba($black-color, 0.45);
+}
+
+.mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle {
+  border-color: rgba($black-color, 0.45) !important;
+}
+
+.mat-mdc-radio-checked.mat-mdc-radio-button.mat-accent {
+  color: $french_rose;
+}
+
+.mat-radio-label-content {
+  color: rgba($black-color, 0.45);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.mat-radio-outer-circle {
+  border-color: rgba($black-color, 0.45);
+  border-width: 1px !important;
+  height: 16px !important;
+  width: 16px !important;
+  top: 0.4rem !important;
+}
+
+.mat-radio-checked .mat-radio-label-content {
+  color: rgba($black-color, 0.45);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.mat-radio-checked .mat-radio-inner-circle {
+  top: 0.4rem;
+  height: 16px;
+  width: 16px;
+}
+
+.mat-radio-ripple {
+  display: none;
+}
+
+mat-radio-button {
+  margin-right: 3rem;
+
+  @media(max-width:767px) {
+    margin-right: 2rem;
+  }
+}
+
+.mat-mdc-select-arrow {
+  color: rgba($black-color, 0.25);
+}
+
+//Menubar
+.mat-mdc-menu-item {
+  font-size: 1.4rem;
+  font-weight: 500;
+
+  .material-icon-font-outlined {
+    vertical-align: text-top;
+    margin-right: 1.2rem;
+    font-size: 2rem;
+  }
+}
+
+.red-color.mat-mdc-menu-item {
+  color: $electric_red;
+
+  .material-icon-font-outlined {
+    color: $electric_red;
+  }
+}
+
+.search-filter {
+
+  .secondary-btn,
+  .primary-btn,
+  .strok-btn {
+    height: 3.5em !important;
+  }
+
+  .search-width,
+  .search-width-age {
+    display: inline-block;
+    width: 23rem;
+    margin-right: 2.4rem;
+  }
+}
+
+.profile {
+  position: relative;
+  top: 0.3rem;
+
+  .mat-mdc-icon-button {
+    width: 8rem;
+    padding: 0;
+  }
+
+  img {
+    height: 3.6rem !important;
+    width: 3.6rem !important;
+    vertical-align: middle;
+    border-radius: 50%;
+  }
+
+  .material-icon-font-outlined {
+    color: rgba($black-color, 0.25);
+    vertical-align: middle;
+    margin-left: 1rem;
+  }
+}
+
+.filter-language {
+  mat-form-field {
+    line-height: 3.5rem;
+
+    .mat-mdc-text-field-wrapper {
+      height: 4.5rem;
+    }
+  }
+
+  .mat-mdc-form-field-infix {
+    position: relative;
+    top: 2px;
+    padding: 0.2em 0 0.5em 0 !important;
+  }
+
+  .mat-mdc-select-value-text {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+}
+
+.cdk-overlay-pane {
+  background-color: $white-color;
+  // width: 9rem !important;
+
+  .mdc-list-item__primary-text {
+    font-size: 1.6rem !important;
+  }
+
+  .mat-pseudo-checkbox {
+    margin-left: 10px !important;
+  }
+
+  .mdc-menu-surface.mat-mdc-select-panel {
+    padding: 0;
+  }
+
+  .mat-mdc-option {
+    padding-left: 10px;
+  }
+}
+
+mat-snack-bar-container {
+  .mdc-snackbar__surface {
+    padding-right: 0 !important;
+    border-radius: 1rem !important;
+  }
+
+  .mat-mdc-snack-bar-label {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: $white-color !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55) !important;
+  }
+}
+
+.mdc-linear-progress__bar-inner {
+  border-color: $french_rose !important;
+}
+
+app-conversation-list {
+  .form-control {
+    &--spacing {
+      mat-form-field {
+        .mat-mdc-form-field-infix {
+          padding: 0.9em 0 0.9em 0;
+        }
+      }
+    }
+  }
+}
+
+.view-profile-right-dialog{
+  @include respond("phone"){
+    max-width: 100vw !important;
+  }
+}

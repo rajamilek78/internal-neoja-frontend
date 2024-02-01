@@ -1,1 +1,118 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material"as mat;
+// @include mat.all-legacy-component-typographies();
+// @include mat.legacy-core();
+
+$my-palette-primary: (
+  50: #fdede5,
+  100: #fbd1be,
+  200: #f9b393,
+  300: #f69567,
+  400: #f47e47,
+  500: #ff4b91,
+  600: #f05f22,
+  700: #ee541c,
+  800: #ec4a17,
+  900: #e8390d,
+  A100: #ffffff,
+  A200: #ffe5e0,
+  A400: #ffbbad,
+  A700: #ffa594,
+  contrast: (50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$my-palette-accent: (50: #e0e0e0,
+  100: #b3b3b3,
+  200: #808080,
+  300: #4d4d4d,
+  400: #262626,
+  500: #000000,
+  600: #000000,
+  700: #000000,
+  800: #000000,
+  900: #000000,
+  A100: #a6a6a6,
+  A200: #8c8c8c,
+  A400: #737373,
+  A700: #666666,
+  contrast: (50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$eleague-frontend-primary: mat.define-palette($my-palette-primary);
+$eleague-frontend-accent: mat.define-palette($my-palette-accent);
+$eleague-frontend-warn: mat.define-palette(mat.$red-palette);
+
+$eleague-dark-primary: mat.define-palette($my-palette-accent);
+$eleague-dark-accent: mat.define-palette($my-palette-primary);
+$eleague-dark-warn: mat.define-palette(mat.$red-palette);
+$eleague-frontend-theme: mat.define-light-theme((color: (primary: $eleague-frontend-primary,
+      accent: $eleague-frontend-accent,
+      warn: $eleague-frontend-warn,
+    ),
+    density: -1,
+  ));
+
+// @include mat.all-legacy-component-themes($eleague-frontend-theme);
+
+@import "./assets/scss/main.scss";
+
+// .cdk-overlay-connected-position-bounding-box {
+//   top: 170px !important;
+// }
+
+.mat-mdc-form-field-bottom-align::before {
+  content: none !important;
+  display: none !important;
+  height: 0px !important;
+}
+
+.mat-mdc-form-field-type-mat-native-select .mat-mdc-form-field-infix::after {
+  color: rgba($black-color, 0.25) !important;
+}
+
+.mat-mdc-standard-chip {
+  border-radius: 6px !important;
+}
+
+.mat-mdc-icon-button svg {
+  vertical-align: text-top !important;
+}
+
+
+.material-symbols-outlined{
+  font-family: 'Material Icons Outlined' !important;
+}
+
+.tooltip-message-box{
+  .material-symbols-outlined{
+    position: relative;
+    top: 6px;
+  }
+}
