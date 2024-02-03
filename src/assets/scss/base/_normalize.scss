@@ -162,7 +162,7 @@ a {
   margin-right: 0.8rem;
 
   button {
-    background-color: $primary-green;
+    background-color: $primary-color;
     color: $white-color;
     border: none !important;
   }
@@ -170,7 +170,7 @@ a {
 
 // header scss 
 .header {
-  background-color: $primary-green;
+  background-color: $primary-color;
   position: fixed;
   top: 0rem;
   left: 0rem;
@@ -207,7 +207,7 @@ a {
     button {
       background-color: $white-color;
       border: none !important;
-      color: $primary-green;
+      color: $primary-color;
 
       &:hover {
         background-color: rgba($white-color, 0.85);
@@ -270,7 +270,7 @@ a {
   }
 
   &__file-icon {
-    background-color: rgba($primary-green, 0.1);
+    background-color: rgba($primary-color, 0.1);
     height: 6.4rem;
     width: 6.4rem;
     border-radius: 10rem;
@@ -393,7 +393,7 @@ a {
   }
 
   b {
-    color: $primary-green;
+    color: $primary-color;
     font-size: 2.8rem;
     font-weight: 800;
     line-height: 3.1rem;
@@ -408,7 +408,7 @@ a {
     padding-left: 2.4rem;
 
     &:hover {
-      color: $primary-green;
+      color: $primary-color;
     }
   }
 
@@ -422,7 +422,7 @@ a {
       border-radius: 10rem;
 
       &:hover {
-        background-color: $primary-green;
+        background-color: $primary-color;
       }
     }
   }
@@ -449,7 +449,7 @@ a {
       letter-spacing: 0.1rem !important;
 
       &:hover {
-        color: $primary-green !important;
+        color: $primary-color !important;
       }
     }
   }
