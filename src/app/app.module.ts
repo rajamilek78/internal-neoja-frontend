@@ -6,21 +6,19 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { UtilityModule } from './utility/utility.module';
-import { UploadDataComponent } from './private-modules/components/upload-data/upload-data.component';
+import { HeaderComponent } from './private-modules/components/header/header.component';
+import { FooterComponent } from './private-modules/components/footer/footer.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UploadDataComponent
-  ],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    UtilityModule
+    UtilityModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
