@@ -29,9 +29,15 @@ export class UploadPlayerFileComponent {
 
     const transferredFiles = event.dataTransfer.files;
     for (let i = 0; i < transferredFiles.length; i++) {
+      if (this.files.length + i >= 4) {
+        alert('You can only upload a maximum of 3 files at a time.');
+        break;
+      }
       this.files.push(transferredFiles.item(i));
     }
   }
+
+
 // to handle selected file 
 
   onFileSelected(event: Event) {
