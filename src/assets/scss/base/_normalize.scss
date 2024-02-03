@@ -357,13 +357,10 @@ a {
       border-radius: 0.8rem;
     }
 
-    // .col-md-6 {
-    //   flex: 0 0 48.2% !important;
-    // }
-
-    // .col-md-1 {
-    //   flex: 0 0 2.7% !important;
-    // }
+    .row-field {
+      flex: 47%;
+      margin-right: 1.6rem;
+    }
 
     .primary-btn-dark {
       margin-right: 0rem !important;
