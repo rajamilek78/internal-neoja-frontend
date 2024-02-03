@@ -1,42 +1,41 @@
 <div>
-  <div class="upload-by-file">
+  <div class="upload-by-file" [class.is-dragging]="isDragging">
     <div class="upload">
       <div>
         <div class="upload__section flex justify-center flex-column">
           <div class="upload__file-icon flex justify-center">
-            <img
-              src="../../../../../../assets/images/browse-file-icon.svg"
-              alt=""
-            />
+            <img src="../../../../../../assets/images/browse-file-icon.svg" alt="" />
           </div>
           <div class="text-center">
             <div><b>Drag & drop files to upload here</b></div>
             <div>
-              <small
-                >You can upload any files related to us as long as its
-                supported.</small
-              >
+              <small>You can upload any files related to us as long as its
+                supported.</small>
             </div>
           </div>
-          <div><button type="button" class="btn">Browse</button></div>
+          <div>
+            <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)"
+              accept="file_extension/.txt,.csv,.xlsx,.xlx" multiple />
+            <button type="button" class="btn" (click)="fileInput.click()">Browse</button>
+          </div>
         </div>
         <div class="upload__format-section flex justify-between">
           <div><span>File supported: TXT, CSV, XLS</span></div>
           <div><span>Maximum size: 40MB</span></div>
         </div>
       </div>
-      <div class="upload__file flex justify-between">
+
+      <div class="upload__file flex justify-between" *ngFor="let file of files">
         <div class="flex justify-end align-start">
           <div class="file-img">
             <img src="../../../../../../assets/images/txt-file.png" alt="" />
           </div>
           <div>
-            <small>eleague-online-summer-matches-2024.txt</small
-            ><span>21 MB</span>
+            <small>{{file.name}}</small><span>({{file.size / 1000000 | number : '1.2-2'}}) MB</span>
           </div>
         </div>
         <div>
-          <a>
+          <a (click)="onFileRemoved(file)">
             <img src="../../../../../../assets/images/close-icon.svg" alt="" />
           </a>
         </div>

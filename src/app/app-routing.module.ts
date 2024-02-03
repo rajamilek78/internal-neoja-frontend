@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UploadPlayersModule } from './private-modules/modules/upload-players-module/upload-players.module';
+import { RouteConstant } from './helpers/constants';
 const routes: Routes = [
   {
-    path: 'auth',
+    path: RouteConstant.AUTH,
     loadChildren: () =>
       import('./public-modules/modules/auth-module/auth.module').then(
         (m) => m.AuthModule
@@ -11,7 +12,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'upload-player-container',
+    path: RouteConstant.UPLOAD_PLAYER_CONTAINER,
     loadChildren: () =>
       import(
         './private-modules/modules/upload-players-module/upload-players.module'
