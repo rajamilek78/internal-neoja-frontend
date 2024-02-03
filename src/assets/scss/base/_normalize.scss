@@ -335,6 +335,7 @@ a {
 
     .player-panel {
       border-bottom: 1px solid rgba($black-color, 0.05);
+      padding-bottom: 1.6rem;
 
       small {
         color: rgba($black-color, 0.5);
@@ -364,6 +365,11 @@ a {
 
     .primary-btn-dark {
       margin-right: 0rem !important;
+      margin-left: 1.6rem;
+    }
+
+    .dropdown {
+      width: 15% !important;
     }
 
   }

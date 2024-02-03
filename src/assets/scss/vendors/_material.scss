@@ -280,6 +280,13 @@ app-conversation-list {
 
 // input css
 
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: rgba(0, 0, 0, 0.15) !important;
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  line-height: 1.6rem !important;
+}
+
 .mat-mdc-form-field {
   width: 100% !important;
 }
@@ -287,4 +294,41 @@ app-conversation-list {
 .mdc-line-ripple::before,
 .mdc-line-ripple::after {
   border-bottom-style: none !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  border-radius: 0.8rem !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label,
+.mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label--float-above {
+  color: $primary-green !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  caret-color: $primary-green !important;
+}
+
+.mat-mdc-select-arrow {
+  color: $primary-green !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+// dropdown scss
+
+.dropdown {
+  .mat-mdc-form-field {
+    height: 4.5rem !important;
+  }
+}
+
+.mat-mdc-select-arrow svg {
+  fill: currentColor;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
