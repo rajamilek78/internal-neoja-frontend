@@ -43,29 +43,34 @@ textarea {
 //Radio
 .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle,
 .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
-  border-color: $french_rose !important;
+  border-color: $primary-color !important;
 }
 
 .mat-mdc-radio-button.mat-accent {
-  color: rgba($black-color, 0.45);
+  color: rgba($black-color, 0.25) !important;
 }
 
 .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle {
-  border-color: rgba($black-color, 0.45) !important;
+  border-color: rgba($black-color, 0.25) !important;
 }
 
 .mat-mdc-radio-checked.mat-mdc-radio-button.mat-accent {
-  color: $french_rose;
+  color: $primary-color !important;
+}
+
+.mat-mdc-radio-button {
+  --mdc-form-field-label-text-color: rgba($black-color, 0.25) !important;
 }
 
 .mat-radio-label-content {
-  color: rgba($black-color, 0.45);
-  font-size: 1.4rem;
-  font-weight: 600;
+  color: rgba($black-color, 0.25) !important;
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  line-height: 1.6rem !important;
 }
 
 .mat-radio-outer-circle {
-  border-color: rgba($black-color, 0.45);
+  border-color: rgba($black-color, 0.25) !important;
   border-width: 1px !important;
   height: 16px !important;
   width: 16px !important;
@@ -73,7 +78,7 @@ textarea {
 }
 
 .mat-radio-checked .mat-radio-label-content {
-  color: rgba($black-color, 0.45);
+  color: rgba($black-color, 0.25);
   font-size: 1.4rem;
   font-weight: 600;
 }
@@ -85,7 +90,7 @@ textarea {
 }
 
 .mat-radio-ripple {
-  display: none;
+  display: none !important;
 }
 
 mat-radio-button {
@@ -94,6 +99,21 @@ mat-radio-button {
   @media(max-width:767px) {
     margin-right: 2rem;
   }
+}
+
+.mat-mdc-radio-button.mat-accent {
+  --mdc-radio-disabled-selected-icon-color: #000;
+  --mdc-radio-disabled-unselected-icon-color: #000;
+  --mdc-radio-unselected-hover-icon-color: #212121;
+  --mdc-radio-unselected-icon-color: rgba(0, 0, 0, 0.54);
+  --mdc-radio-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+  --mdc-radio-selected-focus-icon-color: #015235 !important;
+  --mdc-radio-selected-hover-icon-color: #015235 !important;
+  --mdc-radio-selected-icon-color: #015235 !important;
+  --mdc-radio-selected-pressed-icon-color: #015235 !important;
+  --mat-radio-ripple-color: #000;
+  --mat-radio-checked-ripple-color: #015235 !important;
+  --mat-radio-disabled-label-color: rgba(0, 0, 0, 0.38);
 }
 
 .mat-mdc-select-arrow {
@@ -253,7 +273,7 @@ app-conversation-list {
 }
 
 .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
-  color: $primary-green !important;
+  color: $primary-color !important;
 }
 
 .mdc-tab__text-label {
@@ -264,18 +284,27 @@ app-conversation-list {
 
 .mat-mdc-tab-group,
 .mat-mdc-tab-nav-bar {
-  --mdc-tab-indicator-active-indicator-color: $primary-green !important;
+  --mdc-tab-indicator-active-indicator-color: $primary-color !important;
   --mat-tab-header-disabled-ripple-color: none !important;
   --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.2) !important;
-  --mat-tab-header-active-label-text-color: $primary-green !important;
+  --mat-tab-header-active-label-text-color: $primary-color !important;
   --mat-tab-header-active-ripple-color: none !important;
-  --mat-tab-header-inactive-ripple-color: $primary-green !important;
+  --mat-tab-header-inactive-ripple-color: $primary-color !important;
   --mat-tab-header-inactive-focus-label-text-color: rgba(0, 0, 0, 0.2) !important;
   --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.2) !important;
-  --mat-tab-header-active-focus-label-text-color: $primary-green !important;
-  --mat-tab-header-active-hover-label-text-color: $primary-green !important;
-  --mat-tab-header-active-focus-indicator-color: $primary-green !important;
-  --mat-tab-header-active-hover-indicator-color: $primary-green !important;
+  --mat-tab-header-active-focus-label-text-color: $primary-color !important;
+  --mat-tab-header-active-hover-label-text-color: $primary-color !important;
+  --mat-tab-header-active-focus-indicator-color: $primary-color !important;
+  --mat-tab-header-active-hover-indicator-color: $primary-color !important;
+}
+
+// tab scss for league-screen tables
+
+.table-format-one {
+  .mat-mdc-tab-labels {
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
 }
 
 // input css
@@ -302,15 +331,15 @@ app-conversation-list {
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label,
 .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label--float-above {
-  color: $primary-green !important;
+  color: $primary-color !important;
 }
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
-  caret-color: $primary-green !important;
+  caret-color: $primary-color !important;
 }
 
 .mat-mdc-select-arrow {
-  color: $primary-green !important;
+  color: $primary-color !important;
 }
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
@@ -331,4 +360,9 @@ app-conversation-list {
   top: -0.5rem !important;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+// table scss
+.mat-mdc-table {
+  background-color: transparent !important;
 }

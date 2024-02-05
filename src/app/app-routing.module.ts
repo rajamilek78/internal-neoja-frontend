@@ -18,6 +18,14 @@ const routes: Routes = [
         './private-modules/modules/upload-players-module/upload-players.module'
       ).then((m) => m.UploadPlayersModule),
   },
+
+  {
+    path: RouteConstant.LEAGUE_CONTAINER,
+    loadChildren: () =>
+      import('./private-modules/modules/league-module/league.module').then(
+        (m) => m.LeagueModule
+      ),
+  },
 ];
 
 @NgModule({

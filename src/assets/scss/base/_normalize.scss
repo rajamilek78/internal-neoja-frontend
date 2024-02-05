@@ -162,15 +162,16 @@ a {
   margin-right: 0.8rem;
 
   button {
-    background-color: $primary-green;
+    background-color: $primary-color;
     color: $white-color;
     border: none !important;
   }
 }
 
 // header scss 
+
 .header {
-  background-color: $primary-green;
+  background-color: $primary-color;
   position: fixed;
   top: 0rem;
   left: 0rem;
@@ -207,7 +208,7 @@ a {
     button {
       background-color: $white-color;
       border: none !important;
-      color: $primary-green;
+      color: $primary-color;
 
       &:hover {
         background-color: rgba($white-color, 0.85);
@@ -234,11 +235,15 @@ a {
   }
 }
 
+// panel scss
+
 .panel {
   position: relative;
   width: 100%;
   padding-top: 8rem;
 }
+
+// upload players screen scss
 
 .upload {
   &__section {
@@ -270,7 +275,7 @@ a {
   }
 
   &__file-icon {
-    background-color: rgba($primary-green, 0.1);
+    background-color: rgba($primary-color, 0.1);
     height: 6.4rem;
     width: 6.4rem;
     border-radius: 10rem;
@@ -375,6 +380,42 @@ a {
   }
 }
 
+// league screen scss
+.radio-btn {
+  margin-top: 4.7rem !important;
+}
+
+// table-format-one scss
+
+.table-format-one {
+  position: relative;
+
+  app-league-table-format-one {
+    table {
+      margin-top: 2.4rem;
+      border: 1px solid rgba($black-color, 0.1) !important;
+      border-radius: 1.2rem !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .primary-btn-dark {
+    position: absolute;
+    top: 5rem;
+    right: 0rem;
+    margin-right: 0rem !important;
+
+    .btn {
+      span {
+        margin-right: 0.8rem;
+      }
+    }
+  }
+}
+
+
+// footer scss
+
 .footer {
   background-color: rgba($black-color, 0.03);
   padding: 2rem 0rem;
@@ -393,7 +434,7 @@ a {
   }
 
   b {
-    color: $primary-green;
+    color: $primary-color;
     font-size: 2.8rem;
     font-weight: 800;
     line-height: 3.1rem;
@@ -408,7 +449,7 @@ a {
     padding-left: 2.4rem;
 
     &:hover {
-      color: $primary-green;
+      color: $primary-color;
     }
   }
 
@@ -422,7 +463,7 @@ a {
       border-radius: 10rem;
 
       &:hover {
-        background-color: $primary-green;
+        background-color: $primary-color;
       }
     }
   }
@@ -449,7 +490,7 @@ a {
       letter-spacing: 0.1rem !important;
 
       &:hover {
-        color: $primary-green !important;
+        color: $primary-color !important;
       }
     }
   }
