@@ -5,6 +5,7 @@ export class RouteConstant {
 
   public static readonly UPLOAD_PLAYER_CONTAINER = 'upload-player-container';
 
-    public static readonly UPLOAD_PLAYER_CONTAINER = "upload-player-container"
+  public static readonly LEAGUE_CONTAINER = 'league';
+
 }  
     

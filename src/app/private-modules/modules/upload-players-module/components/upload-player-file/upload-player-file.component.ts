@@ -83,20 +83,61 @@ export class UploadPlayerFileComponent {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
 
+  // onUpload() {
+  //   this.files.forEach((file, index) => {
+  //     const data = new FormData();
+  //     const fileType = file.name.split('.').pop();
+  //     // let endpoint;
+  //     if(fileType === 'csv' || fileType === 'xls' || fileType === 'xlsx'){
+  //       this.api.postFile('csv',data).subscribe({
+  //         next : (res : any)=>{
+  //           console.log(res);
+  //         },
+  //         error : (err : any)=>{
+  //           console.log(err);
+            
+  //         }
+  //       })
+  //     }
+  //     else{
+      
+  //       data.append('players', file);
+  //       this.api.postFile('file', data).subscribe(response => {
+  //         this.sharedService.setMatchData(response);
+  //         console.log(response);
+  //       });
+  //     }
+      
+  //   });
+  // }
+
   onUpload() {
     this.files.forEach((file, index) => {
       const fileType = file.name.split('.').pop();
-      // let endpoint;
-      const data = new FormData();
-        data.append('players', file);
-        this.api.postFile('file', data).subscribe(response => {
-          this.sharedService.setMatchData(response);
-          console.log(response);
-        });
+      let reader = new FileReader();
+  
       
-    });
+         
+  
+          if (fileType === 'csv' || fileType === 'xls' || fileType === 'xlsx') {
+            // For CSV, XLS, or XLSX files, send the file contents as binary data
+            this.api.post('csv', file).subscribe(response => {
+              this.sharedService.setMatchData(response);
+              console.log(response);
+            });
+          } else {
+            // For other file types, send the file as form data
+            const data = new FormData();
+            data.append('players', file);
+            this.api.postFile('file', data).subscribe(response => {
+              this.sharedService.setMatchData(response);
+              console.log(response);
+            });
+          }
+        
+      });
+  
+     
+    };
   }
-  
-  
 
-}
