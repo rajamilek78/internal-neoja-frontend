@@ -9,18 +9,13 @@
     <div class="table-format-one">
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          <mat-tab label="Group 1"
-            ><app-league-table-format-one></app-league-table-format-one
-          ></mat-tab>
+          <mat-tab *ngFor="let group of groups" [label]="group.name">
+            <app-league-table-format-one [data]="group.data"></app-league-table-format-one></mat-tab>
         </mat-tab-group>
       </div>
       <div class="primary-btn-dark">
         <button class="btn flex justify-center">
-          <span
-            ><img
-              src="../../../../../../assets/images/download-icon.svg"
-              alt="" /></span
-          >Download
+          <span><img src="../../../../../../assets/images/download-icon.svg" alt="" /></span>Download
         </button>
       </div>
     </div>

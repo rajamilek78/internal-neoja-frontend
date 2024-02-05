@@ -17,6 +17,6 @@ export class SharedService {
     
   }
   getMatchData(){
-    return this.matchData.asObservable;
+    return this.matchData.asObservable();
   }
 }

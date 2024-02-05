@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ApiManagerService } from '../../../../../core/services';
 import { SharedService } from '../../../../../helpers/services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-player-file',
@@ -15,7 +16,8 @@ export class UploadPlayerFileComponent {
   constructor(
     private el: ElementRef,
     private api: ApiManagerService,
-    private sharedService : SharedService
+    private sharedService : SharedService,
+    private router : Router
   ) { }
 
   // to handle drag and drop 
@@ -83,33 +85,7 @@ export class UploadPlayerFileComponent {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
 
-  // onUpload() {
-  //   this.files.forEach((file, index) => {
-  //     const data = new FormData();
-  //     const fileType = file.name.split('.').pop();
-  //     // let endpoint;
-  //     if(fileType === 'csv' || fileType === 'xls' || fileType === 'xlsx'){
-  //       this.api.postFile('csv',data).subscribe({
-  //         next : (res : any)=>{
-  //           console.log(res);
-  //         },
-  //         error : (err : any)=>{
-  //           console.log(err);
-            
-  //         }
-  //       })
-  //     }
-  //     else{
-      
-  //       data.append('players', file);
-  //       this.api.postFile('file', data).subscribe(response => {
-  //         this.sharedService.setMatchData(response);
-  //         console.log(response);
-  //       });
-  //     }
-      
-  //   });
-  // }
+  
 
   onUpload() {
     this.files.forEach((file, index) => {
@@ -130,12 +106,15 @@ export class UploadPlayerFileComponent {
             const data = new FormData();
             data.append('players', file);
             this.api.postFile('file', data).subscribe(response => {
-              this.sharedService.setMatchData(response);
+              localStorage.setItem('matchData', JSON.stringify(response));
+              
               console.log(response);
             });
           }
         
       });
+      this.router.navigate(['league']);
+
   
      
     };
