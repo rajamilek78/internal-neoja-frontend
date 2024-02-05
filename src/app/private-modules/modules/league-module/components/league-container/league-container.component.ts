@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharedService } from '../../../../../helpers/services/shared.service';
 
 @Component({
   selector: 'app-league-container',
@@ -6,7 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './league-container.component.scss',
 })
 export class LeagueContainerComponent {
-  groups!: any[];
+  constructor(private sharedService : SharedService){}
+  groups: any;
+  selectedFormat ='1';
 
   ngOnInit(): void {
     let matchData = localStorage.getItem('matchData');

@@ -15,7 +15,7 @@
           </div>
           <div>
             <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)"
-              accept="file_extension/.txt,.csv,.xlsx,.xlx,.json" multiple />
+              accept=".txt,.csv,.xlsx,.xlx,.json" multiple />
             <button type="button" class="btn" (click)="fileInput.click()">Browse</button>
           </div>
         </div>
