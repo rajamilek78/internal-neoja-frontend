@@ -10,12 +10,14 @@ export class LeagueTableFormatOneComponent implements OnInit {
   @Input() data: any;
   @Input() groups: any;
   @Output() blurTeamScore = new EventEmitter<any>();
+  @Input() isEdit !: boolean 
   gamesArray: any;
   selectedTabIndex = 0;
 
   constructor(private SharedCommonService: SharedCommonService) {}
 
   ngOnInit(): void {
+    console.log(this.isEdit)
     if (this.groups && this.groups.length > 0) {
       this.gamesArray = Object.entries(
         this.groups[this.selectedTabIndex].data.games

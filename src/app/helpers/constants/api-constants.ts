@@ -39,4 +39,5 @@ export class API_ENDPOINTS{
 
     //Scores
     public static GET_SCORE = `${COMPANY_URL}/get-league-scores`;
+    public static LOCK_SCORE = `${COMPANY_URL}/lock-score`;
 }

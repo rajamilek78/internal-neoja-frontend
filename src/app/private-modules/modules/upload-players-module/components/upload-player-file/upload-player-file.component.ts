@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CommonService } from '../../../../../core/services';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { SharedCommonService } from '../../../../../helpers/services';
 export class UploadPlayerFileComponent {
   files: File[] = [];
   isDragging: boolean = false;
+  @Input() leagueIdPass : any;
 
   constructor(
     private el: ElementRef,
@@ -105,6 +106,6 @@ export class UploadPlayerFileComponent {
         });
       }
     });
-    this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
+    this.router.navigate([RouteConstant.LEAGUE_CONTAINER, {leagueID: this.leagueIdPass}]);
   }
 }

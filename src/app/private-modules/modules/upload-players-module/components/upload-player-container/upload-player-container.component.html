@@ -4,7 +4,7 @@
       <div class="mr-1">
         <div><label>League</label></div>
         <mat-form-field>
-          <mat-select (selectionChange)="onLeagueSelect($event.value)" placeholder="Select">
+          <mat-select (selectionChange)="onLeagueSelect($event.value)" [(value)]="selectedLeague" placeholder="Select">
             <mat-option *ngFor="let league of leagues" [value]="league.name">{{ league.name }}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -31,7 +31,7 @@
       </mat-radio-group>
     </div>
     <div *ngIf="selectedFormat == '1'">
-      <app-upload-player-file></app-upload-player-file>
+        <app-upload-player-file [leagueIdPass]="selectedLeague"></app-upload-player-file>
     </div>
     <div *ngIf="selectedFormat == '2'">
       <app-upload-player-data
