@@ -395,7 +395,18 @@ a {
       margin-top: 2.4rem;
       border: 1px solid rgba($black-color, 0.1) !important;
       border-radius: 1.2rem !important;
-      box-shadow: none !important;
+      width: 100%;
+      border-collapse: collapse !important;
+
+      tbody,
+      thead {
+
+        th,
+        td {
+          padding: 1.6rem;
+          border: 1px solid rgba($black-color, 0.1);
+        }
+      }
     }
   }
 
