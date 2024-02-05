@@ -168,6 +168,15 @@ a {
   }
 }
 
+
+.odd-row {
+  background-color: rgba($black-color, 0.03);
+}
+
+.bye-name {
+  color: rgba($red-color, 0.4) !important;
+}
+
 // header scss 
 
 .header {
@@ -387,25 +396,35 @@ a {
 
 // table-format-one scss
 
-.table-format-one {
+.table-format-one,
+.table-format-two {
   position: relative;
 
-  app-league-table-format-one {
-    table {
-      margin-top: 2.4rem;
-      border: 1px solid rgba($black-color, 0.1) !important;
-      border-radius: 1.2rem !important;
-      width: 100%;
-      border-collapse: collapse !important;
+  table {
+    margin-top: 2.4rem;
+    border: 1px solid rgba($black-color, 0.1) !important;
+    border-radius: 1.2rem !important;
+    width: 100%;
+    border-collapse: collapse !important;
 
-      tbody,
-      thead {
+    tbody,
+    thead {
 
-        th,
-        td {
-          padding: 1.6rem;
-          border: 1px solid rgba($black-color, 0.1);
-        }
+      th,
+      td {
+        border: 1px solid rgba($black-color, 0.1);
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        font-weight: 800;
+        padding: 2rem;
+      }
+
+      th {
+        color: rgba($black-color, 0.25);
+      }
+
+      td {
+        color: rgba($black-color, 0.5);
       }
     }
   }

@@ -300,7 +300,8 @@ app-conversation-list {
 
 // tab scss for league-screen tables
 
-.table-format-one {
+.table-format-one,
+.table-format-two {
   .mat-mdc-tab-labels {
     justify-content: flex-start !important;
     align-items: center !important;
