@@ -169,6 +169,7 @@ a {
 }
 
 // header scss 
+
 .header {
   background-color: $primary-color;
   position: fixed;
@@ -234,11 +235,15 @@ a {
   }
 }
 
+// panel scss
+
 .panel {
   position: relative;
   width: 100%;
   padding-top: 8rem;
 }
+
+// upload players screen scss
 
 .upload {
   &__section {
@@ -374,6 +379,42 @@ a {
 
   }
 }
+
+// league screen scss
+.radio-btn {
+  margin-top: 4.7rem !important;
+}
+
+// table-format-one scss
+
+.table-format-one {
+  position: relative;
+
+  app-league-table-format-one {
+    table {
+      margin-top: 2.4rem;
+      border: 1px solid rgba($black-color, 0.1) !important;
+      border-radius: 1.2rem !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .primary-btn-dark {
+    position: absolute;
+    top: 5rem;
+    right: 0rem;
+    margin-right: 0rem !important;
+
+    .btn {
+      span {
+        margin-right: 0.8rem;
+      }
+    }
+  }
+}
+
+
+// footer scss
 
 .footer {
   background-color: rgba($black-color, 0.03);
