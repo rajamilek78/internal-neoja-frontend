@@ -12,7 +12,7 @@ const routes: Routes = [
   },
 
   {
-    path: RouteConstant.UPLOAD_PLAYER_CONTAINER,
+    path: RouteConstant.UPLOAD_PLAYER,
     loadChildren: () =>
       import(
         './private-modules/modules/upload-players-module/upload-players.module'

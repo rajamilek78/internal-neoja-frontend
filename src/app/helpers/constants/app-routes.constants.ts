@@ -3,6 +3,6 @@ export class RouteConstant {
   
     public static LOGIN = "login";
 
-    public static readonly UPLOAD_PLAYER_CONTAINER = "upload-player-container"
+    public static readonly UPLOAD_PLAYER = "upload-player-container"
 }  
     

@@ -328,7 +328,7 @@ app-conversation-list {
 .mat-mdc-select-arrow svg {
   fill: currentColor;
   position: absolute;
-  top: -0.5rem;
+  top: -0.5rem !important;
   left: 50%;
   transform: translate(-50%, -50%);
 }

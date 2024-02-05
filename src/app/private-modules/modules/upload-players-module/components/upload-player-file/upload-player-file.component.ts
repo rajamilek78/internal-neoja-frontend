@@ -1,5 +1,7 @@
-import { Component, ElementRef, HostListener} from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { ApiManagerService } from '../../../../../core/services';
+import { SharedService } from '../../../../../helpers/services/shared.service';
 
 @Component({
   selector: 'app-upload-player-file',
@@ -10,20 +12,24 @@ export class UploadPlayerFileComponent {
   files: File[] = [];
   isDragging: boolean = false;
 
-  constructor(private el : ElementRef){}
+  constructor(
+    private el: ElementRef,
+    private api: ApiManagerService,
+    private sharedService : SharedService
+  ) { }
 
   // to handle drag and drop 
 
-  @HostListener('dragover', ['$event']) onDragOver(event:any) {
+  @HostListener('dragover', ['$event']) onDragOver(event: any) {
     event.preventDefault();
     this.isDragging = true;
   }
 
-  @HostListener('dragleave', ['$event']) onDragLeave(event:any) {
+  @HostListener('dragleave', ['$event']) onDragLeave(event: any) {
     this.isDragging = false;
   }
 
-  @HostListener('drop', ['$event']) onDrop(event:any) {
+  @HostListener('drop', ['$event']) onDrop(event: any) {
     event.preventDefault();
     this.isDragging = false;
 
@@ -38,7 +44,7 @@ export class UploadPlayerFileComponent {
   }
 
 
-// to handle selected file 
+  // to handle selected file 
 
   onFileSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
@@ -49,11 +55,11 @@ export class UploadPlayerFileComponent {
           const file = files.item(i);
           if (file) {
             const fileType = file.name.split('.').pop();
-  
-            if (fileType === 'txt' || fileType === 'csv' || fileType === 'xlsx' || fileType === 'xls') {
+
+            if (fileType === 'txt' || fileType === 'csv' || fileType === 'xlsx' || fileType === 'xls' || fileType === 'json') {
               this.files.push(file);
             } else {
-              alert('Invalid file type. Only .txt, .csv, and .xls files are allowed.');
+              alert('Invalid file type. Only .txt, .csv,.json and .xls files are allowed.');
             }
           }
         } else {
@@ -63,9 +69,9 @@ export class UploadPlayerFileComponent {
       }
     }
   }
-  
-  
 
+
+  //to remove selected file for upload
   onFileRemoved(file: File) {
     const index = this.files.indexOf(file);
     if (index > -1) {
@@ -76,4 +82,21 @@ export class UploadPlayerFileComponent {
   onFileDropped(event: CdkDragDrop<File[]>) {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
+
+  onUpload() {
+    this.files.forEach((file, index) => {
+      const fileType = file.name.split('.').pop();
+      // let endpoint;
+      const data = new FormData();
+        data.append('players', file);
+        this.api.postFile('file', data).subscribe(response => {
+          this.sharedService.setMatchData(response);
+          console.log(response);
+        });
+      
+    });
+  }
+  
+  
+
 }

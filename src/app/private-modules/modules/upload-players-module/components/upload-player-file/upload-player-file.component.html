@@ -15,7 +15,7 @@
           </div>
           <div>
             <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)"
-              accept="file_extension/.txt,.csv,.xlsx,.xlx" multiple />
+              accept="file_extension/.txt,.csv,.xlsx,.xlx,.json" multiple />
             <button type="button" class="btn" (click)="fileInput.click()">Browse</button>
           </div>
         </div>
@@ -42,7 +42,7 @@
       </div>
       <div class="upload__button flex justify-end">
         <div class="primary-btn-dark">
-          <button type="button" class="btn">Upload</button>
+          <button type="button" class="btn" (click)="onUpload()">Upload</button>
         </div>
         <div class="secondary-btn-light">
           <button type="button" class="btn">Cancel</button>
