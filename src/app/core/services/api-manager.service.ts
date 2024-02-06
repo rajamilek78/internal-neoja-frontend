@@ -26,10 +26,10 @@ export class ApiManagerService {
     return this.http.post(`${this.baseurl}${path}`, body, { headers });
   }
   postFile(path: string, data: FormData, token?: string) {
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${token}`
-    // });
-    return this.http.post(`${this.baseurl}${path}`, data);
+    const headers = new HttpHeaders({
+      // 'Authorization': `Bearer ${token}`
+    });
+    return this.http.post(`${this.baseurl}${path}`, data,{ headers });
   }
   
 }
