@@ -26,6 +26,30 @@ const routes: Routes = [
         (m) => m.LeagueModule
       ),
   },
+
+  {
+    path: RouteConstant.HOME_PAGE,
+    loadChildren: () =>
+      import('./public-modules/modules/home-module/home.module').then(
+        (m) => m.HomeModule
+      ),
+  },
+
+  {
+    path: RouteConstant.ABOUT_US_PAGE,
+    loadChildren: () =>
+      import('./public-modules/modules/about-us-module/about-us.module').then(
+        (m) => m.AboutUsModule
+      ),
+  },
+
+  {
+    path: RouteConstant.CONTACT_US_PAGE,
+    loadChildren: () =>
+      import(
+        './public-modules/modules/contact-us-module/contact-us.module'
+      ).then((m) => m.ContactUsModule),
+  },
 ];
 
 @NgModule({
