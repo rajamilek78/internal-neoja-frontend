@@ -16,7 +16,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   ngOnInit(): void {
 
     this.gamesArray = Object.entries(this.data.games);
-    console.log("this is game array", this.gamesArray)
+    // console.log("this is game array", this.gamesArray)
   }
 
 }

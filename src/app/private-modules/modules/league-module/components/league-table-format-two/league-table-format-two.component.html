@@ -1,13 +1,15 @@
-<table>
-  <div class="flex justify-between">
-    <div>
-      <small>Summers Pickleball 2024</small>
-    </div>
-    <div><span>Court 2</span><span>Week 1</span></div>
-    <div>
-      <span>01/02/2024, Wednesday</span>
-    </div>
+<div class="table-header flex justify-between">
+  <div>
+    <small>Summers Pickleball 2024</small>
   </div>
+  <div>
+    <span>Court 2</span><span class="border-1"></span><span>Week 1</span>
+  </div>
+  <div>
+    <span>01/02/2024, Wednesday</span>
+  </div>
+</div>
+<table>
   <thead>
     <tr>
       <th>
@@ -17,14 +19,14 @@
             alt="" /></span
         >Players
       </th>
-      <th colspan="2">
+      <th colspan="2" *ngFor="let game of gamesArray ; let i = index">
         <span
           ><img
             src="../../../../../../assets/images/score-icon.svg"
             alt="" /></span
-        >Game 1
+        >{{game[0]}}
       </th>
-      <th colspan="2">
+      <!-- <th colspan="2">
         <span
           ><img
             src="../../../../../../assets/images/score-icon.svg"
@@ -51,136 +53,143 @@
             src="../../../../../../assets/images/score-icon.svg"
             alt="" /></span
         >Game 5
+      </th> -->
+      <th>
+        <span
+          ><img src="../../../../../../assets/images/match-icon.svg" alt=""
+        /></span>
+        Total
       </th>
-      <th>Total</th>
     </tr>
   </thead>
   <tbody>
-    <tr class="odd-row">
-      <td>Skylar Mango</td>
-      <td>
+    <tr class="odd-row" *ngFor="let game of gamesArray">
+      <td>{{game[1].team_1[0]}}</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>10</td>
-      <td>
+      <td class="text-center">{{ game[1].score.team_1 }}</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>20</td>
-      <td>
+      <td class="text-center">20</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>30</td>
-      <td>
+      <td class="text-center">30</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>40</td>
-      <td>
+      <td class="text-center">40</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>50</td>
-      <td>150</td>
+      <td class="text-center">50</td>
+      <td class="text-center">150</td>
     </tr>
-    <tr>
-      <td>Skylar Mango</td>
-      <td>
+    <tr *ngFor="let game of gamesArray">
+      <td>{{game[1].team_1[1]}}</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>10</td>
-      <td>
+      <td class="text-center">10</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>20</td>
-      <td>
+      <td class="text-center">20</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>30</td>
-      <td>
+      <td class="text-center">30</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>40</td>
-      <td>
+      <td class="text-center">40</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>50</td>
-      <td>150</td>
-    </tr>
-    <tr class="odd-row">
-      <td>Skylar Mango</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>10</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>20</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>30</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>40</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>50</td>
-      <td>150</td>
-    </tr>
-    <tr>
-      <td>Skylar Mango</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>10</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>20</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>30</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>40</td>
-      <td>
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td>50</td>
-      <td>150</td>
+      <td class="text-center">50</td>
+      <td class="text-center">150</td>
     </tr>
     <tr class="odd-row">
       <td>Skylar Mango</td>
-      <td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>10</td>
-      <td>
+      <td class="text-center">10</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>20</td>
-      <td>
+      <td class="text-center">20</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>30</td>
-      <td>
+      <td class="text-center">30</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>40</td>
-      <td>
+      <td class="text-center">40</td>
+      <td class="text-center border-right">
         <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
       </td>
-      <td>50</td>
-      <td>150</td>
+      <td class="text-center">50</td>
+      <td class="text-center">150</td>
     </tr>
+    <!-- <tr>
+      <td>Skylar Mango</td>
+      <td class="text-center border-right">
+        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
+      </td>
+      <td class="text-center">10</td>
+      <td class="text-center border-right">
+        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
+      </td>
+      <td class="text-center">20</td>
+      <td class="text-center border-right">
+        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
+      </td>
+      <td class="text-center">30</td>
+      <td class="text-center border-right">
+        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
+      </td>
+      <td class="text-center">40</td>
+      <td class="text-center border-right">
+        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
+      </td>
+      <td class="text-center">50</td>
+      <td class="text-center">150</td>
+    </tr> -->
   </tbody>
-  <div class="flex justify-between">
-    <div>
-      <span><img src="" alt="" /></span><span></span>
-    </div>
-    <div></div>
-  </div>
 </table>
+<div class="table-footer flex justify-between">
+  <div>
+    <span><img src="../../../../../../assets/images/e-logo.png" alt="" /></span
+    ><span>Game to 15, Win by 1</span>
+  </div>
+  <div class="flex justify-start">
+    <div>
+      <span
+        ><img
+          src="../../../../../../assets/images/serve-icon.svg"
+          alt="" /></span
+      ><small>Serves</small>
+    </div>
+    <div>
+      <span
+        ><img
+          src="../../../../../../assets/images/serve-icon.svg"
+          alt="" /></span
+      ><small class="green-font">Returns</small>
+    </div>
+    <div>
+      <span
+        ><img
+          src="../../../../../../assets/images/serve-icon.svg"
+          alt="" /></span
+      ><small class="red-font">Bye</small>
+    </div>
+  </div>
+</div>
+
+
+

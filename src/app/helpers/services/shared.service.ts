@@ -13,7 +13,7 @@ export class SharedService {
 
   setMatchData( data : any){
     this.matchData.next(data);
-    console.log("this is updated data :", this.matchData);
+    // console.log("this is updated data :", this.matchData);
     
   }
   getMatchData(){

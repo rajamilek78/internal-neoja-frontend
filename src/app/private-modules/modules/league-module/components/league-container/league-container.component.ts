@@ -9,15 +9,18 @@ import { SharedService } from '../../../../../helpers/services/shared.service';
 export class LeagueContainerComponent {
   constructor(private sharedService : SharedService){}
   groups: any;
+  responseData : any;
   selectedFormat ='1';
 
   ngOnInit(): void {
     let matchData = localStorage.getItem('matchData');
     if (matchData) {
-      let parsedData = JSON.parse(matchData);
-      this.groups = Object.keys(parsedData.fixtures).map(key => ({
+      this.responseData = JSON.parse(matchData);
+      console.log("this is parsed data :",this.responseData);
+      
+      this.groups = Object.keys(this.responseData.fixtures).map(key => ({
         name: key,
-        data: parsedData.fixtures[key]
+        data: this.responseData.fixtures[key]
       }));
     } else {
       console.log('No match data found in local storage.');
