@@ -80,6 +80,10 @@ a {
   padding-top: 1.8rem !important;
 }
 
+.mr-1 {
+  margin-right: 1.6rem !important;
+}
+
 .container {
   margin: 0 auto;
   width: 90%;
@@ -567,6 +571,91 @@ a {
       font-size: 1.6rem;
       font-weight: 500;
       line-height: 2.4rem;
+    }
+  }
+}
+
+// contact-us-page
+.contact-us {
+  margin-top: 4.7rem;
+  padding: 3.7rem 0rem;
+
+  &__img {
+    width: 45%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__form {
+    background-color: rgba($black-color, 0.03);
+    border-radius: 1.2rem;
+    padding: 2.4rem;
+    width: 36%;
+
+    h6 {
+      color: $blue-color;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 2.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    small {
+      color: rgba($black-color, 0.35);
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1.9rem;
+      text-align: center;
+    }
+
+    form {
+      margin-top: 2rem;
+
+      div {
+        width: 100%;
+
+        label {
+          color: rgba($black-color, 0.5);
+          display: block;
+          font-size: 1.2rem;
+          font-weight: 800;
+          line-height: 1.4rem;
+          margin-bottom: 0.4rem;
+        }
+
+        input,
+        textarea {
+          background-color: rgba($black-color, 0.03);
+          border: none !important;
+          padding: 1.35rem 1.6rem;
+          border-radius: 0.6rem;
+          width: 100%;
+
+          &::placeholder {
+            color: rgba($black-color, 0.25);
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.9rem;
+          }
+        }
+
+        textarea {
+          resize: none;
+          height: 12rem;
+        }
+      }
+
+      .primary-btn-dark {
+        margin-right: 0rem !important;
+        margin-top: 3.6rem !important;
+
+        button {
+          width: 100%;
+        }
+      }
     }
   }
 }
