@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ApiManagerService } from '../../../../../core/services';
 import { Router } from '@angular/router';
+import { RouteConstant } from '../../../../../helpers/constants';
 
 @Component({
   selector: 'app-upload-player-file',
@@ -91,6 +92,6 @@ export class UploadPlayerFileComponent {
         });
       }
     });
-    this.router.navigate(['league']);
+    this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
   }
 }
