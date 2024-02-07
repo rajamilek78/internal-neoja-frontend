@@ -35,13 +35,13 @@
     <ng-container *ngFor="let game of gamesArray">
       <tr>
         <td rowspan="2">{{game[0]}}</td>
-        <td>{{game[1].team_1[0]}}</td>
-        <td>{{game[1].team_1[1]}}</td>
+        <td>{{game[1].team_1[0]}} </td>
+        <td>{{game[1].team_2[0]}}</td>
         <td>{{game[1].score.team_1}}</td>
         <td rowspan="2">{{game[1].bye[0]}}</td>
       </tr>
       <tr>
-        <td>{{game[1].team_2[0]}}</td>
+        <td>{{game[1].team_1[1]}}</td>
         <td>{{game[1].team_2[1]}}</td>
         <td>{{game[1].score.team_2}}</td>
       </tr>

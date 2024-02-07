@@ -8,20 +8,20 @@
     </div>
     <div class="table-format-one" *ngIf="selectedFormat == '1'">
       <div>
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" id="playerData">
           <mat-tab *ngFor="let group of groups" [label]="group.name">
             <app-league-table-format-one [data]="group.data"></app-league-table-format-one></mat-tab>
         </mat-tab-group>
       </div>
       <div class="primary-btn-dark">
-        <button class="btn flex justify-center">
+        <button class="btn flex justify-center" (click)="downloadAsPDF()">
           <span><img src="../../../../../../assets/images/download-icon.svg" alt="" /></span>Download
         </button>
       </div>
     </div>
     <div class="table-format-two" *ngIf="selectedFormat == '2'">
       <div>
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" id="playerData">
           <mat-tab label="Group 1" *ngFor="let group of groups" [label]="group.name">
             <app-league-table-format-two [data] = "group.data" [responseData]="responseData"></app-league-table-format-two>
           </mat-tab>
