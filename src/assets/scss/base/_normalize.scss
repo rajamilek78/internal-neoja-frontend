@@ -80,6 +80,10 @@ a {
   padding-top: 1.8rem !important;
 }
 
+.mr-1 {
+  margin-right: 1.6rem !important;
+}
+
 .container {
   margin: 0 auto;
   width: 90%;
@@ -168,13 +172,24 @@ a {
   }
 }
 
-
 .odd-row {
   background-color: rgba($black-color, 0.03);
 }
 
 .bye-name {
   color: rgba($red-color, 0.4) !important;
+}
+
+.red-font {
+  color: $red-color !important;
+}
+
+.green-font {
+  color: $primary-color !important;
+}
+
+.border-right {
+  border-right: 1px solid rgba($black-color, 0.05) !important;
 }
 
 // header scss 
@@ -421,10 +436,24 @@ a {
 
       th {
         color: rgba($black-color, 0.25);
+
+        span {
+          vertical-align: middle;
+          margin-right: 0.8rem;
+        }
       }
 
       td {
         color: rgba($black-color, 0.5);
+
+        span {
+
+          img {
+            width: 2rem;
+            vertical-align: middle;
+            margin-right: 0.8rem;
+          }
+        }
       }
     }
   }
@@ -438,6 +467,342 @@ a {
     .btn {
       span {
         margin-right: 0.8rem;
+      }
+    }
+  }
+}
+
+.table-format-two {
+  .table-header {
+    background-color: rgba($black-color, 0.05);
+    border-top: 1px solid rgba($black-color, 0.1);
+    border-left: 1px solid rgba($black-color, 0.1);
+    border-right: 1px solid rgba($black-color, 0.1);
+    border-radius: 1.2rem 1.2rem 0rem 0rem;
+    padding: 2rem;
+    margin-top: 2.4rem;
+
+    span {
+      color: rgba($black-color, 0.25);
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1.9rem;
+    }
+
+    small {
+      color: rgba($black-color, 0.5);
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.9rem;
+    }
+
+    .border-1 {
+      border-right: 1px solid rgba($black-color, 0.1);
+      margin: 0rem 1.3rem;
+    }
+  }
+
+  .table-footer {
+    background-color: rgba($black-color, 0.05);
+    border-bottom: 1px solid rgba($black-color, 0.1);
+    border-left: 1px solid rgba($black-color, 0.1);
+    border-right: 1px solid rgba($black-color, 0.1);
+    border-radius: 0rem 0rem 1.2rem 1.2rem;
+    padding: 2rem;
+
+    span {
+      color: $blue-color;
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.9rem;
+
+      img {
+        vertical-align: middle;
+        width: 2.4rem;
+        margin-right: 1.6rem;
+      }
+    }
+
+    .flex {
+      div {
+        margin-left: 3.2rem;
+
+        span {
+          img {
+            margin-right: 1rem;
+          }
+        }
+
+        small {
+          color: $blue-color;
+          font-size: 1.6rem;
+          font-weight: 700;
+          line-height: 1.9rem;
+        }
+      }
+    }
+  }
+
+  table {
+    margin-top: 0rem !important;
+  }
+}
+
+// about-us-page scss
+.about-us {
+  margin: 0 auto;
+  width: 60%;
+  margin-top: 4.7rem;
+
+  div {
+    margin-bottom: 3.6rem;
+
+    h6 {
+      color: $primary-color;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 2.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      font-family: $raleway-font;
+      color: rgba($black-color, 0.5);
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 2.4rem;
+    }
+  }
+}
+
+// contact-us-page
+.contact-us {
+  margin-top: 4.7rem;
+  padding: 3.7rem 0rem;
+
+  &__img {
+    width: 45%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__form {
+    background-color: rgba($black-color, 0.03);
+    border-radius: 1.2rem;
+    padding: 2.4rem;
+    width: 36%;
+
+    h6 {
+      color: $primary-color;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 2.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    small {
+      color: rgba($black-color, 0.35);
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1.9rem;
+      text-align: center;
+    }
+
+    form {
+      margin-top: 2rem;
+
+      div {
+        width: 100%;
+
+        label {
+          color: rgba($black-color, 0.5);
+          display: block;
+          font-size: 1.2rem;
+          font-weight: 800;
+          line-height: 1.4rem;
+          margin-bottom: 0.4rem;
+        }
+
+        input,
+        textarea {
+          background-color: rgba($black-color, 0.03);
+          border: none !important;
+          padding: 1.35rem 1.6rem;
+          border-radius: 0.6rem;
+          width: 100%;
+
+          &::placeholder {
+            color: rgba($black-color, 0.25);
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.9rem;
+          }
+        }
+
+        textarea {
+          resize: none;
+          height: 12rem;
+        }
+      }
+
+      .primary-btn-dark {
+        margin-right: 0rem !important;
+        margin-top: 3.6rem !important;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// home-page
+.home-page {
+  margin-top: 8rem;
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    color: rgba($black-color, 0.5);
+    font-size: 4.8rem;
+    font-weight: 800;
+    line-height: 5.7rem;
+    margin: 0rem 9.6rem 0.8rem 0rem;
+
+    span {
+      color: $primary-color;
+    }
+  }
+
+  small {
+    font-family: $raleway-font;
+    color: rgba($black-color, 0.35);
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+
+  .primary-btn-dark {
+    margin-top: 4rem;
+  }
+
+  &__play {
+    margin-top: 20rem;
+
+    .col-md-6 {
+      max-width: 45%;
+    }
+
+    h6 {
+      color: $primary-color;
+      font-size: 2.8rem;
+      line-height: 3.3rem;
+      font-weight: 800;
+      margin-bottom: 1.8rem;
+    }
+
+    p {
+      font-family: $raleway-font;
+      color: rgba($black-color, 0.5);
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 2.4rem;
+    }
+
+    .flex {
+      margin-top: 21.7rem;
+
+      div {
+        margin-right: 8.8rem;
+
+        b {
+          color: rgba($black-color, 0.5);
+          font-size: 3.6rem;
+          font-weight: 800;
+          line-height: 4.3rem;
+          margin-bottom: 0.2rem;
+        }
+
+        small {
+          color: rgba($black-color, 0.5);
+          font-family: $raleway-font;
+          display: block;
+          font-size: 1.6rem;
+          font-weight: 500;
+          line-height: 2.4rem;
+        }
+      }
+    }
+  }
+
+  &__slogan {
+    margin-top: 20rem;
+    text-align: center;
+
+    b {
+      color: rgba($black-color, 0.5);
+      font-size: 5.6rem;
+      font-weight: 800;
+      line-height: 6.7rem;
+      letter-spacing: 0.2rem;
+      word-spacing: 0.2rem;
+    }
+  }
+
+  &__step-section {
+    margin-top: 20rem;
+
+    h6 {
+      color: $primary-color;
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 3.3rem;
+      margin-bottom: 5.6rem;
+    }
+
+    small {
+      color: rgba($black-color, 0.5);
+      font-family: $raleway-font;
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 2.1rem;
+      margin: 0.2rem 0rem 6.5rem 0rem;
+    }
+
+    b {
+      color: rgba($black-color, 0.5);
+      font-family: $raleway-font;
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 2.4rem;
+    }
+
+    .font-round {
+      border: 6px solid rgba($primary-color, 0.15);
+      border-radius: 50%;
+      margin-bottom: 1.2rem;
+
+      div {
+        background-color: $primary-color;
+        color: $white-color;
+        font-family: $raleway-font;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.4rem;
+        font-weight: 500;
+        line-height: 2.2rem;
+        width: 2.9rem;
+        height: 2.9rem;
+        border-radius: 50%;
       }
     }
   }
