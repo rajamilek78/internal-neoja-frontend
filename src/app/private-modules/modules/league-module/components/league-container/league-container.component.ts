@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './league-container.component.html',
   styleUrl: './league-container.component.scss',
 })
-export class LeagueContainerComponent {}
+export class LeagueContainerComponent {
+  selectedFormat = '1';
+}

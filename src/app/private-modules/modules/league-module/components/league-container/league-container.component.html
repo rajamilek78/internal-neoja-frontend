@@ -1,12 +1,15 @@
 <div class="panel">
   <div class="container">
     <div class="radio-btn">
-      <mat-radio-group aria-label="Select an option">
+      <mat-radio-group
+        aria-label="Select an option"
+        [(ngModel)]="selectedFormat"
+      >
         <mat-radio-button value="1">Format 1</mat-radio-button>
         <mat-radio-button value="2">Format 2</mat-radio-button>
       </mat-radio-group>
     </div>
-    <div class="table-format-one">
+    <div class="table-format-one" *ngIf="selectedFormat == '1'">
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
           <mat-tab label="Group 1"
@@ -24,7 +27,7 @@
         </button>
       </div>
     </div>
-    <div class="table-format-two">
+    <div class="table-format-two" *ngIf="selectedFormat == '2'">
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
           <mat-tab label="Group 1">

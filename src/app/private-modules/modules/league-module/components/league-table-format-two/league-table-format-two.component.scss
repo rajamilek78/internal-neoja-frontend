@@ -1,0 +1,22 @@
+.player-name {
+    margin-top: 2rem;
+    margin-right: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.player-game {
+    div {
+        margin-top: 2rem;
+        margin-right: 2rem;
+    }
+}
+
+.flex-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
