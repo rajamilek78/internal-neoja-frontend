@@ -1,6 +1,7 @@
 <div class="table-header flex justify-between">
   <div>
     <!-- <small>{{league.name}}</small> -->
+    <small>Summers Pickleball 2024</small>
   </div>
   <div>
     <span>Court 2</span><span class="border-1"></span><span>Week 1</span>
@@ -9,186 +10,115 @@
     <span>01/02/2024, Wednesday</span>
   </div>
 </div>
-<table>
-  <thead>
-    <tr>
-      <th>
-        <span><img src="../../../../../../assets/images/players-icon.svg" alt="" /></span>Players
-      </th>
-      <th colspan="2">
-        <span><img src="../../../../../../assets/images/score-icon.svg" alt="" /></span>
-      </th>
-      <th>
-        <span><img src="../../../../../../assets/images/match-icon.svg" alt="" /></span>
-        Total
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- {{gamesArray | json}} -->
-    <ng-container>
-      <tr class="odd-row">
-        <td>
-          <!-- {{data.group_details.players | json }}
-          {{game[1].players | json}}
-          {{game[1].players[0]}} -->
-          <!-- <div *ngFor="let player of data.group_details.players ; let j = index"> -->
-              <!-- {{player}} -->
-          <!-- </div> -->
-        </td>
-        <td class="text-center border-right">
-          <div>
-            <!-- {{game[j] | json}} -->
-            <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-        </div>
-        </td>
-        <td class="text-center"></td>
-        <td class="text-center border-right">
-          <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-        </td>
-        <td class="text-center"></td>
-        <td class="text-center border-right">
-          <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-        </td>
-        <td class="text-center"></td>
-        <td class="text-center border-right">
-          <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-        </td>
-        <td class="text-center"></td>
-        <td class="text-center border-right">
-          <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-        </td>
-        <td class="text-center"></td>
-        <td class="text-center">150</td>
-      </tr>
-    </ng-container>
-    <!-- <tr *ngFor="let game of gamesArray">
-      <td>{{game[1].team_1[1]}}</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">{{ game[1].score.team_2 }}</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">{{ game[1].score.team_2 }}</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">{{ game[1].score.team_2 }}</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">{{ game[1].score.team_2 }}</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">{{ game[1].score.team_2 }}</td>
-      <td class="text-center">150</td>
-    </tr>
-    <tr class="odd-row">
-      <td>Skylar Mango</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">10</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">20</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">30</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">40</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">50</td>
-      <td class="text-center">150</td>
-    </tr>
-    <tr>
-      <td>Skylar Mango</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">10</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">20</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">30</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">40</td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/serve-icon.svg" alt="" />
-      </td>
-      <td class="text-center">50</td>
-      <td class="text-center">150</td>
-    </tr> -->
-
-  </tbody>
-</table>
-<div>
-  <!-- <div class="parent-table flex justify-end align-start">
-    <div class="player-name">
-      <div style="border: solid 1px black; padding: 7px; width: 100%;">player</div>
-      <div *ngFor="let player of players" style="border: solid 1px black; padding: 7px; width: 100%;">{{player[1]}}</div>
-    </div>
-    <div class="player-game flex justify-end" *ngFor="let game of games ; ">
-      <div class="flex-column">{{game[0]}} 
-        <div style="border: 1px solid black; padding: 0 7px;">1</div>
-        <div style="border: 1px solid black; padding: 0 7px;">1</div>
-        <div style="border: 1px solid black; padding: 0 7px;">2</div>
-        <div style="border: 1px solid black; padding: 0 7px;">2</div>
-        <div style="border: 1px solid black; padding: 0 7px;">bye</div>
-      </div>
-    </div>
-    
-    <div>total</div>
-  </div> -->
+<!-- <div>
   <div class="parent-table flex justify-end align-start">
     <div class="player-name">
-      <div style="border: solid 1px black; padding: 7px; width: 100%;">player</div>
-      <div *ngFor="let player of players" style="border: solid 1px black; padding: 7px; width: 100%;">{{player[1]}}</div>
+      <div>
+        <span
+          ><img src="../../../../../../assets/images/players-icon.svg" alt=""
+        /></span>
+        Players
+      </div>
+      <div *ngFor="let player of players">
+        {{ player[1] }}
+      </div>
     </div>
-    <div class="player-game flex justify-end" *ngFor="let game of games ; ">
-      <div class="flex-column">{{game[0]}} 
-        <div *ngFor="let player of players" style="border: 1px solid black; padding: 0 7px;">
-          <span *ngIf="game[1].team_1.includes(player[1])">1</span>
-          <span *ngIf="game[1].team_2.includes(player[1])">2</span>
-          <span *ngIf="game[1].bye.includes(player[1])">bye</span>
+    <div class="player-game flex justify-end" *ngFor="let game of games">
+      <div class="flex-column">
+        {{ game[0] }}
+        <div *ngFor="let player of players">
+          <span *ngIf="game[1].team_1.includes(player[1])"
+            ><img
+              src="../../../../../../assets/images/player1-receive-icon.svg"
+              alt=""
+          /></span>
+          <span *ngIf="game[1].team_2.includes(player[1])"
+            ><img
+              src="../../../../../../assets/images/player2-receive-icon.svg"
+              alt=""
+          /></span>
+          <span *ngIf="game[1].bye.includes(player[1])"
+            ><img
+              src="../../../../../../assets/images/bye-gold-icon.svg"
+              alt=""
+          /></span>
         </div>
       </div>
     </div>
-    
+
     <div>total</div>
+  </div>
+</div> -->
+<div>
+  <div class="parent-table flex justify-end align-start">
+    <div class="player-name flex justify-center flex-column">
+      <div class="cell">
+        <span
+          ><img src="../../../../../../assets/images/players-icon.svg" alt=""
+        /></span>
+        Players
+      </div>
+      <div *ngFor="let player of players" class="cell">
+        {{ player[1] }}
+      </div>
+    </div>
+    <div class="player-game flex justify-end align-start">
+      <div *ngFor="let game of games">
+        <div class="flex justify-center align-center flex-column">
+          <div class="cell">{{ game[0] }}</div>
+          <div class="flex justify-center" *ngFor="let player of players">
+            <div class="cell">
+              <span *ngIf="game[1].team_1.includes(player[1])"
+                ><img
+                  src="../../../../../../assets/images/player1-receive-icon.svg"
+                  alt=""
+              /></span>
+              <span *ngIf="game[1].team_2.includes(player[1])"
+                ><img
+                  src="../../../../../../assets/images/player2-receive-icon.svg"
+                  alt=""
+              /></span>
+              <span *ngIf="game[1].bye.includes(player[1])"
+                ><img
+                  src="../../../../../../assets/images/bye-gold-icon.svg"
+                  alt=""
+              /></span>
+            </div>
+            <div class="cell">50</div>
+          </div>
+        </div>
+      </div>
+      <div class="cell">total</div>
+    </div>
   </div>
 </div>
 
 <div class="table-footer flex justify-between">
   <div>
-    <span><img src="../../../../../../assets/images/e-logo.png" alt="" /></span><span>Game to 15, Win by 1</span>
+    <span><img src="../../../../../../assets/images/e-logo.png" alt="" /></span
+    ><span>Game to 15, Win by 1</span>
   </div>
   <div class="flex justify-start">
     <div>
-      <span><img src="../../../../../../assets/images/serve-icon.svg" alt="" /></span><small>Serves</small>
+      <span
+        ><img
+          src="../../../../../../assets/images/serve-icon.svg"
+          alt="" /></span
+      ><small>Serves</small>
     </div>
     <div>
-      <span><img src="../../../../../../assets/images/serve-icon.svg" alt="" /></span><small
-        class="green-font">Returns</small>
+      <span
+        ><img
+          src="../../../../../../assets/images/serve-icon.svg"
+          alt="" /></span
+      ><small class="green-font">Returns</small>
     </div>
     <div>
-      <span><img src="../../../../../../assets/images/serve-icon.svg" alt="" /></span><small
-        class="red-font">Bye</small>
+      <span
+        ><img
+          src="../../../../../../assets/images/serve-icon.svg"
+          alt="" /></span
+      ><small class="red-font">Bye</small>
     </div>
   </div>
 </div>
