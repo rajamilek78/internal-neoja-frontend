@@ -1,4 +1,4 @@
-<div>
+<!-- <div [formGroup]="form"]>
   <div class="upload-by-data">
     <div class="upload">
       <div class="upload__data">
@@ -10,18 +10,13 @@
             <div class="flex justify-start align-start">
               <div class="dropdown">
                 <mat-form-field>
-                  <mat-select>
-                    <mat-option value="5">5</mat-option>
-                    <mat-option value="10">10</mat-option>
-                    <mat-option value="15">15</mat-option>
-                    <mat-option value="20">20</mat-option>
-                    <mat-option value="25">25</mat-option>
-                    <mat-option value="30">30</mat-option>
+                  <mat-select [(value)]="playerCount" (valueChange)="onPlayerCountChange($event)">
+                    <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">{{i}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
               <div class="primary-btn-dark">
-                <button class="btn flex justify-center">
+                <button (click)="addPlayer()" class="btn flex justify-center">
                   <span
                     ><img
                       src="../../../../../../assets/images/add-icon.svg"
@@ -63,4 +58,62 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<div [formGroup]="form">
+  <div class="upload-by-data">
+    <div class="upload">
+      <div class="upload__data">
+        <div class="row player-panel align-center justify-between">
+          <div class="col-md-6 PL-0">
+            <small>Players</small>
+          </div>
+          <div class="col-md-6 PR-0">
+            <div class="flex justify-start align-start">
+              <div class="dropdown">
+                <mat-form-field>
+                  <mat-select [(value)]="playerCount" (valueChange)="onPlayerCountChange($event)">
+                    <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">{{i}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="primary-btn-dark">
+                <button class="btn flex justify-center" (click)="addPlayer()">
+                  <span><img src="../../../../../../assets/images/add-icon.svg" alt="" /></span>Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div formArrayName="players">
+          <div *ngFor="let player of players.controls; let i = index" [formGroupName]="i" class="flex justify-start MT-2-half">
+            <div class="row-field">
+              <mat-form-field>
+                <input matInput type="text" formControlName="name" placeholder="Enter your name" required />
+              </mat-form-field>
+            </div>
+            <div class="row-field">
+              <mat-form-field>
+                <input matInput type="number" formControlName="score" placeholder="Enter your score" required />
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="delete-icon flex justify-center">
+                <img src="../../../../../../assets/images/delete-icon.svg" alt="" (click)="deletePlayer(i)" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="upload__button flex justify-end">
+        <div class="primary-btn-dark">
+          <button (click)="submitData()" type="button" class="btn">Save</button>
+        </div>
+        <div class="secondary-btn-light">
+          <button type="button" class="btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
