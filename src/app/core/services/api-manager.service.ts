@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,19 +18,37 @@ export class ApiManagerService {
     return this.http.get(`${this.baseurl}${path}`, { headers });
   }
 
-  post(path: string, data: any, token?: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-    const body = JSON.stringify(data);
-    return this.http.post(`${this.baseurl}${path}`, body, { headers });
+  postFile(data : FormData,token?:string) : Observable<any>{
+    const headers = new HttpHeaders(
+      {
+        'Authorization' : `Bearer ${token}`,
+        'Content-Type' : 'application/json'
+      }
+    )
+
+    const options = {headers : headers}
+    return this.http.post(`${this.baseurl}+ 'file'`,data,options)
+
   }
-  postFile(path: string, data: FormData, token?: string) {
+  postCsv(data : any,token?:string) : Observable<any>{
+    const headers = new HttpHeaders(
+      {
+        'Authorization' : `Bearer ${token}`,
+        'Content-Type' : 'text/csv'
+      })
+
+    const options = {headers : headers}
+    return this.http.post(`${this.baseurl}+ 'csv'`,data)
+
+  }
+
+  post(path: string, data: any, token?: string)  {
     const headers = new HttpHeaders({
+      // 'Content-Type': 'text/csv',
       // 'Authorization': `Bearer ${token}`
     });
-    return this.http.post(`${this.baseurl}${path}`, data,{ headers });
+    return this.http.post(`${this.baseurl}${path}`, data, { headers });
   }
+
   
 }
