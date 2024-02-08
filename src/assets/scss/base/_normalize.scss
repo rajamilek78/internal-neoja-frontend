@@ -56,6 +56,10 @@ a {
   text-align: center !important;
 }
 
+.text-left {
+  text-align: left !important;
+}
+
 .cursor-text {
   cursor: text;
 }
@@ -543,6 +547,31 @@ a {
           }
         }
       }
+    }
+  }
+
+
+  .parent-table {
+    width: 100%;
+    border: 1px solid rgba($black-color, 0.1) !important;
+    border-collapse: collapse !important;
+
+    .cell {
+      padding: 2rem 0rem;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      font-weight: 800;
+    }
+
+    .player-name {
+      border-right: 1px solid rgba($black-color, 0.1) !important;
+      border-bottom: 1px solid rgba($black-color, 0.1) !important;
+      flex: 20%;
+    }
+
+    .player-game {
+      flex: 80%;
+      width: max-content;
     }
   }
 
