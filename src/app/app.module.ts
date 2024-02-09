@@ -6,11 +6,21 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { UtilityModule } from './utility/utility.module';
-import { HeaderComponent } from './private-modules/components/header/header.component';
-import { FooterComponent } from './private-modules/components/footer/footer.component';
+import { HeaderComponent } from './public-modules/components/header/header.component';
+import { FooterComponent } from './public-modules/components/footer/footer.component';
+import { ContactUsPageComponent } from './public-modules/components/contact-us/contact-us-page.component';
+import { AboutUsPageComponent } from './public-modules/components/about-us/about-us-page.component';
+import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    ContactUsPageComponent,
+    AboutUsPageComponent,
+    HomePageComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,4 +31,4 @@ import { FooterComponent } from './private-modules/components/footer/footer.comp
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
