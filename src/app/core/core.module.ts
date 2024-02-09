@@ -11,7 +11,8 @@ import { UtilityModule } from '../utility/utility.module';
     ApiManagerService
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    UtilityModule
   ]
 })
 export class CoreModule { }
