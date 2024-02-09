@@ -27,7 +27,7 @@ export class ApiManagerService {
     )
 
     const options = {headers : headers}
-    return this.http.post(`${this.baseurl}+ 'file'`,data,options)
+    return this.http.post(`${this.baseurl}file`,data)
 
   }
   postCsv(data : any,token?:string) : Observable<any>{
