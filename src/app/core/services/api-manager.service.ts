@@ -38,16 +38,17 @@ export class ApiManagerService {
       })
 
     const options = {headers : headers}
-    return this.http.post(`${this.baseurl}+ 'csv'`,data)
+    return this.http.post(`${this.baseurl}csv`,data)
 
   }
 
   post(path: string, data: any, token?: string)  {
     const headers = new HttpHeaders({
-      // 'Content-Type': 'text/csv',
-      // 'Authorization': `Bearer ${token}`
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     });
-    return this.http.post(`${this.baseurl}${path}`, data, { headers });
+    const options = { headers : headers}
+    return this.http.post(`${this.baseurl}${path}`, data);
   }
 
   

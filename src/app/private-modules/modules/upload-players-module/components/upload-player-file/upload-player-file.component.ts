@@ -82,7 +82,7 @@ export class UploadPlayerFileComponent {
     this.files.forEach((file) => {
       const fileType = file.name.split('.').pop();
       if (['csv', 'xls', 'xlsx'].includes(fileType || '')) {
-        this.api.post('csv',file).subscribe(response => {
+        this.api.postCsv(file).subscribe(response => {
           this.sharedService.setMatchData(response);
           // localStorage.setItem('matchData', JSON.stringify(response));
         });
