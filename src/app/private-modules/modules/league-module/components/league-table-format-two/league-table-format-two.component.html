@@ -13,7 +13,7 @@
 <div>
   <div class="parent-table flex justify-center align-start">
     <div class="player-name flex justify-center align-start flex-column">
-      <div class="cell-1">
+      <div class="cell">
         <span
           ><img
             src="../../../../../../assets/images/players-icon.svg"
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="player-game flex justify-end align-start">
-      <div *ngFor="let game of games">
+      <div class="border-1" *ngFor="let game of games">
         <div class="flex justify-center align-center flex-column">
           <div class="cell">
             <span
@@ -37,21 +37,21 @@
             /></span>
             {{ game[0] }}
           </div>
-          <div class="flex justify-center" *ngFor="let player of players">
+          <div class="flex justify-space-even" *ngFor="let player of players">
             <div class="cell">
               <span *ngIf="game[1].team_1.includes(player[1])"
                 ><img
-                  src="../../../../../../assets/images/player1-receive-icon.svg"
+                  src="../../../../../../assets/images/t1-player-icon.svg"
                   alt=""
               /></span>
               <span *ngIf="game[1].team_2.includes(player[1])"
                 ><img
-                  src="../../../../../../assets/images/player2-receive-icon.svg"
+                  src="../../../../../../assets/images/t2-player-icon.svg"
                   alt=""
               /></span>
               <span *ngIf="game[1].bye.includes(player[1])"
                 ><img
-                  src="../../../../../../assets/images/bye-gold-icon.svg"
+                  src="../../../../../../assets/images/bye-player-icon.svg"
                   alt=""
               /></span>
             </div>
@@ -59,20 +59,24 @@
           </div>
         </div>
       </div>
-      <div class="cell flex justify-center">
-        <span
-          ><img src="../../../../../../assets/images/match-icon.svg" alt=""
-        /></span>
-        Total
+      <div class="flex justify-center flex-column">
+        <div class="cell">
+          <span
+            ><img src="../../../../../../assets/images/match-icon.svg" alt=""
+          /></span>
+          Total
+        </div>
+        <div class="flex justify-center flex-column">
+          <div class="cell flex justify-center">20</div>
+          <div class="cell flex justify-center">20</div>
+          <div class="cell flex justify-center">20</div>
+          <div class="cell flex justify-center">20</div>
+          <div class="cell flex justify-center">20</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<div>
-  <table></table>
-</div>
-
 <div class="table-footer flex justify-between">
   <div>
     <span><img src="../../../../../../assets/images/e-logo.png" alt="" /></span

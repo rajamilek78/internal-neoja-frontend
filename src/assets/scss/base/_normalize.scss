@@ -45,7 +45,7 @@ body {
 
 button,
 a {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .text-right {
@@ -199,6 +199,10 @@ a {
 
 .border-right {
   border-right: 1px solid rgba($black-color, 0.05) !important;
+}
+
+.border-1 {
+  border-right: 1px solid rgba($black-color, 0.1);
 }
 
 // header scss 
@@ -561,6 +565,7 @@ a {
       font-size: 1.6rem;
       line-height: 1.9rem;
       font-weight: 800;
+      align-self: center;
 
       span {
         vertical-align: middle;
@@ -569,7 +574,7 @@ a {
     }
 
     .cell-1 {
-      color: rgba($black-color, 0.25);
+      color: rgba($black-color, 0.5);
       padding: 2rem 0rem 2rem 2rem;
       font-size: 1.6rem;
       line-height: 1.9rem;
@@ -583,6 +588,7 @@ a {
 
     .player-name {
       flex: 20%;
+      border-right: 1px solid rgba($black-color, 0.1);
     }
 
     .player-game {
@@ -635,7 +641,6 @@ a {
     }
 
     .border-1 {
-      border-right: 1px solid rgba($black-color, 0.1);
       margin: 0rem 1.3rem;
     }
   }
