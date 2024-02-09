@@ -65,52 +65,52 @@ export class LeagueContainerComponent {
     console.log(group);
   }
   
-  // downloadTableAsPDF() {
-  //   debugger
-  //   const data = document.getElementById('playerData'); // Replace with the id of your table
-  //   if (data) {
-  //     html2canvas(data,{scale :2}).then(canvas => {
-  //       // Few necessary setting options
-  //       const imgWidth = 208;
-  //       const pageHeight = 295;
-  //       const imgHeight = canvas.height * imgWidth / canvas.width;
-  //       const heightLeft = imgHeight;
-  
-  //       const contentDataURL = canvas.toDataURL('image/png');
-  //       const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-  //       const position = 0;
-  //       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-  //       pdf.save('TableData.pdf'); // Generated PDF
-  //     });
-  //   } else {
-  //     console.error('Element not found');
-  //   }
-  // }
   downloadTableAsPDF() {
-    const doc = new jsPDF();
+    debugger
+    const data = document.getElementById('playerData'); // Replace with the id of your table
+    if (data) {
+      html2canvas(data,{scale :2}).then(canvas => {
+        // Few necessary setting options
+        const imgWidth = 208;
+        const pageHeight = 295;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        const heightLeft = imgHeight;
   
-    // Replace this with your actual data.
-    // const data = this.groups.find(group => group).data;
-    
-    const data = this.selectedGroup.data;
-    console.log("this is selected data",data);
-    
-  
-    // You'll need to format your data into an array of arrays, with each inner array representing a row of data.
-    const body = data.map(row => Object.values(row));
-  
-    // You'll also need an array of column names for the headers.
-    const headers = Object.keys(data[0]);
-    console.log("this is table  : ",data);
-    
-  
-    (doc as any).autoTable({
-      head: [headers],
-      body: body
-    });
-  
-    doc.save('TableData.pdf');
+        const contentDataURL = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+        const position = 0;
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        pdf.save('TableData.pdf'); // Generated PDF
+      });
+    } else {
+      console.error('Element not found');
+    }
   }
+  // downloadTableAsPDF() {
+  //   const doc = new jsPDF();
+  
+  //   // Replace this with your actual data.
+  //   // const data = this.groups.find(group => group).data;
+    
+  //   const data = this.selectedGroup.data;
+  //   console.log("this is selected data",data);
+    
+  
+  //   // You'll need to format your data into an array of arrays, with each inner array representing a row of data.
+  //   const body = data.map(row => Object.values(row));
+  
+  //   // You'll also need an array of column names for the headers.
+  //   const headers = Object.keys(data[0]);
+  //   console.log("this is table  : ",data);
+    
+  
+  //   (doc as any).autoTable({
+  //     head: [headers],
+  //     body: body
+  //   });
+  
+  //   doc.save('TableData.pdf');
+  // }
   
 
 
