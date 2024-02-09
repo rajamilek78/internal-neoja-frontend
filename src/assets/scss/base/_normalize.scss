@@ -554,24 +554,44 @@ a {
   .parent-table {
     width: 100%;
     border: 1px solid rgba($black-color, 0.1) !important;
-    border-collapse: collapse !important;
 
     .cell {
+      color: rgba($black-color, 0.25);
       padding: 2rem 0rem;
       font-size: 1.6rem;
       line-height: 1.9rem;
       font-weight: 800;
+
+      span {
+        vertical-align: middle;
+        margin-right: 0.8rem;
+      }
+    }
+
+    .cell-1 {
+      color: rgba($black-color, 0.25);
+      padding: 2rem 0rem 2rem 2rem;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      font-weight: 800;
+
+      span {
+        vertical-align: middle;
+        margin-right: 0.8rem;
+      }
     }
 
     .player-name {
-      border-right: 1px solid rgba($black-color, 0.1) !important;
-      border-bottom: 1px solid rgba($black-color, 0.1) !important;
       flex: 20%;
     }
 
     .player-game {
       flex: 80%;
       width: max-content;
+
+      div {
+        flex-grow: 1;
+      }
     }
   }
 
