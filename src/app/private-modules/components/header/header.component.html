@@ -2,7 +2,7 @@
   <div class="container">
     <div class="flex justify-between">
       <div class="header__logo">
-        <a routerLink="/home-page">
+        <a [routerLink]="homePageUrl">
           <img
             src="../../../../assets/images/e-league-online-white-logo.png"
             alt=""
@@ -10,13 +10,18 @@
         </a>
       </div>
       <div>
-        <span><a routerLink="/upload-player-container">Upload</a></span>
+        <span><a routerLink="/upload-players">Generate League</a></span>
+        <span><a>League List</a></span>
         <span><a routerLink="/about-us-page">About us</a></span>
         <span><a routerLink="/contact-us-page">Contact us</a></span>
       </div>
       <div class="flex justify-center">
-        <div class="secondary-btn">
-          <button type="button" class="btn">Log in</button>
+        <div>
+          <a routerLink="/auth/login">
+            <div class="secondary-btn">
+              <button type="button" class="btn">Log in</button>
+            </div>
+          </a>
         </div>
         <div class="primary-btn">
           <button type="button" class="btn">Sign up</button>

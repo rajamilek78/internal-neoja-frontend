@@ -3,11 +3,11 @@ export class RouteConstant {
 
   public static LOGIN = 'login';
 
-  public static readonly UPLOAD_PLAYER_CONTAINER = 'upload-player-container';
+  public static readonly UPLOAD_PLAYER_CONTAINER = 'upload-players';
 
   public static readonly LEAGUE_CONTAINER = 'league';
 
-  public static readonly HOME_PAGE = 'home-page';
+  public static readonly HOME_PAGE = '';
 
   public static readonly ABOUT_US_PAGE = 'about-us-page';
 

@@ -35,8 +35,8 @@ textarea {
 
 .mat-mdc-checkbox-checked {
   .mdc-checkbox__background {
-    background-color: #ff4b91 !important;
-    border-color: #ff4b91 !important;
+    background-color: $primary-color;
+    border-color: $primary-color;
   }
 }
 
@@ -235,7 +235,7 @@ mat-snack-bar-container {
 }
 
 .mdc-linear-progress__bar-inner {
-  border-color: $french_rose !important;
+  border-color: $primary-color!important;
 }
 
 app-conversation-list {
@@ -306,6 +306,10 @@ app-conversation-list {
     justify-content: flex-start !important;
     align-items: center !important;
   }
+
+  .mat-mdc-tab-header {
+    align-self: flex-start;
+  }
 }
 
 // input css
@@ -353,12 +357,37 @@ app-conversation-list {
   .mat-mdc-form-field {
     height: 4.5rem !important;
   }
+
+  .mat-mdc-form-field-infix {
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
+  }
 }
 
 .mat-mdc-select-arrow svg {
   fill: currentColor;
   position: absolute;
-  top: -0.5rem !important;
+  top: 0.3rem !important;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+// scss for dropdown checksign
+
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after,
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-indeterminate::after {
+  color: $primary-color !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+  color: $primary-color !important;
+}
+
+// btn scss
+
+.mat-ripple .mat-mdc-button-ripple {
+  --mat-icon-button-ripple-color: transparent !important;
+  --mat-icon-button-hover-state-layer-opacity: none !important;
+  --mat-icon-button-focus-state-layer-opacity: none !important;
+  --mat-icon-button-pressed-state-layer-opacity: none !important;
 }
