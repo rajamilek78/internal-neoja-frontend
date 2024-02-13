@@ -68,15 +68,16 @@
           <div class="col-md-6 PL-0">
             <small>Players</small>
           </div>
+          
           <div class="col-md-6 PR-0">
             <div class="flex justify-start align-start">
-              <div class="dropdown">
+              <!-- <div class="dropdown">
                 <mat-form-field>
                   <mat-select [(value)]="playerCount" (valueChange)="onPlayerCountChange($event)">
                     <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">{{i}}</mat-option>
                   </mat-select>
                 </mat-form-field>
-              </div>
+              </div> -->
               <div class="primary-btn-dark">
                 <button class="btn flex justify-center" (click)="addPlayer()">
                   <span><img src="../../../../../../assets/images/add-icon.svg" alt="" /></span>Add
@@ -94,7 +95,7 @@
             </div>
             <div class="row-field">
               <mat-form-field>
-                <input matInput type="number" formControlName="score" placeholder="Enter your score" required />
+                <input matInput type="text" formControlName="score" placeholder="Enter your score" required/>
               </mat-form-field>
             </div>
             <div>

@@ -1,11 +1,16 @@
 <div class="panel">
+  <mat-form-field>
+    <mat-select [(ngModel)]="playerCount">
+      <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">{{i}}</mat-option>
+    </mat-select>
+  </mat-form-field>
   <div class="container">
     <mat-tab-group>
       <mat-tab label="Upload by File">
         <app-upload-player-file></app-upload-player-file
       ></mat-tab>
       <mat-tab label="Upload by Data">
-        <app-upload-player-data></app-upload-player-data
+        <app-upload-player-data [playerCount]="playerCount"></app-upload-player-data
       ></mat-tab>
     </mat-tab-group>
   </div>

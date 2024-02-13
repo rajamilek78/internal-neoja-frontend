@@ -1,21 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_ENDPOINTS } from '../../helpers/constants';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiManagerService {
 
-  private baseurl = "https://build-round-hy3odlnrxq-ue.a.run.app/";
+  private baseurl = environment.apiUrl;
 
   constructor(private http : HttpClient) { }
+
+  getAllCompanies(token? : string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization' : `Bearer ${token}`
+    });
+    const options = { headers : headers }
+    return this.http.get(API_ENDPOINTS.GET_ALL_COMPANIES);
+  }
+  getAllClubs(path : string,token? : string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization' : `Bearer ${token}`
+    });
+    const options = { headers : headers }
+    return this.http.get( `${API_ENDPOINTS.GET_CLUBS}/${path}`);
+    
+  }
+
+
 
   get(path : string, token? : string){
     const headers = new HttpHeaders({
       'Authorization' : `Bearer ${token}`
     });
-    return this.http.get(`${this.baseurl}${path}`, { headers });
+    const options = {headers : headers}
+    return this.http.get(`${this.baseurl}${path}`);
   }
 
   postFile(data : FormData,token?:string) : Observable<any>{
@@ -27,7 +48,7 @@ export class ApiManagerService {
     )
 
     const options = {headers : headers}
-    return this.http.post(`${this.baseurl}file`,data)
+    return this.http.post(`${this.baseurl}/file`,data)
 
   }
   postCsv(data : any,token?:string) : Observable<any>{
@@ -38,7 +59,7 @@ export class ApiManagerService {
       })
 
     const options = {headers : headers}
-    return this.http.post(`${this.baseurl}csv`,data)
+    return this.http.post(`${this.baseurl}/csv`,data)
 
   }
 
@@ -48,7 +69,7 @@ export class ApiManagerService {
       'Authorization': `Bearer ${token}`
     });
     const options = { headers : headers}
-    return this.http.post(`${this.baseurl}${path}`, data);
+    return this.http.post(`${this.baseurl}/${path}`, data);
   }
 
   

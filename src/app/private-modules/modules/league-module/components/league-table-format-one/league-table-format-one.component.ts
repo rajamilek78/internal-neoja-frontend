@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SharedService } from '../../../../../helpers/services/shared.service';
+import { SharedService } from '../../../../../core/services/shared.service';
 
 @Component({
   selector: 'app-league-table-format-one',

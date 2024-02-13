@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './upload-player-container.component.scss'
 })
 export class UploadPlayerContainerComponent {
+  playerCount = 5; // Default number of players
+
 
 }

@@ -1,5 +1,5 @@
 import { FormatWidth } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ApiManagerService } from '../../../../../core/services';
 import { Router } from '@angular/router';
@@ -13,7 +13,9 @@ import { SharedService } from '../../../../../helpers/services';
 export class UploadPlayerDataComponent implements OnInit {
 
   form!: FormGroup;
-  playerCount = 5; // Default number of players
+  @Input() playerCount!: number;
+
+  
 
   constructor(
     private fb: FormBuilder,
@@ -28,7 +30,7 @@ export class UploadPlayerDataComponent implements OnInit {
 
     this.addPlayers(this.playerCount);
   }
-
+  
   createPlayer(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
@@ -53,6 +55,13 @@ export class UploadPlayerDataComponent implements OnInit {
   get players(): FormArray {
     return this.form.get('players') as FormArray;
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['playerCount']) {
+      this.onPlayerCountChange(this.playerCount);
+    }
+  }
+  
 
   onPlayerCountChange(count: number): void {
     const currentCount = this.players.length;

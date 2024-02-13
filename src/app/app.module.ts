@@ -11,6 +11,7 @@ import { FooterComponent } from './public-modules/components/footer/footer.compo
 import { ContactUsPageComponent } from './public-modules/components/contact-us/contact-us-page.component';
 import { AboutUsPageComponent } from './public-modules/components/about-us/about-us-page.component';
 import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
+import { API_ENDPOINTS } from './helpers/constants/api-constants';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { HomePageComponent } from './public-modules/components/home-page/home-pa
     MaterialModule,
     UtilityModule,
   ],
-  providers: [],
+  providers: [API_ENDPOINTS],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

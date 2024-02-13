@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedService } from '../../../../../helpers/services/shared.service';
+import { SharedService } from '../../../../../core/services/shared.service';
 import {jsPDF} from 'jspdf';
 import html2canvas from 'html2canvas';
 import 'jspdf-autotable';
@@ -111,6 +111,8 @@ export class LeagueContainerComponent {
   
   //   doc.save('TableData.pdf');
   // }
+
+  
   
 
 
