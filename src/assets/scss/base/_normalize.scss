@@ -561,11 +561,14 @@ a {
 
     .cell {
       color: rgba($black-color, 0.25);
-      padding: 2rem 0rem;
+      height: 6.6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: 1.6rem;
       line-height: 1.9rem;
       font-weight: 800;
-      align-self: center;
+      width: 100%;
 
       span {
         vertical-align: middle;
@@ -573,12 +576,56 @@ a {
       }
     }
 
-    .cell-1 {
-      color: rgba($black-color, 0.5);
-      padding: 2rem 0rem 2rem 2rem;
+    .parent-cell {
+      height: 6.6rem;
+      width: 100%;
+      border-bottom: 1px solid rgba($black-color, 0.1);
+
+      &:last-child {
+        border-bottom: none !important;
+      }
+    }
+
+    .total-column {
+      width: 100%;
+
+      .cell {
+        height: 6.6rem;
+        border-bottom: 1px solid rgba($black-color, 0.1);
+
+        &:last-child {
+          border-bottom: none !important;
+        }
+      }
+    }
+
+    .cell {
+      color: rgba($black-color, 0.25);
+      height: 6.6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: 1.6rem;
       line-height: 1.9rem;
       font-weight: 800;
+      width: 100%;
+
+      span {
+        vertical-align: middle;
+        margin-right: 0.8rem;
+      }
+    }
+
+    .name-cell {
+      color: rgba($black-color, 0.5) !important;
+      height: 6.6rem;
+      display: flex;
+      justify-content: center;
+      align-items: start !important;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      font-weight: 800;
+      width: 100%;
 
       span {
         vertical-align: middle;

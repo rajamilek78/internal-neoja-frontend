@@ -13,14 +13,14 @@
 <div>
   <div class="parent-table flex justify-center align-start">
     <div class="player-name flex justify-center align-start flex-column">
-      <div class="cell">
+      <div class="header-cell">
         <span
           ><img
             src="../../../../../../assets/images/players-icon.svg"
             alt="" /></span
         >Players
       </div>
-      <div *ngFor="let player of players" class="cell-1">
+      <div *ngFor="let player of players" class="name-cell">
         <span
           ><img
             src="../../../../../../assets/images/serve-active-icon.svg"
@@ -31,13 +31,16 @@
     <div class="player-game flex justify-end align-start">
       <div class="border-1" *ngFor="let game of games">
         <div class="flex justify-center align-center flex-column">
-          <div class="cell">
+          <div class="header-cell">
             <span
               ><img src="../../../../../../assets/images/score-icon.svg" alt=""
             /></span>
             {{ game[0] }}
           </div>
-          <div class="flex justify-space-even" *ngFor="let player of players">
+          <div
+            class="flex justify-center parent-cell"
+            *ngFor="let player of players"
+          >
             <div class="cell">
               <span *ngIf="game[1].team_1.includes(player[1])"
                 ><img
@@ -66,7 +69,7 @@
           /></span>
           Total
         </div>
-        <div class="flex justify-center flex-column">
+        <div class="flex justify-center total-column flex-column">
           <div class="cell flex justify-center">20</div>
           <div class="cell flex justify-center">20</div>
           <div class="cell flex justify-center">20</div>
