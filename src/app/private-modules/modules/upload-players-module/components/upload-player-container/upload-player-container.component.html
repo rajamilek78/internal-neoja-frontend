@@ -1,17 +1,45 @@
 <div class="panel">
-  <mat-form-field>
-    <mat-select [(ngModel)]="playerCount">
-      <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">{{i}}</mat-option>
-    </mat-select>
-  </mat-form-field>
   <div class="container">
-    <mat-tab-group>
-      <mat-tab label="Upload by File">
-        <app-upload-player-file></app-upload-player-file
-      ></mat-tab>
-      <mat-tab label="Upload by Data">
-        <app-upload-player-data [playerCount]="playerCount"></app-upload-player-data
-      ></mat-tab>
-    </mat-tab-group>
+    <div class="dropdown flex justify-end align-center">
+      <div class="mr-1">
+        <div><label>League</label></div>
+        <mat-form-field>
+          <mat-select>
+            <mat-option value="1">APL</mat-option>
+            <mat-option value="2">APL</mat-option>
+            <mat-option value="3">APL</mat-option>
+            <mat-option value="4">APL</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="add-row-dropdown">
+        <div><label>Display Players</label></div>
+        <mat-form-field>
+          <mat-select>
+            <mat-option value="5">5</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="15">15</mat-option>
+            <mat-option value="20">20</mat-option>
+            <mat-option value="25">25</mat-option>
+            <mat-option value="30">30</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="radio-btn">
+      <mat-radio-group
+        aria-label="Select an option"
+        [(ngModel)]="selectedFormat"
+      >
+        <mat-radio-button value="1">Upload by file</mat-radio-button>
+        <mat-radio-button value="2">Upload by data</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div *ngIf="selectedFormat == '1'">
+      <app-upload-player-file></app-upload-player-file>
+    </div>
+    <div *ngIf="selectedFormat == '2'">
+      <app-upload-player-data></app-upload-player-data>
+    </div>
   </div>
 </div>

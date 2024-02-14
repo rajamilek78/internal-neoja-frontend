@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class UploadPlayerContainerComponent {
   playerCount = 5; // Default number of players
+  selectedFormat = '1';
 
 
 }

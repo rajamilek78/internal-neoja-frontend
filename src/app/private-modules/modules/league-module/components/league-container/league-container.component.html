@@ -1,5 +1,5 @@
-<div class="panel">
-<div class="panel">
+
+<!-- <div class="panel">
   <div class="container">
     <div class="radio-btn">
      
@@ -44,6 +44,98 @@
             >Download
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<!-- static  -->
+
+<div class="panel">
+  <div class="container">
+    <div class="radio-btn">
+      <mat-radio-group
+        aria-label="Select an option"
+        [(ngModel)]="selectedFormat"
+      >
+        <mat-radio-button value="1">Format 1</mat-radio-button>
+        <mat-radio-button value="2">Format 2</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="league-title">
+      <div><h6>LADDER-3-3.5-MON7PM-SEASON1</h6></div>
+      <div class="flex justify-end">
+        <div>
+          <span
+            ><img
+              src="../../../../../../assets/images/club-icon.svg"
+              alt="" /></span
+          ><small>LFTM-CROSSTOWN</small>
+        </div>
+        <div>
+          <span
+            ><img
+              src="../../../../../../assets/images/company-icon.svg"
+              alt="" /></span
+          ><small>Drop Shot Pickleball</small>
+        </div>
+        <div class="table-buttons flex justify-end">
+          <div>
+            <select>
+              <option value="1">Format 1</option>
+              <option value="2">Format 2</option>
+            </select>
+          </div>
+          <div class="secondary-btn-light">
+            <button type="button" class="btn">
+              <span
+                ><img
+                  src="../../../../../../assets/images/lock-icon.svg"
+                  alt=""
+              /></span>
+              Lock Round
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-format-one" *ngIf="selectedFormat == '1'">
+      <div>
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+          <mat-tab label="Group 1"
+            ><app-league-table-format-one></app-league-table-format-one
+          ></mat-tab>
+        </mat-tab-group>
+      </div>
+      <div class="primary-btn">
+        <button class="btn flex justify-center">
+          <span
+            ><img
+              src="../../../../../../assets/images/download-icon.svg"
+              alt="" /></span
+          >Download
+        </button>
+      </div>
+    </div>
+    <div class="table-format-two" *ngIf="selectedFormat == '2'">
+      <div>
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+          <mat-tab label="Group 1">
+            <app-league-table-format-two></app-league-table-format-two>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+      <div class="primary-btn">
+        <button class="btn flex justify-center">
+          <span
+            ><img
+              src="../../../../../../assets/images/download-icon.svg"
+              alt="" /></span
+          >Download
+        </button>
       </div>
     </div>
   </div>
