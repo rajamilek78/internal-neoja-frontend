@@ -26,26 +26,21 @@ textarea {
 }
 
 .mat-checkbox-frame {
-  border-color: $primary-color;
+  border-color: $chinese_Silver;
 }
 
 .mdc-checkbox__background {
-  border-color: $primary-color !important;
+  border-color: $chinese_Silver !important;
 }
 
 .mat-mdc-checkbox-checked {
   .mdc-checkbox__background {
-    background-color: $primary-color;
-    border-color: $primary-color;
+    background-color: #ff4b91 !important;
+    border-color: #ff4b91 !important;
   }
 }
 
 //Radio
-
-.mdc-form-field>label {
-  font-weight: 600 !important;
-}
-
 .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle,
 .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
   border-color: $primary-color !important;
@@ -112,12 +107,12 @@ mat-radio-button {
   --mdc-radio-unselected-hover-icon-color: #212121;
   --mdc-radio-unselected-icon-color: rgba(0, 0, 0, 0.54);
   --mdc-radio-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
-  --mdc-radio-selected-focus-icon-color: $primary-color !important;
-  --mdc-radio-selected-hover-icon-color: $primary-color !important;
-  --mdc-radio-selected-icon-color: $primary-color !important;
-  --mdc-radio-selected-pressed-icon-color: $primary-color !important;
+  --mdc-radio-selected-focus-icon-color: #015235 !important;
+  --mdc-radio-selected-hover-icon-color: #015235 !important;
+  --mdc-radio-selected-icon-color: #015235 !important;
+  --mdc-radio-selected-pressed-icon-color: #015235 !important;
   --mat-radio-ripple-color: #000;
-  --mat-radio-checked-ripple-color: $primary-color !important;
+  --mat-radio-checked-ripple-color: #015235 !important;
   --mat-radio-disabled-label-color: rgba(0, 0, 0, 0.38);
 }
 
@@ -138,10 +133,10 @@ mat-radio-button {
 }
 
 .red-color.mat-mdc-menu-item {
-  color: $primary-color;
+  color: $electric_red;
 
   .material-icon-font-outlined {
-    color: $primary-color;
+    color: $electric_red;
   }
 }
 
@@ -240,7 +235,7 @@ mat-snack-bar-container {
 }
 
 .mdc-linear-progress__bar-inner {
-  border-color: $primary-color !important;
+  border-color: $french_rose !important;
 }
 
 app-conversation-list {
@@ -265,6 +260,7 @@ app-conversation-list {
 
 .mat-mdc-tab-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  margin-top: 4.7rem !important;
 }
 
 .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
@@ -288,7 +284,7 @@ app-conversation-list {
 
 .mat-mdc-tab-group,
 .mat-mdc-tab-nav-bar {
-  // --mdc-tab-indicator-active-indicator-color: $primary-color !important;
+  --mdc-tab-indicator-active-indicator-color: $primary-color !important;
   --mat-tab-header-disabled-ripple-color: none !important;
   --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.2) !important;
   --mat-tab-header-active-label-text-color: $primary-color !important;
@@ -296,10 +292,10 @@ app-conversation-list {
   --mat-tab-header-inactive-ripple-color: $primary-color !important;
   --mat-tab-header-inactive-focus-label-text-color: rgba(0, 0, 0, 0.2) !important;
   --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.2) !important;
-  // --mat-tab-header-active-focus-label-text-color: $primary-color !important;
-  // --mat-tab-header-active-hover-label-text-color: $primary-color !important;
-  // --mat-tab-header-active-focus-indicator-color: $primary-color !important;
-  // --mat-tab-header-active-hover-indicator-color: $primary-color !important;
+  --mat-tab-header-active-focus-label-text-color: $primary-color !important;
+  --mat-tab-header-active-hover-label-text-color: $primary-color !important;
+  --mat-tab-header-active-focus-indicator-color: $primary-color !important;
+  --mat-tab-header-active-hover-indicator-color: $primary-color !important;
 }
 
 // tab scss for league-screen tables
@@ -309,10 +305,6 @@ app-conversation-list {
   .mat-mdc-tab-labels {
     justify-content: flex-start !important;
     align-items: center !important;
-  }
-
-  .mat-mdc-tab-header {
-    align-self: flex-start;
   }
 }
 
@@ -359,45 +351,14 @@ app-conversation-list {
 
 .dropdown {
   .mat-mdc-form-field {
-    height: 5rem !important;
-  }
-
-  .mat-mdc-form-field-infix {
-    padding-top: 0.8rem !important;
-    padding-bottom: 0.8rem !important;
-  }
-
-  .add-row-dropdown {
-    .mat-mdc-text-field-wrapper {
-      width: 50%;
-    }
+    height: 4.5rem !important;
   }
 }
 
 .mat-mdc-select-arrow svg {
   fill: currentColor;
   position: absolute;
-  top: 0.6rem !important;
+  top: -0.5rem !important;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-// scss for dropdown checksign
-
-.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after,
-.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-indeterminate::after {
-  color: $primary-color !important;
-}
-
-.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
-  color: $primary-color !important;
-}
-
-// btn scss
-
-.mat-ripple .mat-mdc-button-ripple {
-  --mat-icon-button-ripple-color: transparent !important;
-  --mat-icon-button-hover-state-layer-opacity: none !important;
-  --mat-icon-button-focus-state-layer-opacity: none !important;
-  --mat-icon-button-pressed-state-layer-opacity: none !important;
 }

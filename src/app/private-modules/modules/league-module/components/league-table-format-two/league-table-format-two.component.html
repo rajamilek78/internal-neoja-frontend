@@ -13,85 +13,31 @@
 <div>
   <div class="parent-table flex justify-center align-start">
     <div class="player-name flex justify-center align-start flex-column">
-      <div class="header-cell">
+      <div class="cell">
         <span
           ><img
             src="../../../../../../assets/images/players-icon.svg"
             alt="" /></span
         >Players
-<<<<<<< HEAD
       </div>
-      <div *ngFor="let player of players" class="name-cell">
-=======
-      </th>
-      <th colspan="2">
-        <span
-          ><img
-            src="../../../../../../assets/images/score-icon.svg"
-            alt="" /></span
-        >Game 1
-      </th>
-      <th colspan="2">
-        <span
-          ><img
-            src="../../../../../../assets/images/score-icon.svg"
-            alt="" /></span
-        >Game 2
-      </th>
-      <th colspan="2">
-        <span
-          ><img
-            src="../../../../../../assets/images/score-icon.svg"
-            alt="" /></span
-        >Game 3
-      </th>
-      <th colspan="2">
-        <span
-          ><img
-            src="../../../../../../assets/images/score-icon.svg"
-            alt="" /></span
-        >Game 4
-      </th>
-      <th colspan="2">
-        <span
-          ><img
-            src="../../../../../../assets/images/score-icon.svg"
-            alt="" /></span
-        >Game 5
-      </th>
-      <th>
-        <span
-          ><img src="../../../../../../assets/images/match-icon.svg" alt=""
-        /></span>
-        Total
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
->>>>>>> 60b4624e12e9a997347d63c6acb636fc0f06f1d6
+      <div *ngFor="let player of players" class="cell-1">
         <span
           ><img
             src="../../../../../../assets/images/serve-active-icon.svg"
             alt="" /></span
-<<<<<<< HEAD
         >{{ player[1] }}
       </div>
     </div>
     <div class="player-game flex justify-end align-start">
       <div class="border-1" *ngFor="let game of games">
         <div class="flex justify-center align-center flex-column">
-          <div class="header-cell">
+          <div class="cell">
             <span
               ><img src="../../../../../../assets/images/score-icon.svg" alt=""
             /></span>
             {{ game[0] }}
           </div>
-          <div
-            class="flex justify-center parent-cell"
-            *ngFor="let player of players"
-          >
+          <div class="flex justify-space-even" *ngFor="let player of players">
             <div class="cell">
               <span *ngIf="game[1].team_1.includes(player[1])"
                 ><img
@@ -120,7 +66,7 @@
           /></span>
           Total
         </div>
-        <div class="flex justify-center total-column flex-column">
+        <div class="flex justify-center flex-column">
           <div class="cell flex justify-center">20</div>
           <div class="cell flex justify-center">20</div>
           <div class="cell flex justify-center">20</div>
@@ -131,157 +77,6 @@
     </div>
   </div>
 </div>
-=======
-        >Skylar Mango
-      </td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/bye-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center"><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>
-        <span
-          ><img
-            src="../../../../../../assets/images/serve-inactive-icon.svg"
-            alt=""
-        /></span>
-        Adison Carder
-      </td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/bye-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center"><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>
-        <span
-          ><img
-            src="../../../../../../assets/images/receive-inactive-icon.svg"
-            alt=""
-        /></span>
-        Giana Curtis
-      </td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/bye-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center"><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>
-        <span
-          ><img
-            src="../../../../../../assets/images/receive-active-icon.svg"
-            alt=""
-        /></span>
-        Haylie Torff
-      </td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/bye-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center"><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>
-        <span
-          ><img
-            src="../../../../../../assets/images/bye-default-icon.svg"
-            alt="" /></span
-        >Marley Ekstrom Bothman
-      </td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/bye-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t2-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center border-right">
-        <img src="../../../../../../assets/images/t1-player-icon.svg" alt="" />
-      </td>
-      <td class="text-center"><input type="text" /></td>
-      <td class="text-center"><input type="text" /></td>
-    </tr>
-  </tbody>
-</table>
->>>>>>> 60b4624e12e9a997347d63c6acb636fc0f06f1d6
 <div class="table-footer flex justify-between">
   <div>
     <span><img src="../../../../../../assets/images/e-logo.png" alt="" /></span

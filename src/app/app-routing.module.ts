@@ -30,44 +30,9 @@ const routes: Routes = [
         (m) => m.LeagueModule
       ),
   },
-<<<<<<< HEAD
   {path : RouteConstant.HOME_PAGE, component : HomePageComponent},
   { path : RouteConstant.ABOUT_US_PAGE, component : AboutUsPageComponent},
   { path : RouteConstant.CONTACT_US_PAGE, component:ContactUsPageComponent},
-=======
-
-  {
-    path: RouteConstant.HOME_PAGE,
-    loadChildren: () =>
-      import('./public-modules/modules/home-module/home.module').then(
-        (m) => m.HomeModule
-      ),
-  },
-
-  {
-    path: RouteConstant.ABOUT_US_PAGE,
-    loadChildren: () =>
-      import('./public-modules/modules/about-us-module/about-us.module').then(
-        (m) => m.AboutUsModule
-      ),
-  },
-
-  {
-    path: RouteConstant.CONTACT_US_PAGE,
-    loadChildren: () =>
-      import(
-        './public-modules/modules/contact-us-module/contact-us.module'
-      ).then((m) => m.ContactUsModule),
-  },
-
-  {
-    path: RouteConstant.GENERATE_LEAGUE,
-    loadChildren: () =>
-      import(
-        './private-modules/modules/create-league-module/create-league.module'
-      ).then((m) => m.CreateLeagueModule),
-  },
->>>>>>> 60b4624e12e9a997347d63c6acb636fc0f06f1d6
 ];
 
 @NgModule({

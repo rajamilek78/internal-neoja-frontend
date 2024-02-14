@@ -1,64 +1,35 @@
-@import "../../scss/abstracts/abstracts";
+.primary-btn.mat-mdc-outlined-button {
+  background-color: $white-color;
+  border: 1px solid rgba($black-color, 0.5);
+  box-shadow: none;
+  border-radius: 0.8rem;
 
-.btn {
-    font-size: 1.4rem;
+  .mdc-button__label {
+    color: rgba($black-color, 0.5);
+    font-size: 1.6rem;
     font-weight: 600;
-    line-height: 1.6rem;
-    padding: 1.2rem 2.4rem;
-    border-radius: 10rem;
+  }
 }
 
-.primary-btn-light {
+.secondary-btn.mdc-button {
+  background-color: $french_rose !important;
+  border: 1px solid transparent;
+  box-shadow: none;
+  border-radius: 0.8rem;
+
+  .mdc-button__label {
+    color: $white-color;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  .material-icon-font-outlined {
+    vertical-align: sub;
+    font-size: 2rem;
     margin-right: 0.8rem;
-
-    button {
-        background-color: $white-color;
-        border: none !important;
-        color: $primary-color;
-
-        &:hover {
-            background-color: rgba($white-color, 0.85);
-        }
-    }
+  }
 }
 
-
-.primary-btn {
-    margin-right: 0.8rem;
-
-    button {
-        background-color: $primary-color;
-        color: $white-color;
-        border: none !important;
-
-        &:hover {
-            background-color: $primary-hover-color;
-        }
-    }
-}
-
-.secondary-btn {
-    margin-right: 0.8rem;
-
-    button {
-        border: 1px solid rgba($white-color, 0.25);
-        color: $white-color;
-        background-color: transparent !important;
-
-        &:hover {
-            border: 1px solid rgba($white-color, 0.5) !important;
-        }
-    }
-}
-
-.secondary-btn-light {
-    button {
-        background-color: $white-color !important;
-        color: rgba($black-color, 0.5);
-        border: 1px solid rgba($black-color, 0.1);
-
-        &:hover {
-            border: 1px solid rgba($black-color, 0.25) !important;
-        }
-    }
+.btn-height{
+  height: 5rem !important;
 }

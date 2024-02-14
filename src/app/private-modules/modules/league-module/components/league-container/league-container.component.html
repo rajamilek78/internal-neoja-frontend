@@ -11,25 +11,6 @@
         <mat-radio-button value="2">Format 2</mat-radio-button>
       </mat-radio-group>
     </div>
-    <div class="league-title">
-      <div><h6>LADDER-3-3.5-MON7PM-SEASON1</h6></div>
-      <div class="flex justify-end">
-        <div>
-          <span
-            ><img
-              src="../../../../../../assets/images/club-icon.svg"
-              alt="" /></span
-          ><small>LFTM-CROSSTOWN</small>
-        </div>
-        <div>
-          <span
-            ><img
-              src="../../../../../../assets/images/company-icon.svg"
-              alt="" /></span
-          ><small>Drop Shot Pickleball</small>
-        </div>
-      </div>
-    </div>
     <div class="table-format-one" *ngIf="selectedFormat == '1'">
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="onTabChange($event)">
@@ -43,21 +24,9 @@
         </div>
        
       </div>
-<<<<<<< HEAD
 
       
       
-=======
-      <div class="primary-btn">
-        <button class="btn flex justify-center">
-          <span
-            ><img
-              src="../../../../../../assets/images/download-icon.svg"
-              alt="" /></span
-          >Download
-        </button>
-      </div>
->>>>>>> 60b4624e12e9a997347d63c6acb636fc0f06f1d6
     </div>
     <div class="table-format-two" *ngIf="selectedFormat == '2'">
       <div>
@@ -66,17 +35,8 @@
             <app-league-table-format-two [data] = "group.data" [responseData]="responseData" id="playerData"></app-league-table-format-two>
           </mat-tab>
         </mat-tab-group>
-<<<<<<< HEAD
         <div class="primary-btn-dark">
           <button class="btn flex justify-center" (click)="downloadTableAsPDF()">
-=======
-      </div>
-      <div>
-        <div></div>
-        <div></div>
-        <div class="primary-btn">
-          <button class="btn flex justify-center">
->>>>>>> 60b4624e12e9a997347d63c6acb636fc0f06f1d6
             <span
               ><img
                 src="../../../../../../assets/images/download-icon.svg"

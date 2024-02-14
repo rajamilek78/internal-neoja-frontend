@@ -17,26 +17,18 @@
           <div class="MT-1-half">
             <label for="text">Password</label>
             <div>
-              <input
-                [type]="hidePassWord ? 'password' : 'text'"
-                placeholder="Enter your password"
-              />
+              <input type="text" placeholder="Enter your password" />
               <img
-                *ngIf="hidePassWord"
                 src="../../../../../../assets/images/eye-close-icon.svg"
-                (click)="hidePassWord = !hidePassWord"
                 alt=""
               />
               <img
-                *ngIf="!hidePassWord"
                 src="../../../../../../assets/images/eye-open-icon.svg"
-                (click)="hidePassWord = !hidePassWord"
                 alt=""
               />
             </div>
           </div>
-
-          <div class="primary-btn">
+          <div class="primary-btn-dark">
             <button type="submit" class="btn">Log in</button>
           </div>
         </form>

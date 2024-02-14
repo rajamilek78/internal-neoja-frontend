@@ -32,11 +32,15 @@ html {
 }
 
 body {
-  background-color: $white-color;
+  background-color: var(--white-color);
   overflow-y: auto;
   overflow-x: hidden !important;
   margin: 0;
-  font-weight: 400;
+
+  font: {
+    size: 1.8rem;
+    weight: 400;
+  }
 }
 
 button,
@@ -159,9 +163,27 @@ a {
   flex-direction: column !important;
 }
 
-// .odd-row {
-//   background-color: rgba($black-color, 0.03);
-// }
+.btn {
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.6rem;
+  padding: 1.2rem 2.4rem;
+  border-radius: 10rem;
+}
+
+.primary-btn-dark {
+  margin-right: 0.8rem;
+
+  button {
+    background-color: $primary-color;
+    color: $white-color;
+    border: none !important;
+  }
+}
+
+.odd-row {
+  background-color: rgba($black-color, 0.03);
+}
 
 .bye-name {
   color: rgba($red-color, 0.4) !important;
@@ -179,112 +201,14 @@ a {
   border-right: 1px solid rgba($black-color, 0.05) !important;
 }
 
-<<<<<<< HEAD
 .border-1 {
   border-right: 1px solid rgba($black-color, 0.1);
-=======
-// radio-btn
-.radio-btn {
-  margin-top: 2rem !important;
-
-  label {
-    font-size: 1.4rem !important;
-    font-weight: 600;
-    line-height: 1.6rem;
-    margin-bottom: 0rem !important;
-  }
-}
-
-// common scss for input
-
-label {
-  color: rgba($black-color, 0.5);
-  display: block;
-  font-size: 1.2rem;
-  font-weight: 600;
-  line-height: 1.4rem;
-  margin-bottom: 0.4rem;
-}
-
-input,
-textarea {
-  background-color: rgba($black-color, 0.03);
-  border: 1px solid transparent;
-  padding: 1.35rem 1.6rem;
-  border-radius: 0.6rem;
-  width: 100%;
-
-  &:focus {
-    border-color: $primary-color !important;
-    outline: none;
-  }
-
-  &::placeholder {
-    color: rgba($black-color, 0.25);
-    font-size: 1.6rem;
-    font-weight: 600;
-    line-height: 1.9rem;
-  }
-}
-
-// common-table scss
-
-table {
-  margin-top: 2.4rem;
-  border: 1px solid rgba($black-color, 0.1) !important;
-  border-radius: 1.2rem !important;
-  width: 100%;
-  border-collapse: collapse !important;
-
-  tbody,
-  thead {
-
-    th,
-    td {
-      border: 1px solid rgba($black-color, 0.1);
-      font-size: 1.6rem;
-      line-height: 1.9rem;
-      font-weight: 800;
-      padding: 2rem;
-    }
-
-    th {
-      color: rgba($black-color, 0.25);
-
-      span {
-        margin-right: 0.8rem;
-
-        img {
-          vertical-align: middle;
-        }
-      }
-    }
-
-    td {
-      color: rgba($black-color, 0.5);
-
-      span {
-
-        img {
-          width: 2rem;
-          vertical-align: middle;
-          margin-right: 0.8rem;
-        }
-      }
-
-      input {
-        padding: 1rem;
-        width: 10%;
-      }
-    }
-  }
->>>>>>> 60b4624e12e9a997347d63c6acb636fc0f06f1d6
 }
 
 // header scss 
 
 .header {
-  background: $header-color;
+  background-color: $primary-color;
   position: fixed;
   top: 0rem;
   left: 0rem;
@@ -304,13 +228,27 @@ table {
     margin-right: 3.2rem;
 
     a {
-      color: rgba($white-color, 0.5);
+      color: $white-color;
       font-size: 1.6rem;
       font-weight: 800;
       line-height: 1.9rem;
 
       &:hover {
-        color: $white-color;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .primary-btn {
+    margin-right: 0.8rem;
+
+    button {
+      background-color: $white-color;
+      border: none !important;
+      color: $primary-color;
+
+      &:hover {
+        background-color: rgba($white-color, 0.85);
       }
     }
   }
@@ -319,6 +257,14 @@ table {
     margin-right: 0.8rem;
 
     button {
+      border: 1px solid rgba($white-color, 0.1);
+      color: $white-color;
+      background-color: transparent !important;
+
+      &:hover {
+        border: 1px solid rgba($white-color, 0.5) !important;
+      }
+
       img {
         margin-left: 0.8rem;
       }
@@ -348,6 +294,8 @@ table {
   }
 
   &__form {
+    background-color: rgba($black-color, 0.03);
+    border-radius: 1.2rem;
     padding: 2.4rem;
     width: 36%;
     margin-left: 32rem;
@@ -356,7 +304,7 @@ table {
       color: $primary-color;
       text-align: center;
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 800;
       line-height: 2.4rem;
       margin-bottom: 0.6rem;
     }
@@ -364,6 +312,7 @@ table {
     small {
       color: rgba($black-color, 0.35);
       font-size: 1.6rem;
+      font-weight: 600;
       line-height: 1.9rem;
       text-align: center;
     }
@@ -373,18 +322,40 @@ table {
 
       div {
         width: 100%;
-        position: relative;
+
+        label {
+          color: rgba($black-color, 0.5);
+          display: block;
+          font-size: 1.2rem;
+          font-weight: 800;
+          line-height: 1.4rem;
+          margin-bottom: 0.4rem;
+        }
+
+        input {
+          position: relative;
+          background-color: rgba($black-color, 0.03);
+          border: none !important;
+          padding: 1.35rem 1.6rem;
+          border-radius: 0.6rem;
+          width: 100%;
+
+          &::placeholder {
+            color: rgba($black-color, 0.25);
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.9rem;
+          }
+        }
 
         img {
-          cursor: pointer;
           position: absolute;
-          top: 1.4rem;
-          right: 2rem;
-          z-index: 13;
+          top: 44rem;
+          right: 15rem;
         }
       }
 
-      .primary-btn {
+      .primary-btn-dark {
         margin-right: 0rem !important;
         margin-top: 3.6rem !important;
       }
@@ -394,39 +365,31 @@ table {
 
 // upload players screen scss
 
-app-upload-player-container {
-  .dropdown {
-    margin-top: 3.5rem;
-  }
-}
-
 .upload {
   &__section {
     border: 2px dashed rgba($black-color, 0.1);
     padding: 4rem;
-    margin-top: 1.5rem;
+    margin-top: 4.7rem;
     border-radius: 1.2rem;
 
-    .text-center {
-      div {
-        margin-bottom: 0.4rem;
+    b {
+      color: rgba($black-color, 0.5);
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.4rem;
+    }
 
-        b {
-          color: rgba($black-color, 0.5);
-          font-size: 1.4rem;
-          font-weight: 600;
-          line-height: 1.4rem;
-        }
-
-        small {
-          color: rgba($black-color, 0.35);
-          font-size: 1.4rem;
-          line-height: 1.4rem;
-        }
-      }
+    small {
+      color: rgba($black-color, 0.35);
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.4rem;
     }
 
     .btn {
+      background-color: $white-color !important;
+      border: 1px solid rgba($black-color, 0.1);
+      color: rgba($black-color, 0.5) !important;
       margin-top: 1.9rem;
     }
   }
@@ -440,8 +403,6 @@ app-upload-player-container {
   }
 
   &__format-section {
-    margin-top: 0.8rem;
-
     span {
       color: rgba($black-color, 0.25);
       font-size: 1.4rem;
@@ -452,13 +413,13 @@ app-upload-player-container {
 
   &__file {
     background-color: rgba($black-color, 0.03);
-    width: 16%;
+    width: fit-content;
     padding: 1.6rem;
     border-radius: 0.8rem;
-    margin-top: 3.5rem;
+    margin-top: 4.7rem;
 
     .file-img {
-      width: 21%;
+      width: 12%;
       margin-right: 1.2rem;
 
       img {
@@ -483,15 +444,36 @@ app-upload-player-container {
   }
 
   &__button {
-    margin-top: 3.5rem;
+    margin-top: 4.7rem;
+
+    .secondary-btn-light {
+      button {
+        background-color: $white-color !important;
+        color: rgba($black-color, 0.25);
+        border: 1px solid rgba($black-color, 0.1);
+      }
+    }
   }
 
   &__data {
-    margin-top: 1.5rem;
+    margin-top: 4.7rem;
 
-    input,
-    textarea {
-      padding: 1.6rem;
+    .player-panel {
+      border-bottom: 1px solid rgba($black-color, 0.05);
+      padding-bottom: 1.6rem;
+
+      small {
+        color: rgba($black-color, 0.5);
+        font-size: 1.6rem;
+        font-weight: 800;
+        line-height: 1.9rem;
+      }
+
+      .btn {
+        span {
+          margin-right: 0.8rem;
+        }
+      }
     }
 
     .delete-icon {
@@ -499,7 +481,6 @@ app-upload-player-container {
       height: 4.8rem;
       width: 4.8rem;
       border-radius: 0.8rem;
-      border: none !important;
     }
 
     .row-field {
@@ -507,69 +488,29 @@ app-upload-player-container {
       margin-right: 1.6rem;
     }
 
-    .btn {
-      background-color: transparent !important;
-      border: none !important;
-      color: $primary-color;
-      padding: 0rem !important;
-      margin-top: 2rem;
-
-      img {
-        margin-right: 0.8rem;
-      }
-
+    .primary-btn-dark {
+      margin-right: 0rem !important;
+      margin-left: 1.6rem;
     }
 
-  }
-}
-
-// create-league scss
-
-.create-league {
-  margin-top: 4.7rem;
-
-  table {
-    tr {
-      td {
-
-        &:first-child,
-        &:last-child {
-          text-align: center;
-        }
-
-        a {
-          margin-right: 1.2rem;
-        }
-      }
+    .dropdown {
+      width: 15% !important;
     }
+
   }
 }
 
 // league screen scss
-.league-title {
-  margin: 3.2rem 0rem;
-
-  h6 {
-    color: $primary-color;
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 2.3rem;
-    margin-bottom: 0.8rem;
-  }
-
-  small {
-    font-size: 1.4rem;
-    font-weight: 600;
-  }
+.radio-btn {
+  margin-top: 4.7rem !important;
 }
 
-// table-format-one, table-format-two scss
+// table-format-one scss
 
 .table-format-one,
 .table-format-two {
   position: relative;
 
-<<<<<<< HEAD
   table {
     margin-top: 2.4rem;
     border: 1px solid rgba($black-color, 0.1) !important;
@@ -620,14 +561,11 @@ app-upload-player-container {
 
     .cell {
       color: rgba($black-color, 0.25);
-      height: 6.6rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 2rem 0rem;
       font-size: 1.6rem;
       line-height: 1.9rem;
       font-weight: 800;
-      width: 100%;
+      align-self: center;
 
       span {
         vertical-align: middle;
@@ -635,56 +573,12 @@ app-upload-player-container {
       }
     }
 
-    .parent-cell {
-      height: 6.6rem;
-      width: 100%;
-      border-bottom: 1px solid rgba($black-color, 0.1);
-
-      &:last-child {
-        border-bottom: none !important;
-      }
-    }
-
-    .total-column {
-      width: 100%;
-
-      .cell {
-        height: 6.6rem;
-        border-bottom: 1px solid rgba($black-color, 0.1);
-
-        &:last-child {
-          border-bottom: none !important;
-        }
-      }
-    }
-
-    .cell {
-      color: rgba($black-color, 0.25);
-      height: 6.6rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .cell-1 {
+      color: rgba($black-color, 0.5);
+      padding: 2rem 0rem 2rem 2rem;
       font-size: 1.6rem;
       line-height: 1.9rem;
       font-weight: 800;
-      width: 100%;
-
-      span {
-        vertical-align: middle;
-        margin-right: 0.8rem;
-      }
-    }
-
-    .name-cell {
-      color: rgba($black-color, 0.5) !important;
-      height: 6.6rem;
-      display: flex;
-      justify-content: center;
-      align-items: start !important;
-      font-size: 1.6rem;
-      line-height: 1.9rem;
-      font-weight: 800;
-      width: 100%;
 
       span {
         vertical-align: middle;
@@ -708,9 +602,6 @@ app-upload-player-container {
   }
 
   .primary-btn-dark {
-=======
-  .primary-btn {
->>>>>>> 60b4624e12e9a997347d63c6acb636fc0f06f1d6
     position: absolute;
     top: 5rem;
     z-index: 10;
@@ -763,7 +654,7 @@ app-upload-player-container {
     padding: 2rem;
 
     span {
-      color: $primary-color;
+      color: $blue-color;
       font-size: 1.6rem;
       font-weight: 800;
       line-height: 1.9rem;
@@ -786,7 +677,7 @@ app-upload-player-container {
         }
 
         small {
-          color: $primary-color;
+          color: $blue-color;
           font-size: 1.6rem;
           font-weight: 700;
           line-height: 1.9rem;
@@ -818,7 +709,7 @@ app-upload-player-container {
     }
 
     p {
-      font-family: $font-family;
+      font-family: $raleway-font;
       color: rgba($black-color, 0.5);
       font-size: 1.6rem;
       font-weight: 500;
@@ -841,6 +732,8 @@ app-upload-player-container {
   }
 
   &__form {
+    background-color: rgba($black-color, 0.03);
+    border-radius: 1.2rem;
     padding: 2.4rem;
     width: 36%;
 
@@ -848,7 +741,7 @@ app-upload-player-container {
       color: $primary-color;
       text-align: center;
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 800;
       line-height: 2.4rem;
       margin-bottom: 0.6rem;
     }
@@ -856,6 +749,7 @@ app-upload-player-container {
     small {
       color: rgba($black-color, 0.35);
       font-size: 1.6rem;
+      font-weight: 600;
       line-height: 1.9rem;
       text-align: center;
     }
@@ -866,13 +760,38 @@ app-upload-player-container {
       div {
         width: 100%;
 
+        label {
+          color: rgba($black-color, 0.5);
+          display: block;
+          font-size: 1.2rem;
+          font-weight: 800;
+          line-height: 1.4rem;
+          margin-bottom: 0.4rem;
+        }
+
+        input,
+        textarea {
+          background-color: rgba($black-color, 0.03);
+          border: none !important;
+          padding: 1.35rem 1.6rem;
+          border-radius: 0.6rem;
+          width: 100%;
+
+          &::placeholder {
+            color: rgba($black-color, 0.25);
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.9rem;
+          }
+        }
+
         textarea {
           resize: none;
           height: 12rem;
         }
       }
 
-      .primary-btn {
+      .primary-btn-dark {
         margin-right: 0rem !important;
         margin-top: 3.6rem !important;
 
@@ -905,14 +824,14 @@ app-upload-player-container {
   }
 
   small {
-    font-family: $font-family;
+    font-family: $raleway-font;
     color: rgba($black-color, 0.35);
     font-weight: 600;
     font-size: 2rem;
     line-height: 3rem;
   }
 
-  .primary-btn {
+  .primary-btn-dark {
     margin-top: 4rem;
   }
 
@@ -932,7 +851,7 @@ app-upload-player-container {
     }
 
     p {
-      font-family: $font-family;
+      font-family: $raleway-font;
       color: rgba($black-color, 0.5);
       font-size: 1.6rem;
       font-weight: 500;
@@ -955,7 +874,7 @@ app-upload-player-container {
 
         small {
           color: rgba($black-color, 0.5);
-          font-family: $font-family;
+          font-family: $raleway-font;
           display: block;
           font-size: 1.6rem;
           font-weight: 500;
@@ -993,7 +912,7 @@ app-upload-player-container {
 
     small {
       color: rgba($black-color, 0.5);
-      font-family: $font-family;
+      font-family: $raleway-font;
       display: block;
       font-size: 1.4rem;
       font-weight: 500;
@@ -1003,7 +922,7 @@ app-upload-player-container {
 
     b {
       color: rgba($black-color, 0.5);
-      font-family: $font-family;
+      font-family: $raleway-font;
       font-size: 1.6rem;
       font-weight: 700;
       line-height: 2.4rem;
@@ -1017,22 +936,16 @@ app-upload-player-container {
       div {
         background-color: $primary-color;
         color: $white-color;
-        font-family: $font-family;
+        font-family: $raleway-font;
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
         font-size: 1.4rem;
         font-weight: 500;
         line-height: 2.2rem;
         width: 2.9rem;
         height: 2.9rem;
         border-radius: 50%;
-
-        span {
-          position: absolute;
-          top: 0.2rem;
-        }
       }
     }
   }
@@ -1049,7 +962,7 @@ app-upload-player-container {
     .grey-box {
       background-color: rgba($black-color, 0.05);
       border-radius: 1.6rem;
-      align-self: stretch;
+      height: 23.8rem;
       transform: skew(-14deg);
 
       img {
@@ -1091,7 +1004,7 @@ app-upload-player-container {
   b {
     color: $primary-color;
     font-size: 2.8rem;
-    font-weight: 600;
+    font-weight: 800;
     line-height: 3.1rem;
     margin-top: 1.8rem !important;
   }
@@ -1099,7 +1012,7 @@ app-upload-player-container {
   a {
     color: rgba($black-color, 0.5);
     font-size: 1.6rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.9rem;
     padding-left: 2.4rem;
 
@@ -1130,16 +1043,17 @@ app-upload-player-container {
     padding-top: 1.6rem;
 
     small {
-      color: rgba($black-color, 0.5);
+      color: rgba($black-color, 0.25);
       font-size: 1.4rem;
+      font-weight: 500;
       line-height: 1.4rem;
       letter-spacing: 0.1rem !important;
     }
 
     a {
-      color: rgba($black-color, 0.5);
+      color: rgba($black-color, 0.25);
       font-size: 1.4rem;
-      font-weight: 400 !important;
+      font-weight: 500;
       line-height: 1.4rem;
       letter-spacing: 0.1rem !important;
 
