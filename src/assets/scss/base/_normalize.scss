@@ -32,15 +32,11 @@ html {
 }
 
 body {
-  background-color: var(--white-color);
+  background-color: $white-color;
   overflow-y: auto;
   overflow-x: hidden !important;
   margin: 0;
-
-  font: {
-    size: 1.8rem;
-    weight: 400;
-  }
+  font-weight: 400;
 }
 
 button,
@@ -163,27 +159,9 @@ a {
   flex-direction: column !important;
 }
 
-.btn {
-  font-size: 1.4rem;
-  font-weight: 800;
-  line-height: 1.6rem;
-  padding: 1.2rem 2.4rem;
-  border-radius: 10rem;
-}
-
-.primary-btn-dark {
-  margin-right: 0.8rem;
-
-  button {
-    background-color: $primary-color;
-    color: $white-color;
-    border: none !important;
-  }
-}
-
-.odd-row {
-  background-color: rgba($black-color, 0.03);
-}
+// .odd-row {
+//   background-color: rgba($black-color, 0.03);
+// }
 
 .bye-name {
   color: rgba($red-color, 0.4) !important;
@@ -201,14 +179,112 @@ a {
   border-right: 1px solid rgba($black-color, 0.05) !important;
 }
 
+<<<<<<< HEAD
 .border-1 {
   border-right: 1px solid rgba($black-color, 0.1);
+=======
+// radio-btn
+.radio-btn {
+  margin-top: 2rem !important;
+
+  label {
+    font-size: 1.4rem !important;
+    font-weight: 600;
+    line-height: 1.6rem;
+    margin-bottom: 0rem !important;
+  }
+}
+
+// common scss for input
+
+label {
+  color: rgba($black-color, 0.5);
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+input,
+textarea {
+  background-color: rgba($black-color, 0.03);
+  border: 1px solid transparent;
+  padding: 1.35rem 1.6rem;
+  border-radius: 0.6rem;
+  width: 100%;
+
+  &:focus {
+    border-color: $primary-color !important;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: rgba($black-color, 0.25);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.9rem;
+  }
+}
+
+// common-table scss
+
+table {
+  margin-top: 2.4rem;
+  border: 1px solid rgba($black-color, 0.1) !important;
+  border-radius: 1.2rem !important;
+  width: 100%;
+  border-collapse: collapse !important;
+
+  tbody,
+  thead {
+
+    th,
+    td {
+      border: 1px solid rgba($black-color, 0.1);
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      font-weight: 800;
+      padding: 2rem;
+    }
+
+    th {
+      color: rgba($black-color, 0.25);
+
+      span {
+        margin-right: 0.8rem;
+
+        img {
+          vertical-align: middle;
+        }
+      }
+    }
+
+    td {
+      color: rgba($black-color, 0.5);
+
+      span {
+
+        img {
+          width: 2rem;
+          vertical-align: middle;
+          margin-right: 0.8rem;
+        }
+      }
+
+      input {
+        padding: 1rem;
+        width: 10%;
+      }
+    }
+  }
+>>>>>>> 60b4624e12e9a997347d63c6acb636fc0f06f1d6
 }
 
 // header scss 
 
 .header {
-  background-color: $primary-color;
+  background: $header-color;
   position: fixed;
   top: 0rem;
   left: 0rem;
@@ -228,27 +304,13 @@ a {
     margin-right: 3.2rem;
 
     a {
-      color: $white-color;
+      color: rgba($white-color, 0.5);
       font-size: 1.6rem;
       font-weight: 800;
       line-height: 1.9rem;
 
       &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .primary-btn {
-    margin-right: 0.8rem;
-
-    button {
-      background-color: $white-color;
-      border: none !important;
-      color: $primary-color;
-
-      &:hover {
-        background-color: rgba($white-color, 0.85);
+        color: $white-color;
       }
     }
   }
@@ -257,14 +319,6 @@ a {
     margin-right: 0.8rem;
 
     button {
-      border: 1px solid rgba($white-color, 0.1);
-      color: $white-color;
-      background-color: transparent !important;
-
-      &:hover {
-        border: 1px solid rgba($white-color, 0.5) !important;
-      }
-
       img {
         margin-left: 0.8rem;
       }
@@ -294,8 +348,6 @@ a {
   }
 
   &__form {
-    background-color: rgba($black-color, 0.03);
-    border-radius: 1.2rem;
     padding: 2.4rem;
     width: 36%;
     margin-left: 32rem;
@@ -304,7 +356,7 @@ a {
       color: $primary-color;
       text-align: center;
       font-size: 2rem;
-      font-weight: 800;
+      font-weight: 600;
       line-height: 2.4rem;
       margin-bottom: 0.6rem;
     }
@@ -312,7 +364,6 @@ a {
     small {
       color: rgba($black-color, 0.35);
       font-size: 1.6rem;
-      font-weight: 600;
       line-height: 1.9rem;
       text-align: center;
     }
@@ -322,40 +373,18 @@ a {
 
       div {
         width: 100%;
-
-        label {
-          color: rgba($black-color, 0.5);
-          display: block;
-          font-size: 1.2rem;
-          font-weight: 800;
-          line-height: 1.4rem;
-          margin-bottom: 0.4rem;
-        }
-
-        input {
-          position: relative;
-          background-color: rgba($black-color, 0.03);
-          border: none !important;
-          padding: 1.35rem 1.6rem;
-          border-radius: 0.6rem;
-          width: 100%;
-
-          &::placeholder {
-            color: rgba($black-color, 0.25);
-            font-size: 1.6rem;
-            font-weight: 600;
-            line-height: 1.9rem;
-          }
-        }
+        position: relative;
 
         img {
+          cursor: pointer;
           position: absolute;
-          top: 44rem;
-          right: 15rem;
+          top: 1.4rem;
+          right: 2rem;
+          z-index: 13;
         }
       }
 
-      .primary-btn-dark {
+      .primary-btn {
         margin-right: 0rem !important;
         margin-top: 3.6rem !important;
       }
@@ -365,31 +394,39 @@ a {
 
 // upload players screen scss
 
+app-upload-player-container {
+  .dropdown {
+    margin-top: 3.5rem;
+  }
+}
+
 .upload {
   &__section {
     border: 2px dashed rgba($black-color, 0.1);
     padding: 4rem;
-    margin-top: 4.7rem;
+    margin-top: 1.5rem;
     border-radius: 1.2rem;
 
-    b {
-      color: rgba($black-color, 0.5);
-      font-size: 1.4rem;
-      font-weight: 800;
-      line-height: 1.4rem;
-    }
+    .text-center {
+      div {
+        margin-bottom: 0.4rem;
 
-    small {
-      color: rgba($black-color, 0.35);
-      font-size: 1.4rem;
-      font-weight: 600;
-      line-height: 1.4rem;
+        b {
+          color: rgba($black-color, 0.5);
+          font-size: 1.4rem;
+          font-weight: 600;
+          line-height: 1.4rem;
+        }
+
+        small {
+          color: rgba($black-color, 0.35);
+          font-size: 1.4rem;
+          line-height: 1.4rem;
+        }
+      }
     }
 
     .btn {
-      background-color: $white-color !important;
-      border: 1px solid rgba($black-color, 0.1);
-      color: rgba($black-color, 0.5) !important;
       margin-top: 1.9rem;
     }
   }
@@ -403,6 +440,8 @@ a {
   }
 
   &__format-section {
+    margin-top: 0.8rem;
+
     span {
       color: rgba($black-color, 0.25);
       font-size: 1.4rem;
@@ -413,13 +452,13 @@ a {
 
   &__file {
     background-color: rgba($black-color, 0.03);
-    width: fit-content;
+    width: 16%;
     padding: 1.6rem;
     border-radius: 0.8rem;
-    margin-top: 4.7rem;
+    margin-top: 3.5rem;
 
     .file-img {
-      width: 12%;
+      width: 21%;
       margin-right: 1.2rem;
 
       img {
@@ -444,36 +483,15 @@ a {
   }
 
   &__button {
-    margin-top: 4.7rem;
-
-    .secondary-btn-light {
-      button {
-        background-color: $white-color !important;
-        color: rgba($black-color, 0.25);
-        border: 1px solid rgba($black-color, 0.1);
-      }
-    }
+    margin-top: 3.5rem;
   }
 
   &__data {
-    margin-top: 4.7rem;
+    margin-top: 1.5rem;
 
-    .player-panel {
-      border-bottom: 1px solid rgba($black-color, 0.05);
-      padding-bottom: 1.6rem;
-
-      small {
-        color: rgba($black-color, 0.5);
-        font-size: 1.6rem;
-        font-weight: 800;
-        line-height: 1.9rem;
-      }
-
-      .btn {
-        span {
-          margin-right: 0.8rem;
-        }
-      }
+    input,
+    textarea {
+      padding: 1.6rem;
     }
 
     .delete-icon {
@@ -481,6 +499,7 @@ a {
       height: 4.8rem;
       width: 4.8rem;
       border-radius: 0.8rem;
+      border: none !important;
     }
 
     .row-field {
@@ -488,29 +507,69 @@ a {
       margin-right: 1.6rem;
     }
 
-    .primary-btn-dark {
-      margin-right: 0rem !important;
-      margin-left: 1.6rem;
-    }
+    .btn {
+      background-color: transparent !important;
+      border: none !important;
+      color: $primary-color;
+      padding: 0rem !important;
+      margin-top: 2rem;
 
-    .dropdown {
-      width: 15% !important;
+      img {
+        margin-right: 0.8rem;
+      }
+
     }
 
   }
 }
 
-// league screen scss
-.radio-btn {
-  margin-top: 4.7rem !important;
+// create-league scss
+
+.create-league {
+  margin-top: 4.7rem;
+
+  table {
+    tr {
+      td {
+
+        &:first-child,
+        &:last-child {
+          text-align: center;
+        }
+
+        a {
+          margin-right: 1.2rem;
+        }
+      }
+    }
+  }
 }
 
-// table-format-one scss
+// league screen scss
+.league-title {
+  margin: 3.2rem 0rem;
+
+  h6 {
+    color: $primary-color;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  small {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+}
+
+// table-format-one, table-format-two scss
 
 .table-format-one,
 .table-format-two {
   position: relative;
 
+<<<<<<< HEAD
   table {
     margin-top: 2.4rem;
     border: 1px solid rgba($black-color, 0.1) !important;
@@ -649,6 +708,9 @@ a {
   }
 
   .primary-btn-dark {
+=======
+  .primary-btn {
+>>>>>>> 60b4624e12e9a997347d63c6acb636fc0f06f1d6
     position: absolute;
     top: 5rem;
     z-index: 10;
@@ -701,7 +763,7 @@ a {
     padding: 2rem;
 
     span {
-      color: $blue-color;
+      color: $primary-color;
       font-size: 1.6rem;
       font-weight: 800;
       line-height: 1.9rem;
@@ -724,7 +786,7 @@ a {
         }
 
         small {
-          color: $blue-color;
+          color: $primary-color;
           font-size: 1.6rem;
           font-weight: 700;
           line-height: 1.9rem;
@@ -756,7 +818,7 @@ a {
     }
 
     p {
-      font-family: $raleway-font;
+      font-family: $font-family;
       color: rgba($black-color, 0.5);
       font-size: 1.6rem;
       font-weight: 500;
@@ -779,8 +841,6 @@ a {
   }
 
   &__form {
-    background-color: rgba($black-color, 0.03);
-    border-radius: 1.2rem;
     padding: 2.4rem;
     width: 36%;
 
@@ -788,7 +848,7 @@ a {
       color: $primary-color;
       text-align: center;
       font-size: 2rem;
-      font-weight: 800;
+      font-weight: 600;
       line-height: 2.4rem;
       margin-bottom: 0.6rem;
     }
@@ -796,7 +856,6 @@ a {
     small {
       color: rgba($black-color, 0.35);
       font-size: 1.6rem;
-      font-weight: 600;
       line-height: 1.9rem;
       text-align: center;
     }
@@ -807,38 +866,13 @@ a {
       div {
         width: 100%;
 
-        label {
-          color: rgba($black-color, 0.5);
-          display: block;
-          font-size: 1.2rem;
-          font-weight: 800;
-          line-height: 1.4rem;
-          margin-bottom: 0.4rem;
-        }
-
-        input,
-        textarea {
-          background-color: rgba($black-color, 0.03);
-          border: none !important;
-          padding: 1.35rem 1.6rem;
-          border-radius: 0.6rem;
-          width: 100%;
-
-          &::placeholder {
-            color: rgba($black-color, 0.25);
-            font-size: 1.6rem;
-            font-weight: 600;
-            line-height: 1.9rem;
-          }
-        }
-
         textarea {
           resize: none;
           height: 12rem;
         }
       }
 
-      .primary-btn-dark {
+      .primary-btn {
         margin-right: 0rem !important;
         margin-top: 3.6rem !important;
 
@@ -871,14 +905,14 @@ a {
   }
 
   small {
-    font-family: $raleway-font;
+    font-family: $font-family;
     color: rgba($black-color, 0.35);
     font-weight: 600;
     font-size: 2rem;
     line-height: 3rem;
   }
 
-  .primary-btn-dark {
+  .primary-btn {
     margin-top: 4rem;
   }
 
@@ -898,7 +932,7 @@ a {
     }
 
     p {
-      font-family: $raleway-font;
+      font-family: $font-family;
       color: rgba($black-color, 0.5);
       font-size: 1.6rem;
       font-weight: 500;
@@ -921,7 +955,7 @@ a {
 
         small {
           color: rgba($black-color, 0.5);
-          font-family: $raleway-font;
+          font-family: $font-family;
           display: block;
           font-size: 1.6rem;
           font-weight: 500;
@@ -959,7 +993,7 @@ a {
 
     small {
       color: rgba($black-color, 0.5);
-      font-family: $raleway-font;
+      font-family: $font-family;
       display: block;
       font-size: 1.4rem;
       font-weight: 500;
@@ -969,7 +1003,7 @@ a {
 
     b {
       color: rgba($black-color, 0.5);
-      font-family: $raleway-font;
+      font-family: $font-family;
       font-size: 1.6rem;
       font-weight: 700;
       line-height: 2.4rem;
@@ -983,16 +1017,22 @@ a {
       div {
         background-color: $primary-color;
         color: $white-color;
-        font-family: $raleway-font;
+        font-family: $font-family;
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
         font-size: 1.4rem;
         font-weight: 500;
         line-height: 2.2rem;
         width: 2.9rem;
         height: 2.9rem;
         border-radius: 50%;
+
+        span {
+          position: absolute;
+          top: 0.2rem;
+        }
       }
     }
   }
@@ -1009,7 +1049,7 @@ a {
     .grey-box {
       background-color: rgba($black-color, 0.05);
       border-radius: 1.6rem;
-      height: 23.8rem;
+      align-self: stretch;
       transform: skew(-14deg);
 
       img {
@@ -1051,7 +1091,7 @@ a {
   b {
     color: $primary-color;
     font-size: 2.8rem;
-    font-weight: 800;
+    font-weight: 600;
     line-height: 3.1rem;
     margin-top: 1.8rem !important;
   }
@@ -1059,7 +1099,7 @@ a {
   a {
     color: rgba($black-color, 0.5);
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.9rem;
     padding-left: 2.4rem;
 
@@ -1090,17 +1130,16 @@ a {
     padding-top: 1.6rem;
 
     small {
-      color: rgba($black-color, 0.25);
+      color: rgba($black-color, 0.5);
       font-size: 1.4rem;
-      font-weight: 500;
       line-height: 1.4rem;
       letter-spacing: 0.1rem !important;
     }
 
     a {
-      color: rgba($black-color, 0.25);
+      color: rgba($black-color, 0.5);
       font-size: 1.4rem;
-      font-weight: 500;
+      font-weight: 400 !important;
       line-height: 1.4rem;
       letter-spacing: 0.1rem !important;
 

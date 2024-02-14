@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  constructor(private router : Router){}
+  hidePassWord = true;
+  constructor(private router: Router) {}
 
-  login(){
+  login() {
     this.router.navigate(['upload']);
   }
-
 }
