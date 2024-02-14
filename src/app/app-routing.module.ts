@@ -50,6 +50,14 @@ const routes: Routes = [
         './public-modules/modules/contact-us-module/contact-us.module'
       ).then((m) => m.ContactUsModule),
   },
+
+  {
+    path: RouteConstant.GENERATE_LEAGUE,
+    loadChildren: () =>
+      import(
+        './private-modules/modules/create-league-module/create-league.module'
+      ).then((m) => m.CreateLeagueModule),
+  },
 ];
 
 @NgModule({

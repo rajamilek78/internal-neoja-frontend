@@ -11,21 +11,18 @@ export class HeaderComponent {
     return `${RouteConstant.HOME_PAGE}`;
   }
 
-  get generateLeagueUrl() {
+  get buildLeagueUrl() {
     return `${RouteConstant.UPLOAD_PLAYER_CONTAINER}`;
   }
 
-  // get leagueListUrl() {
+  // get completeLeagueUrl() {
   //   return `${RouteConstant.HOME_PAGE}`;
   // }
 
-  get aboutUsUrl() {
-    return `${RouteConstant.ABOUT_US_PAGE}`;
+  get generateLeagueUrl() {
+    return `${RouteConstant.GENERATE_LEAGUE}`;
   }
 
-  get contactUsUrl() {
-    return `${RouteConstant.CONTACT_US_PAGE}`;
-  }
   get loginUrl() {
     return `${RouteConstant.LOGIN}`;
   }
