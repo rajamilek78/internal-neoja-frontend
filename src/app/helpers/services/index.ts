@@ -1,1 +1,1 @@
-export * from '../../core/services/shared.service'
+export * from '../../core/services/shared-common.service'

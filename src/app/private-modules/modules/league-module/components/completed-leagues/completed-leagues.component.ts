@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiManagerService } from '../../../../../core';
+import { CommonService } from '../../../../../core';
+import { CompanyModel } from "@app/helpers/models/company.model";
 
 @Component({
   selector: 'app-completed-leagues',
@@ -8,41 +9,47 @@ import { ApiManagerService } from '../../../../../core';
 })
 export class CompletedLeaguesComponent implements OnInit {
   companies: { [key: string]: { name: string, description: string } } = {};
-  clubs : { [key : string] : { name : string, phone : string, address : any}} = {}
+  newCompanies!: CompanyModel[];
+  clubs: { [key: string]: { name: string, phone: string, address: any } } = {}
   // clubs : any;
-  constructor(private api : ApiManagerService){}
+  constructor(private commonService: CommonService) { }
+
   ngOnInit(): void {
     this.getAllCompanies();
   }
-  
-  getAllCompanies(){
-    this.api.getAllCompanies().subscribe({
-      next :(resp : any)=>{
+
+  getAllCompanies() {
+    this.commonService.getAllCompanies().subscribe({
+      next: (resp: any) => {
         console.log(resp);
+        // format change
+        // [{
+        //   id:'DLF',
+        //   name:'test',
+        //   description:'test',
+        // }]
         this.companies = resp;
-        
-        
       },
-      error : (err : any)=>{
+      error: (err: any) => {
         console.log(err);
-        
+
       }
     })
-    
+
   }
-  getAllClubs( companyID : string){
-    this.api.getAllClubs(`${companyID}/all`).subscribe({
-      next :(resp : any)=>{
+  getAllClubs(companyID: string) {
+    this.commonService.getAllClubs(`${companyID}/all`).subscribe({
+      next: (resp: any) => {
         console.log(resp);
         this.clubs = resp;
-        
+
       },
-      error : (err : any)=>{
+      error: (err: any) => {
         console.log(err);
-        
+
       }
     })
   }
-  
+
 
 }

@@ -57,7 +57,7 @@
 </div> -->
 
 <!-- static  -->
-<div>
+<div [formGroup]="playerForm">
   <div class="upload-by-data">
     <div class="upload">
       <div class="upload__data">
@@ -69,70 +69,46 @@
             <small>Dupr</small>
           </div>
         </div>
-        <div class="flex justify-start align-end MT-2-half">
-          <div class="row-field">
-            <input type="text" placeholder="Enter Player Name" />
-          </div>
-          <div class="row-field">
-            <input type="text" placeholder="Enter Dupr" />
-          </div>
-          <div>
-            <button
-              class="delete-icon"
-              mat-icon-button
-              matTooltip="Delete"
-              aria-label="Example icon-button with a heart icon"
-            >
-              <img
-                src="../../../../../../assets/images/delete-icon.svg"
-                alt=""
-              />
-            </button>
-          </div>
-        </div>
-        <div class="flex justify-start align-end MT-2-half">
-          <div class="row-field">
-            <input type="text" placeholder="Enter Player Name" />
-          </div>
-          <div class="row-field">
-            <input type="text" placeholder="Enter Dupr" />
-          </div>
-          <div>
-            <button
-              class="delete-icon"
-              mat-icon-button
-              matTooltip="Delete"
-              aria-label="Example icon-button with a heart icon"
-            >
-              <img
-                src="../../../../../../assets/images/delete-icon.svg"
-                alt=""
-              />
-            </button>
+        <div formArrayName="players">
+          <div
+            *ngFor="let player of players.controls; let i = index"
+            [formGroupName]="i"
+            class="flex justify-start MT-2-half"
+          >
+            <div class="row-field">
+              <mat-form-field>
+                <input
+                  matInput
+                  type="text"
+                  formControlName="name"
+                  placeholder="Enter your name"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div class="row-field">
+              <mat-form-field>
+                <input
+                  matInput
+                  type="text"
+                  formControlName="score"
+                  placeholder="Enter your score"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="delete-icon flex justify-center">
+                <img
+                  src="../../../../../../assets/images/delete-icon.svg"
+                  alt=""
+                  (click)="deletePlayer(i)"
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <div class="flex justify-start align-end MT-2-half">
-          <div class="row-field">
-            <input type="text" placeholder="Enter Player Name" />
-          </div>
-          <div class="row-field">
-            <input type="text" placeholder="Enter Dupr" />
-          </div>
-          <div>
-            <button
-              class="delete-icon"
-              mat-icon-button
-              matTooltip="Delete"
-              aria-label="Example icon-button with a heart icon"
-            >
-              <img
-                src="../../../../../../assets/images/delete-icon.svg"
-                alt=""
-              />
-            </button>
-          </div>
-        </div>
-        <button type="button" class="btn">
+        <button type="button" class="btn" (click)="addPlayer()">
           <img src="../../../../../../assets/images/add-blue-icon.svg" alt="" />
           ADD NEW
         </button>

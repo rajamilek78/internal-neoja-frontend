@@ -168,7 +168,7 @@ a {
 }
 
 .green-font {
-  color: $primary-color !important;
+  color: $green-color !important;
 }
 
 .border-right {
@@ -912,34 +912,6 @@ app-upload-player-container {
 }
 
 .table-format-two {
-  .table-header {
-    background-color: rgba($black-color, 0.05);
-    border-top: 1px solid rgba($black-color, 0.1);
-    border-left: 1px solid rgba($black-color, 0.1);
-    border-right: 1px solid rgba($black-color, 0.1);
-    border-radius: 1.2rem 1.2rem 0rem 0rem;
-    padding: 2rem;
-    margin-top: 2.4rem;
-
-    span {
-      color: rgba($black-color, 0.25);
-      font-size: 1.6rem;
-      font-weight: 600;
-      line-height: 1.9rem;
-    }
-
-    small {
-      color: rgba($black-color, 0.5);
-      font-size: 1.6rem;
-      font-weight: 800;
-      line-height: 1.9rem;
-    }
-
-    .border-1 {
-      border-right: 1px solid rgba($black-color, 0.1);
-      margin: 0rem 1.3rem;
-    }
-  }
 
   .table-footer {
     background-color: rgba($black-color, 0.05);
