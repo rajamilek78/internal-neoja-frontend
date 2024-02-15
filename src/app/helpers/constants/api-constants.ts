@@ -5,7 +5,7 @@ const COMMON_URL = `${environment.apiUrl}`;
 const COMPANY_URL = `${environment.companyUrl}`
 
 export class API_ENDPOINTS{
-    public static LOGIN = `${AUTH_BASE_URL}/login`
+    public static LOGIN = `${COMPANY_URL}/login`
     //upload player's data 
 
     public static UPLOAD_DATA = `${COMMON_URL}/json`;

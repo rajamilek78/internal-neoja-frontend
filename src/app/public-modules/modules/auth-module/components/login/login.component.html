@@ -9,17 +9,17 @@
         <div class="text-center">
           <small>Enter your details to access your account.</small>
         </div>
-        <form>
+        <form [formGroup]="loginForm">
           <div>
             <label for="email">Email</label>
-            <input type="email" placeholder="Enter your email" />
+            <input type="email" placeholder="Enter your email" formControlName="email"/>
           </div>
           <div class="MT-1-half">
             <label for="text">Password</label>
             <div>
               <input
                 [type]="hidePassWord ? 'password' : 'text'"
-                placeholder="Enter your password"
+                placeholder="Enter your password" formControlName="password"
               />
               <img
                 *ngIf="hidePassWord"
@@ -37,7 +37,7 @@
           </div>
 
           <div class="primary-btn">
-            <button type="submit" class="btn">Log in</button>
+            <button type="button" class="btn" (click)="login()">Log in</button>
           </div>
         </form>
       </div>

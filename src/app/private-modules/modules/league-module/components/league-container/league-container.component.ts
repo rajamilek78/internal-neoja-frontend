@@ -44,7 +44,7 @@ export class LeagueContainerComponent {
   // }
   ngOnInit(): void {
     this.sharedService.getMatchData().subscribe(data => {
-      this.responseData = data;
+      // this.responseData = data;
       console.log(this.responseData);
       
       if (this.responseData) {

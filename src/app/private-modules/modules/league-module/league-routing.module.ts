@@ -8,7 +8,7 @@ const routes: Routes = [
     component: LeagueContainerComponent,
   },
   {
-    path : 'completed-league',
+    path : 'completed-leagues',
     component : CompletedLeaguesComponent
   }
 ];

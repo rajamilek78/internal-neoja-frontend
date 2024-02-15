@@ -27,7 +27,7 @@
               #fileInput
               style="display: none"
               (change)="onFileSelected($event)"
-              accept="file_extension/.txt,.csv,.xlsx,.xlx"
+              accept=".json,.txt,.csv,.xlsx,.xlx"
               multiple
             />
             <div class="secondary-btn-light">
@@ -64,7 +64,7 @@
       </div>
       <div class="upload__button">
         <div class="primary-btn">
-          <button type="button" class="btn">Upload</button>
+          <button type="button" class="btn" (click)="onUpload()">Upload</button>
         </div>
       </div>
     </div>

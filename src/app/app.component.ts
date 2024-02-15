@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  constructor(){
+    const api_key = 'eleagueonlineapis';
+    localStorage.setItem('token',api_key);
+  }
   title = 'eleague-online';
 }

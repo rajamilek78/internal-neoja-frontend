@@ -8,14 +8,15 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class ApiManagerService {
-
+  token = localStorage.getItem('token');
   private baseurl = environment.apiUrl;
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient) {
+  }
 
   getAllCompanies(token? : string): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization' : `Bearer ${token}`
+      'Authorization' : `Bearer ${this.token}`
     });
     const options = { headers : headers }
     return this.http.get(API_ENDPOINTS.GET_ALL_COMPANIES);
@@ -26,6 +27,14 @@ export class ApiManagerService {
     });
     const options = { headers : headers }
     return this.http.get( `${API_ENDPOINTS.GET_CLUBS}/${path}`);
+    
+  }
+  login(path : string): Observable<any> {
+    const headers = new HttpHeaders({
+      'API-Key' : `${this.token}`
+    });
+    const options = { headers : headers }
+    return this.http.get( `${API_ENDPOINTS.LOGIN}/${path}`,options);
     
   }
 

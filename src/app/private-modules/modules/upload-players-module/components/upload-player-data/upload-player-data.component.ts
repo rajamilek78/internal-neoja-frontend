@@ -12,7 +12,7 @@ import { SharedService } from '../../../../../helpers/services';
 })
 export class UploadPlayerDataComponent implements OnInit {
 
-  form!: FormGroup;
+  playerForm!: FormGroup;
   @Input() playerCount!: number;
 
   
@@ -24,7 +24,7 @@ export class UploadPlayerDataComponent implements OnInit {
     private sharedService : SharedService) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
+    this.playerForm = this.fb.group({
       players: this.fb.array([])
     });
 
@@ -53,7 +53,7 @@ export class UploadPlayerDataComponent implements OnInit {
   }
 
   get players(): FormArray {
-    return this.form.get('players') as FormArray;
+    return this.playerForm.get('players') as FormArray;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -75,7 +75,7 @@ export class UploadPlayerDataComponent implements OnInit {
   }
   
   submitData(): void {
-    const playerData = this.form.value.players.reduce((obj, player) => {
+    const playerData = this.playerForm.value.players.reduce((obj, player) => {
       obj[player.name] = player.score;
       return obj;
     }, {});
