@@ -101,8 +101,13 @@
     <div class="table-format-one" *ngIf="selectedFormat == '1'">
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          <mat-tab label="Group 1"
-            ><app-league-table-format-one></app-league-table-format-one
+          <mat-tab
+            label="Group 1"
+            *ngFor="let group of groups"
+            [label]="group.name"
+            ><app-league-table-format-one
+              [data]="group.data"
+            ></app-league-table-format-one
           ></mat-tab>
         </mat-tab-group>
       </div>
@@ -119,8 +124,14 @@
     <div class="table-format-two" *ngIf="selectedFormat == '2'">
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          <mat-tab label="Group 1">
-            <app-league-table-format-two></app-league-table-format-two>
+          <mat-tab
+            label="Group 1"
+            *ngFor="let group of groups"
+            [label]="group.name"
+          >
+            <app-league-table-format-two
+              [data]="group.data"
+            ></app-league-table-format-two>
           </mat-tab>
         </mat-tab-group>
       </div>
