@@ -3,6 +3,10 @@ export class RouteConstant {
 
   public static LOGIN = `${RouteConstant.AUTH}/login`;
 
+  public static COMPLETED_LEAGUES = 'completed-leagues';
+
+  public static VIEW_SCORES = 'view-score';
+
   public static readonly UPLOAD_PLAYER_CONTAINER = 'upload-players';
 
   public static readonly LEAGUE_CONTAINER = 'players-league';

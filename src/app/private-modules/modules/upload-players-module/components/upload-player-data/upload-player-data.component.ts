@@ -79,8 +79,8 @@ export class UploadPlayerDataComponent implements OnInit {
 
     this.api.post('json', playerData).subscribe({
       next: (res: any) => {
-        // this.sharedService.setMatchData(res);
-        localStorage.setItem('matchData', JSON.stringify(res));
+        this.sharedService.setMatchData(res);
+        // localStorage.setItem('matchData', JSON.stringify(res));
         this.router.navigate(['league']);
         console.log(res);
       },

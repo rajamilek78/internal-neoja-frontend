@@ -18,41 +18,42 @@ export class LeagueContainerComponent {
   selectedFormat = '1';
   selectedGroup!: any;
 
-  ngOnInit(): void {
-    // this.sharedService.getMatchData().subscribe( data => {
-    //   this.responseData = data;
-    //   console.log(this.responseData);
-
-    //   this.groups = Object.keys(this.responseData.fixtures).map(key => ({
-    //     name: key,
-    //     data: this.responseData.fixtures[key]
-    //   }));
-    //   console.log(this.groups);
-    // })
-    let matchData = localStorage.getItem('matchData');
-    if (matchData) {
-      this.responseData = JSON.parse(matchData);
-      console.log('this is parsed data :', this.responseData);
-    } else {
-      console.log('No match data found in local storage.');
-    }
-  }
   // ngOnInit(): void {
-  //   this.sharedService.getMatchData().subscribe((data) => {
-  //     // this.responseData = data;
+  //   this.sharedService.getMatchData().subscribe( data => {
+  //     this.responseData = data;
   //     console.log(this.responseData);
 
-  //     if (this.responseData) {
-  //       this.groups = Object.keys(this.responseData.fixtures).map((key) => ({
-  //         name: key,
-  //         data: this.responseData.fixtures[key],
-  //       }));
-  //       console.log(this.groups);
-  //     } else {
-  //       console.log('No fixtures found in responseData.');
-  //     }
-  //   });
+  //     this.groups = Object.keys(this.responseData.fixtures).map(key => ({
+  //       name: key,
+  //       data: this.responseData.fixtures[key]
+  //     }));
+  //     console.log(this.groups);
+  //   })
+  //   // let matchData = localStorage.getItem('matchData');
+  //   // if (matchData) {
+  //     // this.responseData = JSON.parse(matchData);
+  //     // console.log("this is parsed data :",this.responseData);
+
+  //   // } else {
+  //   //   console.log('No match data found in local storage.');
+  //   // }
   // }
+  ngOnInit(): void {
+    this.sharedService.getMatchData().subscribe((data) => {
+      this.responseData = data;
+      console.log(this.responseData);
+
+      if (this.responseData) {
+        this.groups = Object.keys(this.responseData.fixtures).map((key) => ({
+          name: key,
+          data: this.responseData.fixtures[key],
+        }));
+        console.log(this.groups);
+      } else {
+        console.log('No fixtures found in responseData.');
+      }
+    });
+  }
 
   onTabChange(event: MatTabChangeEvent) {
     console.log('Tab changed, new index: ' + event.index);

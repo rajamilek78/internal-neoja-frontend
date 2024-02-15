@@ -81,13 +81,30 @@ a {
   margin-right: 1.6rem !important;
 }
 
+.mr-2 {
+  margin-right: 2.4rem;
+}
+
 .mt-1 {
   margin-top: 3rem !important;
 }
 
+.mb-1 {
+  margin-bottom: 2.4rem !important;
+}
+
+.disabled {
+  opacity: 65%;
+}
+
+.col-md-3 {
+  padding-left: 0rem !important;
+  padding-right: 0rem !important;
+}
+
 .container {
   margin: 0 auto;
-  width: 90%;
+  width: 90% !important;
 
   @include respond("tab-port") {
     width: 95%;
@@ -173,6 +190,25 @@ a {
 
 .border-right {
   border-right: 1px solid rgba($black-color, 0.05) !important;
+}
+
+// img or icon btn scss
+.primary-btn,
+.primary-btn-light,
+.secondary-btn,
+.secondary-btn-light,
+.red-btn {
+
+  .btn,
+  .btn-sm {
+    span {
+      margin-right: 0.8rem;
+
+      img {
+        vertical-align: middle !important;
+      }
+    }
+  }
 }
 
 // radio-btn
@@ -370,192 +406,6 @@ table {
   }
 }
 
-.parent-table {
-  width: 100%;
-  border: 1px solid rgba($black-color, 0.1) !important;
-
-  .cell {
-    color: rgba($black-color, 0.25);
-    height: 6.6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    font-weight: 800;
-    width: 100%;
-
-    span {
-      vertical-align: middle;
-      margin-right: 0.8rem;
-    }
-  }
-
-  .parent-cell {
-    height: 6.6rem;
-    width: 100%;
-    border-bottom: 1px solid rgba($black-color, 0.1);
-
-    &:last-child {
-      border-bottom: none !important;
-    }
-  }
-
-  .total-column {
-    width: 100%;
-
-    .cell {
-      height: 6.6rem;
-      border-bottom: 1px solid rgba($black-color, 0.1);
-
-      &:last-child {
-        border-bottom: none !important;
-      }
-    }
-  }
-
-  .cell {
-    color: rgba($black-color, 0.25);
-    height: 6.6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    font-weight: 800;
-    width: 100%;
-
-    span {
-      vertical-align: middle;
-      margin-right: 0.8rem;
-    }
-  }
-
-  .name-cell {
-    color: rgba($black-color, 0.5) !important;
-    height: 6.6rem;
-    display: flex;
-    justify-content: center;
-    align-items: start !important;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    font-weight: 800;
-    width: 100%;
-
-    span {
-      vertical-align: middle;
-      margin-right: 0.8rem;
-    }
-  }
-
-  .player-name {
-    flex: 20%;
-    border-right: 1px solid rgba($black-color, 0.1);
-  }
-
-  .player-game {
-    flex: 80%;
-    width: max-content;
-
-    div {
-      flex-grow: 1;
-    }
-  }
-}
-
-.parent-table {
-  width: 100%;
-  border: 1px solid rgba($black-color, 0.1) !important;
-
-  .cell {
-    color: rgba($black-color, 0.25);
-    height: 6.6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    font-weight: 800;
-    width: 100%;
-
-    span {
-      vertical-align: middle;
-      margin-right: 0.8rem;
-    }
-  }
-
-  .parent-cell {
-    height: 6.6rem;
-    width: 100%;
-    border-bottom: 1px solid rgba($black-color, 0.1);
-
-    &:last-child {
-      border-bottom: none !important;
-    }
-  }
-
-  .total-column {
-    width: 100%;
-
-    .cell {
-      height: 6.6rem;
-      border-bottom: 1px solid rgba($black-color, 0.1);
-
-      &:last-child {
-        border-bottom: none !important;
-      }
-    }
-  }
-
-  .cell {
-    color: rgba($black-color, 0.25);
-    height: 6.6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    font-weight: 800;
-    width: 100%;
-
-    span {
-      vertical-align: middle;
-      margin-right: 0.8rem;
-    }
-  }
-
-  .name-cell {
-    color: rgba($black-color, 0.5) !important;
-    height: 6.6rem;
-    display: flex;
-    justify-content: center;
-    align-items: start !important;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    font-weight: 800;
-    width: 100%;
-
-    span {
-      vertical-align: middle;
-      margin-right: 0.8rem;
-    }
-  }
-
-  .player-name {
-    flex: 20%;
-    border-right: 1px solid rgba($black-color, 0.1);
-  }
-
-  .player-game {
-    flex: 80%;
-    width: max-content;
-
-    div {
-      flex-grow: 1;
-    }
-  }
-}
-
 // header scss 
 
 .header {
@@ -591,11 +441,11 @@ table {
   }
 
   .secondary-btn {
-    margin-right: 0.8rem;
+    margin-right: 0rem;
 
     button {
-      img {
-        margin-left: 0.8rem;
+      .flex {
+        padding-left: 0.8rem;
       }
     }
   }
@@ -879,12 +729,6 @@ app-upload-player-container {
 
     .secondary-btn-light {
       margin-left: 0.8rem;
-
-      button {
-        span {
-          margin-right: 0.8rem;
-        }
-      }
     }
   }
 }
@@ -901,12 +745,6 @@ app-upload-player-container {
     right: 0rem;
     margin-right: 0rem !important;
     z-index: 10;
-
-    .btn {
-      span {
-        margin-right: 0.8rem;
-      }
-    }
   }
 
 }
@@ -956,6 +794,67 @@ app-upload-player-container {
 
   table {
     margin-top: 0rem !important;
+  }
+}
+
+// completed leagues scss
+.completed-leagues {
+  margin-top: 3.2rem;
+
+  .row {
+    margin-top: 2.4rem;
+
+    .round-box {
+      background-color: rgba($black-color, 0.03);
+      border-radius: 0.8rem;
+      padding: 2rem;
+
+      b {
+        color: rgba($gray-color, 0.5);
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 2.3rem;
+      }
+
+      .primary-btn {
+        margin-right: 0rem;
+      }
+
+      .btn {
+        margin-top: 1.6rem;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// view-score scss
+.view-score-title {
+  margin: 3.2rem 0rem;
+
+  h6 {
+    color: $primary-color;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  small {
+    color: rgba($black-color, 0.5);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.6rem;
+  }
+}
+
+.view-score-table {
+  .status-square {
+    background-color: beige;
+    height: 2.4rem;
+    width: 2.4rem;
+    border-radius: 0.4rem;
+    margin-right: 0.4rem;
   }
 }
 
