@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedService } from '../../../../../core/services/shared.service';
+import { SharedCommonService } from '../../../../../core/services/shared-common.service';
 import {jsPDF} from 'jspdf';
 import html2canvas from 'html2canvas';
 import 'jspdf-autotable';
@@ -14,14 +14,14 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
   styleUrl: './league-container.component.scss',
 })
 export class LeagueContainerComponent {
-  constructor(private sharedService : SharedService){}
+  constructor(private SharedCommonService : SharedCommonService){}
   groups: any;
   responseData : any;
   selectedFormat ='1';
   selectedGroup! : any;
 
   // ngOnInit(): void {
-  //   this.sharedService.getMatchData().subscribe( data => {
+  //   this.SharedCommonService.getMatchData().subscribe( data => {
   //     this.responseData = data;
   //     console.log(this.responseData);
       
@@ -43,7 +43,7 @@ export class LeagueContainerComponent {
   //   // }
   // }
   ngOnInit(): void {
-    this.sharedService.getMatchData().subscribe(data => {
+    this.SharedCommonService.getMatchData().subscribe(data => {
       // this.responseData = data;
       console.log(this.responseData);
       

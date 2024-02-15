@@ -1,42 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
-import { ApiManagerService } from '../../../../../core';
-import { RouteConstant } from '../../../../../helpers/constants';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonService } from "@app/core";
+import { RouteConstant } from "@app/helpers/constants";
+import { FormBaseComponent } from "@app/utility/components";
+import { UserAuthService } from "../../services";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit{
-  loginForm : any;
+export class LoginComponent extends FormBaseComponent implements OnInit {
+  loginForm!: FormGroup;
   hidePassWord = true;
-  constructor(private router: Router, private fb : FormBuilder, private api : ApiManagerService) {}
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email : [''],
-      password : ['']
-    })
+
+  constructor(private router: Router,
+    fb: FormBuilder,
+    private userAuthService: UserAuthService,
+  ) {
+    super(fb)
   }
 
-  login() {
-    console.log("login method called");
-    
-    if(this.loginForm.valid){
-      this.api.login(`${this.loginForm.value.email}/${this.loginForm.value.password}`).subscribe(
-        {
-          next : (res : any)=>{
-            console.log(res);
-            
-          },
-          error : (err : any)=>{
-            console.log(err);
-            
-          }
-        }
-      )
-    }
+  ngOnInit(): void {
+    this.loginForm = this.createForm({
+      email: ['jaichenchlani@gmail.com', [Validators.required]],
+      password: ['abc@123', Validators.required],
+    })
+  }
+  handleLoginResponse = (response) => {
+    this.userAuthService.handleAuthResponse(response);
     this.router.navigate([RouteConstant.UPLOAD_PLAYER_CONTAINER]);
+  }
+
+  onLoginSubmit(loginForm: FormGroup) {
+    if (this.onSubmit(loginForm)) {
+      const { email, password } = loginForm.value;
+      const emailPasswordStr = `${email}/${password}`;
+      this.userAuthService.logIn(emailPasswordStr).subscribe({
+        next: (res: any) => {
+          // console.log(res);
+          this.handleLoginResponse(res);
+        },
+        error: (err: any) => {
+          // console.log(err);
+        }
+      })
+    }
   }
 }

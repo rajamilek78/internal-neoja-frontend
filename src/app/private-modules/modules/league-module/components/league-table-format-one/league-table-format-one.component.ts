@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SharedService } from '../../../../../core/services/shared.service';
+import { SharedCommonService } from '../../../../../core/services/shared-common.service';
 
 @Component({
   selector: 'app-league-table-format-one',
@@ -10,7 +10,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   @Input() data: any;
   gamesArray: any;
   // matchData: any;
-  constructor(private sharedService: SharedService) { }
+  constructor(private SharedCommonService: SharedCommonService) { }
 
 
   ngOnInit(): void {

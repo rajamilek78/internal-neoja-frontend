@@ -1,66 +1,82 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { ApiManagerService } from './api-manager.service';
-import { API_ENDPOINTS } from '../../helpers/constants';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import {
+  APPStorage,
+  RouteConstant,
+} from "@app/helpers/constants";
+import { BehaviorSubject, Observable } from "rxjs";
+import { SharedUserService } from "./shared-user.service";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class SharedService {
+@Injectable()
+export class SharedService extends SharedUserService {
 
-  private matchData = new BehaviorSubject<any>(null);
-  private companyID = new BehaviorSubject<any>('LFTM');
-  private clubID = new BehaviorSubject<any>(null);
-  private leagueID = new BehaviorSubject<any>(null);
-  private roundID = new BehaviorSubject<any>(null);
+  private taskCount = 0;
+  private _token = "";
+  private isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private isLoginRequired: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-
-  constructor(private api : ApiManagerService) { }
-
-  setMatchData( data : any){
-    this.matchData.next(data);
-    
-  }
-  getMatchData(){
-    return this.matchData.asObservable();
+  constructor(private router: Router) {
+    super();
   }
 
+  /* Shared Loader Param */
 
-
-  //for company id 
-
-  setCompanyID( data : any){
-    this.companyID.next(data);
-  }
-  getCompanyID(){
-    return this.companyID.asObservable();
+  getLoader(): Observable<boolean> {
+    return this.isLoading.asObservable();
   }
 
-  //for club id
-
-  setClubID( data : any){
-    this.clubID.next(data);
-  }
-  getClubID(){
-    return this.clubID.asObservable();
-  }
-
-  //for league id
-
-  setLeagueID( data : any){
-    this.leagueID.next(data);
-  }
-  getLeagueID(){
-    return this.leagueID.asObservable();
+  setToken(value: string): void {
+    this._token = value;
+    localStorage.setItem(
+      APPStorage.TOKEN,
+      value
+    );
   }
 
-  //for round id 
-
-  setRoundID( data : any){
-    this.roundID.next(data);
+  getToken(): string {
+    this._token = localStorage.getItem(APPStorage.TOKEN) || '';
+    return this._token;
   }
-  getRoundID(){
-    return this.roundID.asObservable();
+
+  /* Shared User Token Param */
+  isLoggedIn(): boolean {
+    return !!this.getToken() && !!this.getUser();
+  }
+
+  setLoader(val: boolean): void {
+    if (val) {
+      this.taskCount += 1;
+    } else {
+      this.taskCount -= 1;
+      if (this.taskCount !== 0) {
+        val = true;
+      }
+    }
+    this.isLoading.next(val);
+  }
+
+  clearSession() {
+    this.setToken('');
+    this.setUser(null);
+    this.setLoginRequired(false);
+    localStorage.clear();
+  }
+
+  logout(isRedirectToLogin = true): void {
+    this.clearSession();
+    if (isRedirectToLogin && this.router.url !== `/${RouteConstant.LOGIN}`) {
+      this.router.navigate([`/${RouteConstant.LOGIN}`]);
+    }
+    // this._router.navigate([`/${RouteConstant.AUTH_LOGIN}`]);
+  }
+
+  /* Shared LoggedIn Param */
+  getLoginRequired(): Observable<boolean> {
+    return this.isLoginRequired.asObservable();
+  }
+
+  setLoginRequired(val: boolean): void {
+    this.isLoginRequired.next(val);
   }
 
 }

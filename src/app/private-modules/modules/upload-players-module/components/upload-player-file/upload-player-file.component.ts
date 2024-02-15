@@ -1,9 +1,9 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ApiManagerService } from '../../../../../core/services';
+import { CommonService } from '../../../../../core/services';
 import { Router } from '@angular/router';
 import { RouteConstant } from '../../../../../helpers/constants';
-import { SharedService } from '../../../../../helpers/services';
+import { SharedCommonService } from '../../../../../helpers/services';
 @Component({
   selector: 'app-upload-player-file',
   templateUrl: './upload-player-file.component.html',
@@ -15,8 +15,8 @@ export class UploadPlayerFileComponent {
 
   constructor(
     private el: ElementRef,
-    private api: ApiManagerService,
-    private sharedService : SharedService,
+    private api: CommonService,
+    private SharedCommonService : SharedCommonService,
     private router: Router
   ) { }
 
@@ -83,7 +83,7 @@ export class UploadPlayerFileComponent {
       const fileType = file.name.split('.').pop();
       if (['csv', 'xls', 'xlsx'].includes(fileType || '')) {
         this.api.postCsv(file).subscribe(response => {
-          this.sharedService.setMatchData(response);
+          this.SharedCommonService.setMatchData(response);
           // localStorage.setItem('matchData', JSON.stringify(response));
         });
       } else {
@@ -92,11 +92,11 @@ export class UploadPlayerFileComponent {
         console.log(file);
         
         // this.api.postFile('file', data).subscribe(response => {
-        //   this.sharedService.setMatchData(response);
+        //   this.SharedCommonService.setMatchData(response);
         //   // localStorage.setItem('matchData', JSON.stringify(response));
         // });
         this.api.postFile(data).subscribe(response =>{
-          this.sharedService.setMatchData(response)
+          this.SharedCommonService.setMatchData(response)
         })
       }
     });

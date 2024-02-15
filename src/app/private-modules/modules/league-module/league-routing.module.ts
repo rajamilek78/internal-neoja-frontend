@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CompletedLeaguesComponent, LeagueContainerComponent } from './components';
+import { RouteConstant } from "@app/helpers/constants";
 
 const routes: Routes = [
   {
@@ -8,12 +9,12 @@ const routes: Routes = [
     component: LeagueContainerComponent,
   },
   {
-    path : 'completed-leagues',
-    component : CompletedLeaguesComponent
+    path: RouteConstant.COMPLETED_LEAGUES,
+    component: CompletedLeaguesComponent
   }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LeagueRoutingModule {}
+export class LeagueRoutingModule { }

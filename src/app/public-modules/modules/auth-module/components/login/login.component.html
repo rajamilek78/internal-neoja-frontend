@@ -9,7 +9,7 @@
         <div class="text-center">
           <small>Enter your details to access your account.</small>
         </div>
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" (submit)="onLoginSubmit(loginForm)">
           <div>
             <label for="email">Email</label>
             <input type="email" placeholder="Enter your email" formControlName="email"/>
@@ -37,7 +37,7 @@
           </div>
 
           <div class="primary-btn">
-            <button type="button" class="btn" (click)="login()">Log in</button>
+            <button type="submit" class="btn" >Log in</button>
           </div>
         </form>
       </div>
