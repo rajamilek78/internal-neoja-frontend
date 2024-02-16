@@ -6,6 +6,7 @@ import { HomePageComponent } from './public-modules/components/home-page/home-pa
 import { AboutUsPageComponent } from './public-modules/components/about-us/about-us-page.component';
 import { ContactUsPageComponent } from './public-modules/components/contact-us/contact-us-page.component';
 import { homePageComponents } from './public-modules/modules/home-module/components/components.export';
+import { AppAuthGuard } from './utility/_guards';
 const routes: Routes = [
   {
     path: RouteConstant.AUTH,
@@ -25,6 +26,7 @@ const routes: Routes = [
 
   {
     path: RouteConstant.LEAGUE_CONTAINER,
+    canActivate: [AppAuthGuard],
     loadChildren: () =>
       import('./private-modules/modules/league-module/league.module').then(
         (m) => m.LeagueModule
@@ -32,6 +34,7 @@ const routes: Routes = [
   },
   {
     path: RouteConstant.GENERATE_LEAGUE,
+    canActivate: [AppAuthGuard],
     loadChildren: () =>
       import(
         './private-modules/modules/create-league-module/create-league.module'

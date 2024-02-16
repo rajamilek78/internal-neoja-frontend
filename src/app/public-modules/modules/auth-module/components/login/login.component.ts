@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonService } from "@app/core";
 import { RouteConstant } from "@app/helpers/constants";
 import { FormBaseComponent } from "@app/utility/components";
-import { UserAuthService } from "../../services";
+import { UserAuthService } from '../../services';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +23,8 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.createForm({
-      email: ['jaichenchlani@gmail.com', [Validators.required]],
-      password: ['abc@123', Validators.required],
+      email: ['', [Validators.required]],
+      password: ['', Validators.required],
     })
   }
   handleLoginResponse = (response) => {
@@ -39,11 +38,9 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
       const emailPasswordStr = `${email}/${password}`;
       this.userAuthService.logIn(emailPasswordStr).subscribe({
         next: (res: any) => {
-          // console.log(res);
           this.handleLoginResponse(res);
         },
         error: (err: any) => {
-          // console.log(err);
         }
       })
     }

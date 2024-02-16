@@ -13,9 +13,9 @@
         </mat-form-field>
       </div>
       <div class="add-row-dropdown">
-        <div><label>Display Players</label></div>
-        <mat-form-field>
-          <mat-select [(ngModel)]="playerCount">
+        <div  *ngIf="selectedFormat !== '1'"><label>Display Players</label></div>
+        <mat-form-field  *ngIf="selectedFormat !== '1'">
+          <mat-select [(ngModel)]="playerCount" >
             <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">
               {{i}}
             </mat-option>
