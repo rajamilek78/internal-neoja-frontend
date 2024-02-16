@@ -8,5 +8,6 @@ import { CreateLeagueDialogComponent } from './components/create-league-dialog/c
 @NgModule({
   declarations: [...createLeagueComponents, CreateLeagueDialogComponent],
   imports: [CommonModule, CreateLeagueRoutingModule, UtilityModule],
+  // entryComponents: [CreateLeagueDialogComponent]
 })
 export class CreateLeagueModule {}

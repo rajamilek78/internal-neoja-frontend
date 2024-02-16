@@ -68,12 +68,13 @@
           <div class="row-title">
             <small>Dupr</small>
           </div>
+          <div><small>Rating</small></div>
         </div>
         <div formArrayName="players">
           <div
             *ngFor="let player of players.controls; let i = index"
             [formGroupName]="i"
-            class="flex justify-start MT-2-half"
+            class="round-two flex justify-end MT-2-half"
           >
             <div class="row-field">
               <mat-form-field>
@@ -86,7 +87,7 @@
                 />
               </mat-form-field>
             </div>
-            <div class="row-field">
+            <div class="row-field-two">
               <mat-form-field>
                 <input
                   matInput
@@ -96,6 +97,31 @@
                   required
                 />
               </mat-form-field>
+            </div>
+            <div class="row-field-two">
+              <mat-form-field>
+                <input
+                  matInput
+                  type="text"
+                  formControlName="score"
+                  placeholder="NA"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div class="flex">
+              <div class="row-field-two toggle-square">
+                <mat-slide-toggle class="example-margin">
+                  No Show
+                </mat-slide-toggle>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="row-field-two toggle-square">
+                <mat-slide-toggle class="example-margin">
+                  Drop In
+                </mat-slide-toggle>
+              </div>
             </div>
             <div>
               <div class="delete-icon flex justify-center">

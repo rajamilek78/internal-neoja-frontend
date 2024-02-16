@@ -52,6 +52,10 @@ a {
   text-align: center !important;
 }
 
+.text-left {
+  text-align: left !important;
+}
+
 .cursor-text {
   cursor: text;
 }
@@ -223,6 +227,28 @@ a {
   }
 }
 
+// modal scss
+.modal {
+  padding: 2rem;
+
+  &__header {
+    border-bottom: 1px solid rgba($black-color, 0.1);
+    padding-bottom: 1.6rem;
+    margin-bottom: 2rem;
+
+    h6 {
+      color: $primary-color;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 2.3rem;
+    }
+  }
+
+  &__footer {
+    margin-top: 2rem;
+  }
+}
+
 // common scss for input
 
 label {
@@ -270,7 +296,6 @@ textarea {
     th,
     td {
       border: 1px solid rgba($black-color, 0.1);
-      text-align: center;
       font-size: 1.6rem;
       line-height: 1.9rem;
       font-weight: 800;
@@ -415,6 +440,14 @@ textarea {
     }
   }
 
+  tbody {
+    tr {
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
   thead,
   tbody {
 
@@ -424,6 +457,7 @@ textarea {
       line-height: 1.9rem;
       font-weight: 800;
       padding: 2rem;
+      text-align: center;
     }
 
     th {
@@ -658,21 +692,49 @@ app-upload-player-container {
       border: none !important;
     }
 
-    .row-field {
-      flex: 47%;
-      margin-right: 1.6rem;
+    .round-two {
+      .row-field {
+        flex: 35%;
+        margin-right: 1.6rem;
+      }
+
+      .row-field-two {
+        flex: 16%;
+        margin-right: 1.6rem;
+      }
+
+      .toggle-square {
+        background-color: rgba($black-color, 0.03);
+        padding: 1.6rem;
+        border-radius: 0.8rem;
+
+        label {
+          color: rgba($black-color, 0.5);
+          font-size: 1.4rem;
+          font-weight: 600;
+          line-height: 1.6rem;
+        }
+      }
+
     }
 
-    .row-title {
-      border-bottom: 1px solid rgba($black-color, 0.1);
-      flex: 47%;
-      padding-bottom: 1.85rem;
+    .round-one {
+      .row-field {
+        flex: 47%;
+        margin-right: 1.6rem;
+      }
 
-      small {
-        color: rgba($black-color, 0.8);
-        font-size: 1.6rem;
-        font-weight: 600;
-        line-height: 1.8rem;
+      .row-title {
+        border-bottom: 1px solid rgba($black-color, 0.1);
+        flex: 47%;
+        padding-bottom: 1.85rem;
+
+        small {
+          color: rgba($black-color, 0.8);
+          font-size: 1.6rem;
+          font-weight: 600;
+          line-height: 1.8rem;
+        }
       }
     }
 
@@ -782,19 +844,9 @@ app-upload-player-container {
 
 .table-format-one {
   .table-1 {
-
-    thead,
-    tbody {
+    thead {
       th {
         &:nth-child(2) {
-          text-align: left;
-        }
-      }
-
-      td {
-
-        &:nth-child(2),
-        &:last-child {
           text-align: left;
         }
       }
@@ -911,6 +963,20 @@ app-upload-player-container {
     width: 2.4rem;
     border-radius: 0.4rem;
     margin-right: 0.4rem;
+  }
+
+  .table-2 {
+
+    thead,
+    tbody {
+
+      th,
+      td {
+        &:nth-child(2) {
+          text-align: left;
+        }
+      }
+    }
   }
 }
 

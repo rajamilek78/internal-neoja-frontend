@@ -300,6 +300,12 @@ app-conversation-list {
 
 // input css
 
+.mat-mdc-form-field-infix {
+  min-height: 0rem !important;
+  padding-top: 0rem !important;
+  padding-bottom: 0rem !important;
+}
+
 .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
   color: rgba(0, 0, 0, 0.15) !important;
   font-size: 1.4rem !important;
@@ -350,8 +356,8 @@ app-conversation-list {
   }
 
   .add-row-dropdown {
-    .mat-mdc-text-field-wrapper {
-      width: 50%;
+    .mat-mdc-form-field {
+      width: 45% !important;
     }
   }
 }
@@ -382,4 +388,14 @@ app-conversation-list {
   --mat-icon-button-hover-state-layer-opacity: none !important;
   --mat-icon-button-focus-state-layer-opacity: none !important;
   --mat-icon-button-pressed-state-layer-opacity: none !important;
+}
+
+// dialog scss
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 1.6rem !important;
+}
+
+.mdc-dialog__surface::before {
+  border-radius: 1.6rem;
 }

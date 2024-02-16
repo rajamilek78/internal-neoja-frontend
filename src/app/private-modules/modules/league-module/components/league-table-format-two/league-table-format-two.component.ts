@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-league-table-format-two',
   templateUrl: './league-table-format-two.component.html',
-  styleUrl: './league-table-format-two.component.scss'
+  styleUrl: './league-table-format-two.component.scss',
 })
 export class LeagueTableFormatTwoComponent implements OnInit {
   gamesArray: any;
@@ -18,21 +17,19 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   @Input() responseData: any;
 
   ngOnInit(): void {
-
     // this.games = ["game 1","game 2","game 3","game 4","game 5"];
     // this.players = ["player 1","player 2","player 3","player 4","player 5"]
 
     // this.games = this.data.games;
     // console.log("this is games only :", this.games);
 
-
     this.games = Object.entries(this.data.games);
     this.players = Object.entries(this.data.group_details.players);
     // console.log(this.gamesArray);
-    console.log("this is games", this.games);
+    console.log('this is games', this.games);
     // console.log("type of game",typeof(this.games));
-    console.log("this is players : ", this.players);
-    console.log(typeof (this.players));
+    console.log('this is players : ', this.players);
+    console.log(typeof this.players);
 
     // this.games.forEach(game => {
     //   this.teamOnePlayer = this.teamOnePlayer.concat(game[1].team_1);
@@ -49,9 +46,6 @@ export class LeagueTableFormatTwoComponent implements OnInit {
     // });
     // this.allPlayers = [...new Set(this.allPlayers)];
     // console.log('all', this.allPlayers);
-
-
-
 
     // format gamesArray
     // this.gamesArray = this.gamesArray.map(e=>{
@@ -73,33 +67,25 @@ export class LeagueTableFormatTwoComponent implements OnInit {
     return 0; // or whatever you want to return when the player is not found in any team
   }
 
-
-
   getPalyerName = (game, idx: number): string => {
     let playerName = game[1].bye[0];
 
     switch (idx) {
       case 0:
-        playerName = game[1].team_1[0]
+        playerName = game[1].team_1[0];
         break;
       case 1:
-        playerName = game[1].team_1[1]
+        playerName = game[1].team_1[1];
         break;
       case 2:
-        playerName = game[1].team_2[0]
+        playerName = game[1].team_2[0];
         break;
       case 3:
-        playerName = game[1].team_2[1]
+        playerName = game[1].team_2[1];
         break;
       default:
         break;
     }
-    return playerName
-  }
-
-
-
-
-
-
+    return playerName;
+  };
 }

@@ -86,7 +86,11 @@
             </select>
           </div>
           <div class="secondary-btn-light">
-            <button type="button" class="btn flex justify-center">
+            <button
+              type="button"
+              class="btn flex justify-center"
+              (click)="openDialogue()"
+            >
               <span
                 ><img
                   src="../../../../../../assets/images/lock-icon.svg"
@@ -102,7 +106,9 @@
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
           <mat-tab label="Group 1"
-            ><app-league-table-format-one *ngIf="selectedFormat=='1'"></app-league-table-format-one
+            ><app-league-table-format-one
+              *ngIf="selectedFormat == '1'"
+            ></app-league-table-format-one
           ></mat-tab>
         </mat-tab-group>
       </div>
@@ -120,7 +126,9 @@
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
           <mat-tab label="Group 1">
-            <app-league-table-format-two *ngIf="selectedFormat=='2'"></app-league-table-format-two>
+            <app-league-table-format-two
+              *ngIf="selectedFormat == '2'"
+            ></app-league-table-format-two>
           </mat-tab>
         </mat-tab-group>
       </div>
