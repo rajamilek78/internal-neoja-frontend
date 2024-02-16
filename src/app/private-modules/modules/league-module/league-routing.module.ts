@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CompletedLeaguesComponent, LeagueContainerComponent } from './components';
-import { RouteConstant } from "@app/helpers/constants";
+import {
+  CompletedLeaguesComponent,
+  LeagueContainerComponent,
+  ViewScoreTableComponent,
+} from './components';
+import { RouteConstant } from '../../../helpers/constants';
 
 const routes: Routes = [
   {
@@ -10,11 +14,16 @@ const routes: Routes = [
   },
   {
     path: RouteConstant.COMPLETED_LEAGUES,
-    component: CompletedLeaguesComponent
-  }
+    component: CompletedLeaguesComponent,
+  },
+
+  {
+    path: RouteConstant.VIEW_SCORES,
+    component: ViewScoreTableComponent,
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LeagueRoutingModule { }
+export class LeagueRoutingModule {}

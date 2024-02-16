@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { SharedCommonService } from '../../../../../core/services/shared-common.service';
 import {jsPDF} from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -14,7 +15,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
   styleUrl: './league-container.component.scss',
 })
 export class LeagueContainerComponent {
-  constructor(private SharedCommonService : SharedCommonService){}
+  constructor(private SharedCommonService : SharedCommonService, private cdr : ChangeDetectorRef){}
   groups: any;
   responseData : any;
   selectedFormat ='1';
@@ -58,6 +59,10 @@ export class LeagueContainerComponent {
         console.log('No fixtures found in responseData.');
       }
     });
+  }
+
+  onSelectionChange() {
+    this.cdr.detectChanges();
   }
 
   onTabChange(event: MatTabChangeEvent) {

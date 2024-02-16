@@ -8,33 +8,31 @@ import { SharedCommonService } from '../../../../../helpers/services';
 @Component({
   selector: 'app-upload-player-data',
   templateUrl: './upload-player-data.component.html',
-  styleUrl: './upload-player-data.component.scss'
+  styleUrl: './upload-player-data.component.scss',
 })
 export class UploadPlayerDataComponent implements OnInit {
-
   playerForm!: FormGroup;
   @Input() playerCount!: number;
-
-  
 
   constructor(
     private fb: FormBuilder,
     private api: CommonService,
-    private router : Router,
-    private SharedCommonService : SharedCommonService) { }
+    private router: Router,
+    private SharedCommonService: SharedCommonService
+  ) {}
 
   ngOnInit() {
     this.playerForm = this.fb.group({
-      players: this.fb.array([])
+      players: this.fb.array([]),
     });
 
     this.addPlayers(this.playerCount);
   }
-  
+
   createPlayer(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
-      score: ['', Validators.required]
+      score: ['', Validators.required],
     });
   }
 
@@ -61,7 +59,6 @@ export class UploadPlayerDataComponent implements OnInit {
       this.onPlayerCountChange(this.playerCount);
     }
   }
-  
 
   onPlayerCountChange(count: number): void {
     const currentCount = this.players.length;
@@ -73,13 +70,13 @@ export class UploadPlayerDataComponent implements OnInit {
       }
     }
   }
-  
+
   submitData(): void {
     const playerData = this.playerForm.value.players.reduce((obj, player) => {
       obj[player.name] = player.score;
       return obj;
     }, {});
-  
+
     this.api.post('json', playerData).subscribe({
       next: (res: any) => {
         this.SharedCommonService.setMatchData(res);
@@ -89,17 +86,7 @@ export class UploadPlayerDataComponent implements OnInit {
       },
       error: (err: any) => {
         console.log(err);
-      }
+      },
     });
   }
-  
-  
-
-
-
-
-
-
-
-
 }

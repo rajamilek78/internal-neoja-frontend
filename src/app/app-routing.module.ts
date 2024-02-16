@@ -32,6 +32,7 @@ const routes: Routes = [
         (m) => m.LeagueModule
       ),
   },
+
   {
     path: RouteConstant.GENERATE_LEAGUE,
     canActivate: [AppAuthGuard],
@@ -40,9 +41,9 @@ const routes: Routes = [
         './private-modules/modules/create-league-module/create-league.module'
       ).then((m) => m.CreateLeagueModule),
   },
-  {path : RouteConstant.HOME_PAGE, component : HomePageComponent},
-  { path : RouteConstant.ABOUT_US_PAGE, component : AboutUsPageComponent},
-  { path : RouteConstant.CONTACT_US_PAGE, component:ContactUsPageComponent},
+  { path: RouteConstant.HOME_PAGE, component: HomePageComponent },
+  { path: RouteConstant.ABOUT_US_PAGE, component: AboutUsPageComponent },
+  { path: RouteConstant.CONTACT_US_PAGE, component: ContactUsPageComponent },
 ];
 
 @NgModule({

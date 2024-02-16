@@ -265,15 +265,11 @@ app-conversation-list {
 
 .mat-mdc-tab-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  align-self: flex-start;
 }
 
 .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
   flex-grow: 0 !important;
-}
-
-.mat-mdc-tab-labels {
-  justify-content: center !important;
-  align-items: center !important;
 }
 
 .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
@@ -300,20 +296,6 @@ app-conversation-list {
   // --mat-tab-header-active-hover-label-text-color: $primary-color !important;
   // --mat-tab-header-active-focus-indicator-color: $primary-color !important;
   // --mat-tab-header-active-hover-indicator-color: $primary-color !important;
-}
-
-// tab scss for league-screen tables
-
-.table-format-one,
-.table-format-two {
-  .mat-mdc-tab-labels {
-    justify-content: flex-start !important;
-    align-items: center !important;
-  }
-
-  .mat-mdc-tab-header {
-    align-self: flex-start;
-  }
 }
 
 // input css
