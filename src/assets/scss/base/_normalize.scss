@@ -257,7 +257,7 @@ textarea {
 
 // common-table scss
 
-table {
+.table-1 {
   margin-top: 2.4rem;
   border: 1px solid rgba($black-color, 0.1) !important;
   border-radius: 1.2rem !important;
@@ -308,7 +308,7 @@ table {
 
   thead {
     tr {
-      background-color: rgba($black-color, 0.1);
+      background-color: rgba($black-color, 0.03);
     }
   }
 }
@@ -402,6 +402,39 @@ table {
 
     div {
       flex-grow: 1;
+    }
+  }
+}
+
+.table-2 {
+  margin-top: 2.4rem;
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    tr {
+      background-color: rgba($black-color, 0.03);
+    }
+  }
+
+  thead,
+  tbody {
+
+    th,
+    td {
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      font-weight: 800;
+      padding: 2rem;
+    }
+
+    th {
+      color: rgba($black-color, 0.8);
+    }
+
+    td {
+      color: rgba($black-color, 0.5);
+      border-bottom: 1px solid rgba($black-color, 0.1);
     }
   }
 }
@@ -791,10 +824,6 @@ app-upload-player-container {
       }
     }
   }
-
-  table {
-    margin-top: 0rem !important;
-  }
 }
 
 // completed leagues scss
@@ -849,8 +878,15 @@ app-upload-player-container {
 }
 
 .view-score-table {
+  .bg-green {
+    background-color: rgba($green-color, 0.05);
+  }
+
+  .bg-red {
+    background-color: rgba($red-color, 0.05);
+  }
+
   .status-square {
-    background-color: beige;
     height: 2.4rem;
     width: 2.4rem;
     border-radius: 0.4rem;
