@@ -9,6 +9,7 @@ import { ChangeDetectorRef } from '@angular/core';
 export class UploadPlayerContainerComponent {
   playerCount = 5; // Default number of players
   selectedFormat = '1';
+  isRoundTwo = false;
   constructor ( private cdr : ChangeDetectorRef){}
   onRadioButtonChange() {
     this.cdr.detectChanges();

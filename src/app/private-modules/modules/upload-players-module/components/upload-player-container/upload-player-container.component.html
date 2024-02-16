@@ -13,7 +13,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="add-row-dropdown">
+        <div class="add-row-dropdown" *ngIf="selectedFormat !=='1'">
           <div><label>Display Players</label></div>
           <mat-form-field>
             <mat-select [(ngModel)]="playerCount">
@@ -24,7 +24,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="flex justify-start align-center">
+      <div class="flex justify-start align-center" *ngIf="isRoundTwo">
         <div>
           <div class="primary-btn">
             <button type="button" class="btn">

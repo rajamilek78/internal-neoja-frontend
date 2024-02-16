@@ -13,6 +13,7 @@ import { RouteConstant } from '@app/helpers/constants';
 })
 export class UploadPlayerDataComponent implements OnInit {
   playerForm!: FormGroup;
+  isRoundTwo = false;
   @Input() playerCount!: number;
 
   constructor(
@@ -89,21 +90,22 @@ export class UploadPlayerDataComponent implements OnInit {
   
 
   submitData(): void {
-    const playerData = this.playerForm.value.players.reduce((obj, player) => {
-      obj[player.name] = player.score;
-      return obj;
-    }, {});
+    // const playerData = this.playerForm.value.players.reduce((obj, player) => {
+    //   obj[player.name] = player.score;
+    //   return obj;
+    // }, {});
 
-    this.api.post('json', playerData).subscribe({
-      next: (res: any) => {
-        this.SharedCommonService.setMatchData(res);
-        // localStorage.setItem('matchData', JSON.stringify(res));
-        this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
-        console.log(res);
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-    });
+    // this.api.post('json', playerData).subscribe({
+    //   next: (res: any) => {
+    //     this.SharedCommonService.setMatchData(res);
+    //     // localStorage.setItem('matchData', JSON.stringify(res));
+    //     this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
+    //     console.log(res);
+    //   },
+    //   error: (err: any) => {
+    //     console.log(err);
+    //   },
+    // });
+    this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
   }
 }
