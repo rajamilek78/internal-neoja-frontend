@@ -20,6 +20,7 @@ export class LeagueContainerComponent {
   responseData : any;
   selectedFormat ='1';
   selectedGroup! : any;
+  edite: boolean = false;
 
   // ngOnInit(): void {
   //   this.SharedCommonService.getMatchData().subscribe( data => {

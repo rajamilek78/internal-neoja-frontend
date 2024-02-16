@@ -9,20 +9,20 @@
           />
         </a>
       </div>
-      <div>
-        <span><a [routerLink]="buildLeagueUrl">Build Round</a></span>
+      <div *ngIf="isLoggedIn">
+        <span><a [routerLink]="buildLeagueUrl" routerLinkActive="active">Build Round</a></span>
         <span><a>Completed Leagues</a></span>
-        <span><a [routerLink]="generateLeagueUrl">Leagues</a></span>
+        <span><a [routerLink]="generateLeagueUrl" routerLinkActive="active">Leagues</a></span>
       </div>
       <div class="flex justify-center">
-        <div>
+        <div *ngIf="!isLoggedIn">
           <a [routerLink]="loginUrl">
             <div class="primary-btn-light">
               <button type="button" class="btn">Log in</button>
             </div>
           </a>
         </div>
-        <div class="secondary-btn">
+        <div class="secondary-btn" *ngIf="isLoggedIn">
           <button type="button" class="flex justify-center btn" (click)="onLogout()">
             Log out
             <div class="flex justify-center">

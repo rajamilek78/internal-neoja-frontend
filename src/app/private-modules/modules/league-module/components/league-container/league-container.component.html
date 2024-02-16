@@ -136,9 +136,9 @@
         </button>
       </div>
     </div>
-    <div class="upload__button flex justify-end">
+    <div class="upload__button flex justify-end" *ngIF="!edite">
       <div class="primary-btn">
-        <button type="button" class="btn">Save</button>
+        <button type="button" class="btn" >Save</button>
       </div>
       <div class="secondary-btn-light">
         <button type="button" class="btn">Cancel</button>

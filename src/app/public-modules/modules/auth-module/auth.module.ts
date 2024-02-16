@@ -4,6 +4,8 @@ import { authComponents } from './components/components.export';
 import { AuthRoutingModule } from './auth-routing.module';
 import { UtilityModule } from "@app/utility/utility.module";
 import { UserAuthService } from "./services";
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { UserAuthService } from "./services";
     CommonModule,
     AuthRoutingModule,
     UtilityModule,
+    ReactiveFormsModule,
   ],
   providers: [UserAuthService]
 })
