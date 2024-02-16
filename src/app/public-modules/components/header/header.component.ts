@@ -64,4 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   get loginUrl() {
     return `${RouteConstant.LOGIN}`;
   }
+  get completedLegue(){
+    return `${RouteConstant.COMPLETED_LEAGUES}`
+  }
 }

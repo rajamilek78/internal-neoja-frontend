@@ -8,6 +8,7 @@ import { group } from '@angular/animations';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { LockDataDialogueComponent } from '../lock-data-dialogue/lock-data-dialogue.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-league-container',
@@ -18,7 +19,8 @@ export class LeagueContainerComponent {
   constructor(
     private SharedCommonService: SharedCommonService,
     private cdr: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route : ActivatedRoute
   ) {}
   openDialogue(): void {
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
@@ -55,6 +57,11 @@ export class LeagueContainerComponent {
   //   // }
   // }
   ngOnInit(): void {
+    this.route.params.subscribe( params =>{
+      this.edite = params['edite'];
+    });
+    console.log(this.edite);
+    
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.responseData = data;
 

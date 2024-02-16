@@ -11,8 +11,8 @@
       </div>
       <div *ngIf="isLoggedIn">
         <span><a [routerLink]="buildLeagueUrl" routerLinkActive="active">Build Round</a></span>
-        <span><a>Completed Leagues</a></span>
-        <span><a [routerLink]="generateLeagueUrl" routerLinkActive="active">Leagues</a></span>
+        <span><a [routerLink]="completedLegue">Completed Leagues</a></span>
+        <span><a routerLink="/completed-leagues" routerLinkActive="active">Leagues</a></span>
       </div>
       <div class="flex justify-center">
         <div *ngIf="!isLoggedIn">
