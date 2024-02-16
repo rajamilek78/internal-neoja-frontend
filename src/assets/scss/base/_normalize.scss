@@ -250,6 +250,16 @@ a {
       font-size: 1.6rem;
       font-weight: 600;
       line-height: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    div {
+      small {
+        color: rgba($black-color, 0.5);
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.8rem;
+      }
     }
   }
 
@@ -768,17 +778,31 @@ app-upload-player-container {
 .create-league {
   margin-top: 4.7rem;
 
-  table {
-    tr {
-      td {
+  .table-2 {
+    thead {
+      tr {
+        th {
 
-        &:first-child,
-        &:last-child {
-          text-align: center;
+          &:nth-child(2),
+          &:nth-child(3) {
+            text-align: left;
+          }
         }
+      }
+    }
 
-        a {
-          margin-right: 1.2rem;
+    tbody {
+      tr {
+        td {
+
+          &:nth-child(2),
+          &:nth-child(3) {
+            text-align: left;
+          }
+
+          a {
+            margin-left: 0.8rem;
+          }
         }
       }
     }
