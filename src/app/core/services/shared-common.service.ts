@@ -18,7 +18,6 @@ export class SharedCommonService {
 
   setMatchData( data : any){
     this.matchData.next(data);
-    console.log("this is data in shared common service : ",data);
     
   }
 

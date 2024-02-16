@@ -121,8 +121,8 @@
     <div class="table-format-two" *ngIf="selectedFormat == '2'">
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          <mat-tab label="Group 1">
-            <app-league-table-format-two *ngIf="selectedFormat=='2'"></app-league-table-format-two>
+          <mat-tab label="Group 1" *ngFor="let group of groups" [label]="group.name">
+            <app-league-table-format-two *ngIf="selectedFormat=='2'" [data]="group.data" id="playerData"></app-league-table-format-two>
           </mat-tab>
         </mat-tab-group>
       </div>
@@ -136,7 +136,7 @@
         </button>
       </div>
     </div>
-    <div class="upload__button flex justify-end" *ngIF="!edite">
+    <div class="upload__button flex justify-end" *ngIf="!edite">
       <div class="primary-btn">
         <button type="button" class="btn" >Save</button>
       </div>

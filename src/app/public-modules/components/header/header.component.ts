@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userDetailSub$ = this.sharedService.getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
-        console.log(this.userDetail);
       });
   };
 

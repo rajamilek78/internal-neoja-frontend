@@ -47,7 +47,6 @@ export class LeagueContainerComponent {
   ngOnInit(): void {
     this.SharedCommonService.getMatchData().subscribe(data => {
       this.responseData = data;
-      console.log(this.responseData);
       
       if (this.responseData) {
         this.groups = Object.keys(this.responseData.fixtures).map(key => ({
