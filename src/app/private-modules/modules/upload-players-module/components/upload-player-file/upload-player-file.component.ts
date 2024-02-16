@@ -7,7 +7,7 @@ import { SharedCommonService } from '../../../../../helpers/services';
 @Component({
   selector: 'app-upload-player-file',
   templateUrl: './upload-player-file.component.html',
-  styleUrl: './upload-player-file.component.scss'
+  styleUrl: './upload-player-file.component.scss',
 })
 export class UploadPlayerFileComponent {
   files: File[] = [];
@@ -16,9 +16,9 @@ export class UploadPlayerFileComponent {
   constructor(
     private el: ElementRef,
     private api: CommonService,
-    private SharedCommonService : SharedCommonService,
+    private SharedCommonService: SharedCommonService,
     private router: Router
-  ) { }
+  ) {}
 
   @HostListener('dragover', ['$event']) onDragOver(event: any) {
     event.preventDefault();
@@ -53,10 +53,14 @@ export class UploadPlayerFileComponent {
           const file = files.item(i);
           if (file) {
             const fileType = file.name.split('.').pop();
-            if (['txt', 'csv', 'xlsx', 'xls', 'json'].includes(fileType || '')) {
+            if (
+              ['txt', 'csv', 'xlsx', 'xls', 'json'].includes(fileType || '')
+            ) {
               this.files.push(file);
             } else {
-              alert('Invalid file type. Only .txt, .csv,.json and .xls files are allowed.');
+              alert(
+                'Invalid file type. Only .txt, .csv,.json and .xls files are allowed.'
+              );
             }
           }
         } else {
@@ -82,7 +86,7 @@ export class UploadPlayerFileComponent {
     this.files.forEach((file) => {
       const fileType = file.name.split('.').pop();
       if (['csv', 'xls', 'xlsx'].includes(fileType || '')) {
-        this.api.postCsv(file).subscribe(response => {
+        this.api.postCsv(file).subscribe((response) => {
           this.SharedCommonService.setMatchData(response);
           // localStorage.setItem('matchData', JSON.stringify(response));
         });
@@ -90,17 +94,16 @@ export class UploadPlayerFileComponent {
         const data = new FormData();
         data.append('players', file);
         console.log(file);
-        
+
         // this.api.postFile('file', data).subscribe(response => {
         //   this.SharedCommonService.setMatchData(response);
         //   // localStorage.setItem('matchData', JSON.stringify(response));
         // });
-        this.api.postFile(data).subscribe(response =>{
-          this.SharedCommonService.setMatchData(response)
-        })
+        this.api.postFile(data).subscribe((response) => {
+          this.SharedCommonService.setMatchData(response);
+        });
       }
     });
     this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
   }
-  
 }

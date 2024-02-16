@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../../../../../core';
-import { CompanyModel } from "@app/helpers/models/company.model";
+import { CompanyModel } from '@app/helpers/models/company.model';
 
 @Component({
   selector: 'app-completed-leagues',
   templateUrl: './completed-leagues.component.html',
-  styleUrl: './completed-leagues.component.scss'
+  styleUrl: './completed-leagues.component.scss',
 })
 export class CompletedLeaguesComponent implements OnInit {
-  companies: { [key: string]: { name: string, description: string } } = {};
+  companies: { [key: string]: { name: string; description: string } } = {};
   newCompanies!: CompanyModel[];
-  clubs: { [key: string]: { name: string, phone: string, address: any } } = {}
+  clubs: { [key: string]: { name: string; phone: string; address: any } } = {};
   // clubs : any;
-  constructor(private commonService: CommonService) { }
+  constructor(private commonService: CommonService) {}
 
   ngOnInit(): void {
     this.getAllCompanies();
@@ -32,24 +32,18 @@ export class CompletedLeaguesComponent implements OnInit {
       },
       error: (err: any) => {
         console.log(err);
-
-      }
-    })
-
+      },
+    });
   }
   getAllClubs(companyID: string) {
     this.commonService.getAllClubs(`${companyID}/all`).subscribe({
       next: (resp: any) => {
         console.log(resp);
         this.clubs = resp;
-
       },
       error: (err: any) => {
         console.log(err);
-
-      }
-    })
+      },
+    });
   }
-
-
 }
