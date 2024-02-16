@@ -31,6 +31,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
     this.userAuthService.handleAuthResponse(response);
     this.router.navigate([RouteConstant.UPLOAD_PLAYER_CONTAINER]);
   }
+  
 
   onLoginSubmit(loginForm: FormGroup) {
     if (this.onSubmit(loginForm)) {

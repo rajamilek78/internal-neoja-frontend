@@ -8,7 +8,7 @@ import { group } from '@angular/animations';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { LockDataDialogueComponent } from '../lock-data-dialogue/lock-data-dialogue.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-league-container',
@@ -20,7 +20,8 @@ export class LeagueContainerComponent {
     private SharedCommonService: SharedCommonService,
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
-    private route : ActivatedRoute
+    private route : ActivatedRoute,
+    private router : Router
   ) {}
   openDialogue(): void {
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
@@ -75,6 +76,10 @@ export class LeagueContainerComponent {
         console.log('No fixtures found in responseData.');
       }
     });
+  }
+
+  saveRound(){
+    this.router.navigate(['players-league/completed-leagues'])
   }
 
   onSelectionChange() {
