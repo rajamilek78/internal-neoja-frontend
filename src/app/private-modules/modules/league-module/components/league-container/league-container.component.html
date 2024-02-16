@@ -52,7 +52,7 @@
 
 <div class="panel">
   <div class="container">
-    <div class="radio-btn">
+    <!-- <div class="radio-btn">
       <mat-radio-group
         aria-label="Select an option"
         [(ngModel)]="selectedFormat"
@@ -60,7 +60,7 @@
         <mat-radio-button value="1">Format 1</mat-radio-button>
         <mat-radio-button value="2">Format 2</mat-radio-button>
       </mat-radio-group>
-    </div>
+    </div> -->
     <div class="league-title">
       <div><h6>LADDER-3-3.5-MON7PM-SEASON1</h6></div>
       <div class="flex justify-end">
@@ -80,7 +80,7 @@
         </div>
         <div class="table-buttons flex justify-end">
           <div>
-            <select>
+            <select [(ngModel)]="selectedFormat" (change)="onSelectionChange()">
               <option value="1">Format 1</option>
               <option value="2">Format 2</option>
             </select>
@@ -102,7 +102,7 @@
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
           <mat-tab label="Group 1"
-            ><app-league-table-format-one></app-league-table-format-one
+            ><app-league-table-format-one *ngIf="selectedFormat=='1'"></app-league-table-format-one
           ></mat-tab>
         </mat-tab-group>
       </div>
@@ -120,7 +120,7 @@
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
           <mat-tab label="Group 1">
-            <app-league-table-format-two></app-league-table-format-two>
+            <app-league-table-format-two *ngIf="selectedFormat=='2'"></app-league-table-format-two>
           </mat-tab>
         </mat-tab-group>
       </div>
