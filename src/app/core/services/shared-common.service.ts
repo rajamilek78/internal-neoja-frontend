@@ -18,6 +18,7 @@ export class SharedCommonService {
 
   setMatchData( data : any){
     this.matchData.next(data);
+    
   }
 
   getMatchData(){

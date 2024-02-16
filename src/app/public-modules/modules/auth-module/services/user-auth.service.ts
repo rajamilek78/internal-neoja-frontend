@@ -17,7 +17,7 @@ export class UserAuthService {
     // });
     // const options = { headers }
     const url = `${API_ENDPOINTS.LOGIN}/${params}`;
-    return this.apiManager.getApis(url)
+    return this.apiManager.postApis(url)
   };
 
   handleAuthResponse = (response) => {

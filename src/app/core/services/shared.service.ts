@@ -39,9 +39,12 @@ export class SharedService extends SharedUserService {
   }
 
   /* Shared User Token Param */
+  // isLoggedIn(): boolean {
+  //   return !!this.getToken() && !!this.getUser();
+  // }
   isLoggedIn(): boolean {
-    return !!this.getToken() && !!this.getUser();
-  }
+    return !!this.getUser();
+}
 
   setLoader(val: boolean): void {
     if (val) {

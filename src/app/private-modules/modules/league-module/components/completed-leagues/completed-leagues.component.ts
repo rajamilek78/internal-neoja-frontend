@@ -34,7 +34,6 @@ export class CompletedLeaguesComponent implements OnInit {
   getAllCompanies() {
     this.commonService.getAllCompanies().subscribe({
       next: (resp: any) => {
-        console.log(resp);
         // format change
         // [{
         //   id:'DLF',
@@ -51,7 +50,6 @@ export class CompletedLeaguesComponent implements OnInit {
   getAllClubs(companyID: string) {
     this.commonService.getAllClubs(`${companyID}/all`).subscribe({
       next: (resp: any) => {
-        console.log(resp);
         this.clubs = resp;
       },
       error: (err: any) => {

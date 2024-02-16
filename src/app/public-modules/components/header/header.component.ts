@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { RouteConstant } from '../../../helpers/constants';
 import { SharedService } from "@app/core";
 import { Subscription } from "rxjs";
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
 
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.userSubscriber();
@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userDetailSub$ = this.sharedService.getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
-        // console.log(this.userDetail);
       });
   };
 
@@ -57,6 +56,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   get generateLeagueUrl() {
     return `${RouteConstant.GENERATE_LEAGUE}`;
+  }
+  get isLoggedIn() {
+    return this.sharedService.isLoggedIn();
   }
 
   get loginUrl() {

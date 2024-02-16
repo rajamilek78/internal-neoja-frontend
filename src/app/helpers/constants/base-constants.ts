@@ -1,3 +1,5 @@
+import { RouteConstant } from "./app-routes.constants";
+
 export class BASE {
     public static TOAST_TIMEOUT = 3000;
     public static ENCRYPTION_TOKEN = 'boilerplate';
@@ -47,3 +49,6 @@ export enum HttpMethodsTypeEnum {
     PUT_MULTIPART = 'putMultiPart',
     POST_MULTIPART = 'postMultiPart',
 }
+export const publicRoutes = [
+    `/auth/${RouteConstant.LOGIN}`,
+  ];
