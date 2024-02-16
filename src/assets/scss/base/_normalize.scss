@@ -270,18 +270,16 @@ textarea {
     th,
     td {
       border: 1px solid rgba($black-color, 0.1);
+      text-align: center;
       font-size: 1.6rem;
       line-height: 1.9rem;
       font-weight: 800;
-      padding: 2rem;
+      padding: 0.4rem 0.4rem 0.4rem 1.4rem;
     }
 
     th {
+      padding: 1.8rem 1.6rem;
       color: rgba($black-color, 0.8);
-
-      &:nth-child(2) {
-        text-align: left !important;
-      }
     }
 
     td {
@@ -780,6 +778,28 @@ app-upload-player-container {
     z-index: 10;
   }
 
+}
+
+.table-format-one {
+  .table-1 {
+
+    thead,
+    tbody {
+      th {
+        &:nth-child(2) {
+          text-align: left;
+        }
+      }
+
+      td {
+
+        &:nth-child(2),
+        &:last-child {
+          text-align: left;
+        }
+      }
+    }
+  }
 }
 
 .table-format-two {
