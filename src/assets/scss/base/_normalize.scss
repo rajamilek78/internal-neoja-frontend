@@ -244,6 +244,15 @@ a {
     }
   }
 
+  &__body {
+    b {
+      color: rgba($black-color, 0.5);
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1.8rem;
+    }
+  }
+
   &__footer {
     margin-top: 2rem;
   }
