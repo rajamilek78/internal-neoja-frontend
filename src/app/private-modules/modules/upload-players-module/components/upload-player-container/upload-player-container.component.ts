@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-upload-player-container',
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 export class UploadPlayerContainerComponent {
   playerCount = 5; // Default number of players
   selectedFormat = '1';
+  constructor ( private cdr : ChangeDetectorRef){}
+  onRadioButtonChange() {
+    this.cdr.detectChanges();
+  }
 
 
 }

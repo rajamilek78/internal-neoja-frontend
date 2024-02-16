@@ -12,6 +12,7 @@ import { ContactUsPageComponent } from './public-modules/components/contact-us/c
 import { AboutUsPageComponent } from './public-modules/components/about-us/about-us-page.component';
 import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
 import { API_ENDPOINTS } from './helpers/constants/api-constants';
+import { CoreModule } from "./core";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { API_ENDPOINTS } from './helpers/constants/api-constants';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    CoreModule,
     UtilityModule,
   ],
   providers: [API_ENDPOINTS],

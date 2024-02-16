@@ -1,12 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouteConstant } from '../../../helpers/constants';
+import { SharedService } from "@app/core";
+import { Subscription } from "rxjs";
+import { UserModel } from "@app/helpers/models";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
+  userDetailSub$!: Subscription;
+  userDetail!: UserModel | null;
+
+  constructor(private sharedService: SharedService) { }
+
+  ngOnInit(): void {
+    this.userSubscriber();
+  }
+
+  ngOnDestroy() {
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
+  }
+
+  userSubscriber = () => {
+    this.userDetailSub$ = this.sharedService.getUserDetailCall()
+      .subscribe(() => {
+        this.userDetail = this.sharedService.getUser();
+        // console.log(this.userDetail);
+      });
+  };
+
+  onLogout = () => {
+    this.sharedService.logout();
+    // this.userAuthService.logOut().subscribe({
+    //   next: (res) => {
+    //     this.layoutService.setLayoutDetailCall(false);
+    //   },
+    //   error: (e) => console.error(e),
+    // });
+  };
+
   get homePageUrl() {
     return `${RouteConstant.HOME_PAGE}`;
   }

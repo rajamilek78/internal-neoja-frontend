@@ -3,29 +3,28 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form-base',
-  template: '',
+  template: ''
 })
 export class FormBaseComponent implements OnChanges {
   // Angular variables
-  // @Input() canFocusField : boolean;
+  @Input() canFocusField!: boolean;
   @ViewChild('initialFormField', { static: true }) initialFormField;
 
   // State Variables
   isInvalidCtrlSelected = false;
   submitted = false;
 
-  constructor(protected fb: FormBuilder) {}
+  constructor(protected fb: FormBuilder) { }
 
   //  Life cycle methods
   ngOnChanges(changes: SimpleChanges) {
-    // && this.canFocusField
-    if (this.initialFormField) {
+    if (this.initialFormField && this.canFocusField) {
       this.initialFormField.nativeElement.focus();
     }
   }
@@ -55,28 +54,31 @@ export class FormBaseComponent implements OnChanges {
   }
 
   highlightFirstInvalidControl(group: FormGroup | FormArray) {
-    Object.keys(group.controls).forEach((key: string) => {
-      const abstractControl = group.controls[key];
-      if (
-        abstractControl instanceof FormGroup ||
-        abstractControl instanceof FormArray
-      ) {
-        this.highlightFirstInvalidControl(abstractControl);
-      } else {
-        if (abstractControl.invalid) {
-          if (this.isInvalidCtrlSelected) {
-            abstractControl.markAsUntouched({ onlySelf: true });
-          } else {
-            this.isInvalidCtrlSelected = true;
-            abstractControl.markAsTouched({ onlySelf: true });
+    if (group?.controls) {
+      Object.keys(group.controls).forEach((key: string) => {
+        const abstractControl = group.controls[key];
+        if (
+          abstractControl &&
+          (abstractControl instanceof FormGroup ||
+            abstractControl instanceof FormArray)
+        ) {
+          this.highlightFirstInvalidControl(abstractControl);
+        } else {
+          if (abstractControl?.invalid) {
+            if (this.isInvalidCtrlSelected) {
+              abstractControl?.markAsUntouched({ onlySelf: true });
+            } else {
+              this.isInvalidCtrlSelected = true;
+              abstractControl?.markAsTouched({ onlySelf: true });
 
-            if (abstractControl.nativeElement) {
-              abstractControl.nativeElement.focus();
+              if (abstractControl?.nativeElement) {
+                abstractControl?.nativeElement.focus();
+              }
             }
           }
         }
-      }
-    });
+      });
+    }
   }
 
   /**
