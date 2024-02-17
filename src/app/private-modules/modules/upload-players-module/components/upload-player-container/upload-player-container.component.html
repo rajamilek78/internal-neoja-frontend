@@ -4,7 +4,7 @@
       <div class="mr-1">
         <div><label>League</label></div>
         <mat-form-field>
-          <mat-select>
+          <mat-select placeholder="Select">
             <mat-option *ngFor="let league of leagues" [value]="league.name">{{ league.name }}</mat-option>
           </mat-select>
         </mat-form-field>

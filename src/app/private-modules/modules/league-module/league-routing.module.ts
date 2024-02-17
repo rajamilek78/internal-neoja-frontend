@@ -8,6 +8,7 @@ const routes: Routes = [
     component: LeagueContainerComponent,
   },
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
