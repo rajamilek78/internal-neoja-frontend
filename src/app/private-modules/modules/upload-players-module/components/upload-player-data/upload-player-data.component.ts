@@ -27,8 +27,6 @@ export class UploadPlayerDataComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     // this.addPlayers(this.playerCount);
   }
 
