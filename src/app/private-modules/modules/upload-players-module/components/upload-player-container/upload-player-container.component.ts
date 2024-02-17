@@ -23,6 +23,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.roundsLength)
     this.userSubscriber();
     this.getAllLeagues();
   }

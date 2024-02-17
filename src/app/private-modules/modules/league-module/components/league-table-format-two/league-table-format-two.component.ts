@@ -9,6 +9,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   league: any;
   games: any;
   players: any;
+  isServing: boolean = true;
   // teamOnePlayer: any = [];
   // teamTwoPlayer: any = [];
   // allPlayers = [];

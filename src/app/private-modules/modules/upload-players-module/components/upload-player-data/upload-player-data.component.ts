@@ -106,22 +106,87 @@ export class UploadPlayerDataComponent implements OnInit {
   };
 
 
+  // leagueSummary() {
+  //   const ownedCompanies = this.userDetail?.owned_companies;
+  //   const ownedClubs = this.userDetail?.owned_clubs;
+  //   const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
+  //   const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+    
+  //   this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
+  //     next: (res: any) => {
+  //       console.log(res);
+  //       this.leagueSummaryData = res;
+  //     },
+  //     error: (err: any) => {
+  //       console.error(err);
+  //     }
+  //   });
+  // }
+
+
   leagueSummary() {
     const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
     const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
-    
+
     this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
       next: (res: any) => {
         console.log(res);
         this.leagueSummaryData = res;
+
+        const playersArray = this.playerForm.get('players') as FormArray;
+        while (playersArray.length !== 0) {
+          playersArray.removeAt(0);
+        }
+
+        for (const playerName in this.leagueSummaryData.league_summary) {
+          if (this.leagueSummaryData.league_summary.hasOwnProperty(playerName)) {
+            const playerData = this.leagueSummaryData.league_summary[playerName];
+
+            const playerGroup = this.fb.group({
+              name: [playerName, Validators.required],
+              score: [playerData.points_scored, Validators.required],
+            });
+
+            playersArray.push(playerGroup);
+          }
+        }
       },
       error: (err: any) => {
         console.error(err);
       }
     });
   }
+  
+  // getPlayerName(player: FormGroup): string {
+  //   if (this.leagueSummaryData) {
+  //     return Object.keys(this.leagueSummaryData).find(key => key === player.value.name) || '';
+  //   }
+  //   return '';
+  // }
+  
+  // getPlayerScore(player: FormGroup): string {
+  //   if (this.leagueSummaryData) {
+  //     return this.leagueSummaryData[player.value.name]?.points_scored || '';
+  //   }
+  //   return '';
+  // }
+  
+  // getNoShow(player: FormGroup): boolean {
+  //   if (this.leagueSummaryData) {
+  //     return this.leagueSummaryData[player.value.name]?.['no-show'] || false;
+  //   }
+  //   return false;
+  // }
+  
+  // getDropIn(player: FormGroup): boolean {
+  //   if (this.leagueSummaryData) {
+  //     return this.leagueSummaryData[player.value.name]?.['drop-in'] || false;
+  //   }
+  //   return false;
+  // }
+
   onPlayerCountChange(count: number): void {
     if (this.players) {
       const currentCount = this.players.length;
