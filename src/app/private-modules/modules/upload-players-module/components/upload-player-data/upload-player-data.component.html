@@ -124,13 +124,12 @@
               </div>
             </div>
             <div>
-              <div class="delete-icon flex justify-center">
+              <a (click)="deletePlayer(i)" class="delete-icon flex justify-center">
                 <img
                   src="../../../../../../assets/images/delete-icon.svg"
                   alt=""
-                  (click)="deletePlayer(i)"
                 />
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -140,8 +139,8 @@
         </button>
       </div>
       <div class="upload__button flex justify-end">
-        <div class="primary-btn" (click)="submitData()">
-          <button type="button" class="btn">Save</button>
+        <div class="primary-btn">
+          <button (click)="submitData()" type="button" class="btn">Save</button>
         </div>
       </div>
     </div>

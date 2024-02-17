@@ -3,16 +3,13 @@
     <div class="flex justify-between">
       <div class="header__logo">
         <a [routerLink]="homePageUrl">
-          <img
-            src="../../../../assets/images/e-league-online-white-logo.png"
-            alt=""
-          />
+          <img src="../../../../assets/images/e-league-online-white-logo.png" alt="" />
         </a>
       </div>
       <div *ngIf="isLoggedIn">
         <span><a [routerLink]="buildLeagueUrl" routerLinkActive="active">Build Round</a></span>
-        <span><a [routerLink]="completedLegue">Completed Leagues</a></span>
-        <span><a routerLink="/completed-leagues" routerLinkActive="active">Leagues</a></span>
+        <span><a [routerLink]="completedLeague" routerLinkActive="active">Completed Leagues</a></span>
+        <span><a [routerLink]="leagueList" routerLinkActive="active">Leagues</a></span>
       </div>
       <div class="flex justify-center">
         <div *ngIf="!isLoggedIn">
