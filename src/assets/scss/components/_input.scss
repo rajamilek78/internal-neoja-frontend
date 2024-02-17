@@ -103,6 +103,8 @@
 
       svg {
         @include square(2rem);
+        position: relative;
+        top: 0.3em;
 
         path {
           fill: rgba(#6f6f6f, 0.5) !important;

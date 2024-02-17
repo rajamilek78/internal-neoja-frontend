@@ -50,21 +50,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return `${RouteConstant.UPLOAD_PLAYER_CONTAINER}`;
   }
 
-  // get completeLeagueUrl() {
-  //   return `${RouteConstant.HOME_PAGE}`;
-  // }
+  get completedLeague() {
+    return `${RouteConstant.COMPLETED_LEAGUES}`;
+  }
 
-  get generateLeagueUrl() {
+  get leagueList() {
     return `${RouteConstant.GENERATE_LEAGUE}`;
   }
+  
   get isLoggedIn() {
     return this.sharedService.isLoggedIn();
   }
 
   get loginUrl() {
     return `${RouteConstant.LOGIN}`;
-  }
-  get completedLegue(){
-    return `${RouteConstant.COMPLETED_LEAGUES}`
   }
 }

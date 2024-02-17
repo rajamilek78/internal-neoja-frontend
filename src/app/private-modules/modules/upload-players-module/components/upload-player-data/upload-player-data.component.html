@@ -18,7 +18,7 @@
               </div>
               <div class="primary-btn-dark">
                 <button class="btn flex justify-center" (click)="addPlayer()">
-                  <span><img src="../../../../../../assets/images/add-icon.svg" alt="" /></span>Add
+                  <span><img src="assets/images/add-icon.svg" alt="" /></span>Add
                 </button>
               </div>
             </div>
@@ -38,7 +38,7 @@
             </div>
             <div>
               <div class="delete-icon flex justify-center">
-                <img src="../../../../../../assets/images/delete-icon.svg" alt="" (click)="deletePlayer(i)" />
+                <img src="assets/images/delete-icon.svg" alt="" (click)="deletePlayer(i)" />
               </div>
             </div>
           </div>
@@ -124,24 +124,23 @@
               </div>
             </div>
             <div>
-              <div class="delete-icon flex justify-center">
+              <a (click)="deletePlayer(i)" class="delete-icon flex justify-center">
                 <img
-                  src="../../../../../../assets/images/delete-icon.svg"
+                  src="assets/images/delete-icon.svg"
                   alt=""
-                  (click)="deletePlayer(i)"
                 />
-              </div>
+              </a>
             </div>
           </div>
         </div>
         <button type="button" class="btn" (click)="addPlayer()">
-          <img src="../../../../../../assets/images/add-blue-icon.svg" alt="" />
+          <img src="assets/images/add-blue-icon.svg" alt="" />
           ADD NEW
         </button>
       </div>
       <div class="upload__button flex justify-end">
-        <div class="primary-btn" (click)="submitData()">
-          <button type="button" class="btn">Save</button>
+        <div class="primary-btn">
+          <button (click)="submitData()" type="button" class="btn">Save</button>
         </div>
       </div>
     </div>

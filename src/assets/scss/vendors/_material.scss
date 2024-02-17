@@ -125,6 +125,19 @@ mat-radio-button {
   color: rgba($black-color, 0.25);
 }
 
+// calendar
+.mat-calendar-body-selected{
+  background: $primary-color !important;
+}
+
+.mat-calendar-body-in-range::before{
+  background-color: rgba($primary-color, 0.2) !important;
+}
+
+.mat-date-range-input-mirror{
+  color: rgba($black-color, 0.6) !important;
+}
+
 //Menubar
 .mat-mdc-menu-item {
   font-size: 1.4rem;
@@ -184,29 +197,9 @@ mat-radio-button {
   }
 }
 
-.filter-language {
-  mat-form-field {
-    line-height: 3.5rem;
-
-    .mat-mdc-text-field-wrapper {
-      height: 4.5rem;
-    }
-  }
-
-  .mat-mdc-form-field-infix {
-    position: relative;
-    top: 2px;
-    padding: 0.2em 0 0.5em 0 !important;
-  }
-
-  .mat-mdc-select-value-text {
-    font-size: 1.6rem;
-    font-weight: 600;
-  }
-}
-
 .cdk-overlay-pane {
   background-color: $white-color;
+  border-radius: 2rem;
   // width: 9rem !important;
 
   .mdc-list-item__primary-text {
@@ -241,6 +234,10 @@ mat-snack-bar-container {
 
 .mdc-linear-progress__bar-inner {
   border-color: $primary-color !important;
+}
+
+.form-control{
+  height: 10rem;
 }
 
 app-conversation-list {
@@ -335,23 +332,28 @@ app-conversation-list {
   caret-color: $primary-color !important;
 }
 
-.mat-mdc-select-arrow {
-  color: $primary-color !important;
-}
-
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: rgba(0, 0, 0, 0.03) !important;
 }
 
 // dropdown scss
 
-.dropdown {
+.dropdown, .form-control {
+  @include placeholderWithFontSize(rgba($black-color, 0.3), 1.4rem, normal);
+
+  .mat-mdc-select-value{
+    font-size: 1.4rem;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled){
+    background-color: #f1f1f1 !important;
+  }
   .mat-mdc-form-field {
     height: 5rem !important;
   }
 
   .mat-mdc-form-field-infix {
-    padding-top: 0.8rem !important;
+    padding-top: 1.4rem !important;
     padding-bottom: 0.8rem !important;
   }
 
@@ -365,7 +367,7 @@ app-conversation-list {
 .mat-mdc-select-arrow svg {
   fill: currentColor;
   position: absolute;
-  top: 0.6rem !important;
+  top: 0.3rem !important;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -377,8 +379,18 @@ app-conversation-list {
   color: $primary-color !important;
 }
 
+.mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, 
+.mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple{
+  background-color: $primary-color !important;
+}
+
 .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
   color: $primary-color !important;
+}
+
+mat-checkbox .mdc-label{
+  position: relative;
+  top: 2px;
 }
 
 // btn scss

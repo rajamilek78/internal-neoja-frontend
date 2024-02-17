@@ -1,9 +1,8 @@
-import { FormatWidth } from '@angular/common';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { CommonService, SharedService } from '@app/core';
 import { Router } from '@angular/router';
-import { SharedCommonService } from '../../../../../helpers/services';
+import { SharedCommonService } from '@app/helpers/services';
 import { RouteConstant } from '@app/helpers/constants';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
@@ -27,7 +26,9 @@ export class UploadPlayerDataComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private sharedService: SharedService,
-    private commonservice: CommonService  ) {
+    private commonservice: CommonService ,
+    private SharedCommonService: SharedCommonService
+ ) {
     this.playerForm = this.fb.group({
       players: this.fb.array([]),
     });
@@ -64,11 +65,21 @@ export class UploadPlayerDataComponent implements OnInit {
     return this.playerForm.get('players') as FormArray;
   }
 
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes['playerCount']) {
+  //     this.onPlayerCountChange(this.playerCount);
+  //   }
+  // }
+
   ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges called', changes);
     if (changes['playerCount']) {
       this.onPlayerCountChange(this.playerCount);
+      console.log(this.playerCount);
+      
     }
   }
+  
 
   // onPlayerCountChange(count: number): void {
   //   const currentCount = this.players.length;
@@ -123,25 +134,24 @@ export class UploadPlayerDataComponent implements OnInit {
       }
     }
   }
-  
+
 
   submitData(): void {
-    // const playerData = this.playerForm.value.players.reduce((obj, player) => {
-    //   obj[player.name] = player.score;
-    //   return obj;
-    // }, {});
+    const playerData = this.playerForm.value.players.reduce((obj, player) => {
+      obj[player.name] = player.score;
+      return obj;
+    }, {});
 
-    // this.api.post('json', playerData).subscribe({
-    //   next: (res: any) => {
-    //     this.SharedCommonService.setMatchData(res);
-    //     // localStorage.setItem('matchData', JSON.stringify(res));
-    //     this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
-    //     console.log(res);
-    //   },
-    //   error: (err: any) => {
-    //     console.log(err);
-    //   },
-    // });
-    this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
+    this.commonservice.post('json', playerData).subscribe({
+      next: (res: any) => {
+        this.SharedCommonService.setMatchData(res);
+        // localStorage.setItem('matchData', JSON.stringify(res));
+        this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
+        console.log(res);
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
   }
 }
