@@ -26,7 +26,7 @@ const routes: Routes = [
 
   {
     path: RouteConstant.LEAGUE_CONTAINER,
-    canActivate: [AppAuthGuard],
+    // canActivate: [AppAuthGuard],
     loadChildren: () =>
       import('./private-modules/modules/league-module/league.module').then(
         (m) => m.LeagueModule
@@ -35,7 +35,7 @@ const routes: Routes = [
 
   {
     path: RouteConstant.GENERATE_LEAGUE,
-    canActivate: [AppAuthGuard],
+    // canActivate: [AppAuthGuard],
     loadChildren: () =>
       import(
         './private-modules/modules/create-league-module/create-league.module'

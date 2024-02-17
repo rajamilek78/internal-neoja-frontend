@@ -10,15 +10,10 @@ export class LeagueTableFormatOneComponent implements OnInit {
   @Input() data: any;
   gamesArray: any;
   // matchData: any;
-  constructor(private SharedCommonService: SharedCommonService) { }
-
+  constructor(private SharedCommonService: SharedCommonService) {}
 
   ngOnInit(): void {
-
     this.gamesArray = Object.entries(this.data.games);
     // console.log("this is game array", this.gamesArray)
   }
-
 }
-
-

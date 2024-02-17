@@ -24,6 +24,16 @@
     }
 }
 
+.red-btn-dark {
+    margin-right: 0.8rem;
+
+    button {
+        background-color: $red-color;
+        color: $white-color;
+        border: none !important;
+    }
+}
+
 .primary-btn-light {
     margin-right: 0.8rem;
 

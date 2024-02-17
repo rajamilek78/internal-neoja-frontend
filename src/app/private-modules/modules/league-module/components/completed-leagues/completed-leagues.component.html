@@ -2,7 +2,7 @@
   <div class="container completed-leagues">
     <div class="flex justify-between align-end">
       <div class="flex justify-end align-center">
-        <div class="mr-1">
+        <div class="mr-1 dropdown">
           <div><label>Company</label></div>
           <mat-form-field>
             <mat-select>
@@ -13,7 +13,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="mr-1">
+        <div class="mr-1 dropdown">
           <div><label>Club</label></div>
           <mat-form-field>
             <mat-select>
@@ -26,7 +26,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div>
+        <div class="dropdown">
           <div><label>League</label></div>
           <mat-form-field>
             <mat-select>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="primary-btn">
-        <button type="button" class="btn flex justify-center">
+        <button type="button" class="btn flex justify-center" (click)="viewScore()">
           <span
             ><img
               src="../../../../../../assets/images/view-score-icon.svg"
@@ -75,7 +75,7 @@
             </button>
           </div>
           <div class="primary-btn">
-            <button type="button" class="btn flex justify-center">
+            <button type="button" class="btn flex justify-center" (click)="edit()">
               <span
                 ><img
                   src="../../../../../../assets/images/white-edit-icon.svg"
@@ -109,7 +109,7 @@
             </button>
           </div>
           <div class="primary-btn">
-            <button type="button" class="btn flex justify-center">
+            <button type="button" class="btn flex justify-center" (click)="edit()">
               <span
                 ><img
                   src="../../../../../../assets/images/white-edit-icon.svg"
@@ -143,7 +143,7 @@
             </button>
           </div>
           <div class="primary-btn">
-            <button type="button" class="btn flex justify-center">
+            <button type="button" class="btn flex justify-center" (click)="edit()">
               <span
                 ><img
                   src="../../../../../../assets/images/white-edit-icon.svg"
@@ -159,7 +159,11 @@
             <div><b>Round 4</b></div>
           </div>
           <div class="secondary-btn-light">
-            <button type="button" class="btn flex justify-center">
+            <button
+              type="button"
+              class="btn flex justify-center"
+              (click)="openDialogue()"
+            >
               <span
                 ><img
                   src="../../../../../../assets/images/lock-icon.svg"
@@ -168,7 +172,7 @@
             </button>
           </div>
           <div class="primary-btn">
-            <button type="button" class="btn flex justify-center">
+            <button type="button" class="btn flex justify-center" (click)="edit()">
               <span
                 ><img
                   src="../../../../../../assets/images/white-edit-icon.svg"

@@ -23,14 +23,15 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.createForm({
-      email: ['', [Validators.required]],
-      password: ['', Validators.required],
+      email: ['jaichenchlani@gmail.com', [Validators.required]],
+      password: ['abc@123', Validators.required],
     })
   }
   handleLoginResponse = (response) => {
     this.userAuthService.handleAuthResponse(response);
     this.router.navigate([RouteConstant.UPLOAD_PLAYER_CONTAINER]);
   }
+  
 
   onLoginSubmit(loginForm: FormGroup) {
     if (this.onSubmit(loginForm)) {

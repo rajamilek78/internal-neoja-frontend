@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { CommonService } from '../../../../../core/services';
 import { Router } from '@angular/router';
 import { SharedCommonService } from '../../../../../helpers/services';
+import { RouteConstant } from '@app/helpers/constants';
 
 @Component({
   selector: 'app-upload-player-data',
@@ -12,6 +13,7 @@ import { SharedCommonService } from '../../../../../helpers/services';
 })
 export class UploadPlayerDataComponent implements OnInit {
   playerForm!: FormGroup;
+  isRoundTwo = false;
   @Input() playerCount!: number;
 
   constructor(
@@ -19,12 +21,14 @@ export class UploadPlayerDataComponent implements OnInit {
     private api: CommonService,
     private router: Router,
     private SharedCommonService: SharedCommonService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.playerForm = this.fb.group({
       players: this.fb.array([]),
     });
+  }
+
+  ngOnInit() {
+    
 
     this.addPlayers(this.playerCount);
   }
@@ -60,33 +64,48 @@ export class UploadPlayerDataComponent implements OnInit {
     }
   }
 
+  // onPlayerCountChange(count: number): void {
+  //   const currentCount = this.players.length;
+  //   if (count > currentCount) {
+  //     this.addPlayers(count - currentCount);
+  //   } else {
+  //     for (let i = currentCount; i > count; i--) {
+  //       this.deletePlayer(i - 1);
+  //     }
+  //   }
+  // }
+
   onPlayerCountChange(count: number): void {
-    const currentCount = this.players.length;
-    if (count > currentCount) {
-      this.addPlayers(count - currentCount);
-    } else {
-      for (let i = currentCount; i > count; i--) {
-        this.deletePlayer(i - 1);
+    if (this.players) {
+      const currentCount = this.players.length;
+      if (count > currentCount) {
+        this.addPlayers(count - currentCount);
+      } else {
+        for (let i = currentCount; i > count; i--) {
+          this.deletePlayer(i - 1);
+        }
       }
     }
   }
+  
 
   submitData(): void {
-    const playerData = this.playerForm.value.players.reduce((obj, player) => {
-      obj[player.name] = player.score;
-      return obj;
-    }, {});
+    // const playerData = this.playerForm.value.players.reduce((obj, player) => {
+    //   obj[player.name] = player.score;
+    //   return obj;
+    // }, {});
 
-    this.api.post('json', playerData).subscribe({
-      next: (res: any) => {
-        this.SharedCommonService.setMatchData(res);
-        // localStorage.setItem('matchData', JSON.stringify(res));
-        this.router.navigate(['league']);
-        console.log(res);
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-    });
+    // this.api.post('json', playerData).subscribe({
+    //   next: (res: any) => {
+    //     this.SharedCommonService.setMatchData(res);
+    //     // localStorage.setItem('matchData', JSON.stringify(res));
+    //     this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
+    //     console.log(res);
+    //   },
+    //   error: (err: any) => {
+    //     console.log(err);
+    //   },
+    // });
+    this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
   }
 }

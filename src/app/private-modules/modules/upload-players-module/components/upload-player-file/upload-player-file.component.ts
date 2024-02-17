@@ -93,7 +93,7 @@ export class UploadPlayerFileComponent {
       } else {
         const data = new FormData();
         data.append('players', file);
-        console.log(file);
+        // console.log(file);
 
         // this.api.postFile('file', data).subscribe(response => {
         //   this.SharedCommonService.setMatchData(response);
@@ -101,6 +101,7 @@ export class UploadPlayerFileComponent {
         // });
         this.api.postFile(data).subscribe((response) => {
           this.SharedCommonService.setMatchData(response);
+          
         });
       }
     });

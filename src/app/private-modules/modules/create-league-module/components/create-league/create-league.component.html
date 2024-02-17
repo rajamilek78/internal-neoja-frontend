@@ -1,14 +1,36 @@
 <div class="panel">
   <div class="container">
     <div class="create-league">
+      <div class="league-title">
+        <div><h6>LADDER-3-3.5-MON7PM-SEASON1</h6></div>
+        <div class="flex justify-end">
+          <div class="flex mr-1">
+            <span
+              ><img
+                src="../../../../../../assets/images/club-icon.svg"
+                alt="" /></span
+            ><small>LFTM-CROSSTOWN</small>
+          </div>
+          <div class="flex mr-1">
+            <span
+              ><img
+                src="../../../../../../assets/images/company-icon.svg"
+                alt="" /></span
+            ><small>Drop Shot Pickleball</small>
+          </div>
+        </div>
+      </div>
       <div class="row player-panel align-center justify-between">
         <div class="col-md-6 PL-0">
-          <small>Leagues</small>
+          <label for="text">League</label>
+          <div>
+            <input type="text" value="LADDER-3-3.5-MON7PM-SEASON1" />
+          </div>
         </div>
         <div class="col-md-6 PR-0">
           <div class="flex justify-start align-start">
             <div class="primary-btn">
-              <button class="btn flex justify-center">
+              <button class="btn flex justify-center" (click)="openDialogue()">
                 <span
                   ><img
                     src="../../../../../../assets/images/add-icon.svg"
@@ -43,7 +65,7 @@
             <td>No</td>
             <td>5</td>
             <td>
-              <a
+              <a (click)="openDialogue()"
                 ><img
                   src="../../../../../../assets/images/edit-icon.svg"
                   alt=""
@@ -66,6 +88,7 @@
             <td>
               <a
                 ><img
+                  (click)="openDialogue()"
                   src="../../../../../../assets/images/edit-icon.svg"
                   alt=""
               /></a>
@@ -85,7 +108,7 @@
             <td>No</td>
             <td>5</td>
             <td>
-              <a
+              <a (click)="openDialogue()"
                 ><img
                   src="../../../../../../assets/images/edit-icon.svg"
                   alt=""
@@ -106,7 +129,7 @@
             <td>No</td>
             <td>5</td>
             <td>
-              <a
+              <a (click)="openDialogue()"
                 ><img
                   src="../../../../../../assets/images/edit-icon.svg"
                   alt=""

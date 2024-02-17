@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userDetailSub$ = this.sharedService.getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
-        console.log(this.userDetail);
       });
   };
 
@@ -64,5 +63,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   get loginUrl() {
     return `${RouteConstant.LOGIN}`;
+  }
+  get completedLegue(){
+    return `${RouteConstant.COMPLETED_LEAGUES}`
   }
 }
