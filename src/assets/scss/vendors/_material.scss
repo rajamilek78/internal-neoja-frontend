@@ -199,6 +199,7 @@ mat-radio-button {
 
 .cdk-overlay-pane {
   background-color: $white-color;
+  border-radius: 2rem;
   // width: 9rem !important;
 
   .mdc-list-item__primary-text {
@@ -376,6 +377,11 @@ app-conversation-list {
 .mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after,
 .mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-indeterminate::after {
   color: $primary-color !important;
+}
+
+.mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, 
+.mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple{
+  background-color: $primary-color !important;
 }
 
 .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
