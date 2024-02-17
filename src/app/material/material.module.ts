@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import {MatCardModule} from '@angular/material/card';
+import { MatDialogContent } from '@angular/material/dialog';
 // import { MomentDateAdapter } from '@angular/material-moment-adapter';
 // import { MY_FORMATS } from '@app/helpers';
 
@@ -61,10 +62,12 @@ import {MatCardModule} from '@angular/material/card';
     MatSlideToggleModule,
     MatSliderModule,
     ClipboardModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogContent
   ],
   exports: [
     MatCardModule,
+    MatDialogContent,
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,

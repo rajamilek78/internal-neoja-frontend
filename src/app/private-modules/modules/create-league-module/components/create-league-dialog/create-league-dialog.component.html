@@ -2,14 +2,14 @@
   <div class="modal__header flex justify-between">
     <h6>Add League</h6>
     <div>
-      <span><img src="assets/images/close-icon.svg" alt="" /></span>
+      <span (click)="close()"><img src="assets/images/close-icon.svg" alt="" /></span>
     </div>
   </div>
-  <div class="modal__body">
+  <div class="modal__body" [formGroup]="leagueCRUD_Form">
     <div class="form-control">
       <label>League</label>
       <mat-form-field>
-        <input type="text" matInput placeholder="Enter League Name">
+        <input type="text" matInput placeholder="Enter League Name" formControlName="name">
       </mat-form-field>
     </div>
 
@@ -17,8 +17,8 @@
       <label>Start Date - End Date</label>
       <mat-form-field>
         <mat-date-range-input [rangePicker]="picker">
-          <input (click)="picker.open()" matStartDate placeholder="Start date">
-          <input (click)="picker.open()" matEndDate placeholder="End date">
+          <input (click)="picker.open()" matStartDate placeholder="Start date" formControlName="start_date">
+          <input (click)="picker.open()" matEndDate placeholder="End date" formControlName="end_date">
         </mat-date-range-input>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
@@ -28,7 +28,7 @@
     <div class="form-control dropdown">
       <label>Rounds/day</label>
       <mat-form-field>
-        <mat-select placeholder="Select">
+        <mat-select placeholder="Select" formControlName="rounds_per_day">
           <mat-option value="1">1</mat-option>
           <mat-option value="2">2</mat-option>
         </mat-select>
@@ -38,7 +38,7 @@
     <div class="form-control dropdown">
       <label>Type</label>
       <mat-form-field>
-        <mat-select placeholder="Select">
+        <mat-select placeholder="Select" formControlName="type">
           <mat-option value="partner">Partner</mat-option>
           <mat-option value="ladder">Ladder</mat-option>
         </mat-select>
@@ -46,18 +46,18 @@
     </div>
 
     <div>
-      <mat-checkbox>Dupr Rec.</mat-checkbox>
-      <mat-checkbox class="ML-2">Doubles</mat-checkbox>
+      <mat-checkbox formControlName="dupr_recorded">Dupr Rec.</mat-checkbox>
+      <mat-checkbox class="ML-2" formControlName="doubles">Doubles</mat-checkbox>
     </div>
   </div>
 
   <div class="modal__footer">
     <div class="flex justify-end">
       <div class="primary-btn">
-        <button type="button" class="btn">Save</button>
+        <button type="submit" class="btn" (click)="createUpdateLeague()">Save</button>
       </div>
       <div class="secondary-btn-light">
-        <button type="button" class="btn">Cancel</button>
+        <button type="button" class="btn" (click)="close()">Cancel</button>
       </div>
     </div>
   </div>
