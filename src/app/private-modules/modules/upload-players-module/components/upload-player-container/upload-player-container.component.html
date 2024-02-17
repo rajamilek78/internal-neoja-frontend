@@ -1,74 +1,23 @@
 <div class="panel">
   <div class="container">
-    <div class="dropdown flex justify-between align-center">
-      <div class="flex justify-end align-center">
-        <div class="mr-1">
-          <div><label>League</label></div>
-          <mat-form-field>
-            <mat-select>
-              <mat-option value="1">APL</mat-option>
-              <mat-option value="2">APL</mat-option>
-              <mat-option value="3">APL</mat-option>
-              <mat-option value="4">APL</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="add-row-dropdown" *ngIf="selectedFormat !=='1'">
-          <div><label>Display Players</label></div>
-          <mat-form-field>
-            <mat-select [(ngModel)]="playerCount">
-              <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">
-                {{ i }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+    <div class="dropdown flex justify-end align-center">
+      <div class="mr-1">
+        <div><label>League</label></div>
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let league of leagues" [value]="league.name">{{ league.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="flex justify-start align-center" *ngIf="isRoundTwo">
-        <div>
-          <div class="primary-btn">
-            <button type="button" class="btn">
-              <span
-                ><img
-                  src="../../../../../../assets/images/manual-icon.svg"
-                  alt=""
-              /></span>
-              Manual Sorting
-            </button>
-          </div>
-        </div>
-        <div class="add-row-dropdown flex justify-end">
-          <div><label>Replace</label></div>
-          <mat-form-field>
-            <mat-select>
-              <mat-option value="1">APL</mat-option>
-              <mat-option value="2">APL</mat-option>
-              <mat-option value="3">APL</mat-option>
-              <mat-option value="4">APL</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="add-row-dropdown flex justify-end">
-          <div><label>position to</label></div>
-          <mat-form-field>
-            <mat-select>
-              <mat-option value="1">APL</mat-option>
-              <mat-option value="2">APL</mat-option>
-              <mat-option value="3">APL</mat-option>
-              <mat-option value="4">APL</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div>
-          <div class="primary-btn">
-            <button type="button" class="btn">Apply</button>
-          </div>
-        </div>
-        <div>
-          <div class="secondary-btn-light">
-            <button type="button" class="btn">Cancel</button>
-          </div>
-        </div>
+      <div class="add-row-dropdown" *ngIf="selectedFormat !== '1'">
+        <div><label>Display Players</label></div>
+        <mat-form-field >
+          <mat-select [(ngModel)]="playerCount" >
+            <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">
+              {{i}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
     <div class="radio-btn">
