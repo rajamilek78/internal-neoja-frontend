@@ -25,6 +25,8 @@ export class API_ENDPOINTS{
     //Leagues
     public static GET_LEAGUES = `${COMPANY_URL}/get-leagues`;
     public static GET_LEAGUE_BY_ID = `${COMPANY_URL}/get-league-by-id`;
+    public static CREATE_LEAGUE = `${COMPANY_URL}/create-league`;
+
 
     //Rounds
     public static GET_ROUND_BY_ID = `${COMPANY_URL}/get-round-by-id`;

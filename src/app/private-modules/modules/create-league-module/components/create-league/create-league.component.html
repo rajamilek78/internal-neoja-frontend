@@ -57,7 +57,7 @@
           <tr *ngFor="let league of leagues; index as i">
             <td>{{i + 1}}</td>
             <td>{{league.name}}</td>
-            <td>{{league.start_date}} - {{league.end_date}}</td>
+            <td>{{league.start_date | date : 'MM-dd-yyyy'}} - {{league.end_date | date : 'MM-dd-yyyy'}}</td>
             <td>{{league.dupr_recorded ? 'Yes' : 'No'}}</td>
             <td>{{league.type.charAt(0).toUpperCase() + league.type.slice(1)}}</td>
             <td>{{league.doubles ? 'Yes' : 'No'}}</td>
