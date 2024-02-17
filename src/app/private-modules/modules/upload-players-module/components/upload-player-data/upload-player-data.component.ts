@@ -1,10 +1,12 @@
 import { FormatWidth } from '@angular/common';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { CommonService } from '../../../../../core/services';
+import { CommonService, SharedService } from '@app/core';
 import { Router } from '@angular/router';
 import { SharedCommonService } from '../../../../../helpers/services';
 import { RouteConstant } from '@app/helpers/constants';
+import { Subscription } from 'rxjs';
+import { UserModel } from '@app/helpers/models';
 
 @Component({
   selector: 'app-upload-player-data',
@@ -14,23 +16,27 @@ import { RouteConstant } from '@app/helpers/constants';
 export class UploadPlayerDataComponent implements OnInit {
   playerForm!: FormGroup;
   isRoundTwo = false;
+  userDetailSub$!: Subscription;
+  userDetail!: UserModel | null;
   @Input() playerCount!: number;
+  @Input() roundsLength!: number;
+  leagueSummaryData: any;
+  
 
   constructor(
     private fb: FormBuilder,
-    private api: CommonService,
     private router: Router,
-    private SharedCommonService: SharedCommonService
-  ) {
+    private sharedService: SharedService,
+    private commonservice: CommonService  ) {
     this.playerForm = this.fb.group({
       players: this.fb.array([]),
     });
   }
 
   ngOnInit() {
-    
-
     this.addPlayers(this.playerCount);
+    this.userSubscriber();
+    this.leagueSummary();
   }
 
   createPlayer(): FormGroup {
@@ -74,7 +80,37 @@ export class UploadPlayerDataComponent implements OnInit {
   //     }
   //   }
   // }
+  ngOnDestroy() {
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
+  }
 
+  userSubscriber = () => {
+    this.userDetailSub$ = this.sharedService.getUserDetailCall()
+      .subscribe(() => {
+        this.userDetail = this.sharedService.getUser();
+        console.log(this.userDetail);
+      });
+  };
+
+
+  leagueSummary() {
+    const ownedCompanies = this.userDetail?.owned_companies;
+    const ownedClubs = this.userDetail?.owned_clubs;
+    const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
+    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+    
+    this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.leagueSummaryData = res;
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    });
+  }
   onPlayerCountChange(count: number): void {
     if (this.players) {
       const currentCount = this.players.length;
