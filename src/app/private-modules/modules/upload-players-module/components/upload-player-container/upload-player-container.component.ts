@@ -52,10 +52,12 @@ export class UploadPlayerContainerComponent implements OnInit {
           description: res[key].description,
         }));
       },
-      error: (err: any) => {},
+      error: (err: any) => {
+        console.log(err);
+      },
     });
   }
-
+  
   onRadioButtonChange() {
     this.cdr.detectChanges();
   }

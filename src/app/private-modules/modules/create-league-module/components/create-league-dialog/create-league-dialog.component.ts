@@ -43,7 +43,7 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
   }
   createUpdateLeague(){
     this.leagueService.createLeague(
-      `${this.data}/${this.leagueCRUD_Form.value.name}`,
+      `${this.data.companyIDclubID}/${this.leagueCRUD_Form.value.name}`,
       this.leagueCRUD_Form.value).subscribe({
         next : (res : any)=>{
           console.log(res);
