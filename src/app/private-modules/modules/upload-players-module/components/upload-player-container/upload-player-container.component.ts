@@ -19,7 +19,7 @@ export class UploadPlayerContainerComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private commonService: CommonService,
     private sharedService: SharedService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.userSubscriber();
@@ -39,6 +39,7 @@ export class UploadPlayerContainerComponent implements OnInit {
         console.log(this.userDetail);
       });
   };
+
   getAllLeagues() {
     const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
@@ -56,6 +57,7 @@ export class UploadPlayerContainerComponent implements OnInit {
       },
     });
   }
+  
   onRadioButtonChange() {
     this.cdr.detectChanges();
   }
