@@ -28,6 +28,9 @@ export class CommonService {
   getAllClubsNew(path: string): Observable<any> {
     return this.apiManager.getApis(`${API_ENDPOINTS.GET_CLUBS}/${path}`, {}, false)
   }
+  getAllLeagues(path: string): Observable <any>{
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES}/${path}`, {}, false)
+  }
 
   getAllClubs(path: string, token?: string): Observable<any> {
     const headers = new HttpHeaders({
