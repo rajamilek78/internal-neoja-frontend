@@ -29,13 +29,10 @@
         <div class="dropdown">
           <div><label>League</label></div>
           <mat-form-field>
-            <mat-select>
-              <mat-option value="5">5</mat-option>
-              <mat-option value="10">10</mat-option>
-              <mat-option value="15">15</mat-option>
-              <mat-option value="20">20</mat-option>
-              <mat-option value="25">25</mat-option>
-              <mat-option value="30">30</mat-option>
+            <mat-select [(value)]="selectedLeague">
+              <mat-option *ngFor="let league of leagues" [value]="league.id">
+                {{league.name}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
