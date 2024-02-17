@@ -60,7 +60,7 @@ export class CreateLeagueComponent implements OnInit {
       data : this.companyIDclubID
     });
     dialogueRef.afterClosed().subscribe((result) => {
-      console.log('the dialogue is closed now');
+      this.getAllLeagues();
     });
   }
 }
