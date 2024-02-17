@@ -29,7 +29,7 @@ export class UploadPlayerDataComponent implements OnInit {
   ngOnInit() {
 
 
-    this.addPlayers(this.playerCount);
+    // this.addPlayers(this.playerCount);
   }
 
   createPlayer(): FormGroup {
@@ -57,11 +57,21 @@ export class UploadPlayerDataComponent implements OnInit {
     return this.playerForm.get('players') as FormArray;
   }
 
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes['playerCount']) {
+  //     this.onPlayerCountChange(this.playerCount);
+  //   }
+  // }
+
   ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges called', changes);
     if (changes['playerCount']) {
       this.onPlayerCountChange(this.playerCount);
+      console.log(this.playerCount);
+      
     }
   }
+  
 
   // onPlayerCountChange(count: number): void {
   //   const currentCount = this.players.length;
