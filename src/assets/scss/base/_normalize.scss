@@ -362,12 +362,27 @@ textarea {
   }
 }
 
+.bg-cell{
+  background-color: #f7f7f7;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #efefef;
+  width: 100% !important;
+}
+
 .parent-table {
   width: 100%;
   border: 1px solid rgba($black-color, 0.1) !important;
+  align-items: stretch !important;
+  margin-top: 2rem;
 
-  .cell {
-    color: rgba($black-color, 0.25);
+  .justify-space-even{
+    .cell{
+      border-right: 1px solid rgba($black-color, 0.1);
+    }
+  }
+
+  .cell-1 {
+    color: rgba($black-color, 0.8);
     height: 6.6rem;
     display: flex;
     justify-content: center;
@@ -434,6 +449,10 @@ textarea {
     font-weight: 800;
     width: 100%;
 
+    .bg-cell{
+      border-right: 0 !important;
+    }
+
     span {
       vertical-align: middle;
       margin-right: 0.8rem;
@@ -443,6 +462,8 @@ textarea {
   .player-name {
     flex: 20%;
     border-right: 1px solid rgba($black-color, 0.1);
+    justify-content: stretch !important;
+    height: 100%;
   }
 
   .player-game {
