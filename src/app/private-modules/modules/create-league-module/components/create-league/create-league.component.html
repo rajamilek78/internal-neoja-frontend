@@ -54,93 +54,28 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>LADDER-3-3.5-MON7PM-SEASON1</td>
-            <td>21/12/2023 - 22/12/2023</td>
-            <td>Yes</td>
-            <td>Partner</td>
-            <td>No</td>
-            <td>5</td>
+          <tr *ngFor="let league of leagues; index as i">
+            <td>{{i + 1}}</td>
+            <td>{{league.name}}</td>
+            <td>{{league.start_date}} - {{league.end_date}}</td>
+            <td>{{league.dupr_recorded ? 'Yes' : 'No'}}</td>
+            <td>{{league.type.charAt(0).toUpperCase() + league.type.slice(1)}}</td>
+            <td>{{league.doubles ? 'Yes' : 'No'}}</td>
+            <td>{{league.rounds_per_day}}</td>
             <td>
-              <a (click)="openDialogue()"
-                ><img
-                  src="../../../../../../assets/images/edit-icon.svg"
-                  alt=""
-              /></a>
-              <a
-                ><img
-                  src="../../../../../../assets/images/delete-icon.svg"
-                  alt=""
-              /></a>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>LADDER-3-3.5-MON7PM-SEASON1</td>
-            <td>21/12/2023 - 22/12/2023</td>
-            <td>Yes</td>
-            <td>Partner</td>
-            <td>No</td>
-            <td>5</td>
-            <td>
-              <a
-                ><img
-                  (click)="openDialogue()"
-                  src="../../../../../../assets/images/edit-icon.svg"
-                  alt=""
-              /></a>
-              <a
-                ><img
-                  src="../../../../../../assets/images/delete-icon.svg"
-                  alt=""
-              /></a>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>LADDER-3-3.5-MON7PM-SEASON1</td>
-            <td>21/12/2023 - 22/12/2023</td>
-            <td>Yes</td>
-            <td>Partner</td>
-            <td>No</td>
-            <td>5</td>
-            <td>
-              <a (click)="openDialogue()"
-                ><img
-                  src="../../../../../../assets/images/edit-icon.svg"
-                  alt=""
-              /></a>
-              <a
-                ><img
-                  src="../../../../../../assets/images/delete-icon.svg"
-                  alt=""
-              /></a>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>LADDER-3-3.5-MON7PM-SEASON1</td>
-            <td>21/12/2023 - 22/12/2023</td>
-            <td>Yes</td>
-            <td>Partner</td>
-            <td>No</td>
-            <td>5</td>
-            <td>
-              <a (click)="openDialogue()"
-                ><img
-                  src="../../../../../../assets/images/edit-icon.svg"
-                  alt=""
-              /></a>
-              <a
-                ><img
-                  src="../../../../../../assets/images/delete-icon.svg"
-                  alt=""
-              /></a>
+              <a (click)="openDialogue()">
+                <img src="../../../../../../assets/images/edit-icon.svg" alt="" />
+              </a>
+              <a>
+                <img src="../../../../../../assets/images/delete-icon.svg" alt="" />
+              </a>
             </td>
           </tr>
         </tbody>
-      </table>
+
+        
+        
+</table>
     </div>
   </div>
 </div>
