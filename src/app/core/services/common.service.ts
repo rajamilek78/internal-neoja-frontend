@@ -21,6 +21,10 @@ export class CommonService {
     return this.apiManager.getApis(API_ENDPOINTS.GET_ALL_COMPANIES, {}, false)
   }
 
+  getAllLeagues(path : string) : Observable<any>{
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES}/${path}`,{},false)
+  }
+
   getAllClubsNew(path: string): Observable<any> {
     return this.apiManager.getApis(`${API_ENDPOINTS.GET_CLUBS}/${path}`, {}, false)
   }
