@@ -40,6 +40,7 @@ export class CreateLeagueComponent implements OnInit{
     this.commonService.getAllLeagues(`${companyIDclubIDStr}`).subscribe({
       next : (res : any)=>{
         console.log(res);
+        this.leagues = Object.values(res);
         },
       error : (err : any)=>{
         console.log(err);
