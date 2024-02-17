@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { CommonService, SharedService } from '@app/core';
 import { UserModel } from '@app/helpers/models';
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class UploadPlayerContainerComponent implements OnInit {
   playerCount = 5;
+  @Input() roundsLength!: number;
   selectedFormat = '1';
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
@@ -22,6 +23,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.roundsLength)
     this.userSubscriber();
     this.getAllLeagues();
   }
@@ -44,19 +46,43 @@ export class UploadPlayerContainerComponent implements OnInit {
     const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const compnyclubStr = `${ownedCompanies}/${ownedClubs}/all`;
-    console.log(compnyclubStr);
-    this.commonService.getAllLeagues(compnyclubStr).subscribe({
-      next: (res: any) => {
-        this.leagues = Object.keys(res).map((key) => ({
-          name: key,
-          description: res[key].description,
-        }));
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-    });
-  }
+    console.log(compnyclubStr)
+ this.commonService.getAllLeagues(compnyclubStr).subscribe({
+            next: (res: any) => {
+              this.leagues = Object.keys(res).map(key => ({
+                name: key,
+                description: res[key].description
+              }));
+            },
+            error: (err: any) => {
+            }
+        });
+    }
+  
+    onLeagueSelect(leagueName: string) {
+      const ownedCompanies=  this.userDetail?.owned_companies
+    const ownedClubs = this.userDetail?.owned_clubs;
+    const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
+
+    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}/all`;
+      this.commonService.getRounds(compnyclubnameStr).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.roundsLength = Object.keys(res).length;
+          
+          if(this.roundsLength > 1){
+            this.selectedFormat = '2';
+          }
+
+          console.log(this.roundsLength) // Handle the league summary response here
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      });
+    }
+
+
   
   onRadioButtonChange() {
     this.cdr.detectChanges();
