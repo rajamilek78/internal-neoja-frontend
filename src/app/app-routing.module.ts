@@ -25,12 +25,12 @@ const routes: Routes = [
   },
 
   {
-    path: RouteConstant.LEAGUE_CONTAINER,
+    path: RouteConstant.COMPLETED_LEAGUES,
     // canActivate: [AppAuthGuard],
     loadChildren: () =>
-      import('./private-modules/modules/league-module/league.module').then(
-        (m) => m.LeagueModule
-      ),
+      import(
+        './private-modules/modules/completed-league-module/completed-league.module'
+      ).then((m) => m.CompletedLeagueModule),
   },
 
   {

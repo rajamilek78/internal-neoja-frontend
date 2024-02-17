@@ -498,50 +498,6 @@ textarea {
   }
 }
 
-// header scss 
-
-.header {
-  background: $header-color;
-  position: fixed;
-  top: 0rem;
-  left: 0rem;
-  width: 100%;
-  z-index: 1;
-  padding: 2rem 0rem;
-
-  &__logo {
-    width: 12%;
-
-    img {
-      width: 100%;
-    }
-  }
-
-  span {
-    margin-right: 3.2rem;
-
-    a {
-      color: rgba($white-color, 0.5);
-      font-size: 1.6rem;
-      font-weight: 800;
-      line-height: 1.9rem;
-
-      &:hover {
-        color: $white-color;
-      }
-    }
-  }
-
-  .secondary-btn {
-    margin-right: 0rem;
-
-    button {
-      .flex {
-        padding-left: 0.8rem;
-      }
-    }
-  }
-}
 
 // panel scss
 
