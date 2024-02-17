@@ -23,6 +23,9 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
   }
   ngOnInit(): void {
     this.initLeagueForm();
+    if (this.data.league) {
+      this.leagueCRUD_Form.patchValue(this.data.league);
+    }
   }
   
 

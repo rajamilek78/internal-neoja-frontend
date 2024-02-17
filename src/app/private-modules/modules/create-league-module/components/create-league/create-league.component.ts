@@ -54,13 +54,25 @@ export class CreateLeagueComponent implements OnInit {
   }
 
 
-  openDialogue(): void {
+  // openDialogue(): void {
+  //   const dialogueRef = this.dialog.open(CreateLeagueDialogComponent, {
+  //     width: '450px',
+  //     data : this.companyIDclubID
+  //   });
+  //   dialogueRef.afterClosed().subscribe((result) => {
+  //     this.getAllLeagues();
+  //   });
+  // }
+
+  openDialogue(league?: any): void {
     const dialogueRef = this.dialog.open(CreateLeagueDialogComponent, {
       width: '450px',
-      data : this.companyIDclubID
+      data : { companyIDclubID: this.companyIDclubID, league: league }
     });
     dialogueRef.afterClosed().subscribe((result) => {
-      this.getAllLeagues();
+      console.log('the dialogue is closed now');
+      this.getAllLeagues();  // refresh the leagues
     });
   }
+  
 }

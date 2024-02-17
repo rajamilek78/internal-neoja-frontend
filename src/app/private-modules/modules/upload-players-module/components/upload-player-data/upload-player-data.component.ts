@@ -1,9 +1,8 @@
-import { FormatWidth } from '@angular/common';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { CommonService } from '../../../../../core/services';
+import { CommonService } from '@app/core';
 import { Router } from '@angular/router';
-import { SharedCommonService } from '../../../../../helpers/services';
+import { SharedCommonService } from '@app/helpers/services';
 import { RouteConstant } from '@app/helpers/constants';
 
 @Component({
@@ -28,7 +27,7 @@ export class UploadPlayerDataComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
 
     this.addPlayers(this.playerCount);
   }
@@ -87,25 +86,24 @@ export class UploadPlayerDataComponent implements OnInit {
       }
     }
   }
-  
+
 
   submitData(): void {
-    // const playerData = this.playerForm.value.players.reduce((obj, player) => {
-    //   obj[player.name] = player.score;
-    //   return obj;
-    // }, {});
+    const playerData = this.playerForm.value.players.reduce((obj, player) => {
+      obj[player.name] = player.score;
+      return obj;
+    }, {});
 
-    // this.api.post('json', playerData).subscribe({
-    //   next: (res: any) => {
-    //     this.SharedCommonService.setMatchData(res);
-    //     // localStorage.setItem('matchData', JSON.stringify(res));
-    //     this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
-    //     console.log(res);
-    //   },
-    //   error: (err: any) => {
-    //     console.log(err);
-    //   },
-    // });
-    this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
+    this.api.post('json', playerData).subscribe({
+      next: (res: any) => {
+        this.SharedCommonService.setMatchData(res);
+        // localStorage.setItem('matchData', JSON.stringify(res));
+        this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
+        console.log(res);
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
   }
 }
