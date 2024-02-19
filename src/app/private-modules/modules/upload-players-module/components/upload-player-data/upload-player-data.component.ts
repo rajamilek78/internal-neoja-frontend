@@ -18,6 +18,8 @@ export class UploadPlayerDataComponent implements OnInit {
   userDetail!: UserModel | null;
   @Input() playerCount!: number;
   @Input() roundsLength!: number;
+  @Input() leagueID!: string;
+
   leagueSummaryData: any;
   
   constructor(
@@ -56,11 +58,7 @@ export class UploadPlayerDataComponent implements OnInit {
   get players(): FormArray {
     return this.playerForm.get('players') as FormArray;
   }
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes['playerCount']) {
-  //     this.onPlayerCountChange(this.playerCount);
-  //   }
-  // }
+  
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges called', changes);
     if (changes['playerCount']) {
@@ -70,16 +68,6 @@ export class UploadPlayerDataComponent implements OnInit {
     }
   }
   
-  // onPlayerCountChange(count: number): void {
-  //   const currentCount = this.players.length;
-  //   if (count > currentCount) {
-  //     this.addPlayers(count - currentCount);
-  //   } else {
-  //     for (let i = currentCount; i > count; i--) {
-  //       this.deletePlayer(i - 1);
-  //     }
-  //   }
-  // }
   ngOnDestroy() {
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
@@ -93,29 +81,10 @@ export class UploadPlayerDataComponent implements OnInit {
       });
   };
 
-
-  // leagueSummary() {
-  //   const ownedCompanies = this.userDetail?.owned_companies;
-  //   const ownedClubs = this.userDetail?.owned_clubs;
-  //   const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
-  //   const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
-
-  //   this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
-  //     next: (res: any) => {
-  //       console.log(res);
-  //       this.leagueSummaryData = res;
-  //     },
-  //     error: (err: any) => {
-  //       console.error(err);
-  //     }
-  //   });
-  // }
-
-
   leagueSummary() {
     const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
-    const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
+    const name = this.leagueID;
     const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
     
 
@@ -136,6 +105,8 @@ export class UploadPlayerDataComponent implements OnInit {
             const playerGroup = this.fb.group({
               name: [playerName, Validators.required],
               score: [playerData.points_scored, Validators.required],
+              dropIn: [playerData['drop-in']],
+              noShow: [playerData['no-show']],
             });
 
             playersArray.push(playerGroup);
@@ -147,34 +118,6 @@ export class UploadPlayerDataComponent implements OnInit {
       }
     });
   }
-
-  // getPlayerName(player: FormGroup): string {
-  //   if (this.leagueSummaryData) {
-  //     return Object.keys(this.leagueSummaryData).find(key => key === player.value.name) || '';
-  //   }
-  //   return '';
-  // }
-
-  // getPlayerScore(player: FormGroup): string {
-  //   if (this.leagueSummaryData) {
-  //     return this.leagueSummaryData[player.value.name]?.points_scored || '';
-  //   }
-  //   return '';
-  // }
-
-  // getNoShow(player: FormGroup): boolean {
-  //   if (this.leagueSummaryData) {
-  //     return this.leagueSummaryData[player.value.name]?.['no-show'] || false;
-  //   }
-  //   return false;
-  // }
-
-  // getDropIn(player: FormGroup): boolean {
-  //   if (this.leagueSummaryData) {
-  //     return this.leagueSummaryData[player.value.name]?.['drop-in'] || false;
-  //   }
-  //   return false;
-  // }
 
   onPlayerCountChange(count: number): void {
     if (this.players) {
