@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonService, SharedService } from '../../../../../core';
 import { CompanyModel } from '@app/helpers/models/company.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +13,7 @@ import { CompletedLeagueService } from '../../services/completed-league.service'
   templateUrl: './completed-leagues.component.html',
   styleUrl: './completed-leagues.component.scss',
 })
-export class CompletedLeaguesComponent implements OnInit {
+export class CompletedLeaguesComponent implements OnInit,OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   leagues: any[] = [];
@@ -34,6 +34,21 @@ export class CompletedLeaguesComponent implements OnInit {
     private sharedUserService: SharedService,
     private completedLeagueService: CompletedLeagueService
   ) {}
+  
+
+  
+
+  ngOnInit(): void {
+    // this.getAllCompanies();
+    this.userSubscriber();
+    this.getAllLeagues();
+    // this.getAllRounds();
+  }
+  ngOnDestroy(): void {
+    if(this.userDetailSub$){
+      this.userDetailSub$.unsubscribe();
+    }
+  }
 
   openDialogue(): void {
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
@@ -43,13 +58,7 @@ export class CompletedLeaguesComponent implements OnInit {
       console.log('the dialogue is closed now');
     });
   }
-
-  ngOnInit(): void {
-    // this.getAllCompanies();
-    this.userSubscriber();
-    this.getAllLeagues();
-    // this.getAllRounds();
-  }
+  
 
   viewScore() {
     this.router.navigate([

@@ -4,6 +4,7 @@ import { SharedUserService } from '@app/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { ActivatedRoute } from '@angular/router';
+import { ScoreModel } from '@app/helpers/models/score.model';
 
 @Component({
   selector: 'app-view-score-table',
@@ -16,6 +17,7 @@ export class ViewScoreTableComponent implements OnInit{
   selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
+  leagueScores!:ScoreModel | null;
   constructor ( 
     private completedLeagueService : CompletedLeagueService,
     private sharedUserService : SharedUserService,
@@ -49,13 +51,17 @@ export class ViewScoreTableComponent implements OnInit{
     const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}`
     this.completedLeagueService.getLeagueScores(`${urlString}`).subscribe({
       next : (res : any)=>{
-        console.log(res);
+        this.leagueScores = res.league_scores;
+        console.log(this.leagueScores);
         },
         error : (err : any)=>{
           console.log(err);
           
         }
     })
+  }
+  handleResponse(res){
+
   }
 
 

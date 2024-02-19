@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateLeagueDialogComponent } from '../create-league-dialog/create-league-dialog.component';
 import { CommonService, SharedUserService } from '@app/core';
@@ -11,7 +10,7 @@ import { UserModel } from '@app/helpers/models';
   templateUrl: './create-league.component.html',
   styleUrl: './create-league.component.scss',
 })
-export class CreateLeagueComponent implements OnInit {
+export class CreateLeagueComponent implements OnInit,OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   companyIDclubID = "";
@@ -26,6 +25,11 @@ export class CreateLeagueComponent implements OnInit {
     this.userSubscriber();
     this.getAllLeagues();
     
+  }
+  ngOnDestroy(): void {
+    if(this.userDetailSub$){
+      this.userDetailSub$.unsubscribe();
+    }
   }
 
   userSubscriber = () => {
