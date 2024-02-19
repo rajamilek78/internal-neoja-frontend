@@ -106,58 +106,79 @@ export class UploadPlayerDataComponent implements OnInit {
   };
 
 
-  // leagueSummary() {
-  //   const ownedCompanies = this.userDetail?.owned_companies;
-  //   const ownedClubs = this.userDetail?.owned_clubs;
-  //   const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
-  //   const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
-    
-  //   this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
-  //     next: (res: any) => {
-  //       console.log(res);
-  //       this.leagueSummaryData = res;
-  //     },
-  //     error: (err: any) => {
-  //       console.error(err);
-  //     }
-  //   });
-  // }
-
-
   leagueSummary() {
     const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
     const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
-
+    
     this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
       next: (res: any) => {
         console.log(res);
         this.leagueSummaryData = res;
-
-        const playersArray = this.playerForm.get('players') as FormArray;
-        while (playersArray.length !== 0) {
-          playersArray.removeAt(0);
-        }
-
-        for (const playerName in this.leagueSummaryData.league_summary) {
-          if (this.leagueSummaryData.league_summary.hasOwnProperty(playerName)) {
-            const playerData = this.leagueSummaryData.league_summary[playerName];
-
-            const playerGroup = this.fb.group({
-              name: [playerName, Validators.required],
-              score: [playerData.points_scored, Validators.required],
-            });
-
-            playersArray.push(playerGroup);
-          }
-        }
+        this.processLeagueSummaryData();
       },
       error: (err: any) => {
         console.error(err);
       }
     });
   }
+
+  processLeagueSummaryData() {
+    if (this.leagueSummaryData) {
+      Object.keys(this.leagueSummaryData.league_summary).forEach(playerName => {
+        const playerData = this.leagueSummaryData.league_summary[playerName];
+        const name = playerName;
+        const pointsScored = playerData.points_scored;
+        const noShow = playerData['no-show'];
+        const dropIn = playerData['drop-in'];
+
+        // Now you can use the extracted information as needed
+        console.log(`Player Name: ${name}`);
+        console.log(`Points Scored: ${pointsScored}`);
+        console.log(`No Show: ${noShow}`);
+        console.log(`Drop In: ${dropIn}`);
+      });
+    } else {
+      console.error("Invalid API response");
+    }
+  }
+
+
+  // leagueSummary() {
+  //   const ownedCompanies = this.userDetail?.owned_companies;   
+  //   const ownedClubs = this.userDetail?.owned_clubs;
+  //   const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
+  //   const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+
+  //   this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
+  //     next: (res: any) => {
+  //       console.log(res);
+  //       this.leagueSummaryData = res;
+
+  //       const playersArray = this.playerForm.get('players') as FormArray;
+  //       while (playersArray.length !== 0) {
+  //         playersArray.removeAt(0);
+  //       }
+
+  //       for (const playerName in this.leagueSummaryData.league_summary) {
+  //         if (this.leagueSummaryData.league_summary.hasOwnProperty(playerName)) {
+  //           const playerData = this.leagueSummaryData.league_summary[playerName];
+
+  //           const playerGroup = this.fb.group({
+  //             name: [playerName, Validators.required],
+  //             score: [playerData.points_scored, Validators.required],
+  //           });
+
+  //           playersArray.push(playerGroup);
+  //         }
+  //       }
+  //     },
+  //     error: (err: any) => {
+  //       console.error(err);
+  //     }
+  //   });
+  // }
   
   // getPlayerName(player: FormGroup): string {
   //   if (this.leagueSummaryData) {
