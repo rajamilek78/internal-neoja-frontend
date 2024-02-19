@@ -5,37 +5,26 @@
         <div class="mr-1 dropdown">
           <div><label>Company</label></div>
           <mat-form-field>
-            <mat-select>
-              <mat-option value="1">APL</mat-option>
-              <mat-option value="2">APL</mat-option>
-              <mat-option value="3">APL</mat-option>
-              <mat-option value="4">APL</mat-option>
+            <mat-select [(value)]="selectedCompanyID">
+              <mat-option [value]="selectedCompanyID">{{selectedCompanyID}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="mr-1 dropdown">
           <div><label>Club</label></div>
           <mat-form-field>
-            <mat-select>
-              <mat-option value="5">5</mat-option>
-              <mat-option value="10">10</mat-option>
-              <mat-option value="15">15</mat-option>
-              <mat-option value="20">20</mat-option>
-              <mat-option value="25">25</mat-option>
-              <mat-option value="30">30</mat-option>
+            <mat-select [(value)]="selectedClubID">
+              <mat-option [value]="selectedClubID">{{selectedClubID}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="dropdown">
           <div><label>League</label></div>
           <mat-form-field>
-            <mat-select>
-              <mat-option value="5">5</mat-option>
-              <mat-option value="10">10</mat-option>
-              <mat-option value="15">15</mat-option>
-              <mat-option value="20">20</mat-option>
-              <mat-option value="25">25</mat-option>
-              <mat-option value="30">30</mat-option>
+            <mat-select [(value)]="selectedLeague" (valueChange)="getAllRounds()">
+              <mat-option *ngFor="let league of leagues" [value]="league.id">
+                {{league.name}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -51,10 +40,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3">
-        <div class="round-box disabled mr-2">
+      <div class="col-md-3" *ngFor="let round of rounds; let i = index">
+        <div class="round-box mr-2">
           <div class="flex justify-between mb-1">
-            <div><b>Round 1</b></div>
+            <div><b>Round {{round.roundNumber}}</b></div>
             <div class="red-btn">
               <button type="button" class="btn-sm flex justify-center">
                 <span
@@ -85,7 +74,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <!-- <div class="col-md-3">
         <div class="round-box disabled mr-2">
           <div class="flex justify-between mb-1">
             <div><b>Round 2</b></div>
@@ -181,7 +170,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
