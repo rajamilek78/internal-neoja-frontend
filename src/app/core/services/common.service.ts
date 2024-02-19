@@ -27,6 +27,12 @@ export class CommonService {
   getAllLeagues(path: string): Observable <any>{
     return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES}/${path}`, {}, false)
   }
+  getRounds(path: string): Observable <any>{
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_ROUND}/${path}`, {}, false)
+  }
+  getLeaguesSummary(path: string): Observable <any>{
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES_SUMMARY}/${path}`, {}, false)
+  }
 
   getAllClubs(path: string, token?: string): Observable<any> {
     const headers = new HttpHeaders({
