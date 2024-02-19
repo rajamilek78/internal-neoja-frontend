@@ -11,7 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class UploadPlayerContainerComponent implements OnInit {
   playerCount = 5;
-  @Input() roundsLength!: number;
+  roundsLength!: number;
+  leagueID!:string;
   selectedFormat = '1';
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
@@ -62,9 +63,9 @@ export class UploadPlayerContainerComponent implements OnInit {
     onLeagueSelect(leagueName: string) {
       const ownedCompanies=  this.userDetail?.owned_companies
     const ownedClubs = this.userDetail?.owned_clubs;
-    const name = 'FRIENDS-3.0-4.0-SAT12PM-WINTER1';
+    this.leagueID = leagueName;
 
-    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}/all`;
+    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}/all`;
       this.commonService.getRounds(compnyclubnameStr).subscribe({
         next: (res: any) => {
           console.log(res);
@@ -74,7 +75,7 @@ export class UploadPlayerContainerComponent implements OnInit {
             this.selectedFormat = '2';
           }
 
-          console.log(this.roundsLength) // Handle the league summary response here
+          console.log(this.roundsLength)
         },
         error: (err: any) => {
           console.error(err);
