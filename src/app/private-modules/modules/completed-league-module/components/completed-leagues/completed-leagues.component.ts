@@ -18,7 +18,7 @@ export class CompletedLeaguesComponent implements OnInit {
   userDetail!: UserModel | null;
   leagues: any[] = [];
   rounds: any[] = [];
-  companyIDClubIDSTr = "";
+  companyIDClubIDSTr = '';
   selectedCompanyID!: string;
   selectedClubID!: string;
 
@@ -32,8 +32,8 @@ export class CompletedLeaguesComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private sharedUserService: SharedService,
-    private completedLeagueService : CompletedLeagueService
-  ) { }
+    private completedLeagueService: CompletedLeagueService
+  ) {}
 
   openDialogue(): void {
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
@@ -52,7 +52,10 @@ export class CompletedLeaguesComponent implements OnInit {
   }
 
   viewScore() {
-    this.router.navigate([RouteConstant.VIEW_SCORES_ROUTE]);
+    this.router.navigate([
+      RouteConstant.VIEW_SCORES_ROUTE,
+      { leagueID: this.selectedLeague },
+    ]);
   }
 
   edit() {
@@ -61,57 +64,59 @@ export class CompletedLeaguesComponent implements OnInit {
   }
 
   userSubscriber = () => {
-    this.userDetailSub$ = this.sharedUserService.getUserDetailCall()
+    this.userDetailSub$ = this.sharedUserService
+      .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedUserService.getUser();
         console.log(this.userDetail);
         if (this.userDetail) {
           const companyIDs = this.userDetail.owned_companies;
           const clubIDs = this.userDetail.owned_clubs;
-          this.selectedClubID = companyIDs[0];
+          this.selectedClubID = clubIDs[0];
           this.selectedCompanyID = companyIDs[0];
-
         }
       });
   };
   getAllLeagues() {
     const companyID = this.userDetail?.owned_companies;
     const clubID = this.userDetail?.owned_clubs;
-    this.companyIDClubIDSTr = `${companyID}/${clubID}`
-    const companyIDclubIDStr = `${this.companyIDClubIDSTr}/all`
+    this.companyIDClubIDSTr = `${companyID}/${clubID}`;
+    const companyIDclubIDStr = `${this.companyIDClubIDSTr}/all`;
     this.commonService.getAllLeagues(`${companyIDclubIDStr}`).subscribe({
       next: (res: any) => {
-        this.leagues = Object.keys(res).map(key => ({ id: key, name: res[key].name }));
+        this.leagues = Object.keys(res).map((key) => ({
+          id: key,
+          name: res[key].name,
+        }));
         this.selectedLeague = this.leagues[0].id;
         this.getAllRounds();
         console.log(this.leagues);
       },
       error: (err: any) => {
         console.log(err);
-      }
+      },
     });
   }
 
-  getAllRounds(){
-    const urlString = `${this.companyIDClubIDSTr}/${this.selectedLeague}/all`
-    this.completedLeagueService.getAllRounds(urlString)
-    .subscribe({
-      next : (res : any)=>{
+  getAllRounds() {
+    const urlString = `${this.companyIDClubIDSTr}/${this.selectedLeague}/all`;
+    this.completedLeagueService.getAllRounds(urlString).subscribe({
+      next: (res: any) => {
         if (res) {
-          this.rounds = Object.keys(res).map(key => ({roundNumber: key, roundDetails: res[key]}));
+          this.rounds = Object.keys(res).map((key) => ({
+            roundNumber: key,
+            roundDetails: res[key],
+          }));
         } else {
           console.log('No rounds data received');
         }
         console.log(res);
       },
-      error : (err : any)=>{
+      error: (err: any) => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
-  
-
-
   getAllCompanies() {
     this.commonService.getAllCompanies().subscribe({
       next: (resp: any) => {

@@ -32,4 +32,8 @@ export class API_ENDPOINTS{
     //Rounds
     public static GET_ROUND_BY_ID = `${COMPANY_URL}/get-round-by-id`;
     public static GET_ROUND = `${COMPANY_URL}/get-rounds`;
+
+
+    //Scores
+    public static GET_SCORE = `${COMPANY_URL}/get-league-scores`;
 }
