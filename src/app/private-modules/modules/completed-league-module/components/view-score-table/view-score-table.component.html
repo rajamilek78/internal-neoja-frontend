@@ -10,7 +10,7 @@
     </div>
     <div class="view-score-table">
       <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-        <mat-tab label="Round 1">
+        <mat-tab *ngFor="let round of leagueScores | keyvalue" [label]=" 'Round ' + round.key ">
           <table class="table-2">
             <thead>
               <tr>
@@ -26,15 +26,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Skylar Mango</td>
-                <td>28</td>
-                <td>75.00 %</td>
-                <td>25</td>
-                <td class="green-font">+18</td>
+              <tr *ngFor="let player of round.value.individual | keyvalue; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{player.key}}</td>
+                <td>{{player.value.points_scored}}</td>
+                <td>{{player.value.points_possible}}</td>
+                <td>{{player.value.played}}</td>
+                <td class="green-font">{{player.value.won}}</td>
                 <td class="red-font">-7</td>
-                <td>75.00 %</td>
+                <td>{{player.value.win_percent}}</td>
                 <td>
                   <div class="flex justify-center">
                     <div class="status-square bg-red flex justify-center">
@@ -96,15 +96,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Skylar Mango</td>
-                <td>28</td>
-                <td>75.00 %</td>
-                <td>25</td>
-                <td class="green-font">+18</td>
+              <tr *ngFor="let player of round.value.cumulative | keyvalue; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{player.key}}</td>
+                <td>{{player.value.points_scored}}</td>
+                <td>{{player.value.points_possible}}</td>
+                <td>{{player.value.played}}</td>
+                <td class="green-font">{{player.value.won}}</td>
                 <td class="red-font">-7</td>
-                <td>75.00 %</td>
+                <td>{{player.value.win_percent}}</td>
                 <td>
                   <div class="flex justify-center">
                     <div class="status-square bg-red flex justify-center">
