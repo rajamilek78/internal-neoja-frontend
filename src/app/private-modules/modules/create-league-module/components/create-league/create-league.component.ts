@@ -10,42 +10,40 @@ import { UserModel } from '@app/helpers/models';
   templateUrl: './create-league.component.html',
   styleUrl: './create-league.component.scss',
 })
-export class CreateLeagueComponent implements OnInit,OnDestroy {
+export class CreateLeagueComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
-  companyIDclubID = "";
+  companyIDclubID = '';
   leagues!: any[];
   constructor(
     private dialog: MatDialog,
     private commonService: CommonService,
-    private sharedUserService: SharedUserService,
-  ) {
-  }
+    private sharedUserService: SharedUserService
+  ) {}
   ngOnInit(): void {
     this.userSubscriber();
     this.getAllLeagues();
-    
   }
   ngOnDestroy(): void {
-    if(this.userDetailSub$){
+    if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
   }
-
+// To subscribe loggedin user details
   userSubscriber = () => {
-    this.userDetailSub$ = this.sharedUserService.getUserDetailCall()
+    this.userDetailSub$ = this.sharedUserService
+      .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedUserService.getUser();
         console.log(this.userDetail);
       });
   };
-
-
+  // To get all league's list
   getAllLeagues() {
     const companyID = this.userDetail?.owned_companies;
     const clubID = this.userDetail?.owned_clubs;
-    this.companyIDclubID = `${companyID}/${clubID}`
-    const companyIDclubID_Str = `${this.companyIDclubID}/all`
+    this.companyIDclubID = `${companyID}/${clubID}`;
+    const companyIDclubID_Str = `${this.companyIDclubID}/all`;
     this.commonService.getAllLeagues(`${companyIDclubID_Str}`).subscribe({
       next: (res: any) => {
         this.leagues = Object.values(res);
@@ -53,30 +51,18 @@ export class CreateLeagueComponent implements OnInit,OnDestroy {
       },
       error: (err: any) => {
         console.log(err);
-      }
+      },
     });
   }
-
-
-  // openDialogue(): void {
-  //   const dialogueRef = this.dialog.open(CreateLeagueDialogComponent, {
-  //     width: '450px',
-  //     data : this.companyIDclubID
-  //   });
-  //   dialogueRef.afterClosed().subscribe((result) => {
-  //     this.getAllLeagues();
-  //   });
-  // }
-
+  // To open dialog to create, edit and delete league
   openDialogue(league?: any): void {
     const dialogueRef = this.dialog.open(CreateLeagueDialogComponent, {
       width: '450px',
-      data : { companyIDclubID: this.companyIDclubID, league: league }
+      data: { companyIDclubID: this.companyIDclubID, league: league },
     });
     dialogueRef.afterClosed().subscribe((result) => {
       console.log('the dialogue is closed now');
-      this.getAllLeagues();  // refresh the leagues
+      this.getAllLeagues(); // refresh the leagues
     });
   }
-  
 }

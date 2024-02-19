@@ -13,7 +13,7 @@ import { CompletedLeagueService } from '../../services/completed-league.service'
   templateUrl: './completed-leagues.component.html',
   styleUrl: './completed-leagues.component.scss',
 })
-export class CompletedLeaguesComponent implements OnInit,OnDestroy {
+export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   leagues: any[] = [];
@@ -21,6 +21,7 @@ export class CompletedLeaguesComponent implements OnInit,OnDestroy {
   companyIDClubIDSTr = '';
   selectedCompanyID!: string;
   selectedClubID!: string;
+  roundID = "";
 
   selectedLeague!: string;
   companies: { [key: string]: { name: string; description: string } } = {};
@@ -34,9 +35,6 @@ export class CompletedLeaguesComponent implements OnInit,OnDestroy {
     private sharedUserService: SharedService,
     private completedLeagueService: CompletedLeagueService
   ) {}
-  
-
-  
 
   ngOnInit(): void {
     // this.getAllCompanies();
@@ -45,11 +43,11 @@ export class CompletedLeaguesComponent implements OnInit,OnDestroy {
     // this.getAllRounds();
   }
   ngOnDestroy(): void {
-    if(this.userDetailSub$){
+    if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
   }
-
+  // To open dialog to lock Round
   openDialogue(): void {
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
       width: '450px',
@@ -58,20 +56,18 @@ export class CompletedLeaguesComponent implements OnInit,OnDestroy {
       console.log('the dialogue is closed now');
     });
   }
-  
-
+  // To view score
   viewScore() {
     this.router.navigate([
       RouteConstant.VIEW_SCORES_ROUTE,
       { leagueID: this.selectedLeague },
     ]);
   }
-
-  edit() {
-    // this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
-    this.router.navigate(['players-league', { edite: true }]);
+  // To Update Score
+  edit(roundID?) {
+    this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { edite: true, roundID : roundID, leagueID: this.selectedLeague}]);
   }
-
+  // Subcribe loggedIn user's Details
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedUserService
       .getUserDetailCall()
@@ -86,6 +82,7 @@ export class CompletedLeaguesComponent implements OnInit,OnDestroy {
         }
       });
   };
+  // To get list of leagues
   getAllLeagues() {
     const companyID = this.userDetail?.owned_companies;
     const clubID = this.userDetail?.owned_clubs;
@@ -106,7 +103,7 @@ export class CompletedLeaguesComponent implements OnInit,OnDestroy {
       },
     });
   }
-
+  // To get list of Rounds for selected Company & Club
   getAllRounds() {
     const urlString = `${this.companyIDClubIDSTr}/${this.selectedLeague}/all`;
     this.completedLeagueService.getAllRounds(urlString).subscribe({
@@ -116,16 +113,17 @@ export class CompletedLeaguesComponent implements OnInit,OnDestroy {
             roundNumber: key,
             roundDetails: res[key],
           }));
+          console.log(this.rounds); // Log the rounds data here
         } else {
           console.log('No rounds data received');
         }
-        console.log(res);
       },
       error: (err: any) => {
         console.log(err);
       },
     });
   }
+
   getAllCompanies() {
     this.commonService.getAllCompanies().subscribe({
       next: (resp: any) => {

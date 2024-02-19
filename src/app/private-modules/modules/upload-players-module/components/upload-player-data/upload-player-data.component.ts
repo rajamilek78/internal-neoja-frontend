@@ -21,14 +21,14 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() leagueID!: string;
 
   leagueSummaryData: any;
-  
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private sharedService: SharedService,
-    private commonservice: CommonService ,
+    private commonservice: CommonService,
     private SharedCommonService: SharedCommonService
- ) {
+  ) {
     this.playerForm = this.fb.group({
       players: this.fb.array([]),
     });
@@ -58,49 +58,45 @@ export class UploadPlayerDataComponent implements OnInit {
   get players(): FormArray {
     return this.playerForm.get('players') as FormArray;
   }
-  
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges called', changes);
     if (changes['playerCount']) {
       this.onPlayerCountChange(this.playerCount);
       console.log(this.playerCount);
-      
     }
   }
-  
   ngOnDestroy() {
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
   }
   userSubscriber = () => {
-    this.userDetailSub$ = this.sharedService.getUserDetailCall()
+    this.userDetailSub$ = this.sharedService
+      .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
         console.log(this.userDetail);
       });
   };
-
   leagueSummary() {
     const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = this.leagueID;
     const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
-    
-
     this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
       next: (res: any) => {
         console.log(res);
         this.leagueSummaryData = res;
-
         const playersArray = this.playerForm.get('players') as FormArray;
         while (playersArray.length !== 0) {
           playersArray.removeAt(0);
         }
-
         for (const playerName in this.leagueSummaryData.league_summary) {
-          if (this.leagueSummaryData.league_summary.hasOwnProperty(playerName)) {
-            const playerData = this.leagueSummaryData.league_summary[playerName];
+          if (
+            this.leagueSummaryData.league_summary.hasOwnProperty(playerName)
+          ) {
+            const playerData =
+              this.leagueSummaryData.league_summary[playerName];
 
             const playerGroup = this.fb.group({
               name: [playerName, Validators.required],
@@ -115,7 +111,7 @@ export class UploadPlayerDataComponent implements OnInit {
       },
       error: (err: any) => {
         console.error(err);
-      }
+      },
     });
   }
 
@@ -141,7 +137,6 @@ export class UploadPlayerDataComponent implements OnInit {
         this.SharedCommonService.setMatchData(res);
         // localStorage.setItem('matchData', JSON.stringify(res));
         this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
-        console.log(res);
       },
       error: (err: any) => {
         console.log(err);

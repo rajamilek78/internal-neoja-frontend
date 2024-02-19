@@ -105,19 +105,17 @@
     <div class="table-format-one" *ngIf="selectedFormat == '1'">
       <div>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          <!-- <mat-tab label="Group 1"> -->
           <mat-tab *ngFor="let group of groups" [label]="group.name">
             <app-league-table-format-one
               *ngIf="selectedFormat == '1'"
               [data]="group.data"
               id="playerData"
             ></app-league-table-format-one>
-            <!-- <app-league-table-format-one *ngIf="selectedFormat=='1'"id="playerData"></app-league-table-format-one> -->
           </mat-tab>
         </mat-tab-group>
       </div>
       <div class="primary-btn">
-        <button class="btn flex justify-center">
+        <button class="btn flex justify-center" (click)="downloadTableAsPDF()">
           <span
             ><img
               src="assets/images/download-icon.svg"
