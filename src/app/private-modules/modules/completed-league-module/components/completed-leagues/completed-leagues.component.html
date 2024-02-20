@@ -6,7 +6,9 @@
           <div><label>Company</label></div>
           <mat-form-field>
             <mat-select [(value)]="selectedCompanyID">
-              <mat-option [value]="selectedCompanyID">{{selectedCompanyID}}</mat-option>
+              <mat-option [value]="selectedCompanyID">{{
+                selectedCompanyID
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -14,42 +16,47 @@
           <div><label>Club</label></div>
           <mat-form-field>
             <mat-select [(value)]="selectedClubID">
-              <mat-option [value]="selectedClubID">{{selectedClubID}}</mat-option>
+              <mat-option [value]="selectedClubID">{{
+                selectedClubID
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="dropdown">
           <div><label>League</label></div>
           <mat-form-field>
-            <mat-select [(value)]="selectedLeague" (valueChange)="getAllRounds()">
+            <mat-select
+              [(value)]="selectedLeague"
+              (valueChange)="getAllRounds()"
+            >
               <mat-option *ngFor="let league of leagues" [value]="league.id">
-                {{league.name}}
+                {{ league.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
       <div class="primary-btn">
-        <button type="button" class="btn flex justify-center" (click)="viewScore()">
-          <span
-            ><img
-              src="assets/images/view-score-icon.svg"
-              alt="" /></span
+        <button
+          type="button"
+          class="btn flex justify-center"
+          (click)="viewScore()"
+        >
+          <span><img src="assets/images/view-score-icon.svg" alt="" /></span
           >View Score
         </button>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3" *ngFor="let round of rounds; let i = index">
+      <div class="col-md-3 MB-2" *ngFor="let round of rounds; let i = index">
         <div class="round-box mr-2">
           <div class="flex justify-between mb-1">
-            <div><b>Round {{round.roundNumber}}</b></div>
+            <div>
+              <b>Round {{ round.roundNumber }}</b>
+            </div>
             <div class="red-btn">
               <button type="button" class="btn-sm flex justify-center">
-                <span
-                  ><img
-                    src="assets/images/red-lock-icon.svg"
-                    alt="" /></span
+                <span><img src="assets/images/red-lock-icon.svg" alt="" /></span
                 >Locked
               </button>
             </div>
@@ -64,131 +71,18 @@
             </button>
           </div>
           <div class="primary-btn">
-            <button type="button" class="btn flex justify-center" (click)="edit()">
-              <span
-                ><img
-                  src="assets/images/white-edit-icon.svg"
-                  alt="" /></span
-              >Edit Score
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="col-md-3">
-        <div class="round-box disabled mr-2">
-          <div class="flex justify-between mb-1">
-            <div><b>Round 2</b></div>
-            <div class="red-btn">
-              <button type="button" class="btn-sm flex justify-center">
-                <span
-                  ><img
-                    src="assets/images/red-lock-icon.svg"
-                    alt="" /></span
-                >Locked
-              </button>
-            </div>
-          </div>
-          <div class="red-btn">
-            <button type="button" class="btn flex justify-center">
-              <span
-                ><img
-                  src="assets/images/red-icon-lock-second.svg"
-                  alt="" /></span
-              >Lock Score
-            </button>
-          </div>
-          <div class="primary-btn">
-            <button type="button" class="btn flex justify-center" (click)="edit()">
-              <span
-                ><img
-                  src="assets/images/white-edit-icon.svg"
-                  alt="" /></span
-              >Edit Score
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="round-box disabled mr-2">
-          <div class="flex justify-between mb-1">
-            <div><b>Round 3</b></div>
-            <div class="red-btn">
-              <button type="button" class="btn-sm flex justify-center">
-                <span
-                  ><img
-                    src="assets/images/red-lock-icon.svg"
-                    alt="" /></span
-                >Locked
-              </button>
-            </div>
-          </div>
-          <div class="red-btn">
-            <button type="button" class="btn flex justify-center">
-              <span
-                ><img
-                  src="assets/images/red-icon-lock-second.svg"
-                  alt="" /></span
-              >Lock Score
-            </button>
-          </div>
-          <div class="primary-btn">
-            <button type="button" class="btn flex justify-center" (click)="edit()">
-              <span
-                ><img
-                  src="assets/images/white-edit-icon.svg"
-                  alt="" /></span
-              >Edit Score
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="round-box">
-          <div class="flex justify-between mb-1">
-            <div><b>Round 4</b></div>
-          </div>
-          <div class="secondary-btn-light">
             <button
               type="button"
               class="btn flex justify-center"
-              (click)="openDialogue()"
+              (click)="edit(round.roundNumber)"
             >
-              <span
-                ><img
-                  src="assets/images/lock-icon.svg"
-                  alt="" /></span
-              >Lock Score
-            </button>
-          </div>
-          <div class="primary-btn">
-            <button type="button" class="btn flex justify-center" (click)="edit()">
-              <span
-                ><img
-                  src="assets/images/white-edit-icon.svg"
-                  alt="" /></span
+              <span><img src="assets/images/white-edit-icon.svg" alt="" /></span
               >Edit Score
             </button>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
 
-<!-- <mat-form-field>
-      <mat-select (selectionChange)="getAllClubs($event.value)">
-        <mat-option
-          *ngFor="let company of companies | keyvalue"
-          [value]="company.key"
-        >
-          {{ company.value.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select>
-        <mat-option *ngFor="let club of clubs | keyvalue" [value]="club.key">
-          {{ club.value.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field> -->

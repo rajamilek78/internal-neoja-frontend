@@ -1,11 +1,11 @@
-<div class="modal">
+<form class="modal" [formGroup]="leagueCRUD_Form" (ngSubmit)="createUpdateLeague()">
   <div class="modal__header flex justify-between">
     <h6>Add League</h6>
     <div>
       <span (click)="close()"><img src="assets/images/close-icon.svg" alt="" /></span>
     </div>
   </div>
-  <div class="modal__body" [formGroup]="leagueCRUD_Form">
+  <div class="modal__body">
     <div class="form-control">
       <label>League</label>
       <mat-form-field>
@@ -54,11 +54,11 @@
   <div class="modal__footer">
     <div class="flex justify-end">
       <div class="primary-btn">
-        <button type="submit" class="btn" (click)="createUpdateLeague()">Save</button>
+        <button type="submit" class="btn">Save</button>
       </div>
       <div class="secondary-btn-light">
         <button type="button" class="btn" (click)="close()">Cancel</button>
       </div>
     </div>
   </div>
-</div>
+</form>
