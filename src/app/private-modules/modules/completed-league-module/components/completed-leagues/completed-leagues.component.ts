@@ -17,8 +17,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   leagues: any[] = [];
-  //rounds: any[] = [];
-  rounds: { roundNumber: number; scoreLocked: boolean }[] = [];
+  rounds: any[] = [];
   companyIDClubIDSTr = '';
   selectedCompanyID!: string;
   selectedClubID!: string;
@@ -38,6 +37,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.roundID)
     // this.getAllCompanies();
     this.userSubscriber();
     this.getAllLeagues();
@@ -66,11 +66,6 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   }
   // To Update Score
   edit(roundID?) {
-    const round = this.rounds.find(round => round.roundNumber === roundID);
-    if (round && round.scoreLocked) {
-      alert('Score for this round is locked. You cannot edit it.');
-      return;
-    }
     this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { isEdit: true, roundID : roundID, leagueID: this.selectedLeague}]);
   }
   // Subcribe loggedIn user's Details
@@ -137,7 +132,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
           this.rounds = Object.keys(res).map((key) => ({
             roundNumber: Number(key), // Convert key to number if needed
             roundDetails: res[key],
-            scoreLocked: false, // Initialize scoreLocked to false for each round
+            scoreLocked: res[key].header.score_locked, // Initialize scoreLocked to false for each round
           }));
           console.log(this.rounds); // Log the rounds data here
         } else {
@@ -150,18 +145,19 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     });
   }
   
-  lockScore(roundNumber: number) {
-    const previousRound = this.rounds.find(round => round.roundNumber === roundNumber - 1);
-    if (previousRound && previousRound.scoreLocked) {
-      alert('Previous round score is locked. Please unlock it before creating a new round.');
-      return;
-    }
-
-    // Implement logic to lock the score for the current round
-    const roundToUpdate = this.rounds.find(round => round.roundNumber === roundNumber);
-    if (roundToUpdate) {
-      roundToUpdate.scoreLocked = true;
-    }
+  lockScore(roundID?) {
+      const ownedCompanies = this.userDetail?.owned_companies;
+        const ownedClubs = this.userDetail?.owned_clubs;
+        //const round = this.rounds.find(round => round.roundNumber === roundID);
+        const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.selectedLeague}/${roundID}`;
+      this.commonService.lockScore(compnyclubnameStr).subscribe({
+        next: (res: any) => {
+          console.log(res);
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      });
   }
 
   getAllCompanies() {

@@ -55,7 +55,7 @@
               <b>Round {{ round.roundNumber }}</b>
             </div>
             <div class="red-btn">
-              <button type="button" class="btn-sm flex justify-center" *ngIf="round.scoreLocked">
+              <button type="button" class="btn-sm flex justify-center" *ngIf="round.roundDetails.header.score_locked">
                 <span><img src="assets/images/red-lock-icon.svg" alt="" /></span
                 >Locked
               </button>
@@ -75,6 +75,7 @@
               type="button"
               class="btn flex justify-center"
               (click)="edit(round.roundNumber)"
+              [disabled]="round.roundDetails.header.score_locked"
             >
               <span><img src="assets/images/white-edit-icon.svg" alt="" /></span
               >Edit Score

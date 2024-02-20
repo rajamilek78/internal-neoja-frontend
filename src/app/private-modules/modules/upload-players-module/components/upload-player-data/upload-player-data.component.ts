@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { CommonService, SharedService } from '@app/core';
 import { Router } from '@angular/router';
 import { SharedCommonService } from '@app/helpers/services';
@@ -119,6 +119,15 @@ export class UploadPlayerDataComponent implements OnInit {
       },
     });
   }
+  isNameDisabled(player: AbstractControl): boolean {
+    if (player instanceof FormGroup) {
+      return player.controls['name'].value !== '';
+    }
+    return false;
+  }
+  // isNameDisabled(playerName: string): boolean {
+  //   return playerName !== '';
+  // }
   updateToggleState() {
     this.isDropInDisabled = true;
     this.isNoShowDisabled = !this.isDropInDisabled;
