@@ -82,6 +82,7 @@
                   matInput
                   type="text"
                   formControlName="name"
+                  [disabled]="isNameDisabled(player)"
                   placeholder="Enter your name"
                   required
                 />

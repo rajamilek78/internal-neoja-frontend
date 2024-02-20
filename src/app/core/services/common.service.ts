@@ -36,6 +36,9 @@ export class CommonService {
   creatRound(path : string , bodyData){
     return this.apiManager.postApis(`${API_ENDPOINTS.CREAT_ROUND}/${path}`, bodyData, false)
   }
+  lockScore(path: string){
+    return this.apiManager.postApis(`${API_ENDPOINTS.LOCK_SCORE}/${path}`, false)
+  }
 
   getAllClubs(path: string, token?: string): Observable<any> {
     const headers = new HttpHeaders({
