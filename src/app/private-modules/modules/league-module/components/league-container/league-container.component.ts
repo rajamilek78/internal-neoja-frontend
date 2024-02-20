@@ -50,12 +50,19 @@ export class LeagueContainerComponent {
         
       });
       console.log(this.edite);
-      this.getMatchData();
-      this.getRoundById();
+      if(this.edite){
+        this.getRoundById();
+      }
+      else{
+        this.getMatchData();
+      }
+      // this.getMatchData();
+      // this.getRoundById();
     }
     openDialogue(): void {
       const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
         width: '450px',
+        data : this.responseData
       });
       dialogueRef.afterClosed().subscribe((result) => {
         console.log('the dialogue is closed now');
@@ -87,15 +94,15 @@ export class LeagueContainerComponent {
         console.log(this.responseData);
         
         // this.responseData = res;
-        // if (this.responseData) {
-        //   this.groups = Object.keys(this.responseData).map((key) => ({
-        //     name: key,
-        //     data: this.responseData[key],
-        //   }));
-        //   console.log(this.groups);
-        // } else {
-        //   console.log('No data found in responseData.');
-        // }
+        if (this.responseData) {
+          this.groups = Object.keys(this.responseData).map((key) => ({
+            name: key,
+            data: this.responseData[key],
+          }));
+          console.log(this.groups);
+        } else {
+          console.log('No data found in responseData.');
+        }
       },
       error : (err: any)=>{
         console.log(err);

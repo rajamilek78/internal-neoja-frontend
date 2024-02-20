@@ -61,7 +61,6 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
       data: { companyIDclubID: this.companyIDclubID, league: league },
     });
     dialogueRef.afterClosed().subscribe((result) => {
-      console.log('the dialogue is closed now');
       this.getAllLeagues(); // refresh the leagues
     });
   }
