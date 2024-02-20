@@ -20,7 +20,7 @@ export class LockDataDialogueComponent implements OnInit{
     private commonservice: CommonService ,
     @Inject(MAT_DIALOG_DATA) public data: any){}
   ngOnInit(): void {
-    console.log(this.responseData)
+    console.log(this.data)
   }
  
 

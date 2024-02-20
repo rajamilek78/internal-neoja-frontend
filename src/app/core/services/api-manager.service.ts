@@ -130,9 +130,9 @@ export class APIManager extends HttpHelperService {
     return this.httpHelperMethod(HttpMethodsTypeEnum.GET, url, params, header, false, loader);
   }
 
-  postApis = (url, params = {}, showToast = true, showLoader = true, header = this.Authorized_HttpOptionsWithKey): Observable<any> => {
+  postApis = (url, body = {}, showToast = true, showLoader = true, header = this.Authorized_HttpOptionsWithKey): Observable<any> => {
     return this.httpHelperMethod(
-      HttpMethodsTypeEnum.POST, url, params,
+      HttpMethodsTypeEnum.POST, url, body,
       header, showToast, showLoader);
   }
 

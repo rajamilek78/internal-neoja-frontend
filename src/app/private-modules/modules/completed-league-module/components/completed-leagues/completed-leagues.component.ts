@@ -65,7 +65,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   }
   // To Update Score
   edit(roundID?) {
-    this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { edite: true, roundID : roundID, leagueID: this.selectedLeague}]);
+    this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { isEdit: true, roundID : roundID, leagueID: this.selectedLeague}]);
   }
   // Subcribe loggedIn user's Details
   userSubscriber = () => {
