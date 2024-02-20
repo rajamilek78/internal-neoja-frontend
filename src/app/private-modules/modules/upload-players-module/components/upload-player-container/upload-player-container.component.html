@@ -12,7 +12,7 @@
       <div class="add-row-dropdown" *ngIf="selectedFormat !== '1'">
         <div><label>Display Players</label></div>
         <mat-form-field >
-          <mat-select [(ngModel)]="playerCount" >
+          <mat-select [(ngModel)]="playerCount">
             <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">
               {{i}}
             </mat-option>

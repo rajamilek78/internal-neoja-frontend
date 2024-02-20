@@ -26,7 +26,7 @@ export class LeagueContainerComponent {
   responseData: any;
   selectedFormat = '1';
   selectedGroup!: any;
-  edite: boolean = false;
+  isEdit: boolean = false;
   selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
@@ -44,20 +44,18 @@ export class LeagueContainerComponent {
     ngOnInit(): void {
       this.userSubscriber();
       this.route.params.subscribe( params =>{
-        this.edite = params['edite'];
+        this.isEdit = params['isEdit'];
         this.roundID = params['roundID'];
         this.leagueID = params['leagueID'];
         
       });
-      console.log(this.edite);
-      if(this.edite){
+      console.log(this.isEdit);
+      if(this.isEdit){
         this.getRoundById();
       }
       else{
         this.getMatchData();
       }
-      // this.getMatchData();
-      // this.getRoundById();
     }
     openDialogue(): void {
       console.log(this.leagueID)
@@ -94,9 +92,7 @@ export class LeagueContainerComponent {
     const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`
     this.leagueService.getRoundByID(urlString).subscribe({
       next : (res : any)=>{
-        debugger;
         this.responseData = res.groups;
-        debugger;
         console.log(this.responseData);
         
         // this.responseData = res;

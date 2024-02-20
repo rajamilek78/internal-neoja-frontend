@@ -62,7 +62,7 @@
       </mat-radio-group>
     </div> -->
     <div class="league-title">
-      <div><h6>LADDER-3-3.5-MON7PM-SEASON1</h6></div>
+      <div><h6>{{leagueID}}</h6></div>
       <div class="flex justify-end">
         <div class="flex mr-1">
           <span
@@ -150,7 +150,7 @@
         </button>
       </div>
     </div>
-    <div class="upload__button flex justify-end" *ngIf="edite">
+    <div class="upload__button flex justify-end" *ngIf="isEdit">
       <div class="primary-btn">
         <button type="button" class="btn" (click)="saveRound()">Save</button>
       </div>
