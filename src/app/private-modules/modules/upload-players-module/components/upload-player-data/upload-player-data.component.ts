@@ -19,6 +19,8 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() playerCount!: number;
   @Input() roundsLength!: number;
   @Input() leagueID!: string;
+  isDropInDisabled = true;
+  isNoShowDisabled = false;
 
   leagueSummaryData: any;
 
@@ -42,6 +44,8 @@ export class UploadPlayerDataComponent implements OnInit {
     return this.fb.group({
       name: ['', Validators.required],
       score: ['', Validators.required],
+      dropIn: [{ value: '', disabled: this.isDropInDisabled }],
+      noShow: [{ value: '', disabled: this.isNoShowDisabled }],
     });
   }
   addPlayer(): void {
@@ -108,10 +112,21 @@ export class UploadPlayerDataComponent implements OnInit {
             playersArray.push(playerGroup);
           }
         }
+        this.updateToggleState();
       },
       error: (err: any) => {
         console.error(err);
       },
+    });
+  }
+  updateToggleState() {
+    this.isDropInDisabled = true;
+    this.isNoShowDisabled = !this.isDropInDisabled;
+    this.players.controls.forEach(control => {
+      control.get('dropIn')?.setValue('', { emitEvent: false });
+      control.get('noShow')?.setValue('', { emitEvent: false });
+      control.get('dropIn')?.disable({ emitEvent: false });
+      control.get('noShow')?.enable({ emitEvent: false });
     });
   }
 

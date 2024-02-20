@@ -15,12 +15,18 @@ export class LockDataDialogueComponent implements OnInit{
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   responseData: any;
+  commonService: any;
+  leagueID: any;
+  
  
   constructor ( private router : Router, private dialogeref : MatDialogRef<LockDataDialogueComponent>, private sharedService: SharedService,
     private commonservice: CommonService ,
-    @Inject(MAT_DIALOG_DATA) public data: any){}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    ){}
   ngOnInit(): void {
-    console.log(this.responseData)
+    console.log(this.data)
+    console.log(this.data.leagueID);
+    this.userSubscriber();
   }
  
 
@@ -37,28 +43,27 @@ export class LockDataDialogueComponent implements OnInit{
       });
   };
 
-  // leagueSummary() {
-  //   const ownedCompanies = this.userDetail?.owned_companies;
-  //   const ownedClubs = this.userDetail?.owned_clubs;
-  //   //const name = this.leagueID;
-  //   const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
-    
-
-  //   this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
-  //     next: (res: any) => {
-       
-  //     },
-  //     error: (err: any) => {
-  //       console.error(err);
-  //     }
-  //   });
-  // }
-
-  lockRound(){
-
-// this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
-this.router.navigate(['players-league/completed-leagues']);
-this.close();
+  lockRound() {
+    const bodyData = this.data;
+    const ownedCompanies = this.userDetail?.owned_companies;
+      const ownedClubs = this.userDetail?.owned_clubs;
+      const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}`;
+    //   //const name = this.leagueID; // Assuming this.data contains the necessary data for the API call
+    this.commonservice.creatRound(compnyclubnameStr,bodyData).subscribe({
+      next: (res: any) => {
+        // Handle success response
+        console.log(res);
+        // Navigate to the completed leagues page
+        this.router.navigate(['players-league/completed-leagues']);
+        // Close the dialog
+        this.close();
+      },
+      error: (err: any) => {
+        // Handle error response
+        console.error(err);
+        // Optionally, you might want to provide feedback to the user about the error
+      }
+    });
   }
 close (){
   this.dialogeref.close();
