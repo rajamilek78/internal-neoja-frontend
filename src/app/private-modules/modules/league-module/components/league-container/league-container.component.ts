@@ -92,7 +92,8 @@ export class LeagueContainerComponent {
     const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`
     this.leagueService.getRoundByID(urlString).subscribe({
       next : (res : any)=>{
-        this.responseData = res.groups;
+        this.responseData = res;
+        console.log(res);
         console.log(this.responseData);
         if (this.responseData) {
           this.groups = Object.keys(this.responseData).map((key) => ({

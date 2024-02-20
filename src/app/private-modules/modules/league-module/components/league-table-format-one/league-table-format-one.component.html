@@ -30,7 +30,7 @@
                       >{{game[1].team_2[0]}}
                     </td>
                     <td class="text-center">
-                      <div><input type="text" placeholder="Enter" /></div>
+                      <div><input type="text" [(ngModel)]="game[1].score.team_1" placeholder="Enter"/></div>
                     </td>
                     <td rowspan="2" class="bye-name">{{game[1].bye[0]}}</td>
                   </tr>
@@ -50,7 +50,7 @@
                       >{{game[1].team_2[1]}}
                     </td>
                     <td class="text-center">
-                      <div><input type="text" placeholder="Enter" /></div>
+                      <div><input type="text" placeholder="Enter" [(ngModel)]="game[1].score.team_2"/></div>
                     </td>
                   </tr>
                 </ng-container>
