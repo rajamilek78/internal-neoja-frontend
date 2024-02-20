@@ -17,17 +17,19 @@
                 <span><img src="assets/images/score-icon.svg" alt="" /></span>
                 {{ game[0] }}
               </div>
-              <div class="flex justify-space-even width-100" *ngFor="let player of players">
+              <div class="flex justify-space-even width-100" *ngFor="let player of group.data.group_details.players">
                 <div class="cell">
-                  <span *ngIf="game[1].team_1.includes(player[1])">
-                    <img src="assets/images/serve-active-icon.svg" alt="" />
-                    <!-- <img src="assets/images/serve-inactive-icon.svg" alt=""> -->
+                  <span>
+                    <img *ngIf="game[1].server === player" src="assets/images/serve-active-icon.svg" alt="" />
+                    <img *ngIf="game[1].server !== player && game[1].team_1.indexOf(player)>-1"
+                      src="assets/images/serve-inactive-icon.svg" alt="" />
                   </span>
-                  <span *ngIf="game[1].team_2.includes(player[1])">
-                    <img src="assets/images/receive-active-icon.svg" alt="" />
-                    <!-- <img src="assets/images/receive-inactive-icon.svg" alt="" /> -->
+                  <span>
+                    <img *ngIf="game[1].returner === player" src="assets/images/receive-active-icon.svg" alt="" />
+                    <img *ngIf="game[1].returner !== player && 
+                    game[1].team_2.indexOf(player)>-1" src="assets/images/receive-inactive-icon.svg" alt="" />
                   </span>
-                  <span *ngIf="game[1].bye.includes(player[1])">
+                  <span *ngIf="game[1].bye.indexOf(player)>-1">
                     <img src="assets/images/bye-default-icon.svg" alt="" />
                   </span>
                 </div>
@@ -141,5 +143,3 @@
     </div>
   </mat-tab>
 </mat-tab-group> -->
-
-

@@ -21,7 +21,8 @@
               <span><img src="assets/images/t1-player-icon.svg" alt="" /></span>{{game[1].team_2[0]}}
             </td>
             <td class="text-center">
-              <div><input type="text" placeholde  r="Enter" [(ngModel)]="game[1].score.team_1" (blur)="onBlurTeamScore()">
+              <div *ngIf=isEdit>
+                <input type="text" placeholde r="Enter" [(ngModel)]="game[1].score.team_1" (blur)="onBlurTeamScore()">
               </div>
             </td>
             <td rowspan="2" class="bye-name">{{game[1].bye[0]}}</td>
@@ -34,8 +35,10 @@
               <span><img src="assets/images/t2-player-icon.svg" alt="" /></span>{{game[1].team_2[1]}}
             </td>
             <td class="text-center">
-              <div><input type="text" placeholder="Enter" [(ngModel)]="game[1].score.team_2"
-                  (blur)="onBlurTeamScore()" /></div>
+              <div *ngIf=isEdit>
+                <input type="text" placeholder="Enter" [(ngModel)]="game[1].score.team_2"
+                  (blur)="onBlurTeamScore()" />
+                </div>
             </td>
           </tr>
         </ng-container>

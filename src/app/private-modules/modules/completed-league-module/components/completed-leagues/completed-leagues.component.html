@@ -27,7 +27,7 @@
           <mat-form-field>
             <mat-select placeholder="Select"
               [(value)]="selectedLeague"
-              (valueChange)="getAllRounds()"
+              (valueChange)="onLeagueChange()"
             >
               <mat-option *ngFor="let league of leagues" [value]="league.id">
                 {{ league.name }}
@@ -55,7 +55,9 @@
               <b>Round {{ round.roundNumber }}</b>
             </div>
             <div class="red-btn">
-              <button type="button" class="btn-sm flex justify-center" *ngIf="round.roundDetails.header.score_locked">
+              <!-- *ngIf="round.roundDetails.header.score_locked" -->
+              <button type="button" class="btn-sm flex justify-center" 
+              >
                 <span><img src="assets/images/red-lock-icon.svg" alt="" /></span
                 >Locked
               </button>
@@ -71,13 +73,13 @@
             </button>
           </div>
           <div class="primary-btn">
+            <!-- [disabled]="round.roundDetails.header.score_locked" -->
             <button
               type="button"
               class="btn flex justify-center"
               (click)="edit(round.roundNumber)"
-              [disabled]="round.roundDetails.header.score_locked"
             >
-              <span><img src="assets/images/white-edit-icon.svg" alt="" /></span
+            <span><img src="assets/images/white-edit-icon.svg" alt="" /></span
               >Edit Score
             </button>
           </div>

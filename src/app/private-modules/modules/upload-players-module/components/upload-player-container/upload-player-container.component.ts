@@ -12,13 +12,13 @@ import { Subscription } from 'rxjs';
 export class UploadPlayerContainerComponent implements OnInit {
   playerCount = 5;
   roundsLength!: number;
-  leagueID!:string;
+  leagueID!: string;
   selectedFormat = '1';
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   leagues: any[] = [];
   selectedLeague!: string;
-  
+
   constructor(
     private cdr: ChangeDetectorRef,
     private commonService: CommonService,
@@ -26,7 +26,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.roundsLength)
+    console.log(this.roundsLength);
     this.userSubscriber();
     this.getAllLeagues();
   }
@@ -49,95 +49,91 @@ export class UploadPlayerContainerComponent implements OnInit {
     const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const compnyclubStr = `${ownedCompanies}/${ownedClubs}/all`;
-    console.log(compnyclubStr)
- this.commonService.getAllLeagues(compnyclubStr).subscribe({
-            next: (res: any) => {
-              this.leagues = Object.keys(res).map(key => ({
-                name: key,
-                description: res[key].description
-              }));
-            },
-            error: (err: any) => {
-            }
-        });
-    }
-  
-    // onLeagueSelect(leagueName: string) {
-    //   const ownedCompanies=  this.userDetail?.owned_companies
-    // const ownedClubs = this.userDetail?.owned_clubs;
-    // this.leagueID = leagueName;
+    console.log(compnyclubStr);
+    this.commonService.getAllLeagues(compnyclubStr).subscribe({
+      next: (res: any) => {
+        this.leagues = Object.keys(res).map((key) => ({
+          name: key,
+          description: res[key].description,
+        }));
+      },
+      error: (err: any) => {},
+    });
+  }
 
-    // const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}/all`;
-    //   this.commonService.getRounds(compnyclubnameStr).subscribe({
-    //     next: (res: any) => {
-    //       console.log(res);
-    //       this.roundsLength = Object.keys(res).length;
-          
-    //       if(this.roundsLength > 1){
-    //         this.selectedFormat = '2';
-    //       }
+  // onLeagueSelect(leagueName: string) {
+  //   const ownedCompanies=  this.userDetail?.owned_companies
+  // const ownedClubs = this.userDetail?.owned_clubs;
+  // this.leagueID = leagueName;
 
-    //       console.log(this.roundsLength)
-    //     },
-    //     error: (err: any) => {
-    //       console.error(err);
-    //     }
-    //   });
-    // }
+  // const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}/all`;
+  //   this.commonService.getRounds(compnyclubnameStr).subscribe({
+  //     next: (res: any) => {
+  //       console.log(res);
+  //       this.roundsLength = Object.keys(res).length;
 
-    // onLeagueSelect(leagueName: string) {
-    //   const ownedCompanies = this.userDetail?.owned_companies;
-    //   const ownedClubs = this.userDetail?.owned_clubs;
-    //   this.leagueID = leagueName;
-  
-    //   const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}/all`;
-    //   this.commonService.getRounds(compnyclubnameStr).subscribe({
-    //     next: (res: any) => {
-    //       this.roundsLength = Object.keys(res).length;
-  
-    //       if (this.roundsLength && this.roundsLength > 1) {
-    //         this.selectedFormat = '2';
-    //       } else {
-    //         this.selectedFormat = '1';
-    //       }
-  
-    //       this.cdr.detectChanges();
-    //     },
-    //     error: (err: any) => {
-    //       console.error(err);
-    //     },
-    //   });
-    // }
-    onLeagueSelect(leagueName: string) {
-      const ownedCompanies = this.userDetail?.owned_companies;
-      const ownedClubs = this.userDetail?.owned_clubs;
-      this.leagueID = leagueName;
-    
-      const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}/all`;
-      this.commonService.getRounds(compnyclubnameStr).subscribe({
-        next: (res: any) => {
-          this.roundsLength = res ? Object.keys(res).length : 0
-          // if (res) {
-          //   this.roundsLength = Object.keys(res).length as number;
-          // } else {
-          //   this.roundsLength = 0; // Set roundsLength to null if the response is null
-          // }
-          this.selectedFormat = this.roundsLength > 1 ? '2' : '1';
-          this.cdr.detectChanges();
-        },
-        error: (err: any) => {
-          console.error(err);
-        },
-      });
-    }
+  //       if(this.roundsLength > 1){
+  //         this.selectedFormat = '2';
+  //       }
 
-   get isDisableUploadByFile(): boolean {
-      return this.roundsLength > 1;
-    }
-    
-  
+  //       console.log(this.roundsLength)
+  //     },
+  //     error: (err: any) => {
+  //       console.error(err);
+  //     }
+  //   });
+  // }
 
-  
+  // onLeagueSelect(leagueName: string) {
+  //   const ownedCompanies = this.userDetail?.owned_companies;
+  //   const ownedClubs = this.userDetail?.owned_clubs;
+  //   this.leagueID = leagueName;
+
+  //   const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}/all`;
+  //   this.commonService.getRounds(compnyclubnameStr).subscribe({
+  //     next: (res: any) => {
+  //       this.roundsLength = Object.keys(res).length;
+
+  //       if (this.roundsLength && this.roundsLength > 1) {
+  //         this.selectedFormat = '2';
+  //       } else {
+  //         this.selectedFormat = '1';
+  //       }
+
+  //       this.cdr.detectChanges();
+  //     },
+  //     error: (err: any) => {
+  //       console.error(err);
+  //     },
+  //   });
+  // }
+  onLeagueSelect(leagueName: string) {
+    const ownedCompanies = this.userDetail?.owned_companies;
+    const ownedClubs = this.userDetail?.owned_clubs;
+    this.leagueID = leagueName;
+
+    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}/all`;
+    this.commonService.getRounds(compnyclubnameStr).subscribe({
+      next: (res: any) => {
+        this.roundsLength = res ? Object.keys(res).length : 0;
+        // if (res) {
+        //   this.roundsLength = Object.keys(res).length as number;
+        // } else {
+        //   this.roundsLength = 0; // Set roundsLength to null if the response is null
+        // }
+        this.selectedFormat = this.roundsLength > 1 ? '2' : '1';
+        this.cdr.detectChanges();
+      },
+      error: (err: any) => {
+        console.error(err);
+      },
+    });
+  }
+
+  get isDisableUploadByFile(): boolean {
+    return this.roundsLength > 1;
+  }
+
   onRadioButtonChange() {
     this.cdr.detectChanges();
   }

@@ -21,7 +21,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   companyIDClubIDSTr = '';
   selectedCompanyID!: string;
   selectedClubID!: string;
-  roundID = "";
+  roundID = '';
 
   selectedLeague!: string;
   companies: { [key: string]: { name: string; description: string } } = {};
@@ -37,7 +37,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.roundID)
+    console.log(this.roundID);
     // this.getAllCompanies();
     this.userSubscriber();
     this.getAllLeagues();
@@ -66,7 +66,10 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   }
   // To Update Score
   edit(roundID?) {
-    this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { isEdit: true, roundID : roundID, leagueID: this.selectedLeague}]);
+    this.router.navigate([
+      RouteConstant.LEAGUE_CONTAINER,
+      { isEdit: true, roundID: roundID, leagueID: this.selectedLeague },
+    ]);
   }
   // Subcribe loggedIn user's Details
   userSubscriber = () => {
@@ -124,6 +127,11 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   //     },
   //   });
   // }
+
+  onLeagueChange = () => {
+    this.getAllRounds();
+  };
+
   getAllRounds() {
     const urlString = `${this.companyIDClubIDSTr}/${this.selectedLeague}/all`;
     this.completedLeagueService.getAllRounds(urlString).subscribe({
@@ -132,10 +140,11 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
           this.rounds = Object.keys(res).map((key) => ({
             roundNumber: Number(key), // Convert key to number if needed
             roundDetails: res[key],
-            scoreLocked: res[key].header.score_locked, // Initialize scoreLocked to false for each round
+            // scoreLocked: res[key].header.score_locked, // Initialize scoreLocked to false for each round
           }));
           console.log(this.rounds); // Log the rounds data here
         } else {
+          this.rounds = [];
           console.log('No rounds data received');
         }
       },
@@ -144,20 +153,20 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
       },
     });
   }
-  
+
   lockScore(roundID?) {
-      const ownedCompanies = this.userDetail?.owned_companies;
-        const ownedClubs = this.userDetail?.owned_clubs;
-        //const round = this.rounds.find(round => round.roundNumber === roundID);
-        const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.selectedLeague}/${roundID}`;
-      this.commonService.lockScore(compnyclubnameStr).subscribe({
-        next: (res: any) => {
-          console.log(res);
-        },
-        error: (err: any) => {
-          console.error(err);
-        }
-      });
+    const ownedCompanies = this.userDetail?.owned_companies;
+    const ownedClubs = this.userDetail?.owned_clubs;
+    //const round = this.rounds.find(round => round.roundNumber === roundID);
+    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.selectedLeague}/${roundID}`;
+    this.commonService.lockScore(compnyclubnameStr).subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (err: any) => {
+        console.error(err);
+      },
+    });
   }
 
   getAllCompanies() {

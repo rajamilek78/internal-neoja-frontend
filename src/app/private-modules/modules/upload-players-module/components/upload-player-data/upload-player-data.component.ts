@@ -1,5 +1,11 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 import { CommonService, SharedService } from '@app/core';
 import { Router } from '@angular/router';
 import { SharedCommonService } from '@app/helpers/services';
@@ -35,11 +41,27 @@ export class UploadPlayerDataComponent implements OnInit {
       players: this.fb.array([]),
     });
   }
+
   ngOnInit() {
-    this.addPlayers(this.playerCount);
+    // this.addPlayers(this.playerCount);
     this.userSubscriber();
     this.leagueSummary();
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges called', changes);
+    if (changes['playerCount']) {
+      this.onPlayerCountChange(this.playerCount);
+      console.log(this.playerCount);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
+  }
+
   createPlayer(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
@@ -48,32 +70,25 @@ export class UploadPlayerDataComponent implements OnInit {
       noShow: [{ value: '', disabled: this.isNoShowDisabled }],
     });
   }
+
   addPlayer(): void {
     this.players.push(this.createPlayer());
   }
+
   deletePlayer(index: number): void {
     this.players.removeAt(index);
   }
+
   addPlayers(count: number): void {
     for (let i = 0; i < count; i++) {
       this.addPlayer();
     }
   }
+
   get players(): FormArray {
     return this.playerForm.get('players') as FormArray;
   }
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges called', changes);
-    if (changes['playerCount']) {
-      this.onPlayerCountChange(this.playerCount);
-      console.log(this.playerCount);
-    }
-  }
-  ngOnDestroy() {
-    if (this.userDetailSub$) {
-      this.userDetailSub$.unsubscribe();
-    }
-  }
+
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedService
       .getUserDetailCall()
@@ -103,8 +118,11 @@ export class UploadPlayerDataComponent implements OnInit {
               this.leagueSummaryData.league_summary[playerName];
 
             const playerGroup = this.fb.group({
-              name: [playerName, Validators.required],
-              score: [playerData.points_scored, Validators.required],
+              name: [
+                { value: playerName, disabled: true },
+                Validators.required,
+              ],
+              score: [{ value: playerData.points_scored, disabled: true }, Validators.required],
               dropIn: [playerData['drop-in']],
               noShow: [playerData['no-show']],
             });
@@ -131,7 +149,7 @@ export class UploadPlayerDataComponent implements OnInit {
   updateToggleState() {
     this.isDropInDisabled = true;
     this.isNoShowDisabled = !this.isDropInDisabled;
-    this.players.controls.forEach(control => {
+    this.players.controls.forEach((control) => {
       control.get('dropIn')?.setValue('', { emitEvent: false });
       control.get('noShow')?.setValue('', { emitEvent: false });
       control.get('dropIn')?.disable({ emitEvent: false });
@@ -152,7 +170,7 @@ export class UploadPlayerDataComponent implements OnInit {
     }
   }
   submitData(): void {
-    const playerData = this.playerForm.value.players.reduce((obj, player) => {
+    const playerData = this.playerForm.getRawValue().players.reduce((obj, player) => {
       obj[player.name] = player.score;
       return obj;
     }, {});

@@ -11,7 +11,7 @@
       </div>
       <div class="add-row-dropdown" *ngIf="selectedFormat !== '1'">
         <div><label>Display Players</label></div>
-        <mat-form-field >
+        <mat-form-field>
           <mat-select [(ngModel)]="playerCount">
             <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">
               {{i}}
@@ -21,24 +21,17 @@
       </div>
     </div>
     <div class="radio-btn">
-      <mat-radio-group
-        aria-label="Select an option"
-        [(ngModel)]="selectedFormat"
-        (change)="onRadioButtonChange()"
-      >
+      <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedFormat" (change)="onRadioButtonChange()">
         <mat-radio-button value="1" [disabled]="isDisableUploadByFile">Upload by file</mat-radio-button>
-        <mat-radio-button  value="2">Upload by data</mat-radio-button>
+        <mat-radio-button value="2">Upload by data</mat-radio-button>
       </mat-radio-group>
     </div>
     <div *ngIf="selectedFormat == '1'">
-        <app-upload-player-file [leagueIdPass]="selectedLeague"></app-upload-player-file>
+      <app-upload-player-file [leagueIdPass]="selectedLeague"></app-upload-player-file>
     </div>
     <div *ngIf="selectedFormat == '2'">
-      <app-upload-player-data
-        [playerCount]="playerCount"
-        [roundsLength]="roundsLength"
-        [leagueID]="leagueID"
-      ></app-upload-player-data>
+      <app-upload-player-data [playerCount]="playerCount" [roundsLength]="roundsLength"
+        [leagueID]="leagueID"></app-upload-player-data>
     </div>
   </div>
 </div>
