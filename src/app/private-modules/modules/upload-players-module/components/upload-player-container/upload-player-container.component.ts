@@ -17,6 +17,8 @@ export class UploadPlayerContainerComponent implements OnInit {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   leagues: any[] = [];
+  selectedLeague!: string;
+  
   constructor(
     private cdr: ChangeDetectorRef,
     private commonService: CommonService,

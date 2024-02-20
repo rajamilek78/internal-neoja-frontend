@@ -64,7 +64,7 @@
       </div>
       <div class="upload__button">
         <div class="primary-btn">
-          <button type="button" class="btn" (click)="onUpload()">Upload</button>
+          <button [disabled]="!leagueIdPass" type="button" class="btn" (click)="onUpload()">Upload</button>
         </div>
       </div>
     </div>

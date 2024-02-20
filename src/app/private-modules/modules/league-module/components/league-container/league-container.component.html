@@ -80,7 +80,7 @@
             </select>
           </div>
           <div class="secondary-btn-light">
-            <button type="button" class="btn flex justify-center" (click)="openDialogue()">
+            <button *ngIf="!isEdit" type="button" class="btn flex justify-center" (click)="openDialogue()">
               <span><img src="assets/images/lock-icon.svg" alt="" /></span>
               Lock Round
             </button>
