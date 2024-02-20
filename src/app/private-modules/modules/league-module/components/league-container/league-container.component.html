@@ -102,17 +102,13 @@
         </div>
       </div>
     </div>
-    <div class="table-format-one" *ngIf="selectedFormat == '1'">
+    <div class="table-format-one">
       <div>
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          <mat-tab *ngFor="let group of groups" [label]="group.name">
-            <app-league-table-format-one
-              *ngIf="selectedFormat == '1'"
-              [data]="group.data"
+        <app-league-table-format-one
+              *ngIf="selectedFormat == '1' && groups"
+              [groups]="groups"
               id="playerData"
             ></app-league-table-format-one>
-          </mat-tab>
-        </mat-tab-group>
       </div>
       <div class="primary-btn">
         <button class="btn flex justify-center" (click)="downloadTableAsPDF()">
@@ -126,19 +122,12 @@
     </div>
     <div class="table-format-two" *ngIf="selectedFormat == '2'">
       <div>
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          <mat-tab
-            label="Group 1"
-            *ngFor="let group of groups"
-            [label]="group.name"
-          >
-            <app-league-table-format-two
-              *ngIf="selectedFormat == '2'"
-              [data]="group.data"
+        <app-league-table-format-two
+              *ngIf="selectedFormat == '2' && groups"
+              [groups]="groups"
               id="playerData"
             ></app-league-table-format-two>
-          </mat-tab>
-        </mat-tab-group>
+          
       </div>
       <div class="primary-btn">
         <button class="btn flex justify-center">
@@ -152,7 +141,7 @@
     </div>
     <div class="upload__button flex justify-end" *ngIf="isEdit">
       <div class="primary-btn">
-        <button type="button" class="btn" (click)="saveRound()">Save</button>
+        <button type="button" class="btn" (click)="onSaveClick()">Save</button>
       </div>
       <div class="secondary-btn-light">
         <button type="button" class="btn">Cancel</button>

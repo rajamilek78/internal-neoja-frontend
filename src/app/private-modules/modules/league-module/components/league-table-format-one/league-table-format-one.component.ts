@@ -8,12 +8,15 @@ import { SharedCommonService } from '../../../../../core/services/shared-common.
 })
 export class LeagueTableFormatOneComponent implements OnInit {
   @Input() data: any;
+  @Input() groups : any;
   gamesArray: any;
   // matchData: any;
   constructor(private SharedCommonService: SharedCommonService) {}
 
   ngOnInit(): void {
-    this.gamesArray = Object.entries(this.data.games);
-    // console.log("this is game array", this.gamesArray)
-  }
+    if (this.groups && this.groups.length > 0) {
+        this.gamesArray = Object.entries(this.groups[0].data.games);
+    }
+}
+
 }

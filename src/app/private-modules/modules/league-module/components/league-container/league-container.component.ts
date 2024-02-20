@@ -66,7 +66,7 @@ export class LeagueContainerComponent {
         console.log('the dialogue is closed now');
       });
     }
-// To get Match Data 
+// To get Match Data
   getMatchData(){
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.responseData = data;
@@ -88,14 +88,12 @@ export class LeagueContainerComponent {
       next : (res : any)=>{
         this.responseData = res.groups;
         console.log(this.responseData);
-        
-        // this.responseData = res;
         if (this.responseData) {
           this.groups = Object.keys(this.responseData).map((key) => ({
             name: key,
             data: this.responseData[key],
           }));
-          console.log(this.groups);
+          console.log("this is groups",this.groups);
         } else {
           console.log('No data found in responseData.');
         }
@@ -105,21 +103,21 @@ export class LeagueContainerComponent {
       }
     });
   }
+onSaveClick(){
+  const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`
+  const body = this.responseData;
+  this.leagueService.updateScore(urlString,body).subscribe({
+    next : (res :any) =>{
+      console.log(res);
+    },
+    error : (err : any) =>{
+      console.log(err);
+    }
+  })
+}
+
   
-  // getRoundById(){
-  //   const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`
-  //   this.leagueService.getRoundByID(urlString).subscribe({
-  //     next : (res : any)=>{
-  //       // this.responseData = res;
-  //       console.log(res);
-        
-  //     },
-  //     error : (err: any)=>{
-  //       console.log(err);
-        
-  //     }
-  //   });
-  // }
+ 
   // Subcribe loggedIn user's Details
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedUserService

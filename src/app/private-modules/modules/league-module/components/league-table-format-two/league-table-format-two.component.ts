@@ -14,12 +14,27 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   // teamTwoPlayer: any = [];
   // allPlayers = [];
 
-  @Input() data: any;
+  @Input() groups: any;
   @Input() responseData: any;
 
   ngOnInit(): void {
-    this.games = Object.entries(this.data.games);
-    this.players = Object.entries(this.data.group_details.players);
+    if (this.groups && this.groups.length > 0) {
+        this.games = Object.entries(this.groups[0].data.games);
+        console.log(this.groups);
+        
+        this.players = this.groups.map(group => group.data.group_details.players);
+        console.log(this.players);
+        // this.players = this.groups.forEach(group => { group.data.group_details.players
+        //   console.log(group.data.group_details.players);
+          
+        // });
+    }
+}
+
+
+ 
+    // this.games = Object.entries(this.data.games);
+    // this.players = Object.entries(this.data.group_details.players);
 
     // this.games = ["game 1","game 2","game 3","game 4","game 5"];
     // this.players = ["player 1","player 2","player 3","player 4","player 5"]
@@ -84,4 +99,4 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   //   }
   //   return playerName
   // }
-}
+

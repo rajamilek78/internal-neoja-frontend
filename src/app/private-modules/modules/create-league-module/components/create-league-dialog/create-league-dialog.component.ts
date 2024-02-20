@@ -27,8 +27,6 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
       this.leagueCRUD_Form.patchValue(this.data.league);
     }
   }
-  
-
   initLeagueForm(){
     this.leagueCRUD_Form = this.createForm({
       name: ['',[Validators.required]],
