@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { SharedCommonService } from '../../../../../core/services/shared-common.service';
 
 @Component({
@@ -8,15 +8,44 @@ import { SharedCommonService } from '../../../../../core/services/shared-common.
 })
 export class LeagueTableFormatOneComponent implements OnInit {
   @Input() data: any;
-  @Input() groups : any;
+  @Input() groups: any;
+  @Output() blurTeamScore = new EventEmitter<any>();
   gamesArray: any;
-  // matchData: any;
+  selectedTabIndex = 0;
+
   constructor(private SharedCommonService: SharedCommonService) {}
 
   ngOnInit(): void {
     if (this.groups && this.groups.length > 0) {
-        this.gamesArray = Object.entries(this.groups[0].data.games);
+      this.gamesArray = Object.entries(
+        this.groups[this.selectedTabIndex].data.games
+      );
+      this.blurTeamScore.emit({
+        groups: this.groups,
+      });
     }
-}
+  }
 
+  onTabChanged($event) {
+    let clickedIndex = $event.index;
+    this.selectedTabIndex = clickedIndex;
+    this.gamesArray = Object.entries(
+      this.groups[this.selectedTabIndex].data.games
+    );
+  }
+
+  onBlurTeamScore = () => {
+    const groups = JSON.parse(JSON.stringify(this.groups));
+    const gameObj: any = {};
+    for (let i = 0; i < this.gamesArray.length; i++) {
+      const game = this.gamesArray[i];
+      const gameName = game[0];
+      const gameVal = game[1];
+      gameObj[gameName] = gameVal;
+    }
+    groups[this.selectedTabIndex].data.games = { ...gameObj };
+    this.blurTeamScore.emit({
+      groups: [...groups],
+    });
+  };
 }

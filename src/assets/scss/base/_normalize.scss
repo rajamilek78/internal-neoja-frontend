@@ -824,9 +824,13 @@ app-upload-player-container {
 
   .table-buttons {
     position: absolute;
-    top: 8.4rem;
-    right: 15.3rem;
+    top: 5.4rem;
+    right: 0;
     z-index: 10;
+
+    .primary-btn{
+      margin-left: 1rem;
+    }
 
     select {
       color: rgba($black-color, 0.5);

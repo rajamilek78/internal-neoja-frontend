@@ -17,7 +17,8 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   leagues: any[] = [];
-  rounds: any[] = [];
+  //rounds: any[] = [];
+  rounds: { roundNumber: number; scoreLocked: boolean }[] = [];
   companyIDClubIDSTr = '';
   selectedCompanyID!: string;
   selectedClubID!: string;
@@ -65,6 +66,11 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   }
   // To Update Score
   edit(roundID?) {
+    const round = this.rounds.find(round => round.roundNumber === roundID);
+    if (round && round.scoreLocked) {
+      alert('Score for this round is locked. You cannot edit it.');
+      return;
+    }
     this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { isEdit: true, roundID : roundID, leagueID: this.selectedLeague}]);
   }
   // Subcribe loggedIn user's Details
@@ -104,14 +110,34 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     });
   }
   // To get list of Rounds for selected Company & Club
+  // getAllRounds() {
+  //   const urlString = `${this.companyIDClubIDSTr}/${this.selectedLeague}/all`;
+  //   this.completedLeagueService.getAllRounds(urlString).subscribe({
+  //     next: (res: any) => {
+  //       if (res) {
+  //         this.rounds = Object.keys(res).map((key) => ({
+  //           roundNumber: key,
+  //           roundDetails: res[key],
+  //         }));
+  //         console.log(this.rounds); // Log the rounds data here
+  //       } else {
+  //         console.log('No rounds data received');
+  //       }
+  //     },
+  //     error: (err: any) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
   getAllRounds() {
     const urlString = `${this.companyIDClubIDSTr}/${this.selectedLeague}/all`;
     this.completedLeagueService.getAllRounds(urlString).subscribe({
       next: (res: any) => {
         if (res) {
           this.rounds = Object.keys(res).map((key) => ({
-            roundNumber: key,
+            roundNumber: Number(key), // Convert key to number if needed
             roundDetails: res[key],
+            scoreLocked: false, // Initialize scoreLocked to false for each round
           }));
           console.log(this.rounds); // Log the rounds data here
         } else {
@@ -122,6 +148,20 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
         console.log(err);
       },
     });
+  }
+  
+  lockScore(roundNumber: number) {
+    const previousRound = this.rounds.find(round => round.roundNumber === roundNumber - 1);
+    if (previousRound && previousRound.scoreLocked) {
+      alert('Previous round score is locked. Please unlock it before creating a new round.');
+      return;
+    }
+
+    // Implement logic to lock the score for the current round
+    const roundToUpdate = this.rounds.find(round => round.roundNumber === roundNumber);
+    if (roundToUpdate) {
+      roundToUpdate.scoreLocked = true;
+    }
   }
 
   getAllCompanies() {

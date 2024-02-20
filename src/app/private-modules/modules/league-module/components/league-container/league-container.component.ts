@@ -30,50 +30,48 @@ export class LeagueContainerComponent {
   selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
-  roundID:string ="";
+  roundID: string = '';
+  groupsArrayToBeUpdated: any[] = [];
+
   constructor(
     private SharedCommonService: SharedCommonService,
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
-    private route : ActivatedRoute,
-    private router : Router,
-    private leagueService : LeagueModuleService,
-    private sharedUserService : SharedUserService
-    ) {}
-    
-    ngOnInit(): void {
-      this.userSubscriber();
-      this.route.params.subscribe( params =>{
-        this.isEdit = params['isEdit'];
-        this.roundID = params['roundID'];
-        this.leagueID = params['leagueID'];
-        
-      });
-      console.log(this.isEdit);
-      if(this.isEdit){
-        this.getRoundById();
-      }
-      else{
-        this.getMatchData();
-      }
+    private route: ActivatedRoute,
+    private router: Router,
+    private leagueService: LeagueModuleService,
+    private sharedUserService: SharedUserService
+  ) {}
+
+  ngOnInit(): void {
+    this.userSubscriber();
+    this.route.params.subscribe((params) => {
+      this.isEdit = params['isEdit'];
+      this.roundID = params['roundID'];
+      this.leagueID = params['leagueID'];
+    });
+    console.log(this.isEdit);
+    if (this.isEdit) {
+      this.getRoundById();
+    } else {
+      this.getMatchData();
     }
-    openDialogue(): void {
-      console.log(this.leagueID)
-      const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
-        width: '450px',
-        data: {
-          leagueID: this.leagueID,
-          responseData: this.responseData,
-          
-        }
-       
-      });
-      dialogueRef.afterClosed().subscribe((result) => {
-        console.log('the dialogue is closed now');
-      });
-    }
-// To get Match Data
-  getMatchData(){
+  }
+  openDialogue(): void {
+    console.log(this.leagueID);
+    const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
+      width: '450px',
+      data: {
+        leagueID: this.leagueID,
+        responseData: this.responseData,
+      },
+    });
+    dialogueRef.afterClosed().subscribe((result) => {
+      console.log('the dialogue is closed now');
+    });
+  }
+  // To get Match Data
+  getMatchData() {
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.responseData = data;
 
@@ -88,11 +86,12 @@ export class LeagueContainerComponent {
       }
     });
   }
-  getRoundById(){
-    const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`
+
+  getRoundById() {
+    const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
     this.leagueService.getRoundByID(urlString).subscribe({
-      next : (res : any)=>{
-        this.responseData = res;
+      next: (res: any) => {
+        this.responseData = res ? res.groups || res : [];
         console.log(res);
         console.log(this.responseData);
         if (this.responseData) {
@@ -100,31 +99,41 @@ export class LeagueContainerComponent {
             name: key,
             data: this.responseData[key],
           }));
-          console.log("this is groups",this.groups);
+          console.log('this is groups', this.groups);
         } else {
           console.log('No data found in responseData.');
         }
       },
-      error : (err: any)=>{
+      error: (err: any) => {
         console.log(err);
-      }
+      },
     });
   }
-onSaveClick(){
-  const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`
-  const body = this.responseData;
-  this.leagueService.updateScore(urlString,body).subscribe({
-    next : (res :any) =>{
-      console.log(res);
-    },
-    error : (err : any) =>{
-      console.log(err);
-    }
-  })
-}
 
-  
- 
+  onSaveClick() {
+    this.groupsArrayToBeUpdated = this.groupsArrayToBeUpdated.map((e) => {
+      const obj: any = { [e.name]: e.data };
+      return obj;
+    });
+    const groups = Object.assign({}, ...this.groupsArrayToBeUpdated);
+    const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
+    const body = { groups: groups };
+    console.log(body);
+    this.leagueService.updateScore(urlString, body).subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
+  }
+
+  onBlurTeamScore = (event) => {
+    const { groups } = event;
+    this.groupsArrayToBeUpdated = [...groups];
+  };
+
   // Subcribe loggedIn user's Details
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedUserService
@@ -141,8 +150,8 @@ onSaveClick(){
       });
   };
 
-  saveRound(){
-    this.router.navigate(['players-league/completed-leagues'])
+  saveRound() {
+    this.router.navigate(['players-league/completed-leagues']);
   }
 
   onSelectionChange() {
@@ -156,7 +165,7 @@ onSaveClick(){
   }
 
   downloadTableAsPDF() {
-    debugger;
+    // debugger;
     const data = document.getElementById('playerData'); // Replace with the id of your table
     if (data) {
       html2canvas(data, { scale: 2 }).then((canvas) => {
@@ -178,8 +187,6 @@ onSaveClick(){
   }
   // downloadTableAsPDF() {
   //   const doc = new jsPDF();
-
-    
 
   //   const data = this.selectedGroup.data;
   //   console.log("this is selected data",data);
