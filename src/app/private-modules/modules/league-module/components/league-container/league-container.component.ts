@@ -58,9 +58,15 @@ export class LeagueContainerComponent {
       }
     }
     openDialogue(): void {
+      console.log(this.leagueID)
       const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
         width: '450px',
-        data : this.responseData
+        data: {
+          leagueID: this.leagueID,
+          responseData: this.responseData,
+          
+        }
+       
       });
       dialogueRef.afterClosed().subscribe((result) => {
         console.log('the dialogue is closed now');
