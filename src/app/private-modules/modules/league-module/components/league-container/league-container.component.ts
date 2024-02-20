@@ -16,6 +16,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './league-container.component.scss',
 })
 export class LeagueContainerComponent {
+  groups: any;
+  responseData: any;
+  selectedFormat = '1';
+  selectedGroup!: any;
+  edite: boolean = false;
   constructor(
     private SharedCommonService: SharedCommonService,
     private cdr: ChangeDetectorRef,
@@ -24,18 +29,16 @@ export class LeagueContainerComponent {
     private router : Router
   ) {}
   openDialogue(): void {
+    console.log(this.responseData)
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
       width: '450px',
+      data : this.responseData
     });
     dialogueRef.afterClosed().subscribe((result) => {
       console.log('the dialogue is closed now');
     });
   }
-  groups: any;
-  responseData: any;
-  selectedFormat = '1';
-  selectedGroup!: any;
-  edite: boolean = false;
+ 
 
   // ngOnInit(): void {
   //   this.SharedCommonService.getMatchData().subscribe( data => {
@@ -65,7 +68,7 @@ export class LeagueContainerComponent {
     
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.responseData = data;
-
+     console.log(this.responseData)
       if (this.responseData) {
         this.groups = Object.keys(this.responseData.fixtures).map((key) => ({
           name: key,

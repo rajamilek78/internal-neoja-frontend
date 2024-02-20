@@ -33,6 +33,9 @@ export class CommonService {
   getLeaguesSummary(path: string): Observable <any>{
     return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES_SUMMARY}/${path}`, {}, false)
   }
+  creatRound(path : string , data){
+    return this.apiManager.postApis(`${API_ENDPOINTS.GET_LEAGUES_SUMMARY}/${path}`, {}, false)
+  }
 
   getAllClubs(path: string, token?: string): Observable<any> {
     const headers = new HttpHeaders({
