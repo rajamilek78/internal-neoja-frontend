@@ -1,3 +1,10 @@
+.app-loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
 .panel-body{
     min-height: calc(100vh - 22rem);
 }

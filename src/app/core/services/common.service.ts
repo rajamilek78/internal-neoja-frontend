@@ -22,16 +22,16 @@ export class CommonService {
   }
 
   getAllClubsNew(path: string): Observable<any> {
-    return this.apiManager.getApis(`${API_ENDPOINTS.GET_CLUBS}/${path}`, {}, false)
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_CLUBS}/${path}`, {}, true)
   }
   getAllLeagues(path: string): Observable <any>{
-    return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES}/${path}`, {}, false)
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES}/${path}`, {}, true)
   }
   getRounds(path: string): Observable <any>{
-    return this.apiManager.getApis(`${API_ENDPOINTS.GET_ROUND}/${path}`, {}, false)
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_ROUND}/${path}`, {}, true)
   }
   getLeaguesSummary(path: string): Observable <any>{
-    return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES_SUMMARY}/${path}`, {}, false)
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES_SUMMARY}/${path}`, {}, true)
   }
   creatRound(path : string , bodyData){
     return this.apiManager.postApis(`${API_ENDPOINTS.CREAT_ROUND}/${path}`, bodyData, false)
