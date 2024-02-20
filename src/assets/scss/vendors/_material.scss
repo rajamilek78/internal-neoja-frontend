@@ -411,3 +411,17 @@ mat-checkbox .mdc-label{
 .mdc-dialog__surface::before {
   border-radius: 1.6rem;
 }
+
+.mdc-switch__icon--off{
+  path{
+    display: none;
+  }
+}
+
+.mdc-switch:enabled .mdc-switch__track::after{
+  background-color: rgba($primary-color, 0.35) !important;
+}
+
+.mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after{
+  background-color: $primary-color !important;
+}

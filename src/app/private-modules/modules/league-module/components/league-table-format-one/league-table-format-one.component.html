@@ -1,63 +1,44 @@
-
-
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          <mat-tab *ngFor="let group of groups" [label]="group.name">
-            <table class="table-1">
-              <thead>
-                <tr>
-                  <th>Match</th>
-                  <th colspan="2">Players</th>
-                  <th>Score</th>
-                  <th>Bye</th>
-                </tr>
-              </thead>
-              <tbody>
-                <ng-container *ngFor="let game of gamesArray">
-                  <tr>
-                    <td rowspan="2" class="text-center">{{game[0]}}</td>
-                    <td>
-                      <span
-                        ><img
-                          src="assets/images/t1-player-icon.svg"
-                          alt="" /></span
-                      >{{game[1].team_1[0]}}
-                    </td>
-                    <td>
-                      <span
-                        ><img
-                          src="assets/images/t1-player-icon.svg"
-                          alt="" /></span
-                      >{{game[1].team_2[0]}}
-                    </td>
-                    <td class="text-center">
-                      <div><input type="text" placeholder="Enter" [disabled]="!isEdit" /></div>
-                    </td>
-                    <td rowspan="2" class="bye-name">{{game[1].bye[0]}}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span
-                        ><img
-                          src="assets/images/t2-player-icon.svg"
-                          alt="" /></span
-                      >{{game[1].team_1[1]}}
-                    </td>
-                    <td>
-                      <span
-                        ><img
-                          src="assets/images/t2-player-icon.svg"
-                          alt="" /></span
-                      >{{game[1].team_2[1]}}
-                    </td>
-                    <td class="text-center">
-                      <div><input type="text" placeholder="Enter" [disabled]="!isEdit" /></div>
-                    </td>
-                  </tr>
-                </ng-container>
-                
-              </tbody>
-            </table>
-          </mat-tab>
+  <mat-tab *ngFor="let group of groups" [label]="group.name">
+    <table class="table-1">
+      <thead>
+        <tr>
+          <th>Match</th>
+          <th colspan="2">Players</th>
+          <th>Score</th>
+          <th>Bye</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let game of gamesArray">
+          <tr>
+            <td rowspan="2" class="text-center">{{game[0]}}</td>
+            <td>
+              <span><img src="assets/images/t1-player-icon.svg" alt="" /></span>{{game[1].team_1[0]}}
+            </td>
+            <td>
+              <span><img src="assets/images/t1-player-icon.svg" alt="" /></span>{{game[1].team_2[0]}}
+            </td>
+            <td class="text-center">
+              <div><input type="text" placeholder="Enter" /></div>
+            </td>
+            <td rowspan="2" class="bye-name">{{game[1].bye[0]}}</td>
+          </tr>
+          <tr>
+            <td>
+              <span><img src="assets/images/t2-player-icon.svg" alt="" /></span>{{game[1].team_1[1]}}
+            </td>
+            <td>
+              <span><img src="assets/images/t2-player-icon.svg" alt="" /></span>{{game[1].team_2[1]}}
+            </td>
+            <td class="text-center">
+              <div><input type="text" placeholder="Enter" /></div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </mat-tab>
 </mat-tab-group>
 
 <!-- Dynamic table -->

@@ -5,7 +5,7 @@
         <div class="mr-1 dropdown">
           <div><label>Company</label></div>
           <mat-form-field>
-            <mat-select [(value)]="selectedCompanyID">
+            <mat-select placeholder="Select" [(value)]="selectedCompanyID">
               <mat-option [value]="selectedCompanyID">{{
                 selectedCompanyID
               }}</mat-option>
@@ -15,7 +15,7 @@
         <div class="mr-1 dropdown">
           <div><label>Club</label></div>
           <mat-form-field>
-            <mat-select [(value)]="selectedClubID">
+            <mat-select placeholder="Select" [(value)]="selectedClubID">
               <mat-option [value]="selectedClubID">{{
                 selectedClubID
               }}</mat-option>
@@ -25,7 +25,7 @@
         <div class="dropdown">
           <div><label>League</label></div>
           <mat-form-field>
-            <mat-select
+            <mat-select placeholder="Select"
               [(value)]="selectedLeague"
               (valueChange)="getAllRounds()"
             >
