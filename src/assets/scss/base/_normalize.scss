@@ -347,6 +347,13 @@ textarea {
 
       input {
         background-color: transparent !important;
+        text-align: center;
+        font-size: 1.4rem;
+
+        &:focus{
+          outline: none;
+          border: 1px solid transparent !important;
+        }
 
         &::placeholder {
           text-align: center;
