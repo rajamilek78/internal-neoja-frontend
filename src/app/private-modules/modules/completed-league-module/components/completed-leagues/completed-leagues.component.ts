@@ -140,7 +140,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
           this.rounds = Object.keys(res).map((key) => ({
             roundNumber: Number(key), // Convert key to number if needed
             roundDetails: res[key],
-            // scoreLocked: res[key].header.score_locked, // Initialize scoreLocked to false for each round
+            scoreLocked: res[key].header.score_locked, // Initialize scoreLocked to false for each round
           }));
           console.log(this.rounds); // Log the rounds data here
         } else {
@@ -162,6 +162,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     this.commonService.lockScore(compnyclubnameStr).subscribe({
       next: (res: any) => {
         console.log(res);
+        this.getAllRounds();
       },
       error: (err: any) => {
         console.error(err);

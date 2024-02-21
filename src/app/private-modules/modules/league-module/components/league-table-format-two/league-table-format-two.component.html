@@ -1,4 +1,4 @@
-<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="onTabChanged">
   <mat-tab *ngFor="let group of groups" [label]="group.name">
     <div>
       <div class="parent-table flex justify-center align-start">
@@ -33,7 +33,10 @@
                     <img src="assets/images/bye-default-icon.svg" alt="" />
                   </span>
                 </div>
-                <div class="cell">50</div>
+                <!-- {{game[1].score | json}} -->
+                
+                <input *ngIf="game[1].team_1.indexOf(player)>-1" type="text" [(ngModel)]="game[1].score.team_1" style="width: 50px;background-color: transparent;"/>
+                <input *ngIf="game[1].team_2.indexOf(player)>-1" type="text" [(ngModel)]="game[1].score.team_2" style="width: 50px; background-color: transparent;"/>
               </div>
             </div>
           </div>
@@ -71,75 +74,3 @@
     </div>
   </mat-tab>
 </mat-tab-group>
-
-
-
-<!--<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-  <mat-tab *ngFor="let group of groups" [label]="group.name">
-    <div>
-      <div class="parent-table flex justify-center align-start">
-        <div class="player-name name-cell flex justify-center align-start flex-column">
-          <div class="cell bg-cell">
-            <span><img src="assets/images/players-icon.svg" alt="" /></span>Players
-          </div>
-          <div *ngFor="let player of group.data.group_details.players" class="cell-1">
-            {{ player}}
-          </div>
-        </div>
-        <div class="player-game flex justify-end align-start">
-          <div class="border-1" *ngFor="let game of games">
-            <div class="flex justify-center align-center flex-column">
-              <div class="cell bg-cell">
-                <span><img src="assets/images/score-icon.svg" alt="" /></span>
-                {{ game[0] }}
-              </div>
-              <div class="flex justify-space-even width-100" *ngFor="let player of players">
-                <div class="cell">
-                  <span *ngIf="game[1].team_1.includes(player[1])">
-                    <img src="assets/images/serve-active-icon.svg" alt="" />
-                  </span>
-                  <span *ngIf="game[1].team_2.includes(player[1])">
-                    <img src="assets/images/receive-active-icon.svg" alt="" />
-                  </span>
-                  <span *ngIf="game[1].bye.includes(player[1])">
-                    <img src="assets/images/bye-default-icon.svg" alt="" />
-                  </span>
-                </div>
-                <div class="cell">50</div>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-center flex-column">
-            <div class="cell bg-cell">
-              <span><img src="assets/images/match-icon.svg" alt="" /></span>
-              Total
-            </div>
-            <div class="flex justify-center flex-column">
-              <div class="cell flex justify-center">20</div>
-              <div class="cell flex justify-center">20</div>
-              <div class="cell flex justify-center">20</div>
-              <div class="cell flex justify-center">20</div>
-              <div class="cell flex justify-center">20</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="table-footer flex justify-between">
-      <div>
-        <span><img src="assets/images/e-logo.png" alt="" /></span><span>Game to 15, Win by 1</span>
-      </div>
-      <div class="flex justify-start">
-        <div>
-          <span><img src="assets/images/serve-active-icon.svg" alt="" /></span><small>Serves</small>
-        </div>
-        <div>
-          <span><img src="assets/images/serve-active-icon.svg" alt="" /></span><small class="green-font">Returns</small>
-        </div>
-        <div>
-          <span><img src="assets/images/bye-default-icon.svg" alt="" /></span><small class="red-font">Bye</small>
-        </div>
-      </div>
-    </div>
-  </mat-tab>
-</mat-tab-group> -->

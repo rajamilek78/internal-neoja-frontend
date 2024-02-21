@@ -1,76 +1,19 @@
-<!-- <div class="panel">
-  <div class="container">
-    <div class="radio-btn">
-     
-      <mat-radio-group
-        aria-label="Select an option"
-        [(ngModel)]="selectedFormat"
-      >
-        <mat-radio-button value="1">Format 1</mat-radio-button>
-        <mat-radio-button value="2">Format 2</mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div class="table-format-one" *ngIf="selectedFormat == '1'">
-      <div>
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="onTabChange($event)">
-          <mat-tab *ngFor="let group of groups" [label]="group.name">
-            <app-league-table-format-one [data]="group.data" id="playerData"></app-league-table-format-one></mat-tab>
-        </mat-tab-group>
-        <div class="primary-btn-dark" (click)="downloadTableAsPDF()">
-          <button class="btn flex justify-center">
-            <span><img src="assets/images/download-icon.svg" alt="" /></span>Download
-          </button>
-        </div>
-       
-      </div>
-
-      
-      
-    </div>
-    <div class="table-format-two" *ngIf="selectedFormat == '2'">
-      <div>
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          <mat-tab label="Group 1" *ngFor="let group of groups" [label]="group.name">
-            <app-league-table-format-two [data] = "group.data" [responseData]="responseData" id="playerData"></app-league-table-format-two>
-          </mat-tab>
-        </mat-tab-group>
-        <div class="primary-btn-dark">
-          <button class="btn flex justify-center" (click)="downloadTableAsPDF()">
-            <span
-              ><img
-                src="assets/images/download-icon.svg"
-                alt="" /></span
-            >Download
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <!-- static  -->
 
 <div class="panel">
   <div class="container">
-    <!-- <div class="radio-btn">
-      <mat-radio-group
-        aria-label="Select an option"
-        [(ngModel)]="selectedFormat"
-      >
-        <mat-radio-button value="1">Format 1</mat-radio-button>
-        <mat-radio-button value="2">Format 2</mat-radio-button>
-      </mat-radio-group>
-    </div> -->
     <div class="league-title">
       <div>
-        <h6>{{leagueID}}</h6>
+        <h6>{{ leagueID }}</h6>
       </div>
       <div class="flex justify-end">
         <div class="flex mr-1">
-          <span><img src="assets/images/club-icon.svg" alt="" /></span><small>LFTM-CROSSTOWN</small>
+          <span><img src="assets/images/club-icon.svg" alt="" /></span
+          ><small>LFTM-CROSSTOWN</small>
         </div>
         <div class="flex mr-1">
-          <span><img src="assets/images/company-icon.svg" alt="" /></span><small>Drop Shot Pickleball</small>
+          <span><img src="assets/images/company-icon.svg" alt="" /></span
+          ><small>Drop Shot Pickleball</small>
         </div>
         <div class="table-buttons flex justify-end">
           <div>
@@ -80,47 +23,48 @@
             </select>
           </div>
           <div class="secondary-btn-light">
-            <button *ngIf="!isEdit" type="button" class="btn flex justify-center" (click)="openDialogue()">
+            <button
+              *ngIf="!isEdit"
+              type="button"
+              class="btn flex justify-center"
+              (click)="openDialogue()"
+            >
               <span><img src="assets/images/lock-icon.svg" alt="" /></span>
               Lock Round
             </button>
           </div>
 
           <div class="primary-btn">
-            <button class="btn flex justify-center" (click)="downloadTableAsPDF()">
-              <span><img src="assets/images/download-icon.svg" alt="" /></span>Download
+            <button
+              class="btn flex justify-center"
+              (click)="downloadTableAsPDF()"
+            >
+              <span><img src="assets/images/download-icon.svg" alt="" /></span
+              >Download
             </button>
           </div>
-
         </div>
       </div>
     </div>
     <div class="table-format-one">
       <div>
-        <app-league-table-format-one *ngIf="selectedFormat == '1' && groups" [groups]="groups" id="playerData"
-          (blurTeamScore)="onBlurTeamScore($event)"></app-league-table-format-one>
+        <app-league-table-format-one
+          *ngIf="selectedFormat == '1' && groups"
+          [groups]="groups"
+          id="playerData"
+          [isEdit]="isEdit"
+          (blurTeamScore)="onBlurTeamScore($event)"
+        ></app-league-table-format-one>
       </div>
-      <!-- <div class="primary-btn">
-        <button class="btn flex justify-center" (click)="downloadTableAsPDF()">
-          <span
-            ><img
-              src="assets/images/download-icon.svg"
-              alt="" /></span
-          >Download
-        </button>
-      </div> -->
     </div>
     <div class="table-format-two" *ngIf="selectedFormat == '2'">
       <div>
-        <app-league-table-format-two *ngIf="selectedFormat == '2' && groups" [groups]="groups"
-          id="playerData"></app-league-table-format-two>
-
+        <app-league-table-format-two
+          *ngIf="selectedFormat == '2' && groups"
+          [groups]="groups"
+          id="playerData"
+        ></app-league-table-format-two>
       </div>
-      <!-- <div class="primary-btn">
-        <button class="btn flex justify-center">
-          <span><img src="assets/images/download-icon.svg" alt="" /></span>Download
-        </button>
-      </div> -->
     </div>
     <div class="upload__button flex justify-end" *ngIf="isEdit">
       <div class="primary-btn">
