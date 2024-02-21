@@ -122,8 +122,11 @@ export class LeagueContainerComponent {
     });
     const groups = Object.assign({}, ...this.groupsArrayToBeUpdated);
     const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
-    const body = { groups: groups };
-    console.log("this is body",body);
+    const body = {  day: 4,
+      date: "02/05/2024",
+      groups: groups 
+      };
+    console.log(body);
     this.leagueService.updateScore(urlString, body).subscribe({
       next: (res: any) => {
         console.log(res);
