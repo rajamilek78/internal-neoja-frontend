@@ -1,9 +1,11 @@
 import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { CommonService } from '../../../../../core/services';
+import { CommonService, SharedService } from '../../../../../core/services';
 import { Router } from '@angular/router';
 import { RouteConstant } from '../../../../../helpers/constants';
 import { SharedCommonService } from '../../../../../helpers/services';
+import { Subscription } from 'rxjs';
+import { UserModel } from '@app/helpers/models';
 @Component({
   selector: 'app-upload-player-file',
   templateUrl: './upload-player-file.component.html',
@@ -11,15 +13,37 @@ import { SharedCommonService } from '../../../../../helpers/services';
 })
 export class UploadPlayerFileComponent {
   files: File[] = [];
+  userDetailSub$!: Subscription;
+  userDetail!: UserModel | null;
   isDragging: boolean = false;
   @Input() leagueIdPass : any;
 
   constructor(
     private el: ElementRef,
-    private api: CommonService,
+    private commonservice: CommonService,
     private SharedCommonService: SharedCommonService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService,
   ) {}
+
+  ngOnInit() {
+    this.userSubscriber();
+  }
+
+  ngOnDestroy() {
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
+  }
+
+  userSubscriber = () => {
+    this.userDetailSub$ = this.sharedService
+      .getUserDetailCall()
+      .subscribe(() => {
+        this.userDetail = this.sharedService.getUser();
+        console.log(this.userDetail);
+      });
+  };
 
   @HostListener('dragover', ['$event']) onDragOver(event: any) {
     event.preventDefault();
@@ -112,28 +136,57 @@ export class UploadPlayerFileComponent {
   // }
 
   onUpload() {
-    this.files.forEach((file) => {
-      const fileType = file.name.split('.').pop();
-      if (['csv', 'xls', 'xlsx'].includes(fileType || '')) {
-        this.api.postCsv(file).subscribe((response) => {
-          this.SharedCommonService.setMatchData(response);
-          // localStorage.setItem('matchData', JSON.stringify(response));
-        });
-      } else {
-        const data = new FormData();
-        data.append('players', file);
-        // console.log(file);
+      const ownedCompanies = this.userDetail?.owned_companies;
+      const ownedClubs = this.userDetail?.owned_clubs;
+      const name = this.leagueIdPass;
+      const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+      // const playerData = this.playerForm.getRawValue().players.reduce((obj, player) => {
+      //   obj[player.name] = player.score;
+      //   return obj;
+      // }, {});
+      this.files.forEach((file) => {
+          // const fileType = file.name.split('.').pop();
+            const data = new FormData();
+            data.append('players', file);
+            data.append('day','4');
+            data.append('date','02/05/2024')
+            this.commonservice.uploadFile(compnyclubnameStr,file).subscribe({
+              next: (res: any) => {
+                this.SharedCommonService.setMatchData(res);
+                // localStorage.setItem('matchData', JSON.stringify(res));
+                this.router.navigate([RouteConstant.LEAGUE_CONTAINER, {leagueID: this.leagueIdPass}]);
+              },
+              error: (err: any) => {
+                console.log(err);
+              },
+            });
+          }
+        );
+      
+    }
+    // this.files.forEach((file) => {
+    //   const fileType = file.name.split('.').pop();
+    //   if (['csv', 'xls', 'xlsx'].includes(fileType || '')) {
+    //     this.api.postCsv(file).subscribe((response) => {
+    //       this.SharedCommonService.setMatchData(response);
+    //       // localStorage.setItem('matchData', JSON.stringify(response));
+    //     });
+    //   } else {
+    //     const data = new FormData();
+    //     data.append('players', file);
+    //     // console.log(file);
 
-        // this.api.postFile('file', data).subscribe(response => {
-        //   this.SharedCommonService.setMatchData(response);
-        //   // localStorage.setItem('matchData', JSON.stringify(response));
-        // });
-        this.api.postFile(data).subscribe((response) => {
-          this.SharedCommonService.setMatchData(response);
+    //     // this.api.postFile('file', data).subscribe(response => {
+    //     //   this.SharedCommonService.setMatchData(response);
+    //     //   // localStorage.setItem('matchData', JSON.stringify(response));
+    //     // });
+    //     this.api.postFile(data).subscribe((response) => {
+    //       this.SharedCommonService.setMatchData(response);
           
-        });
-      }
-    });
-    this.router.navigate([RouteConstant.LEAGUE_CONTAINER, {leagueID: this.leagueIdPass}]);
-  }
+    //     });
+    //   }
+    // });
+    // this.router.navigate([RouteConstant.LEAGUE_CONTAINER, {leagueID: this.leagueIdPass}]);
+
+  
 }

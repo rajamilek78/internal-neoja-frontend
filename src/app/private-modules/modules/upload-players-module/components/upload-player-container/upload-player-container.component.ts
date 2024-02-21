@@ -29,6 +29,8 @@ export class UploadPlayerContainerComponent implements OnInit {
     console.log(this.roundsLength);
     this.userSubscriber();
     this.getAllLeagues();
+    console.log("legu3eid",this.leagueID);
+    
   }
   ngOnDestroy() {
     if (this.userDetailSub$) {
@@ -111,6 +113,7 @@ export class UploadPlayerContainerComponent implements OnInit {
     const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     this.leagueID = leagueName;
+    localStorage.setItem('leagueID',this.leagueID)
 
     const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}/all`;
     this.commonService.getRounds(compnyclubnameStr).subscribe({

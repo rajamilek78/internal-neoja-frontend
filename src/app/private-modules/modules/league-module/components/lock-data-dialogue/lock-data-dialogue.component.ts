@@ -16,7 +16,7 @@ export class LockDataDialogueComponent implements OnInit{
   userDetail!: UserModel | null;
   responseData: any;
   commonService: any;
-  leagueID: any;
+  leagueID!: string| null;
   
  
   constructor ( private router : Router, private dialogeref : MatDialogRef<LockDataDialogueComponent>, private sharedService: SharedService,
@@ -27,6 +27,7 @@ export class LockDataDialogueComponent implements OnInit{
     console.log(this.data)
     console.log(this.data.leagueID);
     this.userSubscriber();
+    this.leagueID = localStorage.getItem('leagueID');
   }
  
 
@@ -44,17 +45,17 @@ export class LockDataDialogueComponent implements OnInit{
   };
 
   lockRound() {
-    const bodyData = this.data;
+    const bodyData = this.data.responseData.round;
+    console.log(this.data.responseData.round)
     const ownedCompanies = this.userDetail?.owned_companies;
       const ownedClubs = this.userDetail?.owned_clubs;
       const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}`;
-    //   //const name = this.leagueID; // Assuming this.data contains the necessary data for the API call
     this.commonservice.creatRound(compnyclubnameStr,bodyData).subscribe({
       next: (res: any) => {
         // Handle success response
         console.log(res);
         // Navigate to the completed leagues page
-        this.router.navigate(['players-league/completed-leagues']);
+        this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
         // Close the dialog
         this.close();
       },
