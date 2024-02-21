@@ -66,8 +66,8 @@ export class UploadPlayerDataComponent implements OnInit {
     return this.fb.group({
       name: ['', Validators.required],
       score: ['', Validators.required],
-      dropIn: [{ value: '', disabled: this.isDropInDisabled }],
-      noShow: [{ value: '', disabled: this.isNoShowDisabled }],
+      // dropIn: [{ value: '', disabled: this.isDropInDisabled }],
+      // noShow: [{ value: '', disabled: this.isNoShowDisabled }],
     });
   }
 
@@ -130,7 +130,7 @@ export class UploadPlayerDataComponent implements OnInit {
             playersArray.push(playerGroup);
           }
         }
-        this.updateToggleState();
+       // this.updateToggleState();
       },
       error: (err: any) => {
         console.error(err);
@@ -146,16 +146,16 @@ export class UploadPlayerDataComponent implements OnInit {
   // isNameDisabled(playerName: string): boolean {
   //   return playerName !== '';
   // }
-  updateToggleState() {
-    this.isDropInDisabled = true;
-    this.isNoShowDisabled = !this.isDropInDisabled;
-    this.players.controls.forEach((control) => {
-      control.get('dropIn')?.setValue('', { emitEvent: false });
-      control.get('noShow')?.setValue('', { emitEvent: false });
-      control.get('dropIn')?.disable({ emitEvent: false });
-      control.get('noShow')?.enable({ emitEvent: false });
-    });
-  }
+  // updateToggleState() {
+  //   this.isDropInDisabled = true;
+  //   this.isNoShowDisabled = !this.isDropInDisabled;
+  //   this.players.controls.forEach((control) => {
+  //     control.get('dropIn')?.setValue('', { emitEvent: false });
+  //     control.get('noShow')?.setValue('', { emitEvent: false });
+  //     control.get('dropIn')?.disable({ emitEvent: false });
+  //     control.get('noShow')?.enable({ emitEvent: false });
+  //   });
+  // }
 
   onPlayerCountChange(count: number): void {
     if (this.players) {
@@ -170,15 +170,28 @@ export class UploadPlayerDataComponent implements OnInit {
     }
   }
   submitData(): void {
-    const playerData = this.playerForm.getRawValue().players.reduce((obj, player) => {
-      obj[player.name] = player.score;
-      return obj;
-    }, {});
-    this.commonservice.post('json', playerData).subscribe({
+    const ownedCompanies = this.userDetail?.owned_companies;
+    const ownedClubs = this.userDetail?.owned_clubs;
+    const name = this.leagueID;
+    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+    const playerData = {
+      day: 4,
+      date: "02/05/2024",
+      players: {}
+    };
+    this.playerForm.getRawValue().players.forEach(player => {
+      playerData.players[player.name] = player.score;
+    });
+  
+    // const playerData = this.playerForm.getRawValue().players.reduce((obj, player) => {
+    //   obj[player.name] = player.score;
+    //   return obj;
+    // }, {});
+    this.commonservice.uploadData(compnyclubnameStr, playerData).subscribe({
       next: (res: any) => {
         this.SharedCommonService.setMatchData(res);
         // localStorage.setItem('matchData', JSON.stringify(res));
-        this.router.navigate([RouteConstant.LEAGUE_CONTAINER]);
+        this.router.navigate([RouteConstant.LEAGUE_CONTAINER,{selectedLeague: this.leagueID}]);
       },
       error: (err: any) => {
         console.log(err);

@@ -79,13 +79,20 @@ export class CommonService {
 
   }
 
-  post(path: string, data: any, token?: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-    const options = { headers: headers }
-    return this.http.post(`${this.baseurl}/${path}`, data);
+  // post(path: string, data: any, token?: string) {
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': `Bearer ${token}`
+  //   });
+  //   const options = { headers: headers }
+  //   return this.http.post(`${this.baseurl}/${path}`, data);
+  // }
+
+  uploadData(path: string,bodyData){
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_DATA}/${path}`, bodyData, false)
+  }
+  uploadFile(path: string,bodyData){
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_FILE}/${path}`, bodyData, false)
   }
 
 

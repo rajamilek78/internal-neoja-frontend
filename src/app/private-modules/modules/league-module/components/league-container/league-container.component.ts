@@ -31,6 +31,7 @@ export class LeagueContainerComponent {
   selectedClubID!: string;
   leagueID!: string;
   roundID: string = '';
+  
   groupsArrayToBeUpdated: any[] = [];
 
   constructor(
@@ -44,11 +45,15 @@ export class LeagueContainerComponent {
   ) {}
 
   ngOnInit(): void {
+    
+    
     this.userSubscriber();
     this.route.params.subscribe((params) => {
       this.isEdit = params['isEdit'];
       this.roundID = params['roundID'];
       this.leagueID = params['leagueID'];
+     
+
     });
     console.log(this.isEdit);
     if (this.isEdit) {
@@ -76,9 +81,9 @@ export class LeagueContainerComponent {
       this.responseData = data;
 
       if (this.responseData) {
-        this.groups = Object.keys(this.responseData.fixtures).map((key) => ({
+        this.groups = Object.keys(this.responseData.round.groups).map((key) => ({
           name: key,
-          data: this.responseData.fixtures[key],
+          data: this.responseData.round.groups[key],
         }));
         console.log(this.groups);
       } else {
