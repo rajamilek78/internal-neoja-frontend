@@ -16,14 +16,14 @@ export class UploadPlayerFileComponent {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   isDragging: boolean = false;
-  @Input() leagueIdPass : any;
+  @Input() leagueIdPass: any;
 
   constructor(
     private el: ElementRef,
     private commonservice: CommonService,
     private SharedCommonService: SharedCommonService,
     private router: Router,
-    private sharedService: SharedService,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit() {
@@ -106,87 +106,30 @@ export class UploadPlayerFileComponent {
   onFileDropped(event: CdkDragDrop<File[]>) {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
-
-  // onUpload() {
-  //   this.files.forEach((file, index) => {
-  //     const data = new FormData();
-  //     const fileType = file.name.split('.').pop();
-  //     // let endpoint;
-  //     if(fileType === 'csv' || fileType === 'xls' || fileType === 'xlsx'){
-  //       this.api.postFile('csv',data).subscribe({
-  //         next : (res : any)=>{
-  //           console.log(res);
-  //         },
-  //         error : (err : any)=>{
-  //           console.log(err);
-            
-  //         }
-  //       })
-  //     }
-  //     else{
-      
-  //       data.append('players', file);
-  //       this.api.postFile('file', data).subscribe(response => {
-  //         this.sharedService.setMatchData(response);
-  //         console.log(response);
-  //       });
-  //     }
-      
-  //   });
-  // }
-
   onUpload() {
-      const ownedCompanies = this.userDetail?.owned_companies;
-      const ownedClubs = this.userDetail?.owned_clubs;
-      const name = this.leagueIdPass;
-      const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
-      // const playerData = this.playerForm.getRawValue().players.reduce((obj, player) => {
-      //   obj[player.name] = player.score;
-      //   return obj;
-      // }, {});
-      this.files.forEach((file) => {
-          // const fileType = file.name.split('.').pop();
-            const data = new FormData();
-            data.append('players', file);
-            data.append('day','4');
-            data.append('date','02/05/2024')
-            this.commonservice.uploadFile(compnyclubnameStr,file).subscribe({
-              next: (res: any) => {
-                this.SharedCommonService.setMatchData(res);
-                // localStorage.setItem('matchData', JSON.stringify(res));
-                this.router.navigate([RouteConstant.LEAGUE_CONTAINER, {leagueID: this.leagueIdPass}]);
-              },
-              error: (err: any) => {
-                console.log(err);
-              },
-            });
-          }
-        );
-      
-    }
-    // this.files.forEach((file) => {
-    //   const fileType = file.name.split('.').pop();
-    //   if (['csv', 'xls', 'xlsx'].includes(fileType || '')) {
-    //     this.api.postCsv(file).subscribe((response) => {
-    //       this.SharedCommonService.setMatchData(response);
-    //       // localStorage.setItem('matchData', JSON.stringify(response));
-    //     });
-    //   } else {
-    //     const data = new FormData();
-    //     data.append('players', file);
-    //     // console.log(file);
+    const ownedCompanies = this.userDetail?.owned_companies;
+    const ownedClubs = this.userDetail?.owned_clubs;
+    const name = this.leagueIdPass;
+    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
 
-    //     // this.api.postFile('file', data).subscribe(response => {
-    //     //   this.SharedCommonService.setMatchData(response);
-    //     //   // localStorage.setItem('matchData', JSON.stringify(response));
-    //     // });
-    //     this.api.postFile(data).subscribe((response) => {
-    //       this.SharedCommonService.setMatchData(response);
-          
-    //     });
-    //   }
-    // });
-    // this.router.navigate([RouteConstant.LEAGUE_CONTAINER, {leagueID: this.leagueIdPass}]);
-
-  
+    // Loop through each file to upload
+    this.files.forEach((file) => {
+      const data = new FormData();
+      data.append('players', file);
+      data.append('day', '4');
+      data.append('date', '02/05/2024');
+      this.commonservice.uploadFile(compnyclubnameStr, data).subscribe({
+        next: (res: any) => {
+          this.SharedCommonService.setMatchData(res);
+          this.router.navigate([
+            RouteConstant.LEAGUE_CONTAINER,
+            { leagueID: this.leagueIdPass },
+          ]);
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+      });
+    });
+  }
 }
