@@ -11,7 +11,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   players: any;
   isServing: boolean = true;
   selectedTabIndex = 0;
-  @Output() scoreUpdated = new EventEmitter<any>();
+  @Output() blurTeamScore = new EventEmitter<any>();
   // teamOnePlayer: any = [];
   // teamTwoPlayer: any = [];
   // allPlayers = [];
@@ -33,14 +33,14 @@ export class LeagueTableFormatTwoComponent implements OnInit {
       console.log(this.players);
     }
   }
-  updateScore(player, game, newScore) {
-    game[1].score[player] = newScore;
-    this.scoreUpdated.emit(this.games);
-  }
+  // updateScore(player, game, newScore) {
+  //   game[1].score[player] = newScore;
+  //   this.scoreUpdated.emit(this.games);
+  // }
   onTabChanged($event) {
     let clickedIndex = $event.index;
     this.selectedTabIndex = clickedIndex;
-    this.gamesArray = Object.entries(
+    this.games = Object.entries(
       this.groups[this.selectedTabIndex].data.games
     );
   }

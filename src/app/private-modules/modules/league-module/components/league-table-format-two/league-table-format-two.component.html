@@ -1,4 +1,4 @@
-<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="onTabChanged">
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="onTabChanged($event);">
   <mat-tab *ngFor="let group of groups" [label]="group.name">
     <div>
       <div class="parent-table flex justify-center align-start">

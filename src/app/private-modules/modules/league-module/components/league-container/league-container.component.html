@@ -63,6 +63,7 @@
           *ngIf="selectedFormat == '2' && groups"
           [groups]="groups"
           id="playerData"
+          (blurTeamScore)="onBlurTeamScore($event)"
         ></app-league-table-format-two>
       </div>
     </div>
