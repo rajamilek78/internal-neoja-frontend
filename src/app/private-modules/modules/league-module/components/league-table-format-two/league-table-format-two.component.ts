@@ -12,6 +12,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   isServing: boolean = true;
   selectedTabIndex = 0;
   @Output() blurTeamScore = new EventEmitter<any>();
+  @Input() isEdit!: boolean;
   // teamOnePlayer: any = [];
   // teamTwoPlayer: any = [];
   // allPlayers = [];

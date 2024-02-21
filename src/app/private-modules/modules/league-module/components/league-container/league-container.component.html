@@ -63,8 +63,9 @@
           *ngIf="selectedFormat == '2' && groups"
           [groups]="groups"
           id="playerData"
+          [isEdit]="isEdit"
           (blurTeamScore)="onBlurTeamScore($event)"
-        ></app-league-table-format-two>
+        ></app-league-table-format-two> ⁠
       </div>
     </div>
     <div class="upload__button flex justify-end" *ngIf="isEdit">
