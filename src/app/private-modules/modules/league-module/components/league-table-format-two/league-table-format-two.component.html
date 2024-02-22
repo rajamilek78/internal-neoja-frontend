@@ -1,4 +1,4 @@
-<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="onTabChanged">
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="onTabChanged($event);">
   <mat-tab *ngFor="let group of groups" [label]="group.name">
     <div>
       <div class="parent-table flex justify-center align-start">
@@ -32,11 +32,11 @@
                   <span *ngIf="game[1].bye.indexOf(player)>-1">
                     <img src="assets/images/bye-default-icon.svg" alt="" />
                   </span>
+                  ⁠ <input *ngIf="game[1].team_1.indexOf(player)>-1 && isEdit" type="text" class="format-tow-input" [(ngModel)]="game[1].score.team_1" style="width: 50px;background-color: transparent;"/>
+                  <input *ngIf="game[1].team_2.indexOf(player)>-1 && isEdit" type="text" class="format-tow-input" [(ngModel)]="game[1].score.team_2" style="width: 50px; background-color: transparent;"/> ⁠
                 </div>
                 <!-- {{game[1].score | json}} -->
-                
-                <input *ngIf="game[1].team_1.indexOf(player)>-1" type="text" [(ngModel)]="game[1].score.team_1" style="width: 50px;background-color: transparent;"/>
-                <input *ngIf="game[1].team_2.indexOf(player)>-1" type="text" [(ngModel)]="game[1].score.team_2" style="width: 50px; background-color: transparent;"/>
+
               </div>
             </div>
           </div>
@@ -46,11 +46,11 @@
               Total
             </div>
             <div class="flex justify-center flex-column">
-              <div class="cell flex justify-center">20</div>
-              <div class="cell flex justify-center">20</div>
-              <div class="cell flex justify-center">20</div>
-              <div class="cell flex justify-center">20</div>
-              <div class="cell flex justify-center">20</div>
+              <div class="cell flex justify-center"></div>
+              <div class="cell flex justify-center"></div>
+              <div class="cell flex justify-center"></div>
+              <div class="cell flex justify-center"></div>
+              <div class="cell flex justify-center"></div>
             </div>
           </div>
         </div>

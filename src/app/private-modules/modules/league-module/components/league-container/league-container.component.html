@@ -9,11 +9,11 @@
       <div class="flex justify-end">
         <div class="flex mr-1">
           <span><img src="assets/images/club-icon.svg" alt="" /></span
-          ><small>LFTM-CROSSTOWN</small>
+          ><small>{{selectedCompanyID}}</small>
         </div>
         <div class="flex mr-1">
           <span><img src="assets/images/company-icon.svg" alt="" /></span
-          ><small>Drop Shot Pickleball</small>
+          ><small>{{selectedClubID}}</small>
         </div>
         <div class="table-buttons flex justify-end">
           <div>
@@ -63,7 +63,9 @@
           *ngIf="selectedFormat == '2' && groups"
           [groups]="groups"
           id="playerData"
-        ></app-league-table-format-two>
+          [isEdit]="isEdit"
+          (blurTeamScore)="onBlurTeamScore($event)"
+        ></app-league-table-format-two> ⁠
       </div>
     </div>
     <div class="upload__button flex justify-end" *ngIf="isEdit">
