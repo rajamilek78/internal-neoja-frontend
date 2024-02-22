@@ -56,16 +56,19 @@
             </div>
             <div class="red-btn">
               <button type="button" class="btn-sm flex justify-center"
-              *ngIf="round.roundDetails.header.score_locked" 
+              *ngIf="round.roundDetails.header.score_locked"
               >
+              
                 <span><img src="assets/images/red-lock-icon.svg" alt="" /></span
                 >Locked
               </button>
             </div>
           </div>
           <div class="red-btn">
+            
             <button type="button" class="btn flex justify-center" (click)="lockScore(round.roundNumber)"
-            [disabled]="round.roundDetails.header.score_locked">
+            [disabled]="round.roundDetails.header.score_locked"
+            >
               <span
                 ><img
                   src="assets/images/red-icon-lock-second.svg"
@@ -80,6 +83,7 @@
               class="btn flex justify-center"
               (click)="edit(round.roundNumber)"
             >
+            
             <span><img src="assets/images/white-edit-icon.svg" alt="" /></span
               >Edit Score
             </button>
