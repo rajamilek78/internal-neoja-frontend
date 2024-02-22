@@ -48,21 +48,24 @@ export class ViewScoreTableComponent implements OnInit{
   };
 
   getLeagueScore(){
+    
     const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}`
-    this.completedLeagueService.getLeagueScores(`${urlString}`).subscribe({
+    this.completedLeagueService.getLeagueScores(urlString).subscribe({
       next : (res : any)=>{
+      
         this.leagueScores = res.league_scores;
+        console.log("this is response from view score",res);
+        
         console.log(this.leagueScores);
         },
         error : (err : any)=>{
           console.log(err);
-          
         }
     })
   }
-  handleResponse(res){
+  // handleResponse(res){
 
-  }
+  // }
 
 
 }
