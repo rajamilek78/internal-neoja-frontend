@@ -47,7 +47,7 @@
         </button>
       </div>
     </div>
-    <div class="row">
+    <div class="row"*ngIf="rounds">
       <div class="col-md-3 MB-2" *ngFor="let round of rounds; let i = index">
         <div class="round-box mr-2">
           <div class="flex justify-between mb-1">
@@ -90,6 +90,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row" *ngIf="rounds.length == 0">
+      <h1>No Rounds in Leage</h1>
     </div>
   </div>
 </div>

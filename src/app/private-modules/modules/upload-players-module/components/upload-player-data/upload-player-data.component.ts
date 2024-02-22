@@ -107,9 +107,6 @@ export class UploadPlayerDataComponent implements OnInit {
         console.log(res);
         this.leagueSummaryData = res;
         const playersArray = this.playerForm.get('players') as FormArray;
-        while (playersArray.length !== 0) {
-          playersArray.removeAt(0);
-        }
         for (const playerName in this.leagueSummaryData.league_summary) {
           if (
             this.leagueSummaryData.league_summary.hasOwnProperty(playerName)
