@@ -26,7 +26,7 @@
               type="file"
               #fileInput
               style="display: none"
-              (change)="onFileSelected($event)"
+              (change)="onFileSelect($event)"
               accept=".txt"
               multiple
             />
@@ -58,7 +58,7 @@
         </div>
         <div>
           <a (click)="onFileRemoved(file)">
-            <img src="assets/images/close-icon.svg" alt="" />
+            <img src="assets/images/close-icon.svg" alt=""/>
           </a>
         </div>
       </div>

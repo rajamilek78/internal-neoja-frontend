@@ -26,11 +26,8 @@ export class UploadPlayerContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.roundsLength);
     this.userSubscriber();
-    this.getAllLeagues();
-    console.log("legu3eid",this.leagueID);
-    
+    this.getAllLeagues();    
   }
   ngOnDestroy() {
     if (this.userDetailSub$) {
@@ -43,7 +40,6 @@ export class UploadPlayerContainerComponent implements OnInit {
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
-        console.log(this.userDetail);
       });
   };
 
@@ -51,7 +47,6 @@ export class UploadPlayerContainerComponent implements OnInit {
     const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const compnyclubStr = `${ownedCompanies}/${ownedClubs}/all`;
-    console.log(compnyclubStr);
     this.commonService.getAllLeagues(compnyclubStr).subscribe({
       next: (res: any) => {
         this.leagues = Object.keys(res).map((key) => ({

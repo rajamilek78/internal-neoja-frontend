@@ -47,7 +47,7 @@
         </button>
       </div>
     </div>
-    <div class="row">
+    <div class="row"*ngIf="rounds">
       <div class="col-md-3 MB-2" *ngFor="let round of rounds; let i = index">
         <div class="round-box mr-2">
           <div class="flex justify-between mb-1">
@@ -56,7 +56,7 @@
             </div>
             <div class="red-btn">
               <button type="button" class="btn-sm flex justify-center"
-              *ngIf="round.roundDetails.header.score_locked"
+              *ngIf="round.roundDetails.header?.score_locked"
               >
               
                 <span><img src="assets/images/red-lock-icon.svg" alt="" /></span
@@ -67,7 +67,7 @@
           <div class="red-btn">
             
             <button type="button" class="btn flex justify-center" (click)="lockScore(round.roundNumber)"
-            [disabled]="round.roundDetails.header.score_locked"
+            [disabled]="round.roundDetails.header?.score_locked"
             >
               <span
                 ><img
@@ -78,7 +78,7 @@
           </div>
           <div class="primary-btn">
             <button
-            [disabled]="round.roundDetails.header.score_locked"
+            [disabled]="round.roundDetails.header?.score_locked"
               type="button"
               class="btn flex justify-center"
               (click)="edit(round.roundNumber)"
@@ -90,6 +90,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row" *ngIf="rounds.length == 0">
+      <h1>No Rounds in Leage</h1>
     </div>
   </div>
 </div>

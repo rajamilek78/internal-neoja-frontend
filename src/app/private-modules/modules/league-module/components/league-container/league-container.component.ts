@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit} from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { SharedCommonService } from '../../../../../core/services/shared-common.service';
 import { jsPDF } from 'jspdf';
@@ -20,7 +20,7 @@ import { RouteConstant } from '@app/helpers/constants';
   templateUrl: './league-container.component.html',
   styleUrl: './league-container.component.scss',
 })
-export class LeagueContainerComponent {
+export class LeagueContainerComponent implements OnInit, AfterViewInit{
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   groups: any;
@@ -44,10 +44,18 @@ export class LeagueContainerComponent {
     private leagueService: LeagueModuleService,
     private sharedUserService: SharedUserService
   ) {}
-
+  ngAfterViewInit() {
+    
+    
+    // if (!this.isEdit && window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
+    //   this.router.navigate(['upload-players']);
+    // }
+  }
   ngOnInit(): void {
-    
-    
+    if (performance.navigation.type > 2) {
+      // Redirect to the home page
+      this.router.navigate(['upload-players']);
+    }
     this.userSubscriber();
     this.route.params.subscribe((params) => {
       this.isEdit = params['isEdit'];
@@ -63,6 +71,7 @@ export class LeagueContainerComponent {
       this.getMatchData();
     }
   }
+ 
   openDialogue(): void {
     console.log(this.leagueID);
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {

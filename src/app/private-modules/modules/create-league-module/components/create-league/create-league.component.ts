@@ -35,7 +35,6 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedUserService.getUser();
-        console.log(this.userDetail);
       });
   };
   // To get all league's list
@@ -47,7 +46,6 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
     this.commonService.getAllLeagues(`${companyIDclubID_Str}`).subscribe({
       next: (res: any) => {
         this.leagues = Object.values(res);
-        console.log(this.leagues);
       },
       error: (err: any) => {
         console.log(err);
