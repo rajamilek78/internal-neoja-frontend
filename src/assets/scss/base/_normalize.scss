@@ -25,9 +25,9 @@ html {
   //   font-size: 8.5px;
   // }
 
-  // @include respond("phone") {
-  //   font-size: 8px;
-  // }
+  @include respond("phone") {
+    font-size: 8px;
+  }
 }
 
 body {
@@ -72,7 +72,7 @@ a {
   vertical-align: top;
 }
 
-.display-right{
+.display-right {
   display: flex;
   justify-content: flex-end;
 }
@@ -108,6 +108,14 @@ a {
 .col-md-3 {
   padding-left: 0rem !important;
   padding-right: 0rem !important;
+}
+
+.col-md-6 {
+  @include respond("phone") {
+    max-width: 100% !important;
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+  }
 }
 
 .container {
@@ -199,7 +207,8 @@ a {
 .border-right {
   border-right: 1px solid rgba($black-color, 0.05) !important;
 }
-.width-80{
+
+.width-80 {
   width: 0.9rem !important;
 }
 
@@ -350,7 +359,7 @@ textarea {
         text-align: center;
         font-size: 1.4rem;
 
-        &:focus{
+        &:focus {
           outline: none;
           border: 1px solid transparent !important;
         }
@@ -369,7 +378,7 @@ textarea {
   }
 }
 
-.bg-cell{
+.bg-cell {
   background-color: #f7f7f7;
   border-right: 1px solid #e5e5e5;
   border-bottom: 1px solid #efefef;
@@ -382,8 +391,8 @@ textarea {
   align-items: stretch !important;
   margin-top: 2rem;
 
-  .justify-space-even{
-    .cell{
+  .justify-space-even {
+    .cell {
       border-right: 1px solid rgba($black-color, 0.1);
     }
   }
@@ -456,7 +465,7 @@ textarea {
     font-weight: 800;
     width: 100%;
 
-    .bg-cell{
+    .bg-cell {
       border-right: 0 !important;
     }
 
@@ -835,7 +844,7 @@ app-upload-player-container {
     right: 0;
     z-index: 10;
 
-    .primary-btn{
+    .primary-btn {
       margin-left: 1rem;
     }
 
@@ -1171,6 +1180,10 @@ app-upload-player-container {
           line-height: 2.4rem;
         }
       }
+    }
+
+    @include respond ("phone") {
+      flex-direction: column;
     }
   }
 
