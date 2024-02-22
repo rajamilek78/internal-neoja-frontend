@@ -13,6 +13,7 @@ import { LeagueModuleService } from '../../services/league-module.service';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { SharedUserService } from '@app/core';
+import { RouteConstant } from '@app/helpers/constants';
 
 @Component({
   selector: 'app-league-container',
@@ -132,7 +133,7 @@ export class LeagueContainerComponent {
     console.log(body);
     this.leagueService.updateScore(urlString, body).subscribe({
       next: (res: any) => {
-        console.log(res);
+        this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
       },
       error: (err: any) => {
         console.log(err);

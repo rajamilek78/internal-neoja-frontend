@@ -133,7 +133,7 @@ export class UploadPlayerDataComponent implements OnInit {
        // this.updateToggleState();
       },
       error: (err: any) => {
-        console.error(err);
+        console.log(err);
       },
     });
   }
