@@ -5,6 +5,7 @@ export interface PlayerScore {
     rating: number;
     win_percent: number;
     won: number;
+    win_lose_history : string;
 }
 
 export interface Players {

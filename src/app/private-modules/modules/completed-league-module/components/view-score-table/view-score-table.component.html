@@ -20,7 +20,7 @@
                 <th>Points Possible</th>
                 <th>Games Played</th>
                 <th class="green-font">+ Won</th>
-                <th class="red-font">- Losses</th>
+                <!-- <th class="red-font">- Losses</th> -->
                 <th>Win%</th>
                 <th>Result(Last 6)</th>
               </tr>
@@ -33,45 +33,12 @@
                 <td>{{player.value.points_possible}}</td>
                 <td>{{player.value.played}}</td>
                 <td class="green-font">{{player.value.won}}</td>
-                <td class="red-font">-7</td>
+                <!-- <td class="red-font">-7</td> -->
                 <td>{{player.value.win_percent}}</td>
-                <td>
+                <td *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
                   <div class="flex justify-center">
-                    <div class="status-square bg-red flex justify-center">
-                      <img
-                        src="assets/images/l-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-green flex justify-center">
-                      <img
-                        src="assets/images/w-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-red flex justify-center">
-                      <img
-                        src="assets/images/l-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-red flex justify-center">
-                      <img
-                        src="assets/images/l-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-green flex justify-center">
-                      <img
-                        src="assets/images/w-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-green flex justify-center">
-                      <img
-                        src="assets/images/w-latter.svg"
-                        alt=""
-                      />
+                    <div class="status-square bg-red flex justify-center" [ngClass]="{'bg-green': winLose === '1', 'bg-red': winLose === '0'}">
+                      <img [src]="winLose === '1' ? 'assets/images/w-latter.svg' : 'assets/images/l-latter.svg'" alt="" />
                     </div>
                   </div>
                 </td>
@@ -86,11 +53,11 @@
               <tr>
                 <th>Rank</th>
                 <th>Players</th>
-                <th>Pts Won</th>
-                <th>Pts W%</th>
+                <th>Points Scored</th>
+                <th>Points Possible</th>
                 <th>Games Played</th>
-                <th class="green-font">+ Wins</th>
-                <th class="red-font">- Losses</th>
+                <th class="green-font">+ Won</th>
+                <!-- <th class="red-font">- Losses</th> -->
                 <th>Win%</th>
                 <th>Result(Last 6)</th>
               </tr>
@@ -103,45 +70,12 @@
                 <td>{{player.value.points_possible}}</td>
                 <td>{{player.value.played}}</td>
                 <td class="green-font">{{player.value.won}}</td>
-                <td class="red-font">-7</td>
+                <!-- <td class="red-font">-7</td> -->
                 <td>{{player.value.win_percent}}</td>
-                <td>
+                <td *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
                   <div class="flex justify-center">
-                    <div class="status-square bg-red flex justify-center">
-                      <img
-                        src="assets/images/l-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-green flex justify-center">
-                      <img
-                        src="assets/images/w-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-red flex justify-center">
-                      <img
-                        src="assets/images/l-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-red flex justify-center">
-                      <img
-                        src="assets/images/l-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-green flex justify-center">
-                      <img
-                        src="assets/images/w-latter.svg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="status-square bg-green flex justify-center">
-                      <img
-                        src="assets/images/w-latter.svg"
-                        alt=""
-                      />
+                    <div class="status-square bg-red flex justify-center" [ngClass]="{'bg-green': winLose === '1', 'bg-red': winLose === '0'}">
+                      <img [src]="winLose === '1' ? 'assets/images/w-latter.svg' : 'assets/images/l-latter.svg'" alt="" />
                     </div>
                   </div>
                 </td>
