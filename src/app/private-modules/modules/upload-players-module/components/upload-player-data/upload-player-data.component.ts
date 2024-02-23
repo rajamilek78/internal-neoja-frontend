@@ -98,6 +98,8 @@ export class UploadPlayerDataComponent implements OnInit {
       });
   };
   leagueSummary() {
+    //const playersArray = this.playerForm.get('players') as FormArray;
+    //playersArray.clear();
     //const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = this.leagueID;
@@ -107,6 +109,7 @@ export class UploadPlayerDataComponent implements OnInit {
         console.log(res);
         this.leagueSummaryData = res;
         const playersArray = this.playerForm.get('players') as FormArray;
+        playersArray.clear();
         for (const playerName in this.leagueSummaryData.league_summary) {
           if (
             this.leagueSummaryData.league_summary.hasOwnProperty(playerName)
