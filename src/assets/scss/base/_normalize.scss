@@ -455,8 +455,9 @@ textarea {
 
     span {
       vertical-align: middle;
+
       // margin-right: 0.8rem;
-      img{
+      img {
         margin-right: 0.8rem;
       }
     }
@@ -612,12 +613,14 @@ textarea {
     }
 
     @include respond("phone") {
+      padding: 0rem;
       margin-left: 0rem;
       width: 100%;
     }
   }
 
   @include respond("phone") {
+    transform: translateY(62%);
     flex-direction: column;
   }
 }
@@ -1081,6 +1084,10 @@ app-upload-player-container {
     img {
       width: 100%;
     }
+
+    @include respond("phone") {
+      display: none;
+    }
   }
 
   &__form {
@@ -1124,6 +1131,17 @@ app-upload-player-container {
         }
       }
     }
+
+    @include respond("phone") {
+      margin-left: 0rem;
+      width: 100%;
+      padding: 0rem;
+    }
+  }
+
+  @include respond("phone") {
+    flex-direction: column;
+    transform: translateY(22%);
   }
 }
 
