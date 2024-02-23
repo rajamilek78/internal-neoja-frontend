@@ -44,9 +44,9 @@ export class UploadPlayerContainerComponent implements OnInit {
   };
 
   getAllLeagues() {
-    const ownedCompanies = this.userDetail?.owned_companies;
+    // const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
-    const compnyclubStr = `${ownedCompanies}/${ownedClubs}/all`;
+    const compnyclubStr = `${ownedClubs}/all`;
     this.commonService.getAllLeagues(compnyclubStr).subscribe({
       next: (res: any) => {
         this.leagues = Object.keys(res).map((key) => ({
@@ -59,12 +59,12 @@ export class UploadPlayerContainerComponent implements OnInit {
   }
 
   onLeagueSelect(leagueName: string) {
-    const ownedCompanies = this.userDetail?.owned_companies;
+    //const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     this.leagueID = leagueName;
     localStorage.setItem('leagueID',this.leagueID)
 
-    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.leagueID}/all`;
+    const compnyclubnameStr = `${ownedClubs}/${this.leagueID}/all`;
     this.commonService.getRounds(compnyclubnameStr).subscribe({
       next: (res: any) => {
         this.roundsLength = res ? Object.keys(res).length : 0;

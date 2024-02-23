@@ -28,7 +28,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   selectedFormat = '1';
   selectedGroup!: any;
   isEdit: boolean = false;
-  selectedCompanyID!: string;
+  //selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
   roundID: string = '';
@@ -103,7 +103,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   }
 
   getRoundById() {
-    const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
+    const urlString = `${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
     this.leagueService.getRoundByID(urlString).subscribe({
       next: (res: any) => {
         this.responseData = res ? res.groups || res : [];
@@ -131,7 +131,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       return obj;
     });
     const groups = Object.assign({}, ...this.groupsArrayToBeUpdated);
-    const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
+    const urlString = `${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
     const body = {
       header:{
         day: 4,
@@ -163,10 +163,10 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
         this.userDetail = this.sharedUserService.getUser();
         console.log(this.userDetail);
         if (this.userDetail) {
-          const companyIDs = this.userDetail.owned_companies;
+          //const companyIDs = this.userDetail.owned_companies;
           const clubIDs = this.userDetail.owned_clubs;
           this.selectedClubID = clubIDs[0];
-          this.selectedCompanyID = companyIDs[0];
+          //this.selectedCompanyID = companyIDs[0];
         }
       });
   };

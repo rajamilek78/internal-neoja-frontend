@@ -98,10 +98,10 @@ export class UploadPlayerDataComponent implements OnInit {
       });
   };
   leagueSummary() {
-    const ownedCompanies = this.userDetail?.owned_companies;
+    //const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = this.leagueID;
-    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+    const compnyclubnameStr = `${ownedClubs}/${name}`;
     this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
       next: (res: any) => {
         console.log(res);
@@ -167,10 +167,10 @@ export class UploadPlayerDataComponent implements OnInit {
     }
   }
   submitData(): void {
-    const ownedCompanies = this.userDetail?.owned_companies;
+    //const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = this.leagueID;
-    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+    const compnyclubnameStr = `${ownedClubs}/${name}`;
     const playerData = {
       day: 4,
       date: "02/05/2024",

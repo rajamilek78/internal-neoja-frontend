@@ -39,9 +39,9 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
   };
   // To get all league's list
   getAllLeagues() {
-    const companyID = this.userDetail?.owned_companies;
+    //const companyID = this.userDetail?.owned_companies;
     const clubID = this.userDetail?.owned_clubs;
-    this.companyIDclubID = `${companyID}/${clubID}`;
+    this.companyIDclubID = `${clubID}`;
     const companyIDclubID_Str = `${this.companyIDclubID}/all`;
     this.commonService.getAllLeagues(`${companyIDclubID_Str}`).subscribe({
       next: (res: any) => {

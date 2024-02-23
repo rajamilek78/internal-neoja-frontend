@@ -101,10 +101,10 @@ export class UploadPlayerFileComponent {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
   onUpload() {
-    const ownedCompanies = this.userDetail?.owned_companies;
+    // const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = this.leagueIdPass;
-    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+    const compnyclubnameStr = `${ownedClubs}/${name}`;
 
     // Loop through each file to upload
     this.files.forEach((file) => {
