@@ -137,12 +137,12 @@ export class UploadPlayerDataComponent implements OnInit {
       },
     });
   }
-  isNameDisabled(player: AbstractControl): boolean {
-    if (player instanceof FormGroup) {
-      return player.controls['name'].value !== '';
-    }
-    return false;
-  }
+  // isNameDisabled(player: AbstractControl): boolean {
+  //   if (player instanceof FormGroup) {
+  //     return player.controls['name'].value !== '';
+  //   }
+  //   return false;
+  // }
   // isNameDisabled(playerName: string): boolean {
   //   return playerName !== '';
   // }

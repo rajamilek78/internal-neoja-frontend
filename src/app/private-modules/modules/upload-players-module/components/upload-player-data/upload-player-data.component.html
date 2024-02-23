@@ -82,7 +82,6 @@
                   matInput
                   type="text"
                   formControlName="name"
-                  [disabled]="isNameDisabled(player)"
                   placeholder="Enter your name"
                   required
                 />
@@ -99,7 +98,7 @@
                 />
               </mat-form-field>
             </div>
-            <div *ngIf="isRoundTwo" class="row-field-two">
+            <!-- <div *ngIf="isRoundTwo" class="row-field-two">
               <mat-form-field>
                 <input
                   matInput
@@ -109,7 +108,7 @@
                   required
                 />
               </mat-form-field>
-            </div>
+            </div> -->
             <div class="flex" *ngIf="roundsLength >= 1">
               <div class="row-field-two toggle-square">
                 <mat-slide-toggle class="example-margin" [disabled]="isNoShowDisabled">
@@ -125,12 +124,12 @@
               </div>
             </div>
             <div>
-              <a (click)="deletePlayer(i)" class="delete-icon flex justify-center">
+              <button (click)="deletePlayer(i)" class="delete-icon flex justify-center">
                 <img
                   src="assets/images/delete-icon.svg"
                   alt=""
                 />
-              </a>
+              </button>
             </div>
           </div>
         </div>

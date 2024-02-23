@@ -10,10 +10,10 @@ export class CompletedLeagueService {
 
   constructor(private apiManager : APIManager) { }
   getAllRounds(path : string): Observable <any>{
-    return this.apiManager.getApis(`${API_ENDPOINTS.GET_ROUND}/${path}`,{}, false);
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_ROUND}/${path}`,{}, true);
   }
 
   getLeagueScores(path : string) : Observable<any>{
-    return this.apiManager.getApis(`${API_ENDPOINTS.GET_SCORE}/${path}`,{},false);
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_SCORE}/${path}`,{},true);
   }
 }
