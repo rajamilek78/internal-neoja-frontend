@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CommonService, SharedService } from '../../../../../core/services';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { UserModel } from '@app/helpers/models';
   styleUrl: './upload-player-file.component.scss',
 })
 export class UploadPlayerFileComponent {
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
   files: File[] = [];
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
@@ -68,34 +69,38 @@ export class UploadPlayerFileComponent {
     }
   }
 
-  onFileSelect(event : Event){
+  onFileSelect(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    if(inputElement.files){
-      const files : FileList = inputElement.files;
-      for(let i =0; i < files.length; i++){
+    if (inputElement.files) {
+      const files: FileList = inputElement.files;
+      for (let i = 0; i < files.length; i++) {
         const file = files.item(i);
-        if(file && this.files.length < 3){
+        if (file && this.files.length < 3) {
           const fileType = file.name.split('.').pop();
-          if(['txt','csv','xlx','xlsx'].includes(fileType || '')){
-            // this.files.push(file);
-            this.files = [...this.files,file]
-          }else{
-            alert("Invalid file type")
+          if (['txt', 'csv', 'xlx', 'xlsx'].includes(fileType || '')) {
+            this.files = [...this.files, file];
+          } else {
+            alert("Invalid file type");
           }
-        }else{
-          alert('You can only upload a maximum of 3 files at a time')
+        } else {
+          alert('You can only upload a maximum of 3 files at a time');
           break;
         }
       }
     }
+    // Clear the input's value
+    inputElement.value = '';
   }
-
+  
   onFileRemoved(file: File) {
     const index = this.files.indexOf(file);
     if (index > -1) {
       this.files.splice(index, 1);
     }
+    // Clear the input's value
+    this.fileInput.nativeElement.value = '';
   }
+  
 
   onFileDropped(event: CdkDragDrop<File[]>) {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);

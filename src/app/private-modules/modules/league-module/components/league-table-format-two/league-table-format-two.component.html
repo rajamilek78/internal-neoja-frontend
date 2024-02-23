@@ -12,7 +12,7 @@
         </div>
         <div class="player-game flex justify-end align-start">
           <div class="border-1" *ngFor="let game of games">
-            <div class="flex justify-center align-center flex-column">
+            <div class="flex justify-center align-center flex-column game-header">
               <div class="cell bg-cell">
                 <span><img src="assets/images/score-icon.svg" alt="" /></span>
                 {{ game[0] }}
@@ -32,8 +32,8 @@
                   <span *ngIf="game[1].bye.indexOf(player)>-1">
                     <img src="assets/images/bye-default-icon.svg" alt="" />
                   </span>
-                  ⁠ <input *ngIf="game[1].team_1.indexOf(player)>-1 && isEdit" type="text" class="format-tow-input" [(ngModel)]="game[1].score.team_1" style="width: 50px;background-color: transparent;"/>
-                  <input *ngIf="game[1].team_2.indexOf(player)>-1 && isEdit" type="text" class="format-tow-input" [(ngModel)]="game[1].score.team_2" style="width: 50px; background-color: transparent;"/> ⁠
+                  ⁠ <input *ngIf="game[1].team_1.indexOf(player)>-1 && isEdit" type="text" class="format-two-input" [(ngModel)]="game[1].score.team_1" style="width: 50px;background-color: transparent;"/>
+                  <input *ngIf="game[1].team_2.indexOf(player)>-1 && isEdit" type="text" class="format-two-input" [(ngModel)]="game[1].score.team_2" style="width: 50px; background-color: transparent;"/> ⁠
                 </div>
                 <!-- {{game[1].score | json}} -->
 
@@ -58,7 +58,8 @@
     </div>
     <div class="table-footer flex justify-between">
       <div>
-        <span><img src="assets/images/e-logo.png" alt="" /></span><span>Game to 15, Win by 1</span>
+        <span><img src="assets/images/e-logo.png" alt="" /></span>
+        <!-- <span>Game to 15, Win by 1</span> -->
       </div>
       <div class="flex justify-start">
         <div>
