@@ -98,18 +98,15 @@ export class UploadPlayerDataComponent implements OnInit {
       });
   };
   leagueSummary() {
-    const ownedCompanies = this.userDetail?.owned_companies;
+    //const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = this.leagueID;
-    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+    const compnyclubnameStr = `${ownedClubs}/${name}`;
     this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
       next: (res: any) => {
         console.log(res);
         this.leagueSummaryData = res;
         const playersArray = this.playerForm.get('players') as FormArray;
-        while (playersArray.length !== 0) {
-          playersArray.removeAt(0);
-        }
         for (const playerName in this.leagueSummaryData.league_summary) {
           if (
             this.leagueSummaryData.league_summary.hasOwnProperty(playerName)
@@ -133,7 +130,7 @@ export class UploadPlayerDataComponent implements OnInit {
        // this.updateToggleState();
       },
       error: (err: any) => {
-        console.error(err);
+        console.log(err);
       },
     });
   }
@@ -170,10 +167,10 @@ export class UploadPlayerDataComponent implements OnInit {
     }
   }
   submitData(): void {
-    const ownedCompanies = this.userDetail?.owned_companies;
+    //const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = this.leagueID;
-    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+    const compnyclubnameStr = `${ownedClubs}/${name}`;
     const playerData = {
       day: 4,
       date: "02/05/2024",

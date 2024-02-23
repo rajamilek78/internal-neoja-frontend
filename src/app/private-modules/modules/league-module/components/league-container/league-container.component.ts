@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit} from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { SharedCommonService } from '../../../../../core/services/shared-common.service';
 import { jsPDF } from 'jspdf';
@@ -13,13 +13,14 @@ import { LeagueModuleService } from '../../services/league-module.service';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { SharedUserService } from '@app/core';
+import { RouteConstant } from '@app/helpers/constants';
 
 @Component({
   selector: 'app-league-container',
   templateUrl: './league-container.component.html',
   styleUrl: './league-container.component.scss',
 })
-export class LeagueContainerComponent {
+export class LeagueContainerComponent implements OnInit, AfterViewInit{
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   groups: any;
@@ -27,7 +28,7 @@ export class LeagueContainerComponent {
   selectedFormat = '1';
   selectedGroup!: any;
   isEdit: boolean = false;
-  selectedCompanyID!: string;
+  //selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
   roundID: string = '';
@@ -43,10 +44,18 @@ export class LeagueContainerComponent {
     private leagueService: LeagueModuleService,
     private sharedUserService: SharedUserService
   ) {}
-
+  ngAfterViewInit() {
+    
+    
+    // if (!this.isEdit && window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
+    //   this.router.navigate(['upload-players']);
+    // }
+  }
   ngOnInit(): void {
-    
-    
+    if (performance.navigation.type > 2) {
+      // Redirect to the home page
+      this.router.navigate(['upload-players']);
+    }
     this.userSubscriber();
     this.route.params.subscribe((params) => {
       this.isEdit = params['isEdit'];
@@ -62,6 +71,7 @@ export class LeagueContainerComponent {
       this.getMatchData();
     }
   }
+ 
   openDialogue(): void {
     console.log(this.leagueID);
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
@@ -93,7 +103,7 @@ export class LeagueContainerComponent {
   }
 
   getRoundById() {
-    const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
+    const urlString = `${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
     this.leagueService.getRoundByID(urlString).subscribe({
       next: (res: any) => {
         this.responseData = res ? res.groups || res : [];
@@ -121,7 +131,7 @@ export class LeagueContainerComponent {
       return obj;
     });
     const groups = Object.assign({}, ...this.groupsArrayToBeUpdated);
-    const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
+    const urlString = `${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
     const body = {
       header:{
         day: 4,
@@ -132,7 +142,7 @@ export class LeagueContainerComponent {
     console.log(body);
     this.leagueService.updateScore(urlString, body).subscribe({
       next: (res: any) => {
-        console.log(res);
+        this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
       },
       error: (err: any) => {
         console.log(err);
@@ -153,10 +163,10 @@ export class LeagueContainerComponent {
         this.userDetail = this.sharedUserService.getUser();
         console.log(this.userDetail);
         if (this.userDetail) {
-          const companyIDs = this.userDetail.owned_companies;
+          //const companyIDs = this.userDetail.owned_companies;
           const clubIDs = this.userDetail.owned_clubs;
           this.selectedClubID = clubIDs[0];
-          this.selectedCompanyID = companyIDs[0];
+          //this.selectedCompanyID = companyIDs[0];
         }
       });
   };

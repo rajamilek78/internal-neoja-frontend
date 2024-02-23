@@ -14,7 +14,7 @@ import { ScoreModel } from '@app/helpers/models/score.model';
 export class ViewScoreTableComponent implements OnInit{
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
-  selectedCompanyID!: string;
+  //selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
   leagueScores!:ScoreModel | null;
@@ -38,10 +38,10 @@ export class ViewScoreTableComponent implements OnInit{
         this.userDetail = this.sharedUserService.getUser();
         console.log(this.userDetail);
         if (this.userDetail) {
-          const companyIDs = this.userDetail.owned_companies;
+          //const companyIDs = this.userDetail.owned_companies;
           const clubIDs = this.userDetail.owned_clubs;
           this.selectedClubID = clubIDs[0];
-          this.selectedCompanyID = companyIDs[0];
+          //this.selectedCompanyID = companyIDs[0];
 
         }
       });
@@ -49,7 +49,7 @@ export class ViewScoreTableComponent implements OnInit{
 
   getLeagueScore(){
     
-    const urlString = `${this.selectedCompanyID}/${this.selectedClubID}/${this.leagueID}`
+    const urlString = `${this.selectedClubID}/${this.leagueID}`
     this.completedLeagueService.getLeagueScores(urlString).subscribe({
       next : (res : any)=>{
       

@@ -41,7 +41,6 @@ export class UploadPlayerFileComponent {
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
-        console.log(this.userDetail);
       });
   };
 
@@ -69,27 +68,22 @@ export class UploadPlayerFileComponent {
     }
   }
 
-  onFileSelected(event: Event) {
+  onFileSelect(event : Event){
     const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files) {
-      const files: FileList = inputElement.files;
-      for (let i = 0; i < files.length; i++) {
-        if (this.files.length < 3) {
-          const file = files.item(i);
-          if (file) {
-            const fileType = file.name.split('.').pop();
-            if (
-              ['txt', 'csv', 'xlsx', 'xls', 'json'].includes(fileType || '')
-            ) {
-              this.files.push(file);
-            } else {
-              alert(
-                'Invalid file type. Only .txt, .csv,.json and .xls files are allowed.'
-              );
-            }
+    if(inputElement.files){
+      const files : FileList = inputElement.files;
+      for(let i =0; i < files.length; i++){
+        const file = files.item(i);
+        if(file && this.files.length < 3){
+          const fileType = file.name.split('.').pop();
+          if(['txt','csv','xlx','xlsx'].includes(fileType || '')){
+            // this.files.push(file);
+            this.files = [...this.files,file]
+          }else{
+            alert("Invalid file type")
           }
-        } else {
-          alert('You can only upload a maximum of 3 files at a time.');
+        }else{
+          alert('You can only upload a maximum of 3 files at a time')
           break;
         }
       }
@@ -107,10 +101,10 @@ export class UploadPlayerFileComponent {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
   onUpload() {
-    const ownedCompanies = this.userDetail?.owned_companies;
+    // const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     const name = this.leagueIdPass;
-    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${name}`;
+    const compnyclubnameStr = `${ownedClubs}/${name}`;
 
     // Loop through each file to upload
     this.files.forEach((file) => {

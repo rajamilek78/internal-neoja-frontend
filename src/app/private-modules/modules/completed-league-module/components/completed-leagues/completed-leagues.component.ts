@@ -79,18 +79,18 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
         this.userDetail = this.sharedUserService.getUser();
         console.log(this.userDetail);
         if (this.userDetail) {
-          const companyIDs = this.userDetail.owned_companies;
+          //const companyIDs = this.userDetail.owned_companies;
           const clubIDs = this.userDetail.owned_clubs;
           this.selectedClubID = clubIDs[0];
-          this.selectedCompanyID = companyIDs[0];
+          //this.selectedCompanyID = companyIDs[0];
         }
       });
   };
   // To get list of leagues
   getAllLeagues() {
-    const companyID = this.userDetail?.owned_companies;
+    //const companyID = this.userDetail?.owned_companies;
     const clubID = this.userDetail?.owned_clubs;
-    this.companyIDClubIDSTr = `${companyID}/${clubID}`;
+    this.companyIDClubIDSTr = `${clubID}`;
     const companyIDclubIDStr = `${this.companyIDClubIDSTr}/all`;
     this.commonService.getAllLeagues(`${companyIDclubIDStr}`).subscribe({
       next: (res: any) => {
@@ -140,7 +140,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
           this.rounds = Object.keys(res).map((key) => ({
             roundNumber: Number(key), // Convert key to number if needed
             roundDetails: res[key],
-            scoreLocked: res[key].header.score_locked, // Initialize scoreLocked to false for each round
+            scoreLocked: res[key].header?.score_locked // Initialize scoreLocked to false for each round
           }));
           console.log(this.rounds); // Log the rounds data here
         } else {
@@ -155,10 +155,10 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   }
 
   lockScore(roundID?) {
-    const ownedCompanies = this.userDetail?.owned_companies;
+    //const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;
     //const round = this.rounds.find(round => round.roundNumber === roundID);
-    const compnyclubnameStr = `${ownedCompanies}/${ownedClubs}/${this.selectedLeague}/${roundID}`;
+    const compnyclubnameStr = `${ownedClubs}/${this.selectedLeague}/${roundID}`;
     this.commonService.lockScore(compnyclubnameStr).subscribe({
       next: (res: any) => {
         console.log(res);
@@ -186,8 +186,8 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
       },
     });
   }
-  getAllClubs(companyID: string) {
-    this.commonService.getAllClubs(`${companyID}/all`).subscribe({
+  getAllClubs() {
+    this.commonService.getAllClubs('all').subscribe({
       next: (resp: any) => {
         this.clubs = resp;
       },
