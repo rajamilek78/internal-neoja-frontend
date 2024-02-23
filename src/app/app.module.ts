@@ -13,6 +13,7 @@ import { AboutUsPageComponent } from './public-modules/components/about-us/about
 import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
 import { API_ENDPOINTS } from './helpers/constants/api-constants';
 import { CoreModule } from "./core";
+import { DateFormatDirective } from './helpers/directives/date-format.directive';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CoreModule } from "./core";
     FooterComponent,
     ContactUsPageComponent,
     AboutUsPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    DateFormatDirective
   ],
   imports: [
     BrowserModule,
