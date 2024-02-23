@@ -8,9 +8,10 @@
   text-decoration: none;
   letter-spacing: unset !important;
 }
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none !important;
+  -webkit-appearance: none !important;
 }
 
 html {
@@ -558,6 +559,10 @@ textarea {
     img {
       width: 100%;
     }
+
+    @include respond("phone") {
+      display: none;
+    }
   }
 
   &__form {
@@ -602,6 +607,15 @@ textarea {
         margin-top: 3.6rem !important;
       }
     }
+
+    @include respond("phone") {
+      margin-left: 0rem;
+      width: 100%;
+    }
+  }
+
+  @include respond("phone") {
+    flex-direction: column;
   }
 }
 
@@ -1046,6 +1060,10 @@ app-upload-player-container {
       font-weight: 500;
       line-height: 2.4rem;
     }
+  }
+
+  @include respond ("phone") {
+    width: 100%;
   }
 }
 
