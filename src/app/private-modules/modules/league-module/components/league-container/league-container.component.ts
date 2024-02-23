@@ -174,6 +174,9 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   saveRound() {
     this.router.navigate(['players-league/completed-leagues']);
   }
+  onCancel(){
+    this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
+  }
 
   onSelectionChange() {
     this.cdr.detectChanges();

@@ -41,14 +41,14 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
     })
   }
   createUpdateLeague(){
-    const formattedStartDate = this.formatDate(this.leagueCRUD_Form.value.start_date);
-    const formattedEndDate = this.formatDate(this.leagueCRUD_Form.value.end_date);
+    // const formattedStartDate = this.formatDate(this.leagueCRUD_Form.value.start_date);
+    // const formattedEndDate = this.formatDate(this.leagueCRUD_Form.value.end_date);
     
     // Updating the form values with formatted dates
-    this.leagueCRUD_Form.patchValue({
-      start_date: formattedStartDate,
-      end_date: formattedEndDate
-    });
+    // this.leagueCRUD_Form.patchValue({
+    //   start_date: formattedStartDate,
+    //   end_date: formattedEndDate
+    // });
     this.leagueService.createLeague(
       `${this.data.companyIDclubID}/${this.leagueCRUD_Form.value.name}`,
       this.leagueCRUD_Form.value).subscribe({
@@ -64,17 +64,17 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
   close(){
     this.dialog.close()
   }
-  formatDate(date: string | Date): string {
-    if (!date) return '';
+  // formatDate(date: string | Date): string {
+  //   if (!date) return '';
     
-    // Assuming input is in ISO string format, you may need to adjust this based on your date format
-    const d = new Date(date);
-    const month = '' + (d.getMonth() + 1);
-    const day = '' + d.getDate();
-    const year = d.getFullYear();
+  //   // Assuming input is in ISO string format, you may need to adjust this based on your date format
+  //   const d = new Date(date);
+  //   const month = '' + (d.getMonth() + 1);
+  //   const day = '' + d.getDate();
+  //   const year = d.getFullYear();
 
-    return [day.padStart(2, '0'), month.padStart(2, '0'), year].join('/');
-  }
+  //   return [day.padStart(2, '0'), month.padStart(2, '0'), year].join('/');
+  // }
   
   
 

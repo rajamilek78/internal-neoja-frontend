@@ -52,7 +52,7 @@
           </div>
           <div>
             <small>{{ file.name }}</small
-            ><span>({{ file.size / 1000000 | number : "1.2-2" }}) MB</span>
+            ><span>({{ file.size / 1024 | number : "1.2-2" }}) KB</span>
           </div>
         </div>
         <div>
