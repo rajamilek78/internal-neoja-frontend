@@ -35,8 +35,8 @@
                 <td class="green-font">{{player.value.won}}</td>
                 <!-- <td class="red-font">-7</td> -->
                 <td>{{player.value.win_percent}}</td>
-                <td *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
-                  <div class="flex justify-center">
+                <td class="flex justify-center">
+                  <div *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
                     <div class="status-square bg-red flex justify-center" [ngClass]="{'bg-green': winLose === '1', 'bg-red': winLose === '0'}">
                       <img [src]="winLose === '1' ? 'assets/images/w-latter.svg' : 'assets/images/l-latter.svg'" alt="" />
                     </div>
@@ -72,8 +72,8 @@
                 <td class="green-font">{{player.value.won}}</td>
                 <!-- <td class="red-font">-7</td> -->
                 <td>{{player.value.win_percent}}</td>
-                <td *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
-                  <div class="flex justify-center">
+                <td class="flex justify-center">
+                  <div *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
                     <div class="status-square bg-red flex justify-center" [ngClass]="{'bg-green': winLose === '1', 'bg-red': winLose === '0'}">
                       <img [src]="winLose === '1' ? 'assets/images/w-latter.svg' : 'assets/images/l-latter.svg'" alt="" />
                     </div>
