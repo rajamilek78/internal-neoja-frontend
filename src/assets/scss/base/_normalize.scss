@@ -8,9 +8,10 @@
   text-decoration: none;
   letter-spacing: unset !important;
 }
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none !important;
+  -webkit-appearance: none !important;
 }
 
 html {
@@ -107,7 +108,6 @@ a {
 
 .disabled {
   opacity: 65%;
-  cursor: none !important;
 }
 
 .col-md-3 {
@@ -455,15 +455,17 @@ textarea {
 
     span {
       vertical-align: middle;
+
       // margin-right: 0.8rem;
-      img{
+      img {
         margin-right: 0.8rem;
       }
     }
   }
-  .td-cell{
-    span{
-      img{
+
+  .td-cell {
+    span {
+      img {
         // background-color: red;
         margin-right: 0.5rem !important;
       }
