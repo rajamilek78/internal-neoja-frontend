@@ -11,11 +11,10 @@
   </div>
   <div class="modal__body">
     <div>
-      <div><b>Are you sure that you want to lock the round?</b></div>
+      <div><b>Are you sure you want to lock the round ?</b></div>
       <div>
         <small
-          >Upon locking the round, you won’t be able to change it later on in
-          the future. You are requested to check it before locking.</small
+          >Upon confirmation, this round will get inserted into the database, and you won't be able to make any further changes.</small
         >
       </div>
     </div>
@@ -23,10 +22,10 @@
   <div class="modal__footer">
     <div class="flex justify-end">
       <div class="primary-btn">
-        <button type="button" class="btn" (click)="lockRound()">Yes, I’m sure</button>
+        <button type="button" class="btn" (click)="lockRound()">Yes</button>
       </div>
       <div class="secondary-btn-light">
-        <button type="button" class="btn" (click)="close()">No, I’ll go back</button>
+        <button type="button" class="btn" (click)="close()">No, I want to make changes.</button>
       </div>
     </div>
   </div>

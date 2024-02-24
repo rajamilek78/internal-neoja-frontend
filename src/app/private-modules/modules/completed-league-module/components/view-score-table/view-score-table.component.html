@@ -21,8 +21,9 @@
                 <th>Games Played</th>
                 <th class="green-font">+ Won</th>
                 <!-- <th class="red-font">- Losses</th> -->
+                <th>Rating</th>
                 <th>Win%</th>
-                <th>Result(Last 6)</th>
+                <th>History</th>
               </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                 <td>{{player.value.played}}</td>
                 <td class="green-font">{{player.value.won}}</td>
                 <!-- <td class="red-font">-7</td> -->
+                <td>{{player.value.rating}}</td>
                 <td>{{player.value.win_percent}}</td>
                 <td class="flex justify-center">
                   <div *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
@@ -58,8 +60,9 @@
                 <th>Games Played</th>
                 <th class="green-font">+ Won</th>
                 <!-- <th class="red-font">- Losses</th> -->
+                <th>Rating</th>
                 <th>Win%</th>
-                <th>Result(Last 6)</th>
+                <th>History</th>
               </tr>
             </thead>
             <tbody>
@@ -71,6 +74,7 @@
                 <td>{{player.value.played}}</td>
                 <td class="green-font">{{player.value.won}}</td>
                 <!-- <td class="red-font">-7</td> -->
+                <td>{{player.value.rating}}</td>
                 <td>{{player.value.win_percent}}</td>
                 <td class="flex justify-center">
                   <div *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
