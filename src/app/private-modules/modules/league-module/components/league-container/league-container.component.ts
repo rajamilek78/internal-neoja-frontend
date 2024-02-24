@@ -191,26 +191,26 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   }
 
   downloadTableAsPDF() {
-    // debugger;
-    // const data = document.getElementById('playerData'); // Replace with the id of your table
-    // if (data) {
-    //   html2canvas(data, { scale: 2 }).then((canvas) => {
-    //     // Few necessary setting options
-    //     const imgWidth = 208;
-    //     const pageHeight = 295;
-    //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    //     const heightLeft = imgHeight;
+    debugger;
+    const data = document.getElementById('playerData'); // Replace with the id of your table
+    if (data) {
+      html2canvas(data, { scale: 2 }).then((canvas) => {
+        // Few necessary setting options
+        const imgWidth = 208;
+        const pageHeight = 295;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const heightLeft = imgHeight;
 
-    //     const contentDataURL = canvas.toDataURL('image/png');
-    //     const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-    //     const position = 0;
-    //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-    //     pdf.save('TableData.pdf'); // Generated PDF
-    //   });
-    // } else {
-    //   console.error('Element not found');
-    // }
-    this.printRoundComponent.print();
+        const contentDataURL = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+        const position = 0;
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        pdf.save('TableData.pdf'); // Generated PDF
+      });
+    } else {
+      console.error('Element not found');
+    }
+    // this.printRoundComponent.print();
   }
   // downloadTableAsPDF() {
   //   const doc = new jsPDF();

@@ -1,22 +1,25 @@
-<div class="panel">
-    <table id="print">
-        <thead>
-            <tr>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Lorem</td>
-                <td>Ipsum</td>
-                <td>Lorem</td>
-                <td>Impsum</td>
-                <td>Lorem</td>
-            </tr>
-        </tbody>
-    </table>
+<div>
+    <div id="print">
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Match</th>
+                        <th colspan="2">Players</th>
+                        <th>Score</th>
+                        <th>Bye</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let game of data.data">
+                        <td rowspan="2">{{game | json}}</td>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td rowspan="2"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </div>

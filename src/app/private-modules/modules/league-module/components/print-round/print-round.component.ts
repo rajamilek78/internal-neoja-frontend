@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgxPrintService,PrintOptions } from 'ngx-print';
 
 @Component({
@@ -6,15 +6,22 @@ import { NgxPrintService,PrintOptions } from 'ngx-print';
   templateUrl: './print-round.component.html',
   styleUrl: './print-round.component.scss'
 })
-export class PrintRoundComponent {
+export class PrintRoundComponent implements OnInit{
   constructor(private printService : NgxPrintService){}
+ @Input() data : any;
+  
+
+  ngOnInit(): void {
+    this.data = this.data.JSON;
+    
+  }
   print(){
     const printOptions : PrintOptions = {
-      printSectionId: '#print',
+      printSectionId: 'print',
       printTitle: '',
       useExistingCss: false,
       bodyClass: '',
-      openNewTab: true,
+      openNewTab: false,
       previewOnly: false,
       closeWindow: false,
       printDelay: 0
