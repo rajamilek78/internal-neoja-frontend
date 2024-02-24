@@ -22,7 +22,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="dropdown">
+        <div class="dropdown" style="width: 500px;">
           <div><label>League</label></div>
           <mat-form-field>
             <mat-select
@@ -42,6 +42,7 @@
           type="button"
           class="btn flex justify-center"
           (click)="viewScore()"
+          [disabled]="!allRoundsLocked()"
         >
           <span><img src="assets/images/view-score-icon.svg" alt="" /></span
           >View Score

@@ -462,6 +462,14 @@ textarea {
       }
     }
   }
+  .td-cell{
+    span{
+      img{
+        // background-color: red;
+        margin-right: 0.5rem !important;
+      }
+    }
+  }
 
   .name-cell {
     color: rgba($black-color, 0.5) !important;
