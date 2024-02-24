@@ -7,9 +7,9 @@
         </a>
       </div>
       <div *ngIf="isLoggedIn">
-        <span><a [routerLink]="buildLeagueUrl" routerLinkActive="active">Build Round</a></span>
-        <span><a [routerLink]="completedLeague" routerLinkActive="active">Completed Leagues</a></span>
         <span><a [routerLink]="leagueList" routerLinkActive="active">Leagues</a></span>
+        <span><a [routerLink]="buildLeagueUrl" routerLinkActive="active">Build Round</a></span>
+        <span><a [routerLink]="completedLeague" routerLinkActive="active">Scoreboard</a></span>
       </div>
       <div class="flex justify-center">
         <div *ngIf="!isLoggedIn">
