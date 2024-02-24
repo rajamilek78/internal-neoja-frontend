@@ -18,7 +18,7 @@
                 {{ game[0] }}
               </div>
               <div class="flex justify-space-even width-100" *ngFor="let player of group.data.group_details.players">
-                <div class="cell">
+                <div class="td-cell cell">
                   <span>
                     <img *ngIf="game[1].server === player" src="assets/images/serve-active-icon.svg" alt="" />
                     <img *ngIf="game[1].server !== player && game[1].team_1.indexOf(player)>-1"
@@ -32,8 +32,9 @@
                   <span *ngIf="game[1].bye.indexOf(player)>-1">
                     <img src="assets/images/bye-default-icon.svg" alt="" />
                   </span>
-                  ⁠ <input *ngIf="game[1].team_1.indexOf(player)>-1 && isEdit" type="text" class="format-two-input" [(ngModel)]="game[1].score.team_1" style="width: 50px;background-color: transparent;"/>
-                  <input *ngIf="game[1].team_2.indexOf(player)>-1 && isEdit" type="text" class="format-two-input" [(ngModel)]="game[1].score.team_2" style="width: 50px; background-color: transparent;"/> ⁠
+                  <!-- <input type="text" name="" id="" style="visibility: hidden;" class="format-two-input"> -->
+                  ⁠ <input *ngIf="game[1].team_1.indexOf(player)>-1 && isEdit" type="text" class="format-two-input" [(ngModel)]="game[1].score.team_1" style="width: 65px;background-color: transparent;"/>
+                  <input *ngIf="game[1].team_2.indexOf(player)>-1 && isEdit" type="text" class="format-two-input" [(ngModel)]="game[1].score.team_2" style="width: 65px; background-color: transparent;"/> ⁠
                 </div>
                 <!-- {{game[1].score | json}} -->
 
