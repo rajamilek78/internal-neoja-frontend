@@ -27,7 +27,7 @@
         >
       </div>
       <div class="flex justify-center">
-        <div><b>Welcome, John!</b></div>
+        <div><b>Welcome, {{userName}}!</b></div>
         <div *ngIf="!isLoggedIn">
           <a [routerLink]="loginUrl">
             <div class="primary-btn-light">
