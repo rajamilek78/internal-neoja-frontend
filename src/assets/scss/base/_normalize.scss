@@ -107,6 +107,7 @@ a {
 
 .disabled {
   opacity: 65%;
+  cursor: none !important;
 }
 
 .col-md-3 {
@@ -457,6 +458,14 @@ textarea {
       // margin-right: 0.8rem;
       img{
         margin-right: 0.8rem;
+      }
+    }
+  }
+  .td-cell{
+    span{
+      img{
+        // background-color: red;
+        margin-right: 0.5rem !important;
       }
     }
   }

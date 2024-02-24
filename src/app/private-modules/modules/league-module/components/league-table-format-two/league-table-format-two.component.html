@@ -18,7 +18,7 @@
                 {{ game[0] }}
               </div>
               <div class="flex justify-space-even width-100" *ngFor="let player of group.data.group_details.players">
-                <div class="cell">
+                <div class="td-cell cell">
                   <span>
                     <img *ngIf="game[1].server === player" src="assets/images/serve-active-icon.svg" alt=""  width="26px"/>
                     <img *ngIf="game[1].server !== player && game[1].team_1.indexOf(player)>-1"
