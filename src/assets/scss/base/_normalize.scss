@@ -1182,6 +1182,10 @@ app-upload-player-container {
 
     .col-md-6 {
       max-width: 45%;
+
+      @include respond ("phone") {
+        margin-top: 4rem;
+      }
     }
 
     h6 {
@@ -1223,10 +1227,15 @@ app-upload-player-container {
           line-height: 2.4rem;
         }
       }
+
+      @include respond ("phone") {
+        margin-top: 8rem;
+      }
     }
 
     @include respond ("phone") {
       flex-direction: column;
+      margin-top: 5rem;
     }
   }
 
@@ -1241,6 +1250,10 @@ app-upload-player-container {
       line-height: 6.7rem;
       letter-spacing: 0.2rem;
       word-spacing: 0.2rem;
+    }
+
+    @include respond ("phone") {
+      margin-top: 9rem;
     }
   }
 
@@ -1410,6 +1423,14 @@ app-upload-player-container {
 
       &:hover {
         color: $primary-color !important;
+      }
+    }
+  }
+
+  @include respond ("phone") {
+    .flex {
+      div {
+        flex: 50%;
       }
     }
   }
