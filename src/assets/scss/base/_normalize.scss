@@ -1434,10 +1434,8 @@ app-upload-player-container {
   }
 
   @include respond ("phone") {
-    .flex {
-      div {
-        flex: 50%;
-      }
+    .flex-1 {
+      flex: 50%;
     }
   }
 }
