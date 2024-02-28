@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div id="print">
         <div>
             <table>
@@ -22,4 +22,27 @@
         </div>
 
     </div>
+</div> -->
+<div id="print">
+<div *ngFor="let group of groups">
+    <h2>{{group.name}}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Match</th>
+                <th colspan="2">Players</th>
+                <th>Score</th>
+                <th>Bye</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let game of group.data.games">
+                <td>{{game}}</td>
+                <td colspan="2">{{group.data.games[game].team_1.join(', ')}} vs {{group.data.games[game].team_2.join(', ')}}</td>
+                <td>{{group.data.games[game].score.team_1}} : {{group.data.games[game].score.team_2}}</td>
+                <td>{{group.data.games[game].bye.join(', ')}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </div>

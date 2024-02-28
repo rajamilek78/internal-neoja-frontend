@@ -9,10 +9,11 @@ import { NgxPrintService,PrintOptions } from 'ngx-print';
 export class PrintRoundComponent implements OnInit{
   constructor(private printService : NgxPrintService){}
  @Input() data : any;
+ groups : any;
   
 
   ngOnInit(): void {
-    this.data = this.data.JSON;
+    this.groups = this.data.JSON;
     
   }
   print(){
