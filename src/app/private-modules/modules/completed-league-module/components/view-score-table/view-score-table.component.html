@@ -16,12 +16,12 @@
               <tr>
                 <th>Rank</th>
                 <th>Players</th>
+                <th>Rating%</th>
                 <th>Points Scored</th>
                 <th>Points Possible</th>
                 <th>Games Played</th>
                 <th class="green-font">+ Won</th>
                 <!-- <th class="red-font">- Losses</th> -->
-                <th>Rating%</th>
                 <th>Win%</th>
                 <th>History</th>
               </tr>
@@ -30,12 +30,12 @@
               <tr *ngFor="let player of round.value.individual | keyvalue; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{player.key}}</td>
+                <td>{{player.value.rating}}</td>
                 <td>{{player.value.points_scored}}</td>
                 <td>{{player.value.points_possible}}</td>
                 <td>{{player.value.played}}</td>
                 <td class="green-font">{{player.value.won}}</td>
                 <!-- <td class="red-font">-7</td> -->
-                <td>{{player.value.rating}}</td>
                 <td>{{player.value.win_percent}}</td>
                 <td class="flex justify-center">
                   <div *ngFor="let winLose of player.value.win_lose_history.split(',')">
@@ -55,12 +55,12 @@
               <tr>
                 <th>Rank</th>
                 <th>Players</th>
+                <th>Rating%</th>
                 <th>Points Scored</th>
                 <th>Points Possible</th>
                 <th>Games Played</th>
                 <th class="green-font">+ Won</th>
                 <!-- <th class="red-font">- Losses</th> -->
-                <th>Rating%</th>
                 <th>Win%</th>
                 <th>History</th>
               </tr>
@@ -69,12 +69,12 @@
               <tr *ngFor="let player of round.value.cumulative | keyvalue; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{player.key}}</td>
+                <td>{{player.value.rating}}</td>
                 <td>{{player.value.points_scored}}</td>
                 <td>{{player.value.points_possible}}</td>
                 <td>{{player.value.played}}</td>
                 <td class="green-font">{{player.value.won}}</td>
                 <!-- <td class="red-font">-7</td> -->
-                <td>{{player.value.rating}}</td>
                 <td>{{player.value.win_percent}}</td>
                 <td class="flex justify-center">
                   <div *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
