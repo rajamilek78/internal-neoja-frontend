@@ -91,6 +91,8 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   getMatchData() {
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.responseData = data;
+      console.log(data);
+      
 
       if (this.responseData) {
         this.groups = Object.keys(this.responseData.round.groups).map((key) => ({
