@@ -40,7 +40,7 @@ export class ViewScoreTableComponent implements OnInit{
         if (this.userDetail) {
           //const companyIDs = this.userDetail.owned_companies;
           const clubIDs = this.userDetail.owned_clubs;
-          this.selectedClubID = clubIDs[0];
+          this.selectedClubID = this.userDetail.club_id;
           //this.selectedCompanyID = companyIDs[0];
 
         }

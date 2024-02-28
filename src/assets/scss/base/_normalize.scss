@@ -266,6 +266,8 @@ a {
   }
 
   &__body {
+    overflow-y: auto;
+    height: 70vh;
     b {
       color: rgba($black-color, 0.5);
       font-size: 1.6rem;

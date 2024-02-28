@@ -14,6 +14,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   companyIDclubID = '';
+  clubID!: string ;
   leagues!: any[];
   constructor(
     private dialog: MatDialog,
@@ -35,15 +36,19 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedUserService.getUser();
+        if(this.userDetail){
+        this.clubID = this.userDetail?.club_id;
+      }
       });
   };
   // To get all league's list
   getAllLeagues() {
     //const companyID = this.userDetail?.owned_companies;
-    const clubID = this.userDetail?.owned_clubs;
-    this.companyIDclubID = `${clubID}`;
-    const companyIDclubID_Str = `${this.companyIDclubID}/all`;
-    this.commonService.getAllLeagues(`${companyIDclubID_Str}`).subscribe({
+    // const clubID = this.userDetail?.owned_clubs;
+    // this.companyIDclubID = `${clubID}`;
+    const urlString = `${this.clubID}/all`
+    // const companyIDclubID_Str = `${this.companyIDclubID}/all`;
+    this.commonService.getAllLeagues(`${urlString}`).subscribe({
       next: (res: any) => {
         this.leagues = Object.values(res);
       },
@@ -56,7 +61,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
   openDialogue(league?: any): void {
     const dialogueRef = this.dialog.open(CreateLeagueDialogComponent, {
       width: '450px',
-      data: { companyIDclubID: this.companyIDclubID, league: league },
+      data: { clubID: this.clubID, league: league },
     });
     dialogueRef.afterClosed().subscribe((result) => {
       this.getAllLeagues(); // refresh the leagues

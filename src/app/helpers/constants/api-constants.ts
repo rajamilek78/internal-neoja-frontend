@@ -19,7 +19,7 @@ export class API_ENDPOINTS{
     public static GET_COMPANY_BY_ID = `${COMPANY_URL}/get-company-by-id`;
 
     //Clubs
-    public static GET_CLUBS = `${COMPANY_URL}/get-clubs`;
+    public static GET_CLUBS = `${COMPANY_URL}/get-clubs/all`;
     public static GET_CLUB_BY_ID = `${COMPANY_URL}/get-club-by-id`;
 
     //Leagues

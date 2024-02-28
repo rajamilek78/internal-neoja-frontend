@@ -163,7 +163,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
 }
   lockScore(roundID?) {
     //const ownedCompanies = this.userDetail?.owned_companies;
-    const ownedClubs = this.userDetail?.owned_clubs;
+    // const ownedClubs = this.userDetail?.owned_clubs;
     //const round = this.rounds.find(round => round.roundNumber === roundID);
     const urlString = `${this.selectedClubID}/${this.selectedLeague}/${roundID}`
     this.commonService.lockScore(urlString).subscribe({
@@ -194,7 +194,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     });
   }
   getAllClubs() {
-    this.commonService.getAllClubs('all').subscribe({
+    this.commonService.getAllClubs().subscribe({
       next: (resp: any) => {
         this.clubs = resp;
       },

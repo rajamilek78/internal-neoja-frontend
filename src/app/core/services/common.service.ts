@@ -40,12 +40,12 @@ export class CommonService {
     return this.apiManager.postApis(`${API_ENDPOINTS.LOCK_SCORE}/${path}`, true)
   }
 
-  getAllClubs(path: string, token?: string): Observable<any> {
+  getAllClubs(token?: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
     const options = { headers: headers }
-    return this.http.get(`${API_ENDPOINTS.GET_CLUBS}/${path}`);
+    return this.http.get(`${API_ENDPOINTS.GET_CLUBS}`);
   }
 
   get(path: string, token?: string) {
