@@ -30,7 +30,7 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
   }
   initLeagueForm(){
     this.leagueCRUD_Form = this.createForm({
-      name: [''],
+      name: ['', [Validators.maxLength(60)]],
       description: ['',],
       start_date: [''],
       end_date: [''],
@@ -77,5 +77,8 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
   // }
   
   
+  get formControls() {
+    return this.leagueCRUD_Form.controls;
+  }
 
 }
