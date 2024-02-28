@@ -54,10 +54,10 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     // }
   }
   ngOnInit(): void {
-    if (performance.navigation.type > 2) {
-      // Redirect to the home page
-      this.router.navigate(['upload-players']);
-    }
+    // if (performance.navigation.type > 2) {
+    //   // Redirect to the home page
+    //   this.router.navigate(['upload-players']);
+    // }
     this.userSubscriber();
     this.route.params.subscribe((params) => {
       this.isEdit = params['isEdit'];
@@ -168,9 +168,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
         console.log(this.userDetail);
         if (this.userDetail) {
           //const companyIDs = this.userDetail.owned_companies;
-          const clubIDs = this.userDetail.owned_clubs;
-          this.selectedClubID = clubIDs[0];
-          //this.selectedCompanyID = companyIDs[0];
+          this.selectedClubID = this.userDetail.club_id
         }
       });
   };
