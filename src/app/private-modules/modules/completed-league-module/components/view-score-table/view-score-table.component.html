@@ -21,7 +21,7 @@
                 <th>Games Played</th>
                 <th class="green-font">+ Won</th>
                 <!-- <th class="red-font">- Losses</th> -->
-                <th>Rating</th>
+                <th>Rating%</th>
                 <th>Win%</th>
                 <th>History</th>
               </tr>
@@ -38,7 +38,7 @@
                 <td>{{player.value.rating}}</td>
                 <td>{{player.value.win_percent}}</td>
                 <td class="flex justify-center">
-                  <div *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
+                  <div *ngFor="let winLose of player.value.win_lose_history.split(',')">
                     <div class="status-square bg-red flex justify-center" [ngClass]="{'bg-green': winLose === '1', 'bg-red': winLose === '0'}">
                       <img [src]="winLose === '1' ? 'assets/images/w-latter.svg' : 'assets/images/l-latter.svg'" alt="" />
                     </div>
@@ -60,7 +60,7 @@
                 <th>Games Played</th>
                 <th class="green-font">+ Won</th>
                 <!-- <th class="red-font">- Losses</th> -->
-                <th>Rating</th>
+                <th>Rating%</th>
                 <th>Win%</th>
                 <th>History</th>
               </tr>

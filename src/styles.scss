@@ -116,3 +116,18 @@ $eleague-frontend-theme: mat.define-light-theme((color: (primary: $eleague-front
     top: 6px;
   }
 }
+
+table{
+  th{
+    font-weight: 700 !important;
+  }
+
+  td{
+    color: #000 !important;
+  }
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+  font-weight: 500 !important;
+  color: #8a8a8a !important;
+}
