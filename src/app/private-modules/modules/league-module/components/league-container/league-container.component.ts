@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { SharedCommonService } from '../../../../../core/services/shared-common.service';
 import { jsPDF } from 'jspdf';
@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { SharedUserService } from '@app/core';
 import { RouteConstant } from '@app/helpers/constants';
+import { PrintRoundComponent } from '../print-round/print-round.component';
 
 @Component({
   selector: 'app-league-container',
@@ -21,6 +22,7 @@ import { RouteConstant } from '@app/helpers/constants';
   styleUrl: './league-container.component.scss',
 })
 export class LeagueContainerComponent implements OnInit, AfterViewInit{
+  @ViewChild(PrintRoundComponent) printRoundComponent! : PrintRoundComponent;
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   groups: any;
@@ -189,7 +191,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   }
 
   downloadTableAsPDF() {
-    // debugger;
+    debugger;
     const data = document.getElementById('playerData'); // Replace with the id of your table
     if (data) {
       html2canvas(data, { scale: 2 }).then((canvas) => {
@@ -208,6 +210,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     } else {
       console.error('Element not found');
     }
+    // this.printRoundComponent.print();
   }
   // downloadTableAsPDF() {
   //   const doc = new jsPDF();

@@ -143,6 +143,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
             scoreLocked: res[key].header?.score_locked // Initialize scoreLocked to false for each round
           }));
           console.log(this.rounds); // Log the rounds data here
+          this.allRoundsLocked();
         } else {
           this.rounds = [];
           console.log('No rounds data received');
@@ -153,7 +154,12 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
       },
     });
   }
-
+  allRoundsLocked() {
+    if (this.rounds && this.rounds.length > 0) {
+        return this.rounds.every(round => round.scoreLocked);
+    }
+    return false;
+}
   lockScore(roundID?) {
     //const ownedCompanies = this.userDetail?.owned_companies;
     const ownedClubs = this.userDetail?.owned_clubs;

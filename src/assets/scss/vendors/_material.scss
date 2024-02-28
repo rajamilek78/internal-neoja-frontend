@@ -126,15 +126,15 @@ mat-radio-button {
 }
 
 // calendar
-.mat-calendar-body-selected{
+.mat-calendar-body-selected {
   background: $primary-color !important;
 }
 
-.mat-calendar-body-in-range::before{
+.mat-calendar-body-in-range::before {
   background-color: rgba($primary-color, 0.2) !important;
 }
 
-.mat-date-range-input-mirror{
+.mat-date-range-input-mirror {
   color: rgba($black-color, 0.6) !important;
 }
 
@@ -236,7 +236,7 @@ mat-snack-bar-container {
   border-color: $primary-color !important;
 }
 
-.form-control{
+.form-control {
   height: 10rem;
 }
 
@@ -263,6 +263,7 @@ app-conversation-list {
 .mat-mdc-tab-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
   align-self: flex-start;
+  width: 100%;
 }
 
 .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
@@ -338,16 +339,18 @@ app-conversation-list {
 
 // dropdown scss
 
-.dropdown, .form-control {
+.dropdown,
+.form-control {
   @include placeholderWithFontSize(rgba($black-color, 0.3), 1.4rem, normal);
 
-  .mat-mdc-select-value{
+  .mat-mdc-select-value {
     font-size: 1.4rem;
   }
 
-  .mdc-text-field--filled:not(.mdc-text-field--disabled){
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: #f1f1f1 !important;
   }
+
   .mat-mdc-form-field {
     height: 5rem !important;
   }
@@ -379,8 +382,8 @@ app-conversation-list {
   color: $primary-color !important;
 }
 
-.mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, 
-.mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple{
+.mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,
+.mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple {
   background-color: $primary-color !important;
 }
 
@@ -388,7 +391,7 @@ app-conversation-list {
   color: $primary-color !important;
 }
 
-mat-checkbox .mdc-label{
+mat-checkbox .mdc-label {
   position: relative;
   top: 2px;
 }
@@ -412,16 +415,16 @@ mat-checkbox .mdc-label{
   border-radius: 1.6rem;
 }
 
-.mdc-switch__icon--off{
-  path{
+.mdc-switch__icon--off {
+  path {
     display: none;
   }
 }
 
-.mdc-switch:enabled .mdc-switch__track::after{
+.mdc-switch:enabled .mdc-switch__track::after {
   background-color: rgba($primary-color, 0.35) !important;
 }
 
-.mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after{
+.mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
   background-color: $primary-color !important;
 }

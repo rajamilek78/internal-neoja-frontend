@@ -463,6 +463,15 @@ textarea {
     }
   }
 
+  .td-cell {
+    span {
+      img {
+        // background-color: red;
+        margin-right: 0.5rem !important;
+      }
+    }
+  }
+
   .name-cell {
     color: rgba($black-color, 0.5) !important;
     height: 6.6rem;
@@ -916,45 +925,42 @@ app-upload-player-container {
   }
 }
 
-.table-format-two {
+.table-footer {
+  background-color: rgba($black-color, 0.05);
+  border-bottom: 1px solid rgba($black-color, 0.1);
+  border-left: 1px solid rgba($black-color, 0.1);
+  border-right: 1px solid rgba($black-color, 0.1);
+  border-radius: 0rem 0rem 1.2rem 1.2rem;
+  padding: 2rem;
 
-  .table-footer {
-    background-color: rgba($black-color, 0.05);
-    border-bottom: 1px solid rgba($black-color, 0.1);
-    border-left: 1px solid rgba($black-color, 0.1);
-    border-right: 1px solid rgba($black-color, 0.1);
-    border-radius: 0rem 0rem 1.2rem 1.2rem;
-    padding: 2rem;
+  span {
+    color: $primary-color;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.9rem;
 
-    span {
-      color: $primary-color;
-      font-size: 1.6rem;
-      font-weight: 800;
-      line-height: 1.9rem;
-
-      img {
-        vertical-align: middle;
-        width: 2.4rem;
-        margin-right: 1.6rem;
-      }
+    img {
+      vertical-align: middle;
+      width: 2.4rem;
+      margin-right: 1.6rem;
     }
+  }
 
-    .flex {
-      div {
-        margin-left: 3.2rem;
+  .flex {
+    div {
+      margin-left: 3.2rem;
 
-        span {
-          img {
-            margin-right: 1rem;
-          }
+      span {
+        img {
+          margin-right: 1rem;
         }
+      }
 
-        small {
-          color: $primary-color;
-          font-size: 1.6rem;
-          font-weight: 700;
-          line-height: 1.9rem;
-        }
+      small {
+        color: $primary-color;
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.9rem;
       }
     }
   }
