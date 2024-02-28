@@ -1,3 +1,13 @@
+export interface ScoreModel {
+    [round: string]: RoundScore;
+}
+export interface RoundScore {
+    cumulative: Players;
+    individual: Players;
+}
+export interface Players {
+    [playerName: string]: PlayerScore;
+}
 export interface PlayerScore {
     played: number;
     points_possible: number;
@@ -8,15 +18,5 @@ export interface PlayerScore {
     win_lose_history : string;
 }
 
-export interface Players {
-    [playerName: string]: PlayerScore;
-}
 
-export interface RoundScore {
-    cumulative: Players;
-    individual: Players;
-}
 
-export interface ScoreModel {
-    [round: string]: RoundScore;
-}
