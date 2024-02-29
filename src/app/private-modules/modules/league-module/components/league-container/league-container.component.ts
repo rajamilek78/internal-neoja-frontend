@@ -33,8 +33,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   //selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
-  roundID: string = '';
-  
+  roundID: string = '';  
   groupsArrayToBeUpdated: any[] = [];
 
   constructor(
@@ -191,7 +190,6 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   }
 
   downloadTableAsPDF() {
-    debugger;
     const data = document.getElementById('playerData'); // Replace with the id of your table
     if (data) {
       html2canvas(data, { scale: 2 }).then((canvas) => {

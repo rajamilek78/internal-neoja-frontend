@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouteConstant } from '@app/helpers/constants';
 
 @Component({
   selector: 'app-home-page',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
-
+  get loginUrl(){
+    return `${RouteConstant.LOGIN}`;
+  }
 }
