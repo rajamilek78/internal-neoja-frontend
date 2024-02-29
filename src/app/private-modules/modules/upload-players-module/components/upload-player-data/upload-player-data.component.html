@@ -74,7 +74,7 @@
           <div
             *ngFor="let player of players.controls; let i = index"
             [formGroupName]="i"
-            class="round-one flex justify-end MT-2-half"
+            class="round-two flex justify-end MT-2-half"
           >
             <div class="row-field">
               <mat-form-field>
@@ -97,6 +97,19 @@
                   required
                 />
               </mat-form-field>
+            </div>
+            <div class="row-field-two" *ngIf="roundsLength >= 1">
+              <!-- Display win/lose history -->
+              <div class="flex" >
+                <ng-container *ngIf="player.value.winLoseHistory">
+                  <div *ngFor="let winLose of player.value.winLoseHistory">
+                    <div class="status-square bg-red flex justify-center" [ngClass]="{'bg-green': winLose === '1', 'bg-red': winLose === '0'}">
+                      <img [src]="winLose === '1' ? 'assets/images/w-latter.svg' : 'assets/images/l-latter.svg'" alt="" />
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+              
             </div>
             <!-- <div *ngIf="isRoundTwo" class="row-field-two">
               <mat-form-field>

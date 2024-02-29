@@ -216,6 +216,20 @@ a {
 .width-80 {
   width: 0.9rem !important;
 }
+.bg-green {
+  background-color: rgba($green-color, 0.05);
+}
+
+.bg-red {
+  background-color: rgba($red-color, 0.05);
+}
+
+.status-square {
+  height: 2.4rem;
+  width: 2.4rem;
+  border-radius: 0.4rem;
+  margin-right: 0.4rem;
+}
 
 // img or icon btn scss
 .primary-btn,
@@ -1023,20 +1037,7 @@ app-upload-player-container {
 }
 
 .view-score-table {
-  .bg-green {
-    background-color: rgba($green-color, 0.05);
-  }
-
-  .bg-red {
-    background-color: rgba($red-color, 0.05);
-  }
-
-  .status-square {
-    height: 2.4rem;
-    width: 2.4rem;
-    border-radius: 0.4rem;
-    margin-right: 0.4rem;
-  }
+ 
 
   .table-2 {
 

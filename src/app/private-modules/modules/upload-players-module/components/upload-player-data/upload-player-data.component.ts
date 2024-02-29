@@ -115,15 +115,16 @@ export class UploadPlayerDataComponent implements OnInit {
           ) {
             const playerData =
               this.leagueSummaryData.league_summary[playerName];
+              const winLoseHistory = playerData.win_lose_history ? playerData.win_lose_history.split(',').reverse() : [];
 
             const playerGroup = this.fb.group({
               name: [
                 { value: playerName, disabled: true },
                 Validators.required,
               ],
-              score: [{ value: playerData.points_scored, disabled: true }, Validators.required],
-              dropIn: [playerData['drop-in']],
-              noShow: [playerData['no-show']],
+              score: [{ value: playerData.rating, disabled: true }, Validators.required],
+              winLoseHistory: [{ value: winLoseHistory, disabled: true }]
+              
             });
 
             playersArray.push(playerGroup);
@@ -168,33 +169,106 @@ export class UploadPlayerDataComponent implements OnInit {
       }
     }
   }
-  submitData(): void {
-    //const ownedCompanies = this.userDetail?.owned_companies;
-    // const ownedClubs = this.userDetail?.owned_clubs;
-    // const name = this.leagueID;
-    const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
-    const playerData = {
-      day: 4,
-      date: "02/05/2024",
-      players: {}
-    };
-    this.playerForm.getRawValue().players.forEach(player => {
-      playerData.players[player.name] = player.score;
-    });
+  // submitData(): void {
+  //   //const ownedCompanies = this.userDetail?.owned_companies;
+  //   // const ownedClubs = this.userDetail?.owned_clubs;
+  //   // const name = this.leagueID;
+  //   const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
+  //   const playerData = {
+  //     day: 4,
+  //     date: "02/05/2024",
+  //     players: {}
+  //   };
+  //   this.playerForm.getRawValue().players.forEach(player => {
+  //     playerData.players[player.name] = player.score;
+  //   });
+  //   if(this.roundsLength > 1){
+  //     this.playerForm.getRawValue().players.forEach(player => {
+  //       playerData.players[player.name] = {
+  //         rating: player.rating,
+  //         in_round1: player.in_round1,
+  //         is_deleted: false // Assuming no players are deleted by default
+  //       };
+  //     });
+  //     this.commonservice.uploadDataRound2(clubLeagueStr, playerData).subscribe({
+  //       next: (res: any) => {
+  //         this.SharedCommonService.setMatchData(res);
+  //         // localStorage.setItem('matchData', JSON.stringify(res));
+  //         this.router.navigate([RouteConstant.LEAGUE_CONTAINER,{selectedLeague: this.leagueID}]);
+  //       },
+  //       error: (err: any) => {
+  //         console.log(err);
+  //       },
+  //     });
+  //   }
   
-    // const playerData = this.playerForm.getRawValue().players.reduce((obj, player) => {
-    //   obj[player.name] = player.score;
-    //   return obj;
-    // }, {});
-    this.commonservice.uploadData(clubLeagueStr, playerData).subscribe({
-      next: (res: any) => {
-        this.SharedCommonService.setMatchData(res);
-        // localStorage.setItem('matchData', JSON.stringify(res));
-        this.router.navigate([RouteConstant.LEAGUE_CONTAINER,{selectedLeague: this.leagueID}]);
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-    });
+  //   // const playerData = this.playerForm.getRawValue().players.reduce((obj, player) => {
+  //   //   obj[player.name] = player.score;
+  //   //   return obj;
+  //   // }, {});
+  //   this.commonservice.uploadData(clubLeagueStr, playerData).subscribe({
+  //     next: (res: any) => {
+  //       this.SharedCommonService.setMatchData(res);
+  //       // localStorage.setItem('matchData', JSON.stringify(res));
+  //       this.router.navigate([RouteConstant.LEAGUE_CONTAINER,{selectedLeague: this.leagueID}]);
+  //     },
+  //     error: (err: any) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
+  submitData(): void {
+    const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
+  
+    if (this.roundsLength > 1) {
+      const playerDataRound2 = {
+        day: 4,
+        date: "02/05/2024",
+        players: {}
+      };
+  
+      // Loop through players in the form
+      this.playerForm.getRawValue().players.forEach(player => {
+        playerDataRound2.players[player.name] = {
+          rating: player.score,
+          in_round1: player.in_round1,
+          is_deleted: player.isDeleted || false // Mark the player as deleted if needed
+        };
+      });
+  
+      // Upload data for round 2
+      this.commonservice.uploadDataRound2(clubLeagueStr, playerDataRound2).subscribe({
+        next: (res: any) => {
+          this.SharedCommonService.setMatchData(res);
+          this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { selectedLeague: this.leagueID }]);
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+      });
+    } else {
+      const playerData = {
+        day: 4,
+        date: "02/05/2024",
+        players: {}
+      };
+  
+      // Loop through players in the form
+      this.playerForm.getRawValue().players.forEach(player => {
+        playerData.players[player.name] = player.score;
+      });
+  
+      // Upload data for round 1
+      this.commonservice.uploadData(clubLeagueStr, playerData).subscribe({
+        next: (res: any) => {
+          this.SharedCommonService.setMatchData(res);
+          this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { selectedLeague: this.leagueID }]);
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+      });
+    }
   }
+  
 }

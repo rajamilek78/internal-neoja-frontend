@@ -9,6 +9,7 @@ export class API_ENDPOINTS{
     //upload player's data 
 
     public static UPLOAD_DATA = `${COMMON_URL}/upload-by-data`;
+    public static UPLOAD_DATA_Round2 = `${COMMON_URL}/upload-by-data-round2`;
     public static UPLOAD_FILE = `${COMMON_URL}/upload-by-file`;
     public static UPLOAD_CSV = `${COMMON_URL}/csv`;
 
