@@ -13,4 +13,7 @@ export class LeagueService {
   createLeague(path : string,data : any): Observable <any>{
     return this.apiManager.postApis(`${API_ENDPOINTS.CREATE_LEAGUE}/${path}`, data, true)
   }
+  updateLeague(path : string,data : any): Observable <any>{
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPDATE_LEAGUE}/${path}`, data, true)
+  }
 }
