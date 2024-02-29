@@ -25,7 +25,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.createForm({
-      email: ['jaichenchlani@gmail.com', [Validators.required]],
+      email: ['aminraiyani@gmail.com', [Validators.required]],
       password: ['abc@123', Validators.required],
       
     })
