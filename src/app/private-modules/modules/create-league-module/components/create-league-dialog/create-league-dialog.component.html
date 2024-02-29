@@ -1,18 +1,27 @@
-<form class="modal" [formGroup]="leagueCRUD_Form" (ngSubmit)="createUpdateLeague()">
+<form
+  class="modal"
+  [formGroup]="leagueCRUD_Form"
+  (ngSubmit)="createUpdateLeague()"
+>
   <div class="modal__header flex justify-between">
-    <h6>{{data.league ? 'Edit' : 'Add'}} League</h6>
+    <h6>{{ data.league ? "Edit" : "Add" }} League</h6>
     <div>
-      <span (click)="close()"><img src="assets/images/close-icon.svg" alt="" /></span>
+      <span (click)="close()"
+        ><img src="assets/images/close-icon.svg" alt=""
+      /></span>
     </div>
   </div>
-  <div class="modal__body">
+  <div class="modal__body height">
     <div class="form-control">
       <label>Name</label>
       <mat-form-field>
-        <input type="text" matInput placeholder="Enter Name" formControlName="name">
-        <mat-error
-          *ngIf="isValidLength(formControls['name'])"
-        >
+        <input
+          type="text"
+          matInput
+          placeholder="Enter Name"
+          formControlName="name"
+        />
+        <mat-error *ngIf="isValidLength(formControls['name'])">
           Name max length 60 characters.
         </mat-error>
       </mat-form-field>
@@ -22,10 +31,23 @@
       <label>Start Date - End Date</label>
       <mat-form-field>
         <mat-date-range-input [rangePicker]="picker">
-          <input (click)="picker.open()" matStartDate placeholder="Start date" formControlName="start_date">
-          <input (click)="picker.open()" matEndDate placeholder="End date" formControlName="end_date">
+          <input
+            (click)="picker.open()"
+            matStartDate
+            placeholder="Start date"
+            formControlName="start_date"
+          />
+          <input
+            (click)="picker.open()"
+            matEndDate
+            placeholder="End date"
+            formControlName="end_date"
+          />
         </mat-date-range-input>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
       <!-- <mat-form-field appearance="outline">
@@ -41,8 +63,8 @@
       <label>Rounds/day</label>
       <mat-form-field>
         <mat-select placeholder="Select" formControlName="rounds_per_day">
-          <mat-option value=1>1</mat-option>
-          <mat-option value=2>2</mat-option>
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -59,10 +81,13 @@
     <div class="form-control dropdown">
       <label>Description</label>
       <mat-form-field>
-        <input type="text" matInput placeholder="Enter Description" formControlName="description">
-        <mat-error
-          *ngIf="isValidLength(formControls['description'])"
-        >
+        <input
+          type="text"
+          matInput
+          placeholder="Enter Description"
+          formControlName="description"
+        />
+        <mat-error *ngIf="isValidLength(formControls['description'])">
           Description max length 500 characters.
         </mat-error>
       </mat-form-field>
@@ -70,7 +95,9 @@
 
     <div>
       <mat-checkbox formControlName="dupr_recorded">Dupr Rec.</mat-checkbox>
-      <mat-checkbox class="ML-2" formControlName="doubles">Doubles</mat-checkbox>
+      <mat-checkbox class="ML-2" formControlName="doubles"
+        >Doubles</mat-checkbox
+      >
     </div>
   </div>
 
