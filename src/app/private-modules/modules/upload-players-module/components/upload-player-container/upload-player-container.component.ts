@@ -19,6 +19,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   userDetail!: UserModel | null;
   leagues: any[] = [];
   selectedLeague!: string;
+  selectedDate! : Date;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -27,6 +28,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.selectedDate = new Date();
     this.userSubscriber();
     this.getAllLeagues();    
   }

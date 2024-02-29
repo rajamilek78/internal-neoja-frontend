@@ -33,8 +33,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   //selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
-  roundID: string = '';
-  
+  roundID: string = '';  
   groupsArrayToBeUpdated: any[] = [];
 
   constructor(
