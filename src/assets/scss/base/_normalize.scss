@@ -663,6 +663,20 @@ app-upload-player-container {
 }
 
 .upload {
+
+  .alert-msg{
+    margin-top: 3.4rem;
+    padding: 1.6rem;
+    background-color: rgba($yellow-color ,0.05);
+    border-radius: 1.2rem;
+    width: fit-content;
+    p{
+      color: $yellow-color;
+      font-size: 1.4rem;
+      margin-left: 1.6rem;
+    }
+  }
+
   &__section {
     border: 2px dashed rgba($black-color, 0.1);
     padding: 4rem;

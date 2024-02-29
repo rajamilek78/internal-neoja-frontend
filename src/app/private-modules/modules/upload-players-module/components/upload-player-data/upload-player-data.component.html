@@ -1,62 +1,4 @@
-<!-- <div [formGroup]="form">
-  <div class="upload-by-data">
-    <div class="upload">
-      <div class="upload__data">
-        <div class="row player-panel align-center justify-between">
-          <div class="col-md-6 PL-0">
-            <small>Players</small>
-          </div>
-          
-          <div class="col-md-6 PR-0">
-            <div class="flex justify-start align-start">
-              <div class="dropdown">  c
-                <mat-form-field>
-                  <mat-select [(value)]="playerCount" (valueChange)="onPlayerCountChange($event)">
-                    <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">{{i}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="primary-btn-dark">
-                <button class="btn flex justify-center" (click)="addPlayer()">
-                  <span><img src="assets/images/add-icon.svg" alt="" /></span>Add
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div formArrayName="players">
-          <div *ngFor="let player of players.controls; let i = index" [formGroupName]="i" class="flex justify-start MT-2-half">
-            <div class="row-field">
-              <mat-form-field>
-                <input matInput type="text" formControlName="name" placeholder="Enter your name" required />
-              </mat-form-field>
-            </div>
-            <div class="row-field">
-              <mat-form-field>
-                <input matInput type="text" formControlName="score" placeholder="Enter your score" required/>
-              </mat-form-field>
-            </div>
-            <div>
-              <div class="delete-icon flex justify-center">
-                <img src="assets/images/delete-icon.svg" alt="" (click)="deletePlayer(i)" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="upload__button flex justify-end">
-        <div class="primary-btn-dark">
-          <button (click)="submitData()" type="button" class="btn">Save</button>
-        </div>
-        <div class="secondary-btn-light">
-          <button type="button" class="btn">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
-<!-- static  -->
 <div [formGroup]="playerForm">
   <div class="upload-by-data">
     <div class="upload">
@@ -129,31 +71,6 @@
                 </ng-container>
               </div>
             </div>
-            <!-- <div *ngIf="isRoundTwo" class="row-field-two">
-              <mat-form-field>
-                <input
-                  matInput
-                  type="text"
-                  formControlName="score"
-                  placeholder="NA"
-                  required
-                />
-              </mat-form-field>
-            </div> -->
-            <!-- <div class="flex" *ngIf="roundsLength >= 1">
-              <div class="row-field-two toggle-square">
-                <mat-slide-toggle class="example-margin" [disabled]="isNoShowDisabled">
-                  No Show
-                </mat-slide-toggle>
-              </div>
-            </div>
-            <div class="flex" *ngIf="roundsLength >= 1">
-              <div class="row-field-two toggle-square">
-                <mat-slide-toggle class="example-margin"  [disabled]="isDropInDisabled">
-                  Drop In
-                </mat-slide-toggle>
-              </div>
-            </div> -->
             <div>
               <button
                 (click)="deletePlayer(i)"
@@ -174,6 +91,14 @@
           <button (click)="submitData()" type="button" class="btn">
             Build
           </button>
+        </div>
+      </div>
+      <div class="flex justify-end alert-msg">
+        <div>
+          <span><img src="assets/images/alert-yellow-icon.svg" alt=""></span>
+        </div>
+        <div>
+          <p>Manually key-in rating % to place the drop-in players appropriately. Use the current rating % and win-lose history to estimate.</p>
         </div>
       </div>
     </div>
