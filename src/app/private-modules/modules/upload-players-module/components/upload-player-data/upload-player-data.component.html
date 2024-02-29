@@ -85,6 +85,12 @@
                   placeholder="Enter your name"
                   required
                 />
+                <div class="round-one-icon">
+                  <img
+                    src="../../../../../../assets/images/round-one-icon.svg"
+                    alt=""
+                  />
+                </div>
               </mat-form-field>
             </div>
             <div class="row-field-two">
@@ -100,16 +106,28 @@
             </div>
             <div class="row-field-two" *ngIf="roundsLength >= 1">
               <!-- Display win/lose history -->
-              <div class="flex" >
+              <div class="flex justify-center">
                 <ng-container *ngIf="player.value.winLoseHistory">
                   <div *ngFor="let winLose of player.value.winLoseHistory">
-                    <div class="status-square bg-red flex justify-center" [ngClass]="{'bg-green': winLose === '1', 'bg-red': winLose === '0'}">
-                      <img [src]="winLose === '1' ? 'assets/images/w-latter.svg' : 'assets/images/l-latter.svg'" alt="" />
+                    <div
+                      class="status-square bg-red flex justify-center"
+                      [ngClass]="{
+                        'bg-green': winLose === '1',
+                        'bg-red': winLose === '0'
+                      }"
+                    >
+                      <img
+                        [src]="
+                          winLose === '1'
+                            ? 'assets/images/w-latter.svg'
+                            : 'assets/images/l-latter.svg'
+                        "
+                        alt=""
+                      />
                     </div>
                   </div>
                 </ng-container>
               </div>
-              
             </div>
             <!-- <div *ngIf="isRoundTwo" class="row-field-two">
               <mat-form-field>
@@ -137,11 +155,11 @@
               </div>
             </div> -->
             <div>
-              <button (click)="deletePlayer(i)" class="delete-icon flex justify-center">
-                <img
-                  src="assets/images/delete-icon.svg"
-                  alt=""
-                />
+              <button
+                (click)="deletePlayer(i)"
+                class="delete-icon flex justify-center"
+              >
+                <img src="assets/images/delete-icon.svg" alt="" />
               </button>
             </div>
           </div>
@@ -153,7 +171,9 @@
       </div>
       <div class="upload__button flex justify-end">
         <div class="primary-btn">
-          <button (click)="submitData()" type="button" class="btn">Build</button>
+          <button (click)="submitData()" type="button" class="btn">
+            Build
+          </button>
         </div>
       </div>
     </div>
