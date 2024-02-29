@@ -782,6 +782,33 @@ app-upload-player-container {
     }
 
     .round-two {
+
+      .row-title {
+        border-bottom: 1px solid rgba($black-color, 0.1);
+        flex: 80%;
+        padding-bottom: 1.85rem;
+
+        small {
+          color: rgba($black-color, 0.8);
+          font-size: 1.6rem;
+          font-weight: 600;
+          line-height: 1.8rem;
+        }
+      }
+
+      .row-title-two {
+        border-bottom: 1px solid rgba($black-color, 0.1);
+        flex: 21%;
+        padding-bottom: 1.85rem;
+
+        small {
+          color: rgba($black-color, 0.8);
+          font-size: 1.6rem;
+          font-weight: 600;
+          line-height: 1.8rem;
+        }
+      }
+
       .row-field {
         flex: 70%;
         margin-right: 1.6rem;
