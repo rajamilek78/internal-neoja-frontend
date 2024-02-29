@@ -2,6 +2,7 @@ import { AddressModel } from "./address.model";
 export interface UserModel {
     address: AddressModel;
     phone: string;
+    club_id : string;
     league_coordinator_in_clubs: string[];
     dob: string;
     last_name: string;

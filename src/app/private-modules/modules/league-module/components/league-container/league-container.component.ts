@@ -27,14 +27,13 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   userDetail!: UserModel | null;
   groups: any;
   responseData: any;
-  selectedFormat = '1';
+  selectedFormat = '2';
   selectedGroup!: any;
   isEdit: boolean = false;
   //selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
-  roundID: string = '';
-  
+  roundID: string = '';  
   groupsArrayToBeUpdated: any[] = [];
 
   constructor(
@@ -54,10 +53,10 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     // }
   }
   ngOnInit(): void {
-    if (performance.navigation.type > 2) {
-      // Redirect to the home page
-      this.router.navigate(['upload-players']);
-    }
+    // if (performance.navigation.type > 2) {
+    //   // Redirect to the home page
+    //   this.router.navigate(['upload-players']);
+    // }
     this.userSubscriber();
     this.route.params.subscribe((params) => {
       this.isEdit = params['isEdit'];
@@ -168,9 +167,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
         console.log(this.userDetail);
         if (this.userDetail) {
           //const companyIDs = this.userDetail.owned_companies;
-          const clubIDs = this.userDetail.owned_clubs;
-          this.selectedClubID = clubIDs[0];
-          //this.selectedCompanyID = companyIDs[0];
+          this.selectedClubID = this.userDetail.club_id
         }
       });
   };
@@ -193,26 +190,26 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   }
 
   downloadTableAsPDF() {
-    // debugger;
-    // const data = document.getElementById('playerData'); // Replace with the id of your table
-    // if (data) {
-    //   html2canvas(data, { scale: 2 }).then((canvas) => {
-    //     // Few necessary setting options
-    //     const imgWidth = 208;
-    //     const pageHeight = 295;
-    //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    //     const heightLeft = imgHeight;
+    const data = document.getElementById('playerData'); // Replace with the id of your table
+    if (data) {
+      html2canvas(data, { scale: 2 }).then((canvas) => {
+        // Few necessary setting options
+        const imgWidth = 208;
+        const pageHeight = 295;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const heightLeft = imgHeight;
 
-    //     const contentDataURL = canvas.toDataURL('image/png');
-    //     const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-    //     const position = 0;
-    //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-    //     pdf.save('TableData.pdf'); // Generated PDF
-    //   });
-    // } else {
-    //   console.error('Element not found');
-    // }
-    this.printRoundComponent.print();
+        const contentDataURL = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+        const position = 0;
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        pdf.save('TableData.pdf'); // Generated PDF
+      });
+    } else {
+      console.error('Element not found');
+    }
+    // this.router.navigate(['players-league/print']);
+    // this.printRoundComponent.print();
   }
   // downloadTableAsPDF() {
   //   const doc = new jsPDF();

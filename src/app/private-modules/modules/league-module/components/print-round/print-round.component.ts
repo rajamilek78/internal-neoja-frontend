@@ -1,3 +1,4 @@
+import { group } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgxPrintService,PrintOptions } from 'ngx-print';
 
@@ -13,7 +14,9 @@ export class PrintRoundComponent implements OnInit{
   
 
   ngOnInit(): void {
-    this.groups = this.data.JSON;
+    this.groups = this.data;
+    console.log(this.groups);
+    
     
   }
   print(){

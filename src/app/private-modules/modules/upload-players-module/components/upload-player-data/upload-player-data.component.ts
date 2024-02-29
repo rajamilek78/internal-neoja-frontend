@@ -16,6 +16,7 @@ export class UploadPlayerDataComponent implements OnInit {
   isRoundTwo = false;
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
+  clubID!:string;
   @Input() playerCount!: number;
   @Input() roundsLength!: number;
   @Input() leagueID!: string;
@@ -88,17 +89,21 @@ export class UploadPlayerDataComponent implements OnInit {
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
-        console.log(this.userDetail);
+        if(this.userDetail){
+        this.clubID = this.userDetail?.club_id;
+      }
+      console.log(this.userDetail);
       });
   };
   leagueSummary() {
     //const playersArray = this.playerForm.get('players') as FormArray;
     //playersArray.clear();
     //const ownedCompanies = this.userDetail?.owned_companies;
-    const ownedClubs = this.userDetail?.owned_clubs;
-    const name = this.leagueID;
-    const compnyclubnameStr = `${ownedClubs}/${name}`;
-    this.commonservice.getLeaguesSummary(compnyclubnameStr).subscribe({
+    // const ownedClubs = this.userDetail?.owned_clubs;
+    // const name = this.leagueID;
+    const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
+    // const compnyclubnameStr = `${ownedClubs}/${name}`;
+    this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
       next: (res: any) => {
         console.log(res);
         this.leagueSummaryData = res;
@@ -165,9 +170,9 @@ export class UploadPlayerDataComponent implements OnInit {
   }
   submitData(): void {
     //const ownedCompanies = this.userDetail?.owned_companies;
-    const ownedClubs = this.userDetail?.owned_clubs;
-    const name = this.leagueID;
-    const compnyclubnameStr = `${ownedClubs}/${name}`;
+    // const ownedClubs = this.userDetail?.owned_clubs;
+    // const name = this.leagueID;
+    const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
     const playerData = {
       day: 4,
       date: "02/05/2024",
@@ -181,7 +186,7 @@ export class UploadPlayerDataComponent implements OnInit {
     //   obj[player.name] = player.score;
     //   return obj;
     // }, {});
-    this.commonservice.uploadData(compnyclubnameStr, playerData).subscribe({
+    this.commonservice.uploadData(clubLeagueStr, playerData).subscribe({
       next: (res: any) => {
         this.SharedCommonService.setMatchData(res);
         // localStorage.setItem('matchData', JSON.stringify(res));

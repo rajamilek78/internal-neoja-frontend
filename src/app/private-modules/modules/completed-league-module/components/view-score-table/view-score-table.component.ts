@@ -4,7 +4,8 @@ import { SharedUserService } from '@app/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { ActivatedRoute } from '@angular/router';
-import { ScoreModel } from '@app/helpers/models/score.model';
+import { RoundScore, ScoreModel } from '@app/helpers/models/score.model';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-view-score-table',
@@ -40,7 +41,7 @@ export class ViewScoreTableComponent implements OnInit{
         if (this.userDetail) {
           //const companyIDs = this.userDetail.owned_companies;
           const clubIDs = this.userDetail.owned_clubs;
-          this.selectedClubID = clubIDs[0];
+          this.selectedClubID = this.userDetail.club_id;
           //this.selectedCompanyID = companyIDs[0];
 
         }
@@ -63,6 +64,11 @@ export class ViewScoreTableComponent implements OnInit{
         }
     })
   }
+  sortRounds = (a: KeyValue<string,RoundScore>, b: KeyValue<string,RoundScore>): number => {
+    return parseInt(a.key) - parseInt(b.key);
+  }
+  
+  
   // handleResponse(res){
 
   // }

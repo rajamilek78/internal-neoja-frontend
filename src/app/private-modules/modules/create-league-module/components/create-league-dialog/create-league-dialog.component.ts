@@ -30,7 +30,7 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
   }
   initLeagueForm(){
     this.leagueCRUD_Form = this.createForm({
-      name: [''],
+      name: ['', [Validators.maxLength(60)]],
       description: ['',],
       start_date: [''],
       end_date: [''],
@@ -41,6 +41,7 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
     })
   }
   createUpdateLeague(){
+    // debugger
     // const formattedStartDate = this.formatDate(this.leagueCRUD_Form.value.start_date);
     // const formattedEndDate = this.formatDate(this.leagueCRUD_Form.value.end_date);
     
@@ -49,9 +50,8 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
     //   start_date: formattedStartDate,
     //   end_date: formattedEndDate
     // });
-    this.leagueService.createLeague(
-      `${this.data.companyIDclubID}/${this.leagueCRUD_Form.value.name}`,
-      this.leagueCRUD_Form.value).subscribe({
+    const urlString = `${this.data.clubID}`;
+    this.leagueService.createLeague(urlString,this.leagueCRUD_Form.value).subscribe({
         next : (res : any)=>{
           console.log(res);
           this.close();
@@ -77,5 +77,8 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
   // }
   
   
+  get formControls() {
+    return this.leagueCRUD_Form.controls;
+  }
 
 }

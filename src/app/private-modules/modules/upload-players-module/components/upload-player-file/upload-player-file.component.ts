@@ -107,9 +107,10 @@ export class UploadPlayerFileComponent {
   }
   onUpload() {
     // const ownedCompanies = this.userDetail?.owned_companies;
-    const ownedClubs = this.userDetail?.owned_clubs;
-    const name = this.leagueIdPass;
-    const compnyclubnameStr = `${ownedClubs}/${name}`;
+    // const ownedClubs = this.userDetail?.owned_clubs;
+    // const name = this.leagueIdPass;
+    const clubID = this.userDetail?.club_id
+    const clubLeagueStr = `${clubID}/${this.leagueIdPass}`;
 
     // Loop through each file to upload
     this.files.forEach((file) => {
@@ -117,7 +118,7 @@ export class UploadPlayerFileComponent {
       data.append('players', file);
       data.append('day', '4');
       data.append('date', '02/05/2024');
-      this.commonservice.uploadFile(compnyclubnameStr, data).subscribe({
+      this.commonservice.uploadFile(clubLeagueStr, data).subscribe({
         next: (res: any) => {
           this.SharedCommonService.setMatchData(res);
           this.router.navigate([

@@ -66,7 +66,7 @@
             <small>Players</small>
           </div>
           <div class="row-title">
-            <small>Rating</small>
+            <small>Rating%</small>
           </div>
           <!-- <div><small>Rating</small></div> -->
         </div>
@@ -74,7 +74,7 @@
           <div
             *ngFor="let player of players.controls; let i = index"
             [formGroupName]="i"
-            class="round-two flex justify-end MT-2-half"
+            class="round-one flex justify-end MT-2-half"
           >
             <div class="row-field">
               <mat-form-field>
@@ -109,7 +109,7 @@
                 />
               </mat-form-field>
             </div> -->
-            <div class="flex" *ngIf="roundsLength >= 1">
+            <!-- <div class="flex" *ngIf="roundsLength >= 1">
               <div class="row-field-two toggle-square">
                 <mat-slide-toggle class="example-margin" [disabled]="isNoShowDisabled">
                   No Show
@@ -122,7 +122,7 @@
                   Drop In
                 </mat-slide-toggle>
               </div>
-            </div>
+            </div> -->
             <div>
               <button (click)="deletePlayer(i)" class="delete-icon flex justify-center">
                 <img
@@ -140,7 +140,7 @@
       </div>
       <div class="upload__button flex justify-end">
         <div class="primary-btn">
-          <button (click)="submitData()" type="button" class="btn">Save</button>
+          <button (click)="submitData()" type="button" class="btn">Build</button>
         </div>
       </div>
     </div>

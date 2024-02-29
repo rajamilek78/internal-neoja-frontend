@@ -40,7 +40,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden !important;
   margin: 0;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 button,
@@ -266,6 +266,8 @@ a {
   }
 
   &__body {
+    overflow-y: auto;
+    height: 70vh;
     b {
       color: rgba($black-color, 0.5);
       font-size: 1.6rem;
@@ -338,7 +340,7 @@ textarea {
       border: 1px solid rgba($black-color, 0.1);
       font-size: 1.6rem;
       line-height: 1.9rem;
-      font-weight: 800;
+      
       padding: 1rem 0.4rem 1rem 1.4rem;
     }
 
@@ -408,9 +410,10 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     line-height: 1.9rem;
-    font-weight: 800;
+    font-weight: 600;
+    
     width: 100%;
 
     span {
@@ -450,7 +453,7 @@ textarea {
     align-items: center;
     font-size: 1.6rem;
     line-height: 1.9rem;
-    font-weight: 800;
+    
     width: 100%;
 
     span {
@@ -467,7 +470,7 @@ textarea {
     span {
       img {
         // background-color: red;
-        margin-right: 0.5rem !important;
+        margin-right: 5.5rem !important;
       }
     }
   }
@@ -480,7 +483,7 @@ textarea {
     align-items: start !important;
     font-size: 1.6rem;
     line-height: 1.9rem;
-    font-weight: 800;
+    
     width: 100%;
 
     .bg-cell {
@@ -536,7 +539,7 @@ textarea {
     td {
       font-size: 1.6rem;
       line-height: 1.9rem;
-      font-weight: 800;
+      
       padding: 2rem;
       text-align: center;
     }
@@ -733,7 +736,9 @@ app-upload-player-container {
 
     input,
     textarea {
-      padding: 1.6rem;
+      padding: 1rem 0.4rem;
+      font-size: 1.6rem !important;
+      font-weight: 700 !important;
     }
 
     .delete-icon {
@@ -758,7 +763,7 @@ app-upload-player-container {
 
       .toggle-square {
         background-color: rgba($black-color, 0.03);
-        padding: 1.6rem;
+        padding: 1rem 0.4rem;
         border-radius: 0.8rem;
 
         label {
@@ -873,7 +878,7 @@ app-upload-player-container {
 
   .table-buttons {
     position: absolute;
-    top: 5.4rem;
+    top: 7.4rem;
     right: 0;
     z-index: 10;
 
@@ -936,7 +941,7 @@ app-upload-player-container {
   span {
     color: $primary-color;
     font-size: 1.6rem;
-    font-weight: 800;
+    
     line-height: 1.9rem;
 
     img {
@@ -1060,7 +1065,7 @@ app-upload-player-container {
     h6 {
       color: $primary-color;
       font-size: 2rem;
-      font-weight: 800;
+      
       line-height: 2.3rem;
       margin-bottom: 0.8rem;
     }
@@ -1162,7 +1167,7 @@ app-upload-player-container {
   h1 {
     color: rgba($black-color, 0.5);
     font-size: 4.8rem;
-    font-weight: 800;
+    
     line-height: 5.7rem;
     margin: 0rem 9.6rem 0.8rem 0rem;
 
@@ -1198,7 +1203,7 @@ app-upload-player-container {
       color: $primary-color;
       font-size: 2.8rem;
       line-height: 3.3rem;
-      font-weight: 800;
+      
       margin-bottom: 1.8rem;
     }
 
@@ -1219,7 +1224,7 @@ app-upload-player-container {
         b {
           color: rgba($black-color, 0.5);
           font-size: 3.6rem;
-          font-weight: 800;
+          
           line-height: 4.3rem;
           margin-bottom: 0.2rem;
         }
@@ -1252,7 +1257,7 @@ app-upload-player-container {
     b {
       color: rgba($black-color, 0.5);
       font-size: 5.6rem;
-      font-weight: 800;
+      
       line-height: 6.7rem;
       letter-spacing: 0.2rem;
       word-spacing: 0.2rem;
@@ -1270,7 +1275,7 @@ app-upload-player-container {
       color: $primary-color;
       text-align: center;
       font-size: 2.8rem;
-      font-weight: 800;
+      
       line-height: 3.3rem;
       margin-bottom: 5.6rem;
     }
@@ -1344,7 +1349,7 @@ app-upload-player-container {
       small {
         color: rgba($black-color, 0.5);
         font-size: 1.8rem;
-        font-weight: 800;
+        
         line-height: 2.1rem;
         letter-spacing: 0.2rem !important;
       }

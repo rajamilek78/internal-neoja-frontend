@@ -22,6 +22,8 @@ export class LeagueTableFormatOneComponent implements OnInit {
       this.gamesArray = Object.entries(
         this.groups[this.selectedTabIndex].data.games
       );
+      console.log("this is gamesarray",this.gamesArray);
+      
       this.blurTeamScore.emit({
         groups: this.groups,
       });
