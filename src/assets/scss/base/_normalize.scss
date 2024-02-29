@@ -756,12 +756,22 @@ app-upload-player-container {
 
     .round-two {
       .row-field {
-        flex: 35%;
+        flex: 70%;
         margin-right: 1.6rem;
+
+        mat-form-field {
+          position: relative;
+
+          .round-one-icon {
+            position: absolute;
+            top: 0.9rem;
+            right: 1rem;
+          }
+        }
       }
 
       .row-field-two {
-        flex: 16%;
+        flex: 15%;
         margin-right: 1.6rem;
       }
 
