@@ -1,4 +1,4 @@
-<form class="modal" [formGroup]="leagueCRUD_Form" (ngSubmit)="createUpdateLeague()">
+<form class="modal" [formGroup]="leagueCRUD_Form" (ngSubmit)="onFormSubmit()">
   <div class="modal__header flex justify-between">
     <h6>{{data.league ? 'Edit' : 'Add'}} League</h6>
     <div>
