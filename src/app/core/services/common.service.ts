@@ -91,6 +91,9 @@ export class CommonService {
   uploadData(path: string,bodyData){
     return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_DATA}/${path}`, bodyData, true)
   }
+  uploadDataRound2(path: string,bodyData){
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_DATA_Round2}/${path}`, bodyData, true)
+  }
   uploadFile(path: string,bodyData){
     return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_FILE}/${path}`, bodyData, true)
   }
