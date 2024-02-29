@@ -222,7 +222,7 @@ export class UploadPlayerDataComponent implements OnInit {
   submitData(): void {
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
   
-    if (this.roundsLength > 1) {
+    if (this.roundsLength >= 1) {
       const playerDataRound2 = {
         day: 4,
         date: "02/05/2024",
