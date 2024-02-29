@@ -40,7 +40,9 @@ export class UploadPlayerDataComponent implements OnInit {
   ngOnInit() {
     // this.addPlayers(this.playerCount);
     this.userSubscriber();
+    if(this.roundsLength >= 1){
     this.leagueSummary();
+  }
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -60,6 +60,11 @@
       <label>Description</label>
       <mat-form-field>
         <input type="text" matInput placeholder="Enter Description" formControlName="description">
+        <mat-error
+          *ngIf="isValidLength(formControls['description'])"
+        >
+          Description max length 500 characters.
+        </mat-error>
       </mat-form-field>
     </div>
 

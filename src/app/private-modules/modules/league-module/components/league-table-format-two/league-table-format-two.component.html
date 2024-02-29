@@ -9,13 +9,10 @@
         <div
           class="player-name name-cell flex justify-center align-start flex-column"
         >
-          <div class="cell bg-cell">
-            <span><img src="assets/images/players-icon.svg" alt="" /></span
-            >Players
-          </div>
+          <div class="cell bg-cell justify-end">Players</div>
           <div
             *ngFor="let player of group.data.group_details.players"
-            class="cell-1"
+            class="cell-1 justify-end"
           >
             {{ player }}
           </div>
@@ -26,7 +23,6 @@
               class="flex justify-center align-center flex-column game-header"
             >
               <div class="cell bg-cell">
-                <span><img src="assets/images/score-icon.svg" alt="" /></span>
                 {{ game[0] }}
               </div>
               <div
@@ -101,10 +97,7 @@
             </div>
           </div>
           <div class="flex justify-center flex-column">
-            <div class="cell bg-cell">
-              <span><img src="assets/images/match-icon.svg" alt="" /></span>
-              Total
-            </div>
+            <div class="cell bg-cell">Total</div>
             <div class="flex justify-center flex-column">
               <div class="cell flex justify-center"></div>
               <div class="cell flex justify-center"></div>
@@ -119,7 +112,10 @@
     <div class="table-footer flex justify-between">
       <div>
         <!-- <span><img src="assets/images/e-logo.png" alt="" /></span> -->
-        <span>eleagueonline.com: Want to run a friends and family league? <a>Signup</a> and build your own Digital Club.</span>
+        <span
+          >eleagueonline.com: Want to run a friends and family league?
+          <a>Signup</a> and build your own Digital Club.</span
+        >
       </div>
       <div class="flex justify-start">
         <div>

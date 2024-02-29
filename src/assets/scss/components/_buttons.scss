@@ -43,7 +43,7 @@
 
     button {
         background-color: $white-color;
-        border: none !important;
+        border: 1px solid transparent !important;
         color: $primary-color;
 
         &:hover {
