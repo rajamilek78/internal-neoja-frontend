@@ -18,7 +18,10 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   // allPlayers = [];
 
   @Input() groups: any;
+  @Input() data: any;
   @Input() responseData: any;
+  @Input() leagueID!: string;
+  @Input() clubID!: string;
 
   ngOnInit(): void {
     if (this.groups && this.groups.length > 0) {

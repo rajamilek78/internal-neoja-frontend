@@ -343,6 +343,17 @@ textarea {
 
 // common-table scss
 
+  .tab-sub-header{
+    padding-bottom: 1.6rem;
+    margin-top: 2.4rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $black-color;
+    line-height: 1.9rem;
+    border-bottom: 1px solid rgba($black-color ,0.1);
+  }
+
+
 .table-1 {
   margin-top: 2.4rem;
   border: 1px solid rgba($black-color, 0.1) !important;
