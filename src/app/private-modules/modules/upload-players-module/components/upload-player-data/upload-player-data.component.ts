@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import {FormBuilder,FormGroup,FormArray,Validators} from '@angular/forms';
+import { DatePipe } from '@angular/common';
 import { CommonService, SharedService } from '@app/core';
 import { Router } from '@angular/router';
 import { SharedCommonService } from '@app/helpers/services';
@@ -20,6 +21,8 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() playerCount!: number;
   @Input() roundsLength!: number;
   @Input() leagueID!: string;
+  @Input() selectedDay!: string;
+  @Input() selectedDate!: string;
   isDropInDisabled = true;
   isNoShowDisabled = false;
 
@@ -30,6 +33,7 @@ export class UploadPlayerDataComponent implements OnInit {
     private router: Router,
     private sharedService: SharedService,
     private commonservice: CommonService,
+    private datePipe : DatePipe,
     private SharedCommonService: SharedCommonService
   ) {
     this.playerForm = this.fb.group({
@@ -98,13 +102,7 @@ export class UploadPlayerDataComponent implements OnInit {
       });
   };
   leagueSummary() {
-    //const playersArray = this.playerForm.get('players') as FormArray;
-    //playersArray.clear();
-    //const ownedCompanies = this.userDetail?.owned_companies;
-    // const ownedClubs = this.userDetail?.owned_clubs;
-    // const name = this.leagueID;
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
-    // const compnyclubnameStr = `${ownedClubs}/${name}`;
     this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
       next: (res: any) => {
         console.log(res);
@@ -139,25 +137,7 @@ export class UploadPlayerDataComponent implements OnInit {
       },
     });
   }
-  // isNameDisabled(player: AbstractControl): boolean {
-  //   if (player instanceof FormGroup) {
-  //     return player.controls['name'].value !== '';
-  //   }
-  //   return false;
-  // }
-  // isNameDisabled(playerName: string): boolean {
-  //   return playerName !== '';
-  // }
-  // updateToggleState() {
-  //   this.isDropInDisabled = true;
-  //   this.isNoShowDisabled = !this.isDropInDisabled;
-  //   this.players.controls.forEach((control) => {
-  //     control.get('dropIn')?.setValue('', { emitEvent: false });
-  //     control.get('noShow')?.setValue('', { emitEvent: false });
-  //     control.get('dropIn')?.disable({ emitEvent: false });
-  //     control.get('noShow')?.enable({ emitEvent: false });
-  //   });
-  // }
+  
 
   onPlayerCountChange(count: number): void {
     if (this.players) {
@@ -171,61 +151,14 @@ export class UploadPlayerDataComponent implements OnInit {
       }
     }
   }
-  // submitData(): void {
-  //   //const ownedCompanies = this.userDetail?.owned_companies;
-  //   // const ownedClubs = this.userDetail?.owned_clubs;
-  //   // const name = this.leagueID;
-  //   const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
-  //   const playerData = {
-  //     day: 4,
-  //     date: "02/05/2024",
-  //     players: {}
-  //   };
-  //   this.playerForm.getRawValue().players.forEach(player => {
-  //     playerData.players[player.name] = player.score;
-  //   });
-  //   if(this.roundsLength > 1){
-  //     this.playerForm.getRawValue().players.forEach(player => {
-  //       playerData.players[player.name] = {
-  //         rating: player.rating,
-  //         in_round1: player.in_round1,
-  //         is_deleted: false // Assuming no players are deleted by default
-  //       };
-  //     });
-  //     this.commonservice.uploadDataRound2(clubLeagueStr, playerData).subscribe({
-  //       next: (res: any) => {
-  //         this.SharedCommonService.setMatchData(res);
-  //         // localStorage.setItem('matchData', JSON.stringify(res));
-  //         this.router.navigate([RouteConstant.LEAGUE_CONTAINER,{selectedLeague: this.leagueID}]);
-  //       },
-  //       error: (err: any) => {
-  //         console.log(err);
-  //       },
-  //     });
-  //   }
-  
-  //   // const playerData = this.playerForm.getRawValue().players.reduce((obj, player) => {
-  //   //   obj[player.name] = player.score;
-  //   //   return obj;
-  //   // }, {});
-  //   this.commonservice.uploadData(clubLeagueStr, playerData).subscribe({
-  //     next: (res: any) => {
-  //       this.SharedCommonService.setMatchData(res);
-  //       // localStorage.setItem('matchData', JSON.stringify(res));
-  //       this.router.navigate([RouteConstant.LEAGUE_CONTAINER,{selectedLeague: this.leagueID}]);
-  //     },
-  //     error: (err: any) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
   submitData(): void {
+    const formattedDate = this.datePipe.transform(this.selectedDate, 'MM/dd/yyyy');
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
   
-    if (this.roundsLength > 1) {
+    if (this.roundsLength >= 1) {
       const playerDataRound2 = {
-        day: 4,
-        date: "02/05/2024",
+        day: this.selectedDay,
+        date: formattedDate,
         players: {}
       };
   

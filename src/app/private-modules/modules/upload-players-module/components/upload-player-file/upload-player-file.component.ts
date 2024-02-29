@@ -18,6 +18,8 @@ export class UploadPlayerFileComponent {
   userDetail!: UserModel | null;
   isDragging: boolean = false;
   @Input() leagueIdPass: any;
+  @Input() selectedDay!: string;
+  @Input() selectedDate!: string;
 
   constructor(
     private el: ElementRef,
@@ -116,8 +118,8 @@ export class UploadPlayerFileComponent {
     this.files.forEach((file) => {
       const data = new FormData();
       data.append('players', file);
-      data.append('day', '4');
-      data.append('date', '02/05/2024');
+      data.append('day', this.selectedDay);
+      data.append('date', this.selectedDate);
       this.commonservice.uploadFile(clubLeagueStr, data).subscribe({
         next: (res: any) => {
           this.SharedCommonService.setMatchData(res);
