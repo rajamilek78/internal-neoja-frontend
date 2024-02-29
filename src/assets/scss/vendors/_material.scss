@@ -365,6 +365,15 @@ app-conversation-list {
       width: 100% !important;
     }
   }
+
+  .datepicker {
+
+    width: 15rem;
+
+    .mat-mdc-form-field {
+      width: 100% !important;
+    }
+  }
 }
 
 .mat-mdc-select-arrow svg {
