@@ -19,11 +19,11 @@
           <tr>
             <td rowspan="2" class="text-center">{{ game[0] }}</td>
             <td>
-              <span><img src="assets/images/t1-player-icon.svg" alt="" /></span
+              <span><img [src]="game[1].team_1[0] === game[1].server ? 'assets/images/serve-active-icon.svg' : 'assets/images/serve-inactive-icon.svg'" alt="" /></span
               >{{ game[1].team_1[0] }}
             </td>
             <td>
-              <span><img src="assets/images/t1-player-icon.svg" alt="" /></span
+              <span><img [src]="game[1].team_1[1] === game[1].server ? 'assets/images/serve-active-icon.svg' : 'assets/images/serve-inactive-icon.svg'" alt="" /></span
               >{{ game[1].team_1[1] }}
             </td>
             <td class="text-center">
@@ -40,11 +40,11 @@
           </tr>
           <tr>
             <td>
-              <span><img src="assets/images/t2-player-icon.svg" alt="" /></span
+              <span><img [src]="game[1].team_2[0] === game[1].returner ? 'assets/images/receive-active-icon.svg' : 'assets/images/receive-inactive-icon.svg'" alt="" /></span
               >{{ game[1].team_2[0] }}
             </td>
             <td>
-              <span><img src="assets/images/t2-player-icon.svg" alt="" /></span
+              <span><img [src]="game[1].team_2[1] === game[1].returner ? 'assets/images/receive-active-icon.svg' : 'assets/images/receive-inactive-icon.svg'" alt="" /></span
               >{{ game[1].team_2[1] }}
             </td>
             <td class="text-center">
