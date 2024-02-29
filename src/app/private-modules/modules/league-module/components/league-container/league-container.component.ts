@@ -27,7 +27,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   userDetail!: UserModel | null;
   groups: any;
   responseData: any;
-  selectedFormat = '1';
+  selectedFormat = '2';
   selectedGroup!: any;
   isEdit: boolean = false;
   //selectedCompanyID!: string;

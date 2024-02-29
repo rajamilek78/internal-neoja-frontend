@@ -50,7 +50,7 @@ export class CreateLeagueDialogComponent extends FormBaseComponent implements On
     //   start_date: formattedStartDate,
     //   end_date: formattedEndDate
     // });
-    const urlString = `${this.data.clubID}/${this.leagueCRUD_Form.value.name}`;
+    const urlString = `${this.data.clubID}`;
     this.leagueService.createLeague(urlString,this.leagueCRUD_Form.value).subscribe({
         next : (res : any)=>{
           console.log(res);

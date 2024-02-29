@@ -10,7 +10,7 @@
     </div>
     <div class="view-score-table">
       <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-        <mat-tab *ngFor="let round of leagueScores | keyvalue" [label]=" 'Round ' + round.key ">
+        <mat-tab *ngFor="let round of leagueScores | keyvalue: sortRounds" [label]="'Round ' + round.key">
           <table class="table-2">
             <thead>
               <tr>
