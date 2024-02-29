@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   userName = '';
+  clubName = '';
 
   constructor(private sharedService: SharedService, private cdr: ChangeDetectorRef) { }
 
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.userDetail = this.sharedService.getUser();
         if(this.userDetail){
           this.userName = this.userDetail?.first_name;
+          this.clubName = this.userDetail.club_id
         }
         
       });
@@ -40,6 +42,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onLogout = () => {
     this.sharedService.logout();
     this.userName = '';
+    this.clubName = '';
     // this.userAuthService.logOut().subscribe({
     //   next: (res) => {
     //     this.layoutService.setLayoutDetailCall(false);

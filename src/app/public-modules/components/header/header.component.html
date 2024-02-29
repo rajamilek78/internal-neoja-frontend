@@ -26,9 +26,9 @@
           ></span
         >
       </div>
-      <div class="flex justify-center">
+      <div class="flex justify-center" *ngIf="isLoggedIn">
         <div>
-          <span><img src="" alt="" /></span><b></b>
+          <span><img src="assets/images/club iocn.svg" alt="" /></span><b>{{clubName}}</b>
         </div>
         <div *ngIf="!isLoggedIn">
           <a [routerLink]="loginUrl">
