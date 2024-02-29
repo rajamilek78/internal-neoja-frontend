@@ -6,6 +6,7 @@ import { RouteConstant } from '../../../../../helpers/constants';
 import { SharedCommonService } from '../../../../../helpers/services';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-upload-player-file',
   templateUrl: './upload-player-file.component.html',
@@ -26,6 +27,7 @@ export class UploadPlayerFileComponent {
     private commonservice: CommonService,
     private SharedCommonService: SharedCommonService,
     private router: Router,
+    private datePipe : DatePipe,
     private sharedService: SharedService
   ) {}
 
@@ -111,6 +113,7 @@ export class UploadPlayerFileComponent {
     // const ownedCompanies = this.userDetail?.owned_companies;
     // const ownedClubs = this.userDetail?.owned_clubs;
     // const name = this.leagueIdPass;
+    const formattedDate = this.datePipe.transform(this.selectedDate, 'MM/dd/yyyy');
     const clubID = this.userDetail?.club_id
     const clubLeagueStr = `${clubID}/${this.leagueIdPass}`;
 
@@ -118,8 +121,12 @@ export class UploadPlayerFileComponent {
     this.files.forEach((file) => {
       const data = new FormData();
       data.append('players', file);
-      data.append('day', this.selectedDay);
-      data.append('date', this.selectedDate);
+      if (this.selectedDay !== null) {
+        data.append('day', this.selectedDay);
+      }
+      if (formattedDate !== null) {
+        data.append('date', formattedDate);
+      }
       this.commonservice.uploadFile(clubLeagueStr, data).subscribe({
         next: (res: any) => {
           this.SharedCommonService.setMatchData(res);
