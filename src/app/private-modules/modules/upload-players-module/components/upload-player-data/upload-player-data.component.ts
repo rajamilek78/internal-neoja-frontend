@@ -116,15 +116,15 @@ export class UploadPlayerDataComponent implements OnInit {
             const playerData =
               this.leagueSummaryData.league_summary[playerName];
               const winLoseHistory = playerData.win_lose_history ? playerData.win_lose_history.split(',').reverse() : [];
-
+              const round = playerData.in_round1
             const playerGroup = this.fb.group({
               name: [
                 { value: playerName, disabled: true },
                 Validators.required,
               ],
               score: [{ value: playerData.rating, disabled: true }, Validators.required],
-              winLoseHistory: [{ value: winLoseHistory, disabled: true }]
-              
+              winLoseHistory: [{ value: winLoseHistory, disabled: true }],
+              round : [{value: round , disabled: true}]
             });
 
             playersArray.push(playerGroup);
