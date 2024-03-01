@@ -1,5 +1,5 @@
 <div class="panel">
-  <div class="container">
+  <div>
     <div class="contact-us flex align-start justify-between">
       <div class="contact-us__img">
         <img
@@ -12,24 +12,24 @@
         <div class="text-center">
           <small>Send us your details & we’ll get back to you shortly.</small>
         </div>
-        <form>
+        <form [formGroup]="contactUsForm" class="container" (ngSubmit)="onClickSubmit()">
           <div class="flex justify-end">
             <div class="mr-1">
               <label for="text">First Name</label>
-              <input type="text" placeholder="Enter your first name" />
+              <input type="text" placeholder="Enter your first name" formControlName="first_name"/>
             </div>
             <div>
-              <label for="text">First Name</label>
-              <input type="text" placeholder="Enter your first name" />
+              <label for="text">Last Name</label>
+              <input type="text" placeholder="Enter your first name" formControlName="last_name"/>
             </div>
           </div>
           <div class="MT-1-half">
             <label for="email">Email</label>
-            <input type="email" placeholder="Enter your email" />
+            <input type="email" placeholder="Enter your email" formControlName="email"/>
           </div>
           <div class="MT-1-half">
             <label for="text">What would you like to say?</label>
-            <textarea placeholder="Drop your message in here..."></textarea>
+            <textarea placeholder="Drop your message in here..." formControlName="message"></textarea>
           </div>
           <div class="primary-btn">
             <button type="submit" class="btn">Submit</button>

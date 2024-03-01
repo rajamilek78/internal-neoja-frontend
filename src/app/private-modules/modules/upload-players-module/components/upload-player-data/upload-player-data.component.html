@@ -1,4 +1,3 @@
-
 <div [formGroup]="playerForm">
   <div class="upload-by-data">
     <div class="upload">
@@ -32,7 +31,7 @@
                 />
                 <div class="round-one-icon" *ngIf="player.value.round">
                   <img
-                    src="../../../../../../assets/images/round-one-icon.svg"
+                    src="../../../../../../assets/images/blue-circle-icon.svg"
                     alt=""
                   />
                 </div>
@@ -98,10 +97,13 @@
       </div>
       <div class="flex justify-end alert-msg" *ngIf="roundsLength >= 1">
         <div>
-          <span><img src="assets/images/alert-yellow-icon.svg" alt=""></span>
+          <span><img src="assets/images/alert-yellow-icon.svg" alt="" /></span>
         </div>
         <div>
-          <p>Manually key-in rating % to place the drop-in players appropriately. Use the current rating % and win-lose history to estimate.</p>
+          <p>
+            Manually key-in rating % to place the drop-in players appropriately.
+            Use the current rating % and win-lose history to estimate.
+          </p>
         </div>
       </div>
     </div>

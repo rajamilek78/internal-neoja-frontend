@@ -29,7 +29,6 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
       password: ['abc@123', Validators.required],
       
     })
-    console.log(Date.now()/1000);
   }
   handleLoginResponse = (response) => {
     this.userAuthService.handleAuthResponse(response);

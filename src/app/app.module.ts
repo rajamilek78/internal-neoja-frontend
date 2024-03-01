@@ -14,6 +14,7 @@ import { HomePageComponent } from './public-modules/components/home-page/home-pa
 import { API_ENDPOINTS } from './helpers/constants/api-constants';
 import { CoreModule } from "./core";
 import { DateFormatDirective } from './helpers/directives/date-format.directive';
+import { SignupDialogueComponent } from './public-modules/components/signup-dialogue/signup-dialogue.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DateFormatDirective } from './helpers/directives/date-format.directive'
     ContactUsPageComponent,
     AboutUsPageComponent,
     HomePageComponent,
-    DateFormatDirective
+    DateFormatDirective,
+    SignupDialogueComponent
   ],
   imports: [
     BrowserModule,

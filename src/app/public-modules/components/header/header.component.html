@@ -55,6 +55,16 @@
           </button>
         </div>
       </div>
+      <div class="flex justify-center" *ngIf="!isLoggedIn">
+        <div class="primary-btn-light">
+          <button type="button" (click)="openDialogue()" class="btn">
+            Sign up
+          </button>
+        </div>
+        <div class="primary-btn-light">
+          <button type="button" class="btn">Log in</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
