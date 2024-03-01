@@ -98,7 +98,7 @@ a {
   margin-right: 2.4rem;
 }
 
-.mr-3{
+.mr-3 {
   margin-right: 0.4rem;
 }
 
@@ -416,6 +416,10 @@ textarea {
       background-color: rgba($black-color, 0.03);
     }
   }
+
+  @include respond("phone") {
+    overflow-x: auto;
+  }
 }
 
 .bg-cell {
@@ -678,6 +682,10 @@ textarea {
 app-upload-player-container {
   .dropdown {
     margin-top: 3.5rem;
+
+    @include respond("phone") {
+      flex-direction: column;
+    }
   }
 }
 
@@ -866,14 +874,15 @@ app-upload-player-container {
 
     .round-one {
       .row-field {
-        flex: 47%;
+        width: 47%;
         margin-right: 1.6rem;
       }
 
       .row-title {
         border-bottom: 1px solid rgba($black-color, 0.1);
-        flex: 47%;
+        width: 47%;
         padding-bottom: 1.85rem;
+        margin-right: 1.6rem;
 
         small {
           color: rgba($black-color, 0.8);
@@ -895,6 +904,10 @@ app-upload-player-container {
         margin-right: 0.8rem;
       }
 
+    }
+
+    @include respond("phone") {
+      overflow-x: auto;
     }
 
   }

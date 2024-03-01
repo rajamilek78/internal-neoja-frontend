@@ -364,6 +364,11 @@ app-conversation-list {
     .mat-mdc-form-field {
       width: 100% !important;
     }
+
+    @include respond("phone") {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
   }
 
   .datepicker {
@@ -372,6 +377,10 @@ app-conversation-list {
 
     .mat-mdc-form-field {
       width: 100% !important;
+    }
+
+    @include respond("phone") {
+      width: 100%;
     }
   }
 }

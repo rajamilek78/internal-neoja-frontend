@@ -2,11 +2,11 @@
   <div class="upload-by-data">
     <div class="upload">
       <div class="upload__data">
-        <div class="flex justify-start align-end MT-2-half round-two">
+        <div class="flex justify-end align-end MT-2-half round-one">
           <div class="row-title">
             <small>Players</small>
           </div>
-          <div class="row-title-two">
+          <div class="row-title">
             <small>Rating%</small>
           </div>
           <div class="row-title-two" *ngIf="roundsLength >= 1">
@@ -18,7 +18,7 @@
           <div
             *ngFor="let player of players.controls; let i = index"
             [formGroupName]="i"
-            class="round-two flex justify-end MT-2-half"
+            class="round-one flex justify-end MT-2-half"
           >
             <div class="row-field">
               <mat-form-field>
@@ -37,7 +37,7 @@
                 </div>
               </mat-form-field>
             </div>
-            <div class="row-field-two">
+            <div class="row-field">
               <mat-form-field>
                 <input
                   matInput
@@ -137,7 +137,11 @@
       </div>
       <div class="upload__button flex justify-end">
         <div class="primary-btn">
-          <button type="submit" class="btn" [disabled]="selectedDay === undefined">
+          <button
+            type="submit"
+            class="btn"
+            [disabled]="selectedDay === undefined"
+          >
             Build
           </button>
         </div>
