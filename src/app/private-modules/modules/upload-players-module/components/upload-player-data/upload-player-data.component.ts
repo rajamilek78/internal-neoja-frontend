@@ -160,7 +160,8 @@ leagueIDSubscription!: Subscription;
     }
   }
   submitData(): void {
-    const formattedDate = this.datePipe.transform(this.selectedDate, 'MM/dd/yyyy');
+    if(this.playerForm.valid){
+      const formattedDate = this.datePipe.transform(this.selectedDate, 'MM/dd/yyyy');
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
   
     if (this.roundsLength >= 1) {
@@ -211,6 +212,7 @@ leagueIDSubscription!: Subscription;
           console.log(err);
         },
       });
+    }
     }
   }
   
