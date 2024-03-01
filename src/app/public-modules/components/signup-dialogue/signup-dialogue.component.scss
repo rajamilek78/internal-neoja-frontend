@@ -1,0 +1,22 @@
+@import "../../../../assets/scss/abstracts/abstracts";
+
+.modal {
+    padding: 4rem !important;
+
+    &__body {
+        p {
+            color: $black-color;
+            font-size: 1.8rem;
+            font-weight: 600;
+            line-height: 3rem;
+
+            a {
+                color: $primary-color;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

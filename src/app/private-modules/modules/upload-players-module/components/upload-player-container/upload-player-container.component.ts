@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { CommonService, SharedService } from '@app/core';
 import { UserModel } from '@app/helpers/models';
+import { SharedCommonService } from '@app/helpers/services';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,11 +21,13 @@ export class UploadPlayerContainerComponent implements OnInit {
   leagues: any[] = [];
   selectedLeague!: string;
   selectedDate! : Date;
+  selectedDay!:number;
 
   constructor(
     private cdr: ChangeDetectorRef,
     private commonService: CommonService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private SharedCommonService: SharedCommonService
   ) {}
 
   ngOnInit(): void {
@@ -66,8 +69,6 @@ export class UploadPlayerContainerComponent implements OnInit {
   }
 
   onLeagueSelect(leagueName: string) {
-    //const ownedCompanies = this.userDetail?.owned_companies;
-    // const ownedClubs = this.userDetail?.owned_clubs;
     this.leagueID = leagueName;
     localStorage.setItem('leagueID',this.leagueID)
 
@@ -81,6 +82,7 @@ export class UploadPlayerContainerComponent implements OnInit {
         //   this.roundsLength = 0; // Set roundsLength to null if the response is null
         // }
         this.selectedFormat = this.roundsLength >= 1 ? '2' : '1';
+        this.SharedCommonService.setLeagueID(this.leagueID);
         this.cdr.detectChanges();
       },
       error: (err: any) => {
@@ -90,7 +92,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   }
 
   get isDisableUploadByFile(): boolean {
-    return this.roundsLength > 1;
+    return this.roundsLength >= 1;
   }
 
   onRadioButtonChange() {

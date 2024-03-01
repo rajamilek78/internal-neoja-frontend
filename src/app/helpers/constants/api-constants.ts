@@ -6,6 +6,7 @@ const COMPANY_URL = `${environment.companyUrl}`
 
 export class API_ENDPOINTS{
     public static LOGIN = `${COMPANY_URL}/login`
+    public static CONTACT_US = `${COMPANY_URL}/contactus`
     //upload player's data 
 
     public static UPLOAD_DATA = `${COMMON_URL}/upload-by-data`;

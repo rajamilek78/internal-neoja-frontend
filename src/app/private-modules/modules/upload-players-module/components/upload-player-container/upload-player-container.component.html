@@ -4,52 +4,80 @@
       <div class="mr-1 dropdown-league">
         <div><label>League</label></div>
         <mat-form-field>
-          <mat-select (selectionChange)="onLeagueSelect($event.value)" [(value)]="selectedLeague" placeholder="Select">
-            <mat-option *ngFor="let league of leagues" [value]="league.name">{{ league.name }}</mat-option>
+          <mat-select
+            (selectionChange)="onLeagueSelect($event.value)"
+            [(value)]="selectedLeague"
+            placeholder="Select"
+          >
+            <mat-option *ngFor="let league of leagues" [value]="league.name">{{
+              league.name
+            }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="add-row-dropdown" *ngIf="selectedFormat !== '1'">
+      <div class="add-row-dropdown mr-1" *ngIf="selectedFormat !== '1'">
         <div><label>Display Players</label></div>
         <mat-form-field>
           <mat-select [(ngModel)]="playerCount">
             <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">
-              {{i}}
+              {{ i }}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="add-row-dropdown mr-1">
-        <div><label>Days</label></div>
+        <div><label>Day</label></div>
         <mat-form-field>
-          <mat-select>
-            <mat-option *ngFor="let i of [1,2,3,4,5,6,7,8,9]" [value]="i">
-              {{i}}
+          <input matInput type="number" [(ngModel)]="selectedDay" placeholder="Enter"/>
+          <!-- <mat-select [(ngModel)]="selectedDay">
+            <mat-option
+              *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
+              [value]="i"
+            >
+              {{ i }}
             </mat-option>
-          </mat-select>
+          </mat-select> -->
         </mat-form-field>
       </div>
-      <div class="add-row-dropdown mr-1">
+      <div class="datepicker mr-1">
         <div><label>Date</label></div>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
     </div>
     <div class="radio-btn">
-      <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedFormat" (change)="onRadioButtonChange()">
-        <mat-radio-button value="1" [disabled]="isDisableUploadByFile">Upload by file</mat-radio-button>
+      <mat-radio-group
+        aria-label="Select an option"
+        [(ngModel)]="selectedFormat"
+        (change)="onRadioButtonChange()"
+      >
+        <mat-radio-button value="1" [disabled]="isDisableUploadByFile"
+          >Upload by file</mat-radio-button
+        >
         <mat-radio-button value="2">Upload by data</mat-radio-button>
       </mat-radio-group>
     </div>
     <div *ngIf="selectedFormat == '1'">
-      <app-upload-player-file [leagueIdPass]="selectedLeague"></app-upload-player-file>
+      <app-upload-player-file
+        [selectedDay]="selectedDay"
+        [selectedDate]="selectedDate"
+        [leagueIdPass]="selectedLeague"
+      ></app-upload-player-file>
     </div>
     <div *ngIf="selectedFormat == '2'">
-      <app-upload-player-data  [playerCount]="playerCount" [roundsLength]="roundsLength"
-        [leagueID]="leagueID"></app-upload-player-data>
+      <app-upload-player-data
+        [selectedDay]="selectedDay"
+        [selectedDate]="selectedDate"
+        [playerCount]="playerCount"
+        [roundsLength]="roundsLength"
+        [leagueID]="leagueID"
+      ></app-upload-player-data>
     </div>
   </div>
 </div>

@@ -15,9 +15,12 @@ export class CreateLeagueDialogComponent
   implements OnInit
 {
   leagueCRUD_Form!: FormGroup;
+  formattedStartDate!:string | null;
+  formattedEndDate!:string | null;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: any,
+    private datePipe : DatePipe,
     private dialog: MatDialogRef<CreateLeagueDialogComponent>,
     fb: FormBuilder,
     private leagueService: LeagueService
@@ -35,6 +38,8 @@ export class CreateLeagueDialogComponent
       name: ['', [Validators.maxLength(60)]],
       description: ['',[Validators.maxLength(500)]],
       start_date: [''],
+      // owner : ['aminraiyani@gmail.com'],
+      // delegate : ['aminraiyani@gmail.com'],
       end_date: [''],
       dupr_recorded: [false],
       type: [''],
@@ -42,16 +47,13 @@ export class CreateLeagueDialogComponent
       rounds_per_day: [0],
     });
   }
-  createUpdateLeague() {
-    // debugger
-    // const formattedStartDate = this.formatDate(this.leagueCRUD_Form.value.start_date);
-    // const formattedEndDate = this.formatDate(this.leagueCRUD_Form.value.end_date);
-
-    // Updating the form values with formatted dates
-    // this.leagueCRUD_Form.patchValue({
-    //   start_date: formattedStartDate,
-    //   end_date: formattedEndDate
-    // });
+  onClickAddLeague() {
+     this.formattedStartDate = this.datePipe.transform(this.leagueCRUD_Form.value.start_date,'MM/dd/yyyy');
+    this.formattedEndDate = this.datePipe.transform(this.leagueCRUD_Form.value.end_date,'MM/dd/yyyy');
+    this.leagueCRUD_Form.patchValue({
+      start_date: this.formattedStartDate,
+      end_date: this.formattedEndDate
+    });
     if (this.data.league) {
       this.updateLeague();
     } else {
@@ -71,6 +73,10 @@ export class CreateLeagueDialogComponent
   }
   //To update existing league
   updateLeague() {
+    this.leagueCRUD_Form.patchValue({
+      start_date: this.formattedStartDate,
+      end_date: this.formattedEndDate
+    });
     const urlString = `${this.data.clubID}/${this.leagueCRUD_Form.value.name}`;
     this.leagueService
       .updateLeague(urlString, this.leagueCRUD_Form.value)
@@ -84,6 +90,14 @@ export class CreateLeagueDialogComponent
         },
       });
   }
+  onFormSubmit() {
+    if (this.data.league) {
+      this.updateLeague();
+    } else {
+      this.onClickAddLeague();
+    }
+  }
+  
 
   close() {
     this.dialog.close();

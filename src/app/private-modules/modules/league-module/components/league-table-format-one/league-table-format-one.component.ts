@@ -8,6 +8,8 @@ import { SharedCommonService } from '../../../../../core/services/shared-common.
 })
 export class LeagueTableFormatOneComponent implements OnInit {
   @Input() data: any;
+  @Input() leagueID!: string;
+  @Input() clubID!: string;
   @Input() groups: any;
   @Output() blurTeamScore = new EventEmitter<any>();
   @Input() isEdit !: boolean 
@@ -17,7 +19,9 @@ export class LeagueTableFormatOneComponent implements OnInit {
   constructor(private SharedCommonService: SharedCommonService) {}
 
   ngOnInit(): void {
-    console.log(this.isEdit)
+    console.log(this.data);
+    
+    // console.log(this.isEdit)
     if (this.groups && this.groups.length > 0) {
       this.gamesArray = Object.entries(
         this.groups[this.selectedTabIndex].data.games

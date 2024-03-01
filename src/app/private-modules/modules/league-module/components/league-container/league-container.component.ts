@@ -27,6 +27,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   userDetail!: UserModel | null;
   groups: any;
   responseData: any;
+  rawData :any;
   selectedFormat = '2';
   selectedGroup!: any;
   isEdit: boolean = false;
@@ -89,6 +90,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   // To get Match Data
   getMatchData() {
     this.SharedCommonService.getMatchData().subscribe((data) => {
+      this.rawData = data;
       this.responseData = data;
       console.log(data);
       
@@ -109,6 +111,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     const urlString = `${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
     this.leagueService.getRoundByID(urlString).subscribe({
       next: (res: any) => {
+        this.rawData = res;
         this.responseData = res ? res.groups || res : [];
         console.log(res);
         console.log(this.responseData);

@@ -358,8 +358,20 @@ app-conversation-list {
   }
 
   .add-row-dropdown {
+
+    width: 12rem;
+
     .mat-mdc-form-field {
-      width: 45% !important;
+      width: 100% !important;
+    }
+  }
+
+  .datepicker {
+
+    width: 15rem;
+
+    .mat-mdc-form-field {
+      width: 100% !important;
     }
   }
 }

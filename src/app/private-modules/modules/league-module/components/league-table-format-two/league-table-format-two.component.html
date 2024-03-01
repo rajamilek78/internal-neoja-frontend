@@ -4,6 +4,11 @@
   (selectedTabChange)="onTabChanged($event)"
 >
   <mat-tab *ngFor="let group of groups" [label]="group.name">
+    <div class="flex justify-between tab-sub-header">
+      <b>{{clubID}}</b>
+      <b>{{leagueID}}</b>
+      <b>{{data.header?.date || data.round?.header?.date}}</b>
+    </div>
     <div>
       <div class="parent-table flex justify-center align-start">
         <div

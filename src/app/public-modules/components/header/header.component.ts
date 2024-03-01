@@ -1,8 +1,10 @@
-import { Component, OnDestroy, OnInit, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouteConstant } from '../../../helpers/constants';
-import { SharedService } from "@app/core";
-import { Subscription } from "rxjs";
-import { UserModel } from "@app/helpers/models";
+import { SharedService } from '@app/core';
+import { Subscription } from 'rxjs';
+import { UserModel } from '@app/helpers/models';
+import { MatDialog } from '@angular/material/dialog';
+import { SignupDialogueComponent } from '../signup-dialogue/signup-dialogue.component';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +17,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userName = '';
   clubName = '';
 
-  constructor(private sharedService: SharedService, private cdr: ChangeDetectorRef) { }
+  constructor(
+    private sharedService: SharedService,
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.userSubscriber();
@@ -28,14 +34,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   userSubscriber = () => {
-    this.userDetailSub$ = this.sharedService.getUserDetailCall()
+    this.userDetailSub$ = this.sharedService
+      .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
-        if(this.userDetail){
+        if (this.userDetail) {
           this.userName = this.userDetail?.first_name;
-          this.clubName = this.userDetail.club_id
+          this.clubName = this.userDetail.club_id;
         }
-        
       });
   };
 
@@ -66,12 +72,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   get leagueList() {
     return `${RouteConstant.GENERATE_LEAGUE}`;
   }
-  
+
   get isLoggedIn() {
     return this.sharedService.isLoggedIn();
   }
 
   get loginUrl() {
     return `${RouteConstant.LOGIN}`;
+  }
+
+  openDialogue(): void {
+    const dialogueRef = this.dialog.open(SignupDialogueComponent, {
+      width: '450px',
+    });
   }
 }

@@ -98,6 +98,10 @@ a {
   margin-right: 2.4rem;
 }
 
+.mr-3{
+  margin-right: 0.4rem;
+}
+
 .mt-1 {
   margin-top: 3rem !important;
 }
@@ -232,6 +236,11 @@ a {
   margin-right: 0.4rem;
 }
 
+.height {
+  height: 70vh;
+  overflow-y: auto;
+}
+
 // img or icon btn scss
 .primary-btn,
 .primary-btn-light,
@@ -281,9 +290,6 @@ a {
   }
 
   &__body {
-    overflow-y: auto;
-    height: 70vh;
-
     b {
       color: rgba($black-color, 0.5);
       font-size: 1.6rem;
@@ -340,6 +346,17 @@ textarea {
 }
 
 // common-table scss
+
+.tab-sub-header {
+  padding-bottom: 1.6rem;
+  margin-top: 2.4rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: $black-color;
+  line-height: 1.9rem;
+  border-bottom: 1px solid rgba($black-color, 0.1);
+}
+
 
 .table-1 {
   margin-top: 2.4rem;
@@ -665,6 +682,21 @@ app-upload-player-container {
 }
 
 .upload {
+
+  .alert-msg {
+    margin-top: 3.4rem;
+    padding: 1.6rem;
+    background-color: rgba($yellow-color, 0.05);
+    border-radius: 1.2rem;
+    width: fit-content;
+
+    p {
+      color: $yellow-color;
+      font-size: 1.4rem;
+      margin-left: 1.6rem;
+    }
+  }
+
   &__section {
     border: 2px dashed rgba($black-color, 0.1);
     padding: 4rem;
@@ -770,13 +802,50 @@ app-upload-player-container {
     }
 
     .round-two {
+
+      .row-title {
+        border-bottom: 1px solid rgba($black-color, 0.1);
+        flex: 80%;
+        padding-bottom: 1.85rem;
+
+        small {
+          color: rgba($black-color, 0.8);
+          font-size: 1.6rem;
+          font-weight: 600;
+          line-height: 1.8rem;
+        }
+      }
+
+      .row-title-two {
+        border-bottom: 1px solid rgba($black-color, 0.1);
+        flex: 25%;
+        padding-bottom: 1.85rem;
+
+        small {
+          color: rgba($black-color, 0.8);
+          font-size: 1.6rem;
+          font-weight: 600;
+          line-height: 1.8rem;
+        }
+      }
+
       .row-field {
-        flex: 35%;
+        flex: 70%;
         margin-right: 1.6rem;
+
+        mat-form-field {
+          position: relative;
+
+          .round-one-icon {
+            position: absolute;
+            top: 0.9rem;
+            right: 1rem;
+          }
+        }
       }
 
       .row-field-two {
-        flex: 16%;
+        flex: 15%;
         margin-right: 1.6rem;
       }
 
@@ -897,7 +966,7 @@ app-upload-player-container {
 
   .table-buttons {
     position: absolute;
-    top: 5.4rem;
+    top: 2rem;
     right: 0;
     z-index: 10;
 
