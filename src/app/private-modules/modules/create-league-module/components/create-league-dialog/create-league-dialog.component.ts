@@ -32,6 +32,7 @@ export class CreateLeagueDialogComponent
     if (this.data.league) {
       this.data.league.start_date = new Date(this.data.league.start_date);
       this.data.league.end_date = new Date(this.data.league.end_date)
+      this.data.league.rounds_per_day = String(this.data.league.rounds_per_day)
       this.leagueCRUD_Form.patchValue(this.data.league);
     }
   }
