@@ -25,6 +25,8 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() selectedDate!: Date;
   isDropInDisabled = true;
   isNoShowDisabled = false;
+  //@Input() leagueID!: string;
+leagueIDSubscription!: Subscription;
 
   leagueSummaryData: any;
 
@@ -47,6 +49,11 @@ export class UploadPlayerDataComponent implements OnInit {
     if(this.roundsLength >= 1){
     this.leagueSummary();
   }
+  this.leagueIDSubscription = this.SharedCommonService.leagueChanged.subscribe((newLeagueID: string) => {
+    if(this.roundsLength >= 1){
+      this.leagueSummary();
+    }
+});
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -58,6 +65,7 @@ export class UploadPlayerDataComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    this.leagueIDSubscription.unsubscribe();
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }

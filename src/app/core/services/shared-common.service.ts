@@ -13,7 +13,7 @@ export class SharedCommonService {
   private clubID = new BehaviorSubject<any>(null);
   private leagueID = new BehaviorSubject<any>(null);
   private roundID = new BehaviorSubject<any>(null);
-
+  leagueChanged = new BehaviorSubject<any>(null);
   constructor() { }
 
   setMatchData( data : any){
@@ -45,6 +45,7 @@ export class SharedCommonService {
   //for league id
   setLeagueID( data : any){
     this.leagueID.next(data);
+    this.emitLeagueChanged(data);
   }
   getLeagueID(){
     return this.leagueID.asObservable();
@@ -57,5 +58,7 @@ export class SharedCommonService {
   getRoundID(){
     return this.roundID.asObservable();
   }
-
+  emitLeagueChanged(leagueID: any) {
+    this.leagueChanged.next(leagueID);
+  }
 }
