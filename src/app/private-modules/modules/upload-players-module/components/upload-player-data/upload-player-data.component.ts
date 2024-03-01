@@ -160,7 +160,8 @@ leagueIDSubscription!: Subscription;
     }
   }
   submitData(): void {
-    const formattedDate = this.datePipe.transform(this.selectedDate, 'MM/dd/yyyy');
+    
+      const formattedDate = this.datePipe.transform(this.selectedDate, 'MM/dd/yyyy');
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
   
     if (this.roundsLength >= 1) {
@@ -191,8 +192,8 @@ leagueIDSubscription!: Subscription;
       });
     } else {
       const playerData = {
-        day: 4,
-        date: "02/05/2024",
+        day: this.selectedDay,
+        date: formattedDate,
         players: {}
       };
   
@@ -212,6 +213,7 @@ leagueIDSubscription!: Subscription;
         },
       });
     }
+    
   }
   
 }

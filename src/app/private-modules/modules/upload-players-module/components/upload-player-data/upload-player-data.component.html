@@ -1,4 +1,4 @@
-<div [formGroup]="playerForm">
+<form [formGroup]="playerForm" (ngSubmit)="submitData()">
   <div class="upload-by-data">
     <div class="upload">
       <div class="upload__data">
@@ -137,7 +137,7 @@
       </div>
       <div class="upload__button flex justify-end">
         <div class="primary-btn">
-          <button (click)="submitData()" type="button" class="btn">
+          <button type="submit" class="btn" [disabled]="selectedDay === undefined">
             Build
           </button>
         </div>
@@ -155,4 +155,4 @@
       </div>
     </div>
   </div>
-</div>
+</form>
