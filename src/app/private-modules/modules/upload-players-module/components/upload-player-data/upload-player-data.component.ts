@@ -184,7 +184,7 @@ leagueIDSubscription!: Subscription;
       this.commonservice.uploadDataRound2(clubLeagueStr, playerDataRound2).subscribe({
         next: (res: any) => {
           this.SharedCommonService.setMatchData(res);
-          this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { selectedLeague: this.leagueID }]);
+          this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { leagueID: this.leagueID }]);
         },
         error: (err: any) => {
           console.log(err);
@@ -206,7 +206,7 @@ leagueIDSubscription!: Subscription;
       this.commonservice.uploadData(clubLeagueStr, playerData).subscribe({
         next: (res: any) => {
           this.SharedCommonService.setMatchData(res);
-          this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { selectedLeague: this.leagueID }]);
+          this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { leagueID: this.leagueID }]);
         },
         error: (err: any) => {
           console.log(err);
