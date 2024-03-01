@@ -39,6 +39,9 @@ export class CommonService {
   lockScore(path: string){
     return this.apiManager.postApis(`${API_ENDPOINTS.LOCK_SCORE}/${path}`, true)
   }
+  contactUs(data :any){
+    return this.apiManager.postApis(`${API_ENDPOINTS.CONTACT_US}`, data,true)
+  }
 
   getAllClubs(token?: string): Observable<any> {
     const headers = new HttpHeaders({
