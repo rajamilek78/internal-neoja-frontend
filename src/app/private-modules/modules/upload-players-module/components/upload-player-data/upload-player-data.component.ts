@@ -21,7 +21,7 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() playerCount!: number;
   @Input() roundsLength!: number;
   @Input() leagueID!: string;
-  @Input() selectedDay!: string;
+  @Input() selectedDay!: number;
   @Input() selectedDate!: Date;
   isDropInDisabled = true;
   isNoShowDisabled = false;

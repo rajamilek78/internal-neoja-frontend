@@ -20,7 +20,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   leagues: any[] = [];
   selectedLeague!: string;
   selectedDate! : Date;
-  selectedDay!:string;
+  selectedDay!:number;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -67,8 +67,6 @@ export class UploadPlayerContainerComponent implements OnInit {
   }
 
   onLeagueSelect(leagueName: string) {
-    //const ownedCompanies = this.userDetail?.owned_companies;
-    // const ownedClubs = this.userDetail?.owned_clubs;
     this.leagueID = leagueName;
     localStorage.setItem('leagueID',this.leagueID)
 

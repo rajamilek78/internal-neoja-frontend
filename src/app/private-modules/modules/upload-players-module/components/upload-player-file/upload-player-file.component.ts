@@ -19,11 +19,10 @@ export class UploadPlayerFileComponent {
   userDetail!: UserModel | null;
   isDragging: boolean = false;
   @Input() leagueIdPass: any;
-  @Input() selectedDay!: string;
+  @Input() selectedDay!: number;
   @Input() selectedDate!: Date;
 
   constructor(
-    private el: ElementRef,
     private commonservice: CommonService,
     private SharedCommonService: SharedCommonService,
     private router: Router,
@@ -110,9 +109,6 @@ export class UploadPlayerFileComponent {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
   onUpload() {
-    // const ownedCompanies = this.userDetail?.owned_companies;
-    // const ownedClubs = this.userDetail?.owned_clubs;
-    // const name = this.leagueIdPass;
     const formattedDate = this.datePipe.transform(this.selectedDate, 'MM/dd/yyyy');
     const clubID = this.userDetail?.club_id
     const clubLeagueStr = `${clubID}/${this.leagueIdPass}`;
@@ -122,7 +118,7 @@ export class UploadPlayerFileComponent {
       const data = new FormData();
       data.append('players', file);
       if (this.selectedDay !== null) {
-        data.append('day', this.selectedDay);
+        data.append('day', String(this.selectedDay));
       }
       if (formattedDate !== null) {
         data.append('date', formattedDate);
