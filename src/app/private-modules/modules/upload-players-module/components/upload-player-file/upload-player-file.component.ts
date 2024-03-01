@@ -19,7 +19,7 @@ export class UploadPlayerFileComponent {
   userDetail!: UserModel | null;
   isDragging: boolean = false;
   @Input() leagueIdPass: any;
-  @Input() selectedDay!: number;
+  @Input() selectedDay!: number | undefined;
   @Input() selectedDate!: Date;
 
   constructor(
