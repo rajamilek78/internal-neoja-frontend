@@ -11,14 +11,6 @@ export class FooterComponent {
     return `${RouteConstant.HOME_PAGE}`;
   }
 
-  get buildLeagueUrl() {
-    return `${RouteConstant.UPLOAD_PLAYER_CONTAINER}`;
-  }
-
-  // get completeLeagueUrl() {
-  //   return `${RouteConstant.HOME_PAGE}`;
-  // }
-
   get aboutUsUrl() {
     return `${RouteConstant.ABOUT_US_PAGE}`;
   }
@@ -26,6 +18,7 @@ export class FooterComponent {
   get contactUsUrl() {
     return `${RouteConstant.CONTACT_US_PAGE}`;
   }
+
   get loginUrl() {
     return `${RouteConstant.LOGIN}`;
   }
