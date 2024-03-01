@@ -5,7 +5,7 @@
         <div
           class="flex justify-end align-end MT-2-half title"
           [ngClass]="{
-            'round-one': roundsLength < 1,
+            'round-one': true,
             'round-two': roundsLength >= 1
           }"
         >
@@ -14,7 +14,7 @@
           </div>
           <div
             [ngClass]="{
-              'row-title': roundsLength < 1,
+              'row-title': true,
               'row-title-two': roundsLength >= 1
             }"
           >
@@ -31,7 +31,7 @@
             [formGroupName]="i"
             class="flex justify-end MT-2-half"
             [ngClass]="{
-              'round-one': roundsLength < 1,
+              'round-one': true,
               'round-two': roundsLength >= 1
             }"
           >
@@ -54,7 +54,7 @@
             </div>
             <div
               [ngClass]="{
-                'row-field': roundsLength < 1,
+                'row-field': true,
                 'row-field-two': roundsLength >= 1
               }"
             >
