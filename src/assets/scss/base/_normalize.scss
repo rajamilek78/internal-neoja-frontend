@@ -343,15 +343,15 @@ textarea {
 
 // common-table scss
 
-  .tab-sub-header{
-    padding-bottom: 1.6rem;
-    margin-top: 2.4rem;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: $black-color;
-    line-height: 1.9rem;
-    border-bottom: 1px solid rgba($black-color ,0.1);
-  }
+.tab-sub-header {
+  padding-bottom: 1.6rem;
+  margin-top: 2.4rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: $black-color;
+  line-height: 1.9rem;
+  border-bottom: 1px solid rgba($black-color, 0.1);
+}
 
 
 .table-1 {
@@ -664,13 +664,14 @@ app-upload-player-container {
 
 .upload {
 
-  .alert-msg{
+  .alert-msg {
     margin-top: 3.4rem;
     padding: 1.6rem;
-    background-color: rgba($yellow-color ,0.05);
+    background-color: rgba($yellow-color, 0.05);
     border-radius: 1.2rem;
     width: fit-content;
-    p{
+
+    p {
       color: $yellow-color;
       font-size: 1.4rem;
       margin-left: 1.6rem;
@@ -798,7 +799,7 @@ app-upload-player-container {
 
       .row-title-two {
         border-bottom: 1px solid rgba($black-color, 0.1);
-        flex: 21%;
+        flex: 25%;
         padding-bottom: 1.85rem;
 
         small {
@@ -946,7 +947,7 @@ app-upload-player-container {
 
   .table-buttons {
     position: absolute;
-    top: 5.4rem;
+    top: 2rem;
     right: 0;
     z-index: 10;
 
