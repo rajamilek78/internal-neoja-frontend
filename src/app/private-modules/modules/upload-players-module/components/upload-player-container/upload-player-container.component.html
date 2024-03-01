@@ -15,16 +15,6 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="add-row-dropdown mr-1" *ngIf="selectedFormat !== '1'">
-        <div><label>Display Players</label></div>
-        <mat-form-field>
-          <mat-select [(ngModel)]="playerCount">
-            <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">
-              {{ i }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
       <div class="add-row-dropdown mr-1">
         <div><label>Day</label></div>
         <mat-form-field>
@@ -48,6 +38,16 @@
             [for]="picker"
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="add-row-dropdown mr-1" *ngIf="selectedFormat !== '1'">
+        <div><label>Add New Players</label></div>
+        <mat-form-field>
+          <mat-select [(ngModel)]="playerCount">
+            <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">
+              {{ i }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
     </div>

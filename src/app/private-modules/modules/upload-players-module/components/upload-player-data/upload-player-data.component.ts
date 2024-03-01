@@ -192,7 +192,7 @@ leagueIDSubscription!: Subscription;
       });
     } else {
       const playerData = {
-        day: this.selectedDay,
+        day: String(this.selectedDay),
         date: formattedDate,
         players: {}
       };

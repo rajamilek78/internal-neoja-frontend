@@ -16,6 +16,9 @@ export class SignupDialogueComponent {
 
   openContactUs() {
     this.router.navigate([RouteConstant.CONTACT_US_PAGE]);
+    this.close()
+  }
+  close (){
     this.dialog.close();
   }
 }
