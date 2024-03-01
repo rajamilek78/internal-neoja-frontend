@@ -20,7 +20,7 @@ export class UploadPlayerFileComponent {
   isDragging: boolean = false;
   @Input() leagueIdPass: any;
   @Input() selectedDay!: string;
-  @Input() selectedDate!: string;
+  @Input() selectedDate!: Date;
 
   constructor(
     private el: ElementRef,
