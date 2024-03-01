@@ -19,7 +19,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   userDetail!: UserModel | null;
   leagues: any[] = [];
   selectedLeague!: string;
-  selectedDate! : string;
+  selectedDate! : Date;
   selectedDay!:string;
 
   constructor(
@@ -29,7 +29,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.selectedDate = new Date();
+    this.selectedDate = new Date();
     this.userSubscriber();
     this.getAllLeagues();    
   }
