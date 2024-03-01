@@ -30,6 +30,7 @@ export class ContactUsPageComponent extends FormBaseComponent implements OnInit{
     if(this.contactUsForm.valid){
     this.commonService.contactUs(this.contactUsForm.value).subscribe({
       next : (res : any)=>{
+        this.contactUsForm.reset();
         console.log(res);
       },
       error : (err : any)=>{
