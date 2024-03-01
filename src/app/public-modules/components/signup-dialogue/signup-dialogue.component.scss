@@ -1,9 +1,11 @@
 @import "../../../../assets/scss/abstracts/abstracts";
 
 .modal {
-    padding: 4rem !important;
+    padding: 2rem !important;
 
     &__body {
+        padding-top: 1rem;
+
         p {
             color: $black-color;
             font-size: 1.8rem;
