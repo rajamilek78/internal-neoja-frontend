@@ -144,7 +144,8 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
         date: "02/05/2024",
       },
     
-      groups: groups };
+      groups: groups,
+      players: this.rawData.players };
     console.log(body);
     this.leagueService.updateScore(urlString, body).subscribe({
       next: (res: any) => {
@@ -155,6 +156,44 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       },
     });
   }
+//   onSaveClick() {
+//     // Check if groups is empty, if yes, return
+//     if (!this.rawData || !this.rawData.groups) {
+//         console.log('Groups data is empty. Cannot proceed with onSaveClick().');
+//         return;
+//     }
+
+//     const groupsData = this.rawData.groups;
+//     const groups = Object.keys(groupsData).map((key) => ({
+//         name: key,
+//         data: groupsData[key],
+//     }));
+
+//     this.groupsArrayToBeUpdated = groups.map((group) => {
+//         const obj: any = { [group.name]: group.data };
+//         return obj;
+//     });
+
+//     const urlString = `${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
+//     const body = {
+//         header:{
+//             day: 4,
+//             date: "03/04/2024",
+//         },
+//         groups: groups,
+//         players: this.rawData.players
+//     };
+//     console.log(body);
+//     this.leagueService.updateScore(urlString, body).subscribe({
+//         next: (res: any) => {
+//             this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
+//         },
+//         error: (err: any) => {
+//             console.log(err);
+//         },
+//     });
+// }
+
 
   onBlurTeamScore = (event) => {
     const { groups } = event;
