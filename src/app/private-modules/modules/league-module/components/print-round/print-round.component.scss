@@ -1,7 +1,9 @@
 :host {
     display: none;
   }
-  
+  .group-table-wrapper {
+    page-break-before: always;
+  }
 //   :host .print-body {
 //     height: 100%;
 //     width: 100%;

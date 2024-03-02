@@ -35,7 +35,7 @@ export class PrintRoundComponent implements OnInit{
   print(){
     const printOptions : PrintOptions = {
       printSectionId: 'print',
-      printTitle: '',
+      printTitle: 'Round Report',
       useExistingCss: false,
       bodyClass: '',
       openNewTab: false,

@@ -1,60 +1,5 @@
-<!-- <div>
-    <div id="print">
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Match</th>
-                        <th colspan="2">Players</th>
-                        <th>Score</th>
-                        <th>Bye</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let game of data.data">
-                        <td rowspan="2">{{game | json}}</td>
-                        <td colspan="2"></td>
-                        <td></td>
-                        <td rowspan="2"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-</div> -->
-
 <div id="print">
-  <!-- <div *ngFor="let group of data; let i = index">
-        <h1>{{group.name | json}}</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th style="border: 1px solid black;">Matchs</th>
-                    <th style="border: 1px solid black;">Team One</th>
-                    <th style="border: 1px solid black;">Team Two</th>
-                    <th style="border: 1px solid black;">Score Team one</th>
-                    <th style="border: 1px solid black;">Score Team Two</th>
-                    <th style="border: 1px solid black;">Buy</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let game of group.data.games | keyvalue">
-                    <td style="border: 1px solid black;">{{ game.key }}</td>
-                    <td style="border: 1px solid black;">{{ game.value.team_1.join(', ') }}</td>
-                    <td style="border: 1px solid black;">{{ game.value.team_2.join(', ') }}</td>
-                    <td style="border: 1px solid black;">{{ game.value.score.team_1 }}</td>
-                    <td style="border: 1px solid black;">{{ game.value.score.team_2 }}</td>
-                    <td style="border: 1px solid black;">{{ game.value.bye.join(', ') }}</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        
-        
-    </div> -->
-
-  <div *ngFor="let group of data; let i = index">
+  <div *ngFor="let group of data; let i = index" class="group-table-wrapper">
     <h1>{{ group.name }}</h1>
     <table style="border-collapse: collapse">
       <thead>
@@ -88,6 +33,6 @@
         </ng-container>
       </tbody>
     </table>
+    <div style="page-break-before: always;" *ngIf="i < data.length - 1"></div>
   </div>
 </div>
-<!-- </div> -->
