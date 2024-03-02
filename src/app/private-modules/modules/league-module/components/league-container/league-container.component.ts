@@ -213,22 +213,4 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     // this.router.navigate(['players-league/print']);
     this.printRoundComponent.print();
   }
-  // downloadTableAsPDF() {
-  //   const doc = new jsPDF();
-
-  //   const data = this.selectedGroup.data;
-  //   console.log("this is selected data",data);
-
-  //   const body = data.map(row => Object.values(row));
-
-  //   const headers = Object.keys(data[0]);
-  //   console.log("this is table  : ",data);
-
-  //   (doc as any).autoTable({
-  //     head: [headers],
-  //     body: body
-  //   });
-
-  //   doc.save('TableData.pdf');
-  // }
 }

@@ -2,6 +2,11 @@ import { group } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgxPrintService,PrintOptions } from 'ngx-print';
 interface GroupData {
+  header: {
+    date: string;
+    day: number;
+    score_locked: boolean;
+  };
   games: {
     [key: string]: {
       bye: string[];
@@ -25,6 +30,9 @@ interface GroupData {
 export class PrintRoundComponent implements OnInit{
   constructor(private printService : NgxPrintService){}
  @Input() data! : { name: string; data: GroupData }[];
+ @Input() leagueID! : string;
+ @Input() clubID! : string;
+ @Input() date! : string;
  groups : any;
   
 
