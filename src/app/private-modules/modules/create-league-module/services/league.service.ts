@@ -16,4 +16,7 @@ export class LeagueService {
   updateLeague(path : string,data : any): Observable <any>{
     return this.apiManager.postApis(`${API_ENDPOINTS.UPDATE_LEAGUE}/${path}`, data, true)
   }
+  getLeagueById(path : string):Observable <any>{
+    return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUE_BY_ID}/${path}`,true)
+  }
 }

@@ -15,12 +15,14 @@ export class CreateLeagueDialogComponent
   implements OnInit
 {
   leagueCRUD_Form!: FormGroup;
-  formattedStartDate!:string | null;
-  formattedEndDate!:string | null;
+  formattedStartDate!: string | null;
+  formattedEndDate!: string | null;
+  leagueID!: string;
+  clubID!: string;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: any,
-    private datePipe : DatePipe,
+    private datePipe: DatePipe,
     private dialog: MatDialogRef<CreateLeagueDialogComponent>,
     fb: FormBuilder,
     private leagueService: LeagueService
@@ -30,32 +32,57 @@ export class CreateLeagueDialogComponent
   ngOnInit(): void {
     this.initLeagueForm();
     if (this.data.league) {
-      this.data.league.start_date = new Date(this.data.league.start_date);
-      this.data.league.end_date = new Date(this.data.league.end_date)
-      this.data.league.rounds_per_day = String(this.data.league.rounds_per_day)
-      this.leagueCRUD_Form.patchValue(this.data.league);
+      this.leagueID = this.data.league.name.toUpperCase();
+      this.clubID = this.data.clubID;
     }
+    this.getLeagueByID();
   }
   initLeagueForm() {
     this.leagueCRUD_Form = this.createForm({
       name: ['', [Validators.maxLength(60)]],
-      description: ['',[Validators.maxLength(500)]],
-      start_date: [''],
-      // owner : ['aminraiyani@gmail.com'],
-      // delegate : ['aminraiyani@gmail.com'],
-      end_date: [''],
+      description: ['', [Validators.maxLength(500)]],
+      start_date: [new Date()],
+      end_date: [new Date()],
       dupr_recorded: [false],
       type: [''],
       doubles: [true],
       rounds_per_day: [0],
     });
   }
+
+  getLeagueByID() {
+    const urlString = `${this.clubID}/${this.leagueID}`;
+    this.leagueService.getLeagueById(urlString).subscribe({
+      next: (res) => {
+        this.leagueCRUD_Form.patchValue({
+          name: res.header.name,
+          description: res.header.description,
+          start_date: new Date(res.header.start_date),
+          end_date: new Date(res.header.end_date),
+          dupr_recorded: res.header.dupr_recorded,
+          type: res.header.type,
+          doubles: res.header.doubles,
+          rounds_per_day: String(res.header.rounds_per_day),
+        });
+        console.log('this is league', res);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
   onClickAddLeague() {
-     this.formattedStartDate = this.datePipe.transform(this.leagueCRUD_Form.value.start_date,'MM/dd/yyyy');
-    this.formattedEndDate = this.datePipe.transform(this.leagueCRUD_Form.value.end_date,'MM/dd/yyyy');
+    const formattedStartDate = this.datePipe.transform(
+      this.leagueCRUD_Form.value.start_date,
+      'MM/dd/yyyy'
+    );
+    const formattedEndDate = this.datePipe.transform(
+      this.leagueCRUD_Form.value.end_date,
+      'MM/dd/yyyy'
+    );
     this.leagueCRUD_Form.patchValue({
-      start_date: this.formattedStartDate,
-      end_date: this.formattedEndDate
+      start_date: formattedStartDate,
+      end_date: formattedEndDate,
     });
     if (this.data.league) {
       this.updateLeague();
@@ -76,11 +103,21 @@ export class CreateLeagueDialogComponent
   }
   //To update existing league
   updateLeague() {
+    const formattedStartDate = this.datePipe.transform(
+      this.leagueCRUD_Form.value.start_date,
+      'MM/dd/yyyy'
+    );
+    const formattedEndDate = this.datePipe.transform(
+      this.leagueCRUD_Form.value.end_date,
+      'MM/dd/yyyy'
+    );
     this.leagueCRUD_Form.patchValue({
-      start_date: this.formattedStartDate,
-      end_date: this.formattedEndDate
+      start_date: formattedStartDate,
+      end_date: formattedEndDate,
     });
-    const urlString = `${this.data.clubID}/${this.leagueCRUD_Form.value.name}`;
+    const urlString = `${
+      this.data.clubID
+    }/${this.leagueCRUD_Form.value.name.toUpperCase()}`;
     this.leagueService
       .updateLeague(urlString, this.leagueCRUD_Form.value)
       .subscribe({
@@ -100,23 +137,10 @@ export class CreateLeagueDialogComponent
       this.onClickAddLeague();
     }
   }
-  
 
   close() {
     this.dialog.close();
   }
-  // formatDate(date: string | Date): string {
-  //   if (!date) return '';
-
-  //   // Assuming input is in ISO string format, you may need to adjust this based on your date format
-  //   const d = new Date(date);
-  //   const month = '' + (d.getMonth() + 1);
-  //   const day = '' + d.getDate();
-  //   const year = d.getFullYear();
-
-  //   return [day.padStart(2, '0'), month.padStart(2, '0'), year].join('/');
-  // }
-
   get formControls() {
     return this.leagueCRUD_Form.controls;
   }

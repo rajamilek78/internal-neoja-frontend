@@ -24,28 +24,70 @@
     </div>
 </div> -->
 
+<div id="print">
+  <!-- <div *ngFor="let group of data; let i = index">
+        <h1>{{group.name | json}}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th style="border: 1px solid black;">Matchs</th>
+                    <th style="border: 1px solid black;">Team One</th>
+                    <th style="border: 1px solid black;">Team Two</th>
+                    <th style="border: 1px solid black;">Score Team one</th>
+                    <th style="border: 1px solid black;">Score Team Two</th>
+                    <th style="border: 1px solid black;">Buy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let game of group.data.games | keyvalue">
+                    <td style="border: 1px solid black;">{{ game.key }}</td>
+                    <td style="border: 1px solid black;">{{ game.value.team_1.join(', ') }}</td>
+                    <td style="border: 1px solid black;">{{ game.value.team_2.join(', ') }}</td>
+                    <td style="border: 1px solid black;">{{ game.value.score.team_1 }}</td>
+                    <td style="border: 1px solid black;">{{ game.value.score.team_2 }}</td>
+                    <td style="border: 1px solid black;">{{ game.value.bye.join(', ') }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+        
+    </div> -->
 
-
-<!-- <div id="print">
-<div *ngFor="let group of groups">
-    <h2>{{group.name}}</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Match</th>
-                <th colspan="2">Players</th>
-                <th>Score</th>
-                <th>Bye</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let game of group.data.games">
-                <td>{{game}}</td>
-                <td colspan="2">{{group.data.games[game].team_1.join(', ')}} vs {{group.data.games[game].team_2.join(', ')}}</td>
-                <td>{{group.data.games[game].score.team_1}} : {{group.data.games[game].score.team_2}}</td>
-                <td>{{group.data.games[game].bye.join(', ')}}</td>
-            </tr>
-        </tbody>
+  <div *ngFor="let group of data; let i = index">
+    <h1>{{ group.name }}</h1>
+    <table style="border-collapse: collapse">
+      <thead>
+        <tr>
+          <th style="border: 1px solid black">Match</th>
+          <th colspan="2" style="border: 1px solid black">Players</th>
+          <th style="border: 1px solid black">Score</th>
+          <th style="border: 1px solid black">Bye</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let game of group.data.games | keyvalue">
+          <tr>
+            <td style="border: 1px solid black;padding: 10px;" rowspan="2">{{ game.key }}</td>
+            <td style="border: 1px solid black;padding: 10px;">{{ game.value.team_1[0] }}</td>
+            <td style="border: 1px solid black;padding: 10px;">{{ game.value.team_1[1] }}</td>
+            <td style="border: 1px solid black;padding: 10px;">
+              {{ game.value.score.team_1 }}
+            </td>
+            <td style="border: 1px solid black;padding: 10px;" rowspan="2">
+              {{ game.value.bye[0] }}
+            </td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid black;padding: 10px;">{{ game.value.team_2[0] }}</td>
+            <td style="border: 1px solid black;padding: 10px;">{{ game.value.team_2[1] }}</td>
+            <td style="border: 1px solid black;padding: 10px;">
+              {{ game.value.score.team_2 }}
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
     </table>
+  </div>
 </div>
-</div> -->
+<!-- </div> -->
