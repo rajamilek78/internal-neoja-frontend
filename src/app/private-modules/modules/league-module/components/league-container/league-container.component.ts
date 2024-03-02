@@ -93,8 +93,6 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       this.rawData = data;
       this.responseData = data;
       console.log(data);
-      
-
       if (this.responseData) {
         this.groups = Object.keys(this.responseData.round.groups).map((key) => ({
           name: key,
