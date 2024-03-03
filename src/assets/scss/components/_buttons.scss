@@ -18,12 +18,16 @@
 
 .red-btn {
     button {
-        background-color: rgba($red-color, 0.1);
-        color: rgba($red-color, 0.5);
+        background-color: rgba($red-color, 0.2);
+        color: rgba($red-color, 0.8);
         border: none !important;
 
         &:disabled {
             cursor: not-allowed;
+        }
+        &:hover {
+            background-color: rgba($red-color, 0.3);
+        // color: rgba($red-color, 0.6);
         }
     }
 }

@@ -93,8 +93,6 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       this.rawData = data;
       this.responseData = data;
       console.log(data);
-      
-
       if (this.responseData) {
         this.groups = Object.keys(this.responseData.round.groups).map((key) => ({
           name: key,
@@ -140,11 +138,12 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     const urlString = `${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
     const body = {
       header:{
-        day: 4,
-        date: "02/05/2024",
+        day: this.rawData.header.day,
+        date: this.rawData.header.date,
       },
     
-      groups: groups };
+      groups: groups,
+      players: this.rawData.players };
     console.log(body);
     this.leagueService.updateScore(urlString, body).subscribe({
       next: (res: any) => {
@@ -155,7 +154,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       },
     });
   }
-
+  
   onBlurTeamScore = (event) => {
     const { groups } = event;
     this.groupsArrayToBeUpdated = [...groups];
@@ -193,43 +192,25 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   }
 
   downloadTableAsPDF() {
-    const data = document.getElementById('playerData'); // Replace with the id of your table
-    if (data) {
-      html2canvas(data, { scale: 2 }).then((canvas) => {
-        // Few necessary setting options
-        const imgWidth = 208;
-        const pageHeight = 295;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        const heightLeft = imgHeight;
+    // const data = document.getElementById('playerData'); // Replace with the id of your table
+    // if (data) {
+    //   html2canvas(data, { scale: 2 }).then((canvas) => {
+    //     // Few necessary setting options
+    //     const imgWidth = 208;
+    //     const pageHeight = 295;
+    //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    //     const heightLeft = imgHeight;
 
-        const contentDataURL = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-        const position = 0;
-        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-        pdf.save('TableData.pdf'); // Generated PDF
-      });
-    } else {
-      console.error('Element not found');
-    }
+    //     const contentDataURL = canvas.toDataURL('image/png');
+    //     const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+    //     const position = 0;
+    //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+    //     pdf.save('TableData.pdf'); // Generated PDF
+    //   });
+    // } else {
+    //   console.error('Element not found');
+    // }
     // this.router.navigate(['players-league/print']);
-    // this.printRoundComponent.print();
+    this.printRoundComponent.print();
   }
-  // downloadTableAsPDF() {
-  //   const doc = new jsPDF();
-
-  //   const data = this.selectedGroup.data;
-  //   console.log("this is selected data",data);
-
-  //   const body = data.map(row => Object.values(row));
-
-  //   const headers = Object.keys(data[0]);
-  //   console.log("this is table  : ",data);
-
-  //   (doc as any).autoTable({
-  //     head: [headers],
-  //     body: body
-  //   });
-
-  //   doc.save('TableData.pdf');
-  // }
 }

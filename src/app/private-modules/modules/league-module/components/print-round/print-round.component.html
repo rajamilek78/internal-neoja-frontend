@@ -1,51 +1,50 @@
-<!-- <div>
-    <div id="print">
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Match</th>
-                        <th colspan="2">Players</th>
-                        <th>Score</th>
-                        <th>Bye</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let game of data.data">
-                        <td rowspan="2">{{game | json}}</td>
-                        <td colspan="2"></td>
-                        <td></td>
-                        <td rowspan="2"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+<div id="print">
+  <div *ngFor="let group of data; let i = index" class="group-table-wrapper">
+    <h1>{{ group.name }}</h1>
+    <div 
+    style="display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid black;">
+      <b>{{clubID}}</b>
+      <b>{{leagueID}}</b>
+      <b>{{date}}</b>
     </div>
-</div> -->
-
-
-
-<!-- <div id="print">
-<div *ngFor="let group of groups">
-    <h2>{{group.name}}</h2>
-    <table>
+    <div style="display: flex;justify-content: center;align-items: center;">
+      <table style="border-collapse: collapse;width: 100%;margin-top: 40px;font-size: 19px;">
         <thead>
-            <tr>
-                <th>Match</th>
-                <th colspan="2">Players</th>
-                <th>Score</th>
-                <th>Bye</th>
-            </tr>
+          <tr>
+            <th style="border: 1px solid black;padding: 10px;">Match</th>
+            <th colspan="2" style="border: 1px solid black;padding: 10px;">Players</th>
+            <th style="border: 1px solid black;padding: 10px;">Score</th>
+            <th style="border: 1px solid black;padding: 10px;">Bye</th>
+          </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let game of group.data.games">
-                <td>{{game}}</td>
-                <td colspan="2">{{group.data.games[game].team_1.join(', ')}} vs {{group.data.games[game].team_2.join(', ')}}</td>
-                <td>{{group.data.games[game].score.team_1}} : {{group.data.games[game].score.team_2}}</td>
-                <td>{{group.data.games[game].bye.join(', ')}}</td>
+          <ng-container *ngFor="let game of group.data.games | keyvalue">
+            <tr>
+              <td style="border: 1px solid black;padding: 10px;" rowspan="2">{{ game.key }}</td>
+              <td style="border: 1px solid black;padding: 10px;">{{ game.value.team_1[0] }}</td>
+              <td style="border: 1px solid black;padding: 10px;">{{ game.value.team_1[1] }}</td>
+              <td style="border: 1px solid black;padding: 10px;">
+                {{ game.value.score.team_1 }}
+              </td>
+              <td style="border: 1px solid black;padding: 10px;" rowspan="2">
+                {{ game.value.bye[0] }}
+              </td>
             </tr>
+            <tr>
+              <td style="border: 1px solid black;padding: 10px;">{{ game.value.team_2[0] }}</td>
+              <td style="border: 1px solid black;padding: 10px;">{{ game.value.team_2[1] }}</td>
+              <td style="border: 1px solid black;padding: 10px;">
+                {{ game.value.score.team_2 }}
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
-    </table>
+      </table>
+    </div>
+    
+    <div style="page-break-before: always;" *ngIf="i < data.length - 1"></div>
+  </div>
 </div>
-</div> -->
