@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import {FormBuilder,FormGroup,FormArray,Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { CommonService, SharedService } from '@app/core';
 import { Router } from '@angular/router';
@@ -7,6 +7,8 @@ import { SharedCommonService } from '@app/helpers/services';
 import { RouteConstant } from '@app/helpers/constants';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDetailDialogueComponent } from '../delete-detail-dialogue/delete-detail-dialogue.component';
 @Component({
   selector: 'app-upload-player-data',
   templateUrl: './upload-player-data.component.html',
@@ -17,7 +19,7 @@ export class UploadPlayerDataComponent implements OnInit {
   isRoundTwo = false;
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
-  clubID!:string;
+  clubID!: string;
   @Input() playerCount!: number;
   @Input() roundsLength!: number;
   @Input() leagueID!: string;
@@ -26,7 +28,7 @@ export class UploadPlayerDataComponent implements OnInit {
   isDropInDisabled = true;
   isNoShowDisabled = false;
   //@Input() leagueID!: string;
-leagueIDSubscription!: Subscription;
+  leagueIDSubscription!: Subscription;
 
   leagueSummaryData: any;
 
@@ -35,8 +37,9 @@ leagueIDSubscription!: Subscription;
     private router: Router,
     private sharedService: SharedService,
     private commonservice: CommonService,
-    private datePipe : DatePipe,
-    private SharedCommonService: SharedCommonService
+    private datePipe: DatePipe,
+    private SharedCommonService: SharedCommonService,
+    private dialog: MatDialog
   ) {
     this.playerForm = this.fb.group({
       players: this.fb.array([]),
@@ -46,14 +49,17 @@ leagueIDSubscription!: Subscription;
   ngOnInit() {
     // this.addPlayers(this.playerCount);
     this.userSubscriber();
-    if(this.roundsLength >= 1){
-    this.leagueSummary();
-  }
-  this.leagueIDSubscription = this.SharedCommonService.leagueChanged.subscribe((newLeagueID: string) => {
-    if(this.roundsLength >= 1){
+    if (this.roundsLength >= 1) {
       this.leagueSummary();
     }
-});
+    this.leagueIDSubscription =
+      this.SharedCommonService.leagueChanged.subscribe(
+        (newLeagueID: string) => {
+          if (this.roundsLength >= 1) {
+            this.leagueSummary();
+          }
+        }
+      );
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -84,8 +90,11 @@ leagueIDSubscription!: Subscription;
     this.players.push(this.createPlayer());
   }
 
-  deletePlayer(index: number): void {
-    this.players.removeAt(index);
+  deletePlayer(): void {
+    // this.players.removeAt(index);
+    const dialogueRef = this.dialog.open(DeleteDetailDialogueComponent, {
+      width: '450px',
+    });
   }
 
   addPlayers(count: number): void {
@@ -103,10 +112,10 @@ leagueIDSubscription!: Subscription;
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
-        if(this.userDetail){
-        this.clubID = this.userDetail?.club_id;
-      }
-      console.log(this.userDetail);
+        if (this.userDetail) {
+          this.clubID = this.userDetail?.club_id;
+        }
+        console.log(this.userDetail);
       });
   };
   leagueSummary() {
@@ -123,29 +132,33 @@ leagueIDSubscription!: Subscription;
           ) {
             const playerData =
               this.leagueSummaryData.league_summary[playerName];
-              const winLoseHistory = playerData.win_lose_history ? playerData.win_lose_history.split(',').reverse() : [];
-              const round = playerData.in_round1
+            const winLoseHistory = playerData.win_lose_history
+              ? playerData.win_lose_history.split(',').reverse()
+              : [];
+            const round = playerData.in_round1;
             const playerGroup = this.fb.group({
               name: [
                 { value: playerName, disabled: true },
                 Validators.required,
               ],
-              score: [{ value: playerData.rating, disabled: true }, Validators.required],
+              score: [
+                { value: playerData.rating, disabled: true },
+                Validators.required,
+              ],
               winLoseHistory: [{ value: winLoseHistory, disabled: true }],
-              round : [{value: round , disabled: true}]
+              round: [{ value: round, disabled: true }],
             });
 
             playersArray.push(playerGroup);
           }
         }
-       // this.updateToggleState();
+        // this.updateToggleState();
       },
       error: (err: any) => {
         console.log(err);
       },
     });
   }
-  
 
   onPlayerCountChange(count: number): void {
     if (this.players) {
@@ -153,67 +166,75 @@ leagueIDSubscription!: Subscription;
       if (count > currentCount) {
         this.addPlayers(count - currentCount);
       } else {
-        for (let i = currentCount; i > count; i--) {
-          this.deletePlayer(i - 1);
-        }
+        // for (let i = currentCount; i > count; i--) {
+        //   this.deletePlayer(i - 1);
+        // }
       }
     }
   }
   submitData(): void {
-    
-      const formattedDate = this.datePipe.transform(this.selectedDate, 'MM/dd/yyyy');
+    const formattedDate = this.datePipe.transform(
+      this.selectedDate,
+      'MM/dd/yyyy'
+    );
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
-  
+
     if (this.roundsLength >= 1) {
       const playerDataRound2 = {
         day: this.selectedDay,
         date: formattedDate,
-        players: {}
+        players: {},
       };
-  
+
       // Loop through players in the form
-      this.playerForm.getRawValue().players.forEach(player => {
+      this.playerForm.getRawValue().players.forEach((player) => {
         playerDataRound2.players[player.name] = {
           rating: player.score,
           in_round1: player.in_round1,
-          is_deleted: player.isDeleted || false // Mark the player as deleted if needed
+          is_deleted: player.isDeleted || false, // Mark the player as deleted if needed
         };
       });
-  
+
       // Upload data for round 2
-      this.commonservice.uploadDataRound2(clubLeagueStr, playerDataRound2).subscribe({
-        next: (res: any) => {
-          this.SharedCommonService.setMatchData(res);
-          this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { leagueID: this.leagueID }]);
-        },
-        error: (err: any) => {
-          console.log(err);
-        },
-      });
+      this.commonservice
+        .uploadDataRound2(clubLeagueStr, playerDataRound2)
+        .subscribe({
+          next: (res: any) => {
+            this.SharedCommonService.setMatchData(res);
+            this.router.navigate([
+              RouteConstant.LEAGUE_CONTAINER,
+              { leagueID: this.leagueID },
+            ]);
+          },
+          error: (err: any) => {
+            console.log(err);
+          },
+        });
     } else {
       const playerData = {
         day: String(this.selectedDay),
         date: formattedDate,
-        players: {}
+        players: {},
       };
-  
+
       // Loop through players in the form
-      this.playerForm.getRawValue().players.forEach(player => {
+      this.playerForm.getRawValue().players.forEach((player) => {
         playerData.players[player.name] = player.score;
       });
-  
+
       // Upload data for round 1
       this.commonservice.uploadData(clubLeagueStr, playerData).subscribe({
         next: (res: any) => {
           this.SharedCommonService.setMatchData(res);
-          this.router.navigate([RouteConstant.LEAGUE_CONTAINER, { leagueID: this.leagueID }]);
+          this.router.navigate([
+            RouteConstant.LEAGUE_CONTAINER,
+            { leagueID: this.leagueID },
+          ]);
         },
         error: (err: any) => {
           console.log(err);
         },
       });
     }
-    
   }
-  
 }
