@@ -63,7 +63,7 @@
       </div>
       <div class="upload__button">
         <div class="primary-btn">
-          <button [disabled]="!leagueIdPass || selectedDay === undefined" type="button" class="btn" (click)="onUpload()">Upload</button>
+          <button [disabled]="!leagueIdPass || roundCount === undefined" type="button" class="btn" (click)="onUpload()">Upload</button>
         </div>
       </div>
     </div>
