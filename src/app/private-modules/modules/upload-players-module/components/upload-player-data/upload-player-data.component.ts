@@ -90,10 +90,17 @@ export class UploadPlayerDataComponent implements OnInit {
     this.players.push(this.createPlayer());
   }
 
-  deletePlayer(): void {
+  deletePlayer(index:number): void {
     // this.players.removeAt(index);
+    this.openDialogue(index);
+  }
+
+  openDialogue(index:number): void {
     const dialogueRef = this.dialog.open(DeleteDetailDialogueComponent, {
       width: '450px',
+    });
+    dialogueRef.afterClosed().subscribe((result) => {
+      console.log('the dialogue is closed now');
     });
   }
 
