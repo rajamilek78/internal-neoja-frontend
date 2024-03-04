@@ -19,7 +19,7 @@ export class UploadPlayerFileComponent {
   userDetail!: UserModel | null;
   isDragging: boolean = false;
   @Input() leagueIdPass: any;
-  @Input() selectedDay!: number | undefined;
+  @Input() roundCount!: number | undefined;
   @Input() selectedDate!: Date;
 
   constructor(
@@ -91,7 +91,6 @@ export class UploadPlayerFileComponent {
         }
       }
     }
-    // Clear the input's value
     inputElement.value = '';
   }
   
@@ -100,7 +99,6 @@ export class UploadPlayerFileComponent {
     if (index > -1) {
       this.files.splice(index, 1);
     }
-    // Clear the input's value
     this.fileInput.nativeElement.value = '';
   }
   
@@ -117,8 +115,8 @@ export class UploadPlayerFileComponent {
     this.files.forEach((file) => {
       const data = new FormData();
       data.append('players', file);
-      if (this.selectedDay !== null) {
-        data.append('day', String(this.selectedDay));
+      if (this.roundCount !== null) {
+        data.append('round', String(this.roundCount));
       }
       if (formattedDate !== null) {
         data.append('date', formattedDate);

@@ -16,17 +16,9 @@
         </mat-form-field>
       </div>
       <div class="add-row-dropdown mr-1">
-        <div><label>Day</label></div>
+        <div><label>Round</label></div>
         <mat-form-field>
-          <input matInput type="number" [(ngModel)]="selectedDay" placeholder="Enter"/>
-          <!-- <mat-select [(ngModel)]="selectedDay">
-            <mat-option
-              *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
-              [value]="i"
-            >
-              {{ i }}
-            </mat-option>
-          </mat-select> -->
+          <input matInput type="number" [(ngModel)]="roundCount" placeholder="Enter"/>
         </mat-form-field>
       </div>
       <div class="datepicker mr-1">
@@ -40,16 +32,16 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="add-row-dropdown mr-1" *ngIf="selectedFormat !== '1'">
+      <!-- <div class="add-row-dropdown mr-1" *ngIf="selectedFormat !== '1'">
         <div><label>Add New Players</label></div>
         <mat-form-field>
-          <mat-select [(ngModel)]="playerCount">
+          <mat-select [(ngModel)]="roundCount">
             <mat-option *ngFor="let i of [5, 10, 15, 20, 25, 30]" [value]="i">
               {{ i }}
             </mat-option>
           </mat-select>
         </mat-form-field>
-      </div>
+      </div> -->
     </div>
     <div class="radio-btn">
       <mat-radio-group
@@ -65,16 +57,15 @@
     </div>
     <div *ngIf="selectedFormat == '1'">
       <app-upload-player-file
-        [selectedDay]="selectedDay"
+        [roundCount]="roundCount"
         [selectedDate]="selectedDate"
         [leagueIdPass]="leagueID"
       ></app-upload-player-file>
     </div>
     <div *ngIf="selectedFormat == '2'">
       <app-upload-player-data
-        [selectedDay]="selectedDay"
         [selectedDate]="selectedDate"
-        [playerCount]="playerCount"
+        [roundCount]="roundCount"
         [roundsLength]="roundsLength"
         [leagueID]="leagueID"
       ></app-upload-player-data>

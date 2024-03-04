@@ -20,10 +20,10 @@ export class UploadPlayerDataComponent implements OnInit {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   clubID!: string;
-  @Input() playerCount!: number;
+  @Input() roundCount!: number;
   @Input() roundsLength!: number;
   @Input() leagueID!: string;
-  @Input() selectedDay!: number;
+  // @Input() selectedDay!: number;
   @Input() selectedDate!: Date;
   isDropInDisabled = true;
   isNoShowDisabled = false;
@@ -65,8 +65,8 @@ export class UploadPlayerDataComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges called', changes);
     if (changes['playerCount']) {
-      this.onPlayerCountChange(this.playerCount);
-      console.log(this.playerCount);
+      this.onPlayerCountChange(this.roundCount);
+      console.log(this.roundCount);
     }
   }
 
@@ -181,7 +181,7 @@ export class UploadPlayerDataComponent implements OnInit {
 
     if (this.roundsLength >= 1) {
       const playerDataRound2 = {
-        day: this.selectedDay,
+        round: this.roundCount,
         date: formattedDate,
         players: {},
       };
@@ -212,7 +212,7 @@ export class UploadPlayerDataComponent implements OnInit {
         });
     } else {
       const playerData = {
-        day: String(this.selectedDay),
+        round: String(this.roundCount),
         date: formattedDate,
         players: {},
       };
