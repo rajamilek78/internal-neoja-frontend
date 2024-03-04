@@ -6,6 +6,7 @@
 > -->
   <div *ngFor="let group of groups">
     <h1>{{group.name}}</h1>
+    <!-- {{groups | json}} -->
     <!-- <div class="flex justify-between tab-sub-header"> -->
       <!-- <b>{{clubID}}</b>
       <b>{{leagueID}}</b>
@@ -21,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let game of group.games">
+        <!-- <ng-container *ngFor="let game of group.games">
           {{game | json}}
           <tr>
             <td rowspan="2" class="text-center">{{ game[0] }}</td>
@@ -91,7 +92,7 @@
               </div>
             </td>
           </tr>
-        </ng-container>
+        </ng-container> -->
       </tbody>
     </table>
     <div class="table-footer flex justify-between">
