@@ -76,6 +76,7 @@ export class UploadPlayerContainerComponent implements OnInit {
     this.commonService.getRounds(clubLeagueStr).subscribe({
       next: (res: any) => {
         this.roundsLength = res ? Object.keys(res).length : 0;
+        this.roundCount = this.roundsLength + 1;
         // if (res) {
         //   this.roundsLength = Object.keys(res).length as number;
         // } else {
