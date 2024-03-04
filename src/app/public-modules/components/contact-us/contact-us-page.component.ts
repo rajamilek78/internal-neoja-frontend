@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '@app/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { FormBaseComponent } from '@app/utility/components';
+import { RouteConstant } from '@app/helpers/constants';
 
 @Component({
   selector: 'app-contact-us-page',
@@ -12,6 +14,7 @@ export class ContactUsPageComponent extends FormBaseComponent implements OnInit{
   contactUsForm! : FormGroup
   constructor(
     private commonService : CommonService,
+    private router : Router,
     fb : FormBuilder
     ){super(fb)}
   ngOnInit(): void {
@@ -31,6 +34,7 @@ export class ContactUsPageComponent extends FormBaseComponent implements OnInit{
     this.commonService.contactUs(this.contactUsForm.value).subscribe({
       next : (res : any)=>{
         this.contactUsForm.reset();
+        this.router.navigate([`${RouteConstant.HOME_PAGE}`]);
         console.log(res);
       },
       error : (err : any)=>{

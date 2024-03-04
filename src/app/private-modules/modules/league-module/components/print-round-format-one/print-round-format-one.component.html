@@ -6,11 +6,11 @@
 > -->
   <div *ngFor="let group of groups">
     <h1>{{group.name}}</h1>
-    <div class="flex justify-between tab-sub-header">
+    <!-- <div class="flex justify-between tab-sub-header"> -->
       <!-- <b>{{clubID}}</b>
       <b>{{leagueID}}</b>
       <b>{{data.header?.date || data.round?.header?.date}}</b> -->
-    </div>
+    <!-- </div> -->
     <table class="table-1">
       <thead>
         <tr>
@@ -22,6 +22,7 @@
       </thead>
       <tbody>
         <ng-container *ngFor="let game of group.games">
+          {{game | json}}
           <tr>
             <td rowspan="2" class="text-center">{{ game[0] }}</td>
             <td>

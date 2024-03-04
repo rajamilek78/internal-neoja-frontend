@@ -5,15 +5,9 @@
 >
   <mat-tab *ngFor="let group of groups" [label]="group.name">
     <div class="flex justify-between tab-sub-header">
-<<<<<<< HEAD
-      <b>{{ clubID }}</b>
+      <b>Round {{ data.header?.round || data.round?.header?.round }}</b>
       <b>{{ leagueID }}</b>
       <b>{{ data.header?.date || data.round?.header?.date }}</b>
-=======
-      <b>{{roundCount}}</b>
-      <b>{{leagueID}}</b>
-      <b>{{data.header?.date || data.round?.header?.date}}</b>
->>>>>>> a8e90a00da736a360b0c583e83c799109239549d
     </div>
     <div class="overflow">
       <div class="parent-table flex justify-center align-start">
