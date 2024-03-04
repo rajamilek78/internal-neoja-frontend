@@ -52,6 +52,7 @@
           *ngIf="selectedFormat == '1' && groups"
           [groups]="groups"
           [data]="rawData"
+          [roundCount]="roundID"
           [leagueID]="leagueID"
           [clubID]="selectedClubID"
           id="playerData"
@@ -66,6 +67,7 @@
           *ngIf="selectedFormat == '2' && groups"
           [groups]="groups"
           [data]="rawData"
+          [roundCount]="roundID"
           [leagueID]="leagueID"
           [clubID]="selectedClubID"
           id="playerData"
@@ -87,5 +89,7 @@
   #printRoundComponent
   [leagueID]="leagueID"
   [date]="rawData?.header?.date"
-  [clubID]="selectedClubID"></app-print-round>
+  [clubID]="selectedClubID">
+</app-print-round>
+<app-print-round-format-one [data]="rawData"></app-print-round-format-one>
 </div>

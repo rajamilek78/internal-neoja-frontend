@@ -1,14 +1,15 @@
-<mat-tab-group
+<!-- <mat-tab-group
   mat-stretch-tabs="false"
   mat-align-tabs="start"
   [(selectedIndex)]="selectedTabIndex"
   (selectedTabChange)="onTabChanged($event)"
->
-  <mat-tab *ngFor="let group of groups" [label]="group.name">
+> -->
+  <div *ngFor="let group of groups">
+    <h1>{{group.name}}</h1>
     <div class="flex justify-between tab-sub-header">
-      <b>Round {{data.header?.round}}</b>
+      <!-- <b>{{clubID}}</b>
       <b>{{leagueID}}</b>
-      <b>{{data.header?.date || data.round?.header?.date}}</b>
+      <b>{{data.header?.date || data.round?.header?.date}}</b> -->
     </div>
     <table class="table-1">
       <thead>
@@ -20,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let game of gamesArray">
+        <ng-container *ngFor="let game of group.games">
           <tr>
             <td rowspan="2" class="text-center">{{ game[0] }}</td>
             <td>
@@ -46,12 +47,11 @@
               >{{ game[1].team_1[1] }}
             </td>
             <td class="text-center">
-              <div *ngIf="isEdit">
+              <div>
                 <input
                   type="number"
                   placeholder="0"
                   [(ngModel)]="game[1].score.team_1"
-                  (blur)="onBlurTeamScore()"
                 />
               </div>
             </td>
@@ -81,12 +81,11 @@
               >{{ game[1].team_2[1] }}
             </td>
             <td class="text-center">
-              <div *ngIf="isEdit">
+              <div>
                 <input
                   type="number"
                   placeholder="0"
                   [(ngModel)]="game[1].score.team_2"
-                  (blur)="onBlurTeamScore()"
                 />
               </div>
             </td>
@@ -103,6 +102,5 @@
         >
       </div>
     </div>
-  </mat-tab>
-</mat-tab-group>
-
+</div>
+<!-- </mat-tab-group> -->

@@ -25,7 +25,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.createForm({
-      email: ['aminraiyani@gmail.com', [Validators.required]],
+      id: ['aminraiyani@gmail.com', [Validators.required]],
       password: ['abc@123', Validators.required],
       
     })
@@ -37,10 +37,10 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
   
 
   onLoginSubmit(loginForm: FormGroup) {
-    if (this.onSubmit(loginForm)) {
-      const { email, password } = loginForm.value;
-      const emailPasswordStr = `${email}/${password}`;
-      this.userAuthService.logIn(emailPasswordStr).subscribe({
+    if (this.loginForm.valid) {
+      // const { email, password } = loginForm.value;
+      // const emailPasswordStr = `${email}/${password}`;
+      this.userAuthService.logIn(this.loginForm.value).subscribe({
         next: (res: any) => {
           this.handleLoginResponse(res);
         },
