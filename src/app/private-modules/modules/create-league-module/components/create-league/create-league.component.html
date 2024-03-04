@@ -2,7 +2,6 @@
   <div class="container">
     <div class="create-league">
       <div class="league-title">
-
         <div class="row">
           <div class="col-md-6">
             <div>
@@ -28,7 +27,11 @@
 
           <div class="col-md-6">
             <div class="primary-btn display-right">
-              <button type="button" class="btn flex justify-center" (click)="openDialogue()">
+              <button
+                type="button"
+                class="btn flex justify-center"
+                (click)="openDialogue()"
+              >
                 <span><img src="assets/images/add-icon.svg" alt="" /></span>Add
               </button>
             </div>
@@ -51,13 +54,18 @@
         </thead>
         <tbody>
           <tr *ngFor="let league of leagues; index as i">
-            <td>{{i + 1}}</td>
-            <td>{{league.name}}</td>
-            <td>{{league.start_date | date : 'MM/dd/yyyy'}} - {{league.end_date | date : 'MM/dd/yyyy'}}</td>
-            <td>{{league.dupr_recorded ? 'Yes' : 'No'}}</td>
-            <td>{{league.type.charAt(0).toUpperCase() + league.type.slice(1)}}</td>
-            <td>{{league.doubles ? 'Yes' : 'No'}}</td>
-            <td>{{league.active ? 'Yes' : 'No'}}</td>
+            <td>{{ i + 1 }}</td>
+            <td>{{ league.name }}</td>
+            <td>
+              {{ league.start_date | date : "MM/dd/yyyy" }} -
+              {{ league.end_date | date : "MM/dd/yyyy" }}
+            </td>
+            <td>{{ league.dupr_recorded ? "Yes" : "No" }}</td>
+            <td>
+              {{ league.type.charAt(0).toUpperCase() + league.type.slice(1) }}
+            </td>
+            <td>{{ league.doubles ? "Yes" : "No" }}</td>
+            <td>{{ league.active ? "Yes" : "No" }}</td>
             <td>
               <a (click)="openDialogue(league)">
                 <img src="assets/images/edit-icon.svg" alt="" />
