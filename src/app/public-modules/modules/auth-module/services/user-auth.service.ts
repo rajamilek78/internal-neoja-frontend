@@ -11,13 +11,8 @@ export class UserAuthService {
     private sharedService: SharedService) {
   }
 
-  logIn = (params: string): Observable<any> => {
-    // const headers = new HttpHeaders({
-    //   'API-Key': `${AppConstant.API_KEY}`
-    // });
-    // const options = { headers }
-    const url = `${API_ENDPOINTS.LOGIN}/${params}`;
-    return this.apiManager.postApis(url)
+  logIn = (data : any): Observable<any> => {
+    return this.apiManager.postApis(`${API_ENDPOINTS.LOGIN}`,data)
   };
 
   handleAuthResponse = (response) => {

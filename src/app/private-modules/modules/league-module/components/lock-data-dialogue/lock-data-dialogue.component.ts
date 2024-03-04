@@ -46,6 +46,8 @@ export class LockDataDialogueComponent implements OnInit{
 
   lockRound() {
     const bodyData = this.data.responseData.round;
+    console.log(bodyData);
+    
     console.log(this.data.responseData.round)
     //const ownedCompanies = this.userDetail?.owned_companies;
       const ownedClubs = this.userDetail?.owned_clubs;

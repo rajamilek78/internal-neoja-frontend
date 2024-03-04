@@ -1158,7 +1158,6 @@ app-upload-player-container {
   margin-top: 4.7rem;
 
   div {
-    margin-bottom: 3.6rem;
 
     h6 {
       color: $primary-color;
@@ -1174,11 +1173,19 @@ app-upload-player-container {
       font-size: 1.6rem;
       font-weight: 500;
       line-height: 2.4rem;
+
+      a {
+        color: $primary-color;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
-  @include respond ("phone") {
-    width: 100%;
+  .mb-1 {
+    margin-bottom: 3.2rem !important;
   }
 }
 
@@ -1311,6 +1318,14 @@ app-upload-player-container {
       font-size: 1.6rem;
       font-weight: 500;
       line-height: 2.4rem;
+
+      a {
+        color: $primary-color;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     .flex {

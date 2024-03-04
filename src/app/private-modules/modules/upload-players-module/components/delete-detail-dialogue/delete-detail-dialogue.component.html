@@ -1,0 +1,33 @@
+<div class="modal">
+  <div class="modal__header flex justify-between">
+    <h6>Delete</h6>
+    <div>
+      <a (click)="close()"
+        ><span><img src="assets/images/close-icon.svg" alt="" /></span
+      ></a>
+    </div>
+  </div>
+  <div class="modal__body">
+    <div>
+      <div><b>Are you sure you want to Delete Player ?</b></div>
+      <div>
+        <small
+          >Upon confirmation, this player will be deleted and you won't be able
+          to make any further changes.</small
+        >
+      </div>
+    </div>
+  </div>
+  <div class="modal__footer">
+    <div class="flex justify-end">
+      <div class="primary-btn">
+        <button type="button" class="btn" (click)="close()">Yes</button>
+      </div>
+      <div class="secondary-btn-light">
+        <button type="button" class="btn" (click)="close()">
+          No, I want to make changes.
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

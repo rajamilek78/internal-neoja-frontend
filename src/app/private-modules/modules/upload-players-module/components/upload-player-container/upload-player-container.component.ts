@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './upload-player-container.component.scss',
 })
 export class UploadPlayerContainerComponent implements OnInit {
-  playerCount = 5;
+  // roundCount = 5;
   roundsLength!: number;
   leagueID!: string;
   clubID!: string
@@ -21,7 +21,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   leagues: any[] = [];
   selectedLeague!: string;
   selectedDate! : Date;
-  selectedDay!:number;
+  roundCount!:number;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -76,6 +76,7 @@ export class UploadPlayerContainerComponent implements OnInit {
     this.commonService.getRounds(clubLeagueStr).subscribe({
       next: (res: any) => {
         this.roundsLength = res ? Object.keys(res).length : 0;
+        this.roundCount = this.roundsLength + 1;
         // if (res) {
         //   this.roundsLength = Object.keys(res).length as number;
         // } else {
