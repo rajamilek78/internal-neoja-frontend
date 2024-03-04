@@ -86,6 +86,6 @@
   <app-print-round [data]="groups"
   #printRoundComponent
   [leagueID]="leagueID"
-  [date]="rawData.header.date"
+  [date]="rawData?.header?.date"
   [clubID]="selectedClubID"></app-print-round>
 </div>
