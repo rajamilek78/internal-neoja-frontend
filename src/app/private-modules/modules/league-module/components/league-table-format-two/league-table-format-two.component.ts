@@ -22,6 +22,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   @Input() responseData: any;
   @Input() leagueID!: string;
   @Input() clubID!: string;
+  @Input() roundCount!: string;
 
   ngOnInit(): void {
     if (this.groups && this.groups.length > 0) {

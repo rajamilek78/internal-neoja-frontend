@@ -92,7 +92,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.rawData = data;
       this.responseData = data;
-      console.log(data);
+      console.log(this.rawData);
       if (this.responseData) {
         this.groups = Object.keys(this.responseData.round.groups).map((key) => ({
           name: key,
@@ -111,7 +111,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       next: (res: any) => {
         this.rawData = res;
         this.responseData = res ? res.groups || res : [];
-        console.log(res);
+        console.log(this.rawData);
         console.log(this.responseData);
         if (this.responseData) {
           this.groups = Object.keys(this.responseData).map((key) => ({
