@@ -45,7 +45,7 @@
             <th width="10%">Dupr Rec.</th>
             <th width="10%">Type</th>
             <th width="10%">Doubles</th>
-            <th width="10%">Rounds/day</th>
+            <th width="10%">Active</th>
             <th width="10%">Edit</th>
           </tr>
         </thead>
@@ -57,7 +57,7 @@
             <td>{{league.dupr_recorded ? 'Yes' : 'No'}}</td>
             <td>{{league.type.charAt(0).toUpperCase() + league.type.slice(1)}}</td>
             <td>{{league.doubles ? 'Yes' : 'No'}}</td>
-            <td>{{league.rounds_per_day}}</td>
+            <td>{{league.active ? 'Yes' : 'No'}}</td>
             <td>
               <a (click)="openDialogue(league)">
                 <img src="assets/images/edit-icon.svg" alt="" />
