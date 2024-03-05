@@ -12,9 +12,10 @@ import { ContactUsPageComponent } from './public-modules/components/contact-us/c
 import { AboutUsPageComponent } from './public-modules/components/about-us/about-us-page.component';
 import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
 import { API_ENDPOINTS } from './helpers/constants/api-constants';
-import { CoreModule } from "./core";
+import { CoreModule } from './core';
 import { DateFormatDirective } from './helpers/directives/date-format.directive';
 import { SignupDialogueComponent } from './public-modules/components/signup-dialogue/signup-dialogue.component';
+import { CustomSidenavComponent } from './public-modules/components/custom-sidenav/custom-sidenav.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SignupDialogueComponent } from './public-modules/components/signup-dial
     AboutUsPageComponent,
     HomePageComponent,
     DateFormatDirective,
-    SignupDialogueComponent
+    SignupDialogueComponent,
+    CustomSidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,4 +40,4 @@ import { SignupDialogueComponent } from './public-modules/components/signup-dial
   providers: [API_ENDPOINTS],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

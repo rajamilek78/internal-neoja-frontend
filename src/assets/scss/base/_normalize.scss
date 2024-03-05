@@ -245,6 +245,14 @@ a {
   overflow-y: auto;
 }
 
+.overflow {
+
+  @include respond("phone") {
+    overflow-x: scroll !important;
+  }
+
+}
+
 // img or icon btn scss
 .primary-btn,
 .primary-btn-light,
@@ -615,6 +623,10 @@ textarea {
     img {
       width: 100%;
     }
+
+    @include respond("phone") {
+      display: none;
+    }
   }
 
   &__form {
@@ -659,6 +671,17 @@ textarea {
         margin-top: 3.6rem !important;
       }
     }
+
+    @include respond("phone") {
+      padding: 0rem;
+      margin-left: 0rem;
+      width: 100%;
+    }
+  }
+
+  @include respond("phone") {
+    transform: translateY(62%);
+    flex-direction: column;
   }
 }
 
@@ -667,6 +690,10 @@ textarea {
 app-upload-player-container {
   .dropdown {
     margin-top: 3.5rem;
+
+    @include respond("phone") {
+      flex-direction: column;
+    }
   }
 }
 
@@ -889,6 +916,10 @@ app-upload-player-container {
 
     }
 
+    @include respond("phone") {
+      overflow-x: scroll !important;
+    }
+
   }
 }
 
@@ -1080,6 +1111,17 @@ app-upload-player-container {
       }
     }
   }
+
+  @include respond("phone") {
+    .align-end {
+      flex-direction: column;
+
+      .align-center {
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+  }
 }
 
 // view-score scss
@@ -1169,6 +1211,10 @@ app-upload-player-container {
     img {
       width: 100%;
     }
+
+    @include respond("phone") {
+      display: none;
+    }
   }
 
   &__form {
@@ -1212,6 +1258,17 @@ app-upload-player-container {
         }
       }
     }
+
+    @include respond("phone") {
+      margin-left: 0rem;
+      width: 100%;
+      padding: 0rem;
+    }
+  }
+
+  @include respond("phone") {
+    flex-direction: column;
+    transform: translateY(22%);
   }
 }
 
@@ -1252,6 +1309,10 @@ app-upload-player-container {
 
     .col-md-6 {
       max-width: 45%;
+
+      @include respond ("phone") {
+        margin-top: 4rem;
+      }
     }
 
     h6 {
@@ -1301,10 +1362,15 @@ app-upload-player-container {
           line-height: 2.4rem;
         }
       }
+
+      @include respond ("phone") {
+        margin-top: 8rem;
+      }
     }
 
     @include respond ("phone") {
       flex-direction: column;
+      margin-top: 5rem;
     }
   }
 
@@ -1319,6 +1385,10 @@ app-upload-player-container {
       line-height: 6.7rem;
       letter-spacing: 0.2rem;
       word-spacing: 0.2rem;
+    }
+
+    @include respond ("phone") {
+      margin-top: 9rem;
     }
   }
 
@@ -1490,5 +1560,13 @@ app-upload-player-container {
         color: $primary-color !important;
       }
     }
+  }
+
+  @include respond ("phone") {
+    .flex-1 {
+      flex: 50%;
+    }
+
+    .sub-footer {}
   }
 }

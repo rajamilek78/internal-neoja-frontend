@@ -10,7 +10,10 @@
     </div>
     <div class="view-score-table">
       <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-        <mat-tab *ngFor="let round of leagueScores | keyvalue: sortRounds" [label]="'Round ' + round.key">
+        <mat-tab
+          *ngFor="let round of leagueScores | keyvalue : sortRounds"
+          [label]="'Round ' + round.key"
+        >
           <div class="overflow">
             <table class="table-2">
               <thead>
@@ -28,20 +31,42 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let player of round.value.individual | keyvalue; let i = index">
+                <tr
+                  *ngFor="
+                    let player of round.value.individual | keyvalue;
+                    let i = index
+                  "
+                >
                   <td>{{ i + 1 }}</td>
-                  <td>{{player.key}}</td>
-                  <td>{{player.value.rating}}</td>
-                  <td>{{player.value.points_scored}}</td>
-                  <td>{{player.value.points_possible}}</td>
-                  <td>{{player.value.played}}</td>
-                  <td class="green-font">{{player.value.won}}</td>
+                  <td>{{ player.key }}</td>
+                  <td>{{ player.value.rating }}</td>
+                  <td>{{ player.value.points_scored }}</td>
+                  <td>{{ player.value.points_possible }}</td>
+                  <td>{{ player.value.played }}</td>
+                  <td class="green-font">{{ player.value.won }}</td>
                   <!-- <td class="red-font">-7</td> -->
-                  <td>{{player.value.win_percent}}</td>
+                  <td>{{ player.value.win_percent }}</td>
                   <td class="flex justify-center">
-                    <div *ngFor="let winLose of player.value.win_lose_history.split(',')">
-                      <div class="status-square bg-red flex justify-center" [ngClass]="{'bg-green': winLose === '1', 'bg-red': winLose === '0'}">
-                        <img [src]="winLose === '1' ? 'assets/images/w-latter.svg' : 'assets/images/l-latter.svg'" alt="" />
+                    <div
+                      *ngFor="
+                        let winLose of player.value.win_lose_history.split(',')
+                      "
+                    >
+                      <div
+                        class="status-square bg-red flex justify-center"
+                        [ngClass]="{
+                          'bg-green': winLose === '1',
+                          'bg-red': winLose === '0'
+                        }"
+                      >
+                        <img
+                          [src]="
+                            winLose === '1'
+                              ? 'assets/images/w-latter.svg'
+                              : 'assets/images/l-latter.svg'
+                          "
+                          alt=""
+                        />
                       </div>
                     </div>
                   </td>
@@ -49,7 +74,6 @@
               </tbody>
             </table>
           </div>
-          
           <div class="view-score-title">
             <h6>Cumulative score</h6>
           </div>
@@ -70,20 +94,44 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let player of round.value.cumulative | keyvalue; let i = index">
+                <tr
+                  *ngFor="
+                    let player of round.value.cumulative | keyvalue;
+                    let i = index
+                  "
+                >
                   <td>{{ i + 1 }}</td>
-                  <td>{{player.key}}</td>
-                  <td>{{player.value.rating}}</td>
-                  <td>{{player.value.points_scored}}</td>
-                  <td>{{player.value.points_possible}}</td>
-                  <td>{{player.value.played}}</td>
-                  <td class="green-font">{{player.value.won}}</td>
+                  <td>{{ player.key }}</td>
+                  <td>{{ player.value.rating }}</td>
+                  <td>{{ player.value.points_scored }}</td>
+                  <td>{{ player.value.points_possible }}</td>
+                  <td>{{ player.value.played }}</td>
+                  <td class="green-font">{{ player.value.won }}</td>
                   <!-- <td class="red-font">-7</td> -->
-                  <td>{{player.value.win_percent}}</td>
+                  <td>{{ player.value.win_percent }}</td>
                   <td class="flex justify-center">
-                    <div *ngFor="let winLose of player.value.win_lose_history.split(',').reverse()">
-                      <div class="status-square bg-red flex justify-center" [ngClass]="{'bg-green': winLose === '1', 'bg-red': winLose === '0'}">
-                        <img [src]="winLose === '1' ? 'assets/images/w-latter.svg' : 'assets/images/l-latter.svg'" alt="" />
+                    <div
+                      *ngFor="
+                        let winLose of player.value.win_lose_history
+                          .split(',')
+                          .reverse()
+                      "
+                    >
+                      <div
+                        class="status-square bg-red flex justify-center"
+                        [ngClass]="{
+                          'bg-green': winLose === '1',
+                          'bg-red': winLose === '0'
+                        }"
+                      >
+                        <img
+                          [src]="
+                            winLose === '1'
+                              ? 'assets/images/w-latter.svg'
+                              : 'assets/images/l-latter.svg'
+                          "
+                          alt=""
+                        />
                       </div>
                     </div>
                   </td>
@@ -91,7 +139,6 @@
               </tbody>
             </table>
           </div>
-          
         </mat-tab>
       </mat-tab-group>
     </div>
