@@ -4,10 +4,11 @@
   [(selectedIndex)]="selectedTabIndex"
   (selectedTabChange)="onTabChanged($event)"
 > -->
+<div class="container">
   <div *ngFor="let group of groups">
-    <h1>{{group.name}}</h1>
+    <h1>{{ group.name }}</h1>
     <!-- <div class="flex justify-between tab-sub-header"> -->
-      <!-- <b>{{clubID}}</b>
+    <!-- <b>{{clubID}}</b>
       <b>{{leagueID}}</b>
       <b>{{data.header?.date || data.round?.header?.date}}</b> -->
     <!-- </div> -->
@@ -22,7 +23,7 @@
       </thead>
       <tbody>
         <ng-container *ngFor="let game of group.games">
-          {{game | json}}
+          {{ game | json }}
           <tr>
             <td rowspan="2" class="text-center">{{ game[0] }}</td>
             <td>
@@ -103,5 +104,6 @@
         >
       </div>
     </div>
+  </div>
 </div>
 <!-- </mat-tab-group> -->

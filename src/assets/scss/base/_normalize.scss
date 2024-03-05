@@ -1111,6 +1111,17 @@ app-upload-player-container {
       }
     }
   }
+
+  @include respond("phone") {
+    .align-end {
+      flex-direction: column;
+
+      .align-center {
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+  }
 }
 
 // view-score scss
