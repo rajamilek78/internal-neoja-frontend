@@ -121,12 +121,12 @@ export class UploadPlayerDataComponent implements OnInit {
         this.leagueSummaryData = res;
         const playersArray = this.playerForm.get('players') as FormArray;
         playersArray.clear();
-        for (const playerName in this.leagueSummaryData.league_summary) {
+        for (const playerName in this.leagueSummaryData.players) {
           if (
-            this.leagueSummaryData.league_summary.hasOwnProperty(playerName)
+            this.leagueSummaryData.players.hasOwnProperty(playerName)
           ) {
             const playerData =
-              this.leagueSummaryData.league_summary[playerName];
+              this.leagueSummaryData.players[playerName];
             const winLoseHistory = playerData.win_lose_history
               ? playerData.win_lose_history.split(',').reverse()
               : [];

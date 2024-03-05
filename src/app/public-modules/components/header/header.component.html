@@ -54,6 +54,11 @@
             </div>
           </button>
         </div>
+        <div *ngIf="isLoggedIn">
+          <button mat-icon-button (click)="collapsed.set(!collapsed())">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
       </div>
       <div class="flex justify-center" *ngIf="!isLoggedIn">
         <div class="primary-btn-light">

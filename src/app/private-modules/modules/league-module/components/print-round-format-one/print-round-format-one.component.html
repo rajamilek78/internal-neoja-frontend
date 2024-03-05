@@ -1,108 +1,95 @@
-<!-- <mat-tab-group
-  mat-stretch-tabs="false"
-  mat-align-tabs="start"
-  [(selectedIndex)]="selectedTabIndex"
-  (selectedTabChange)="onTabChanged($event)"
-> -->
-<div class="container">
-  <div *ngFor="let group of groups">
-    <h1>{{ group.name }}</h1>
-    <!-- <div class="flex justify-between tab-sub-header"> -->
-    <!-- <b>{{clubID}}</b>
-      <b>{{leagueID}}</b>
-      <b>{{data.header?.date || data.round?.header?.date}}</b> -->
-    <!-- </div> -->
-    <table class="table-1">
-      <thead>
+<div *ngFor="let group of groups">
+  <h1>{{ group.name }}</h1>
+  <table class="table-1">
+    <thead>
+      <tr>
+        <th>Match</th>
+        <th colspan="2">Players</th>
+        <th>Score</th>
+        <th>Bye</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let game of group.data.games | keyvalue">
+        {{ game.key | json }}
         <tr>
-          <th>Match</th>
-          <th colspan="2">Players</th>
-          <th>Score</th>
-          <th>Bye</th>
+          <td rowspan="2" class="text-center">{{ game[0] }}</td>
+          <td>
+            <span
+              ><img
+                [src]="
+                  game[1].team_1[0] === game[1].server
+                    ? 'assets/images/serve-active-icon.svg'
+                    : 'assets/images/serve-inactive-icon.svg'
+                "
+                alt="" /></span
+            >{{ game[1].team_1[0] }}
+          </td>
+          <td>
+            <span
+              ><img
+                [src]="
+                  game[1].team_1[1] === game[1].server
+                    ? 'assets/images/serve-active-icon.svg'
+                    : 'assets/images/serve-inactive-icon.svg'
+                "
+                alt="" /></span
+            >{{ game[1].team_1[1] }}
+          </td>
+          <td class="text-center">
+            <div>
+              <input
+                type="number"
+                placeholder="0"
+                [(ngModel)]="game[1].score.team_1"
+              />
+            </div>
+          </td>
+          <td rowspan="2" class="bye-name">{{ game[1].bye[0] }}</td>
         </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let game of group.games">
-          {{ game | json }}
-          <tr>
-            <td rowspan="2" class="text-center">{{ game[0] }}</td>
-            <td>
-              <span
-                ><img
-                  [src]="
-                    game[1].team_1[0] === game[1].server
-                      ? 'assets/images/serve-active-icon.svg'
-                      : 'assets/images/serve-inactive-icon.svg'
-                  "
-                  alt="" /></span
-              >{{ game[1].team_1[0] }}
-            </td>
-            <td>
-              <span
-                ><img
-                  [src]="
-                    game[1].team_1[1] === game[1].server
-                      ? 'assets/images/serve-active-icon.svg'
-                      : 'assets/images/serve-inactive-icon.svg'
-                  "
-                  alt="" /></span
-              >{{ game[1].team_1[1] }}
-            </td>
-            <td class="text-center">
-              <div>
-                <input
-                  type="number"
-                  placeholder="0"
-                  [(ngModel)]="game[1].score.team_1"
-                />
-              </div>
-            </td>
-            <td rowspan="2" class="bye-name">{{ game[1].bye[0] }}</td>
-          </tr>
-          <tr>
-            <td>
-              <span
-                ><img
-                  [src]="
-                    game[1].team_2[0] === game[1].returner
-                      ? 'assets/images/receive-active-icon.svg'
-                      : 'assets/images/receive-inactive-icon.svg'
-                  "
-                  alt="" /></span
-              >{{ game[1].team_2[0] }}
-            </td>
-            <td>
-              <span
-                ><img
-                  [src]="
-                    game[1].team_2[1] === game[1].returner
-                      ? 'assets/images/receive-active-icon.svg'
-                      : 'assets/images/receive-inactive-icon.svg'
-                  "
-                  alt="" /></span
-              >{{ game[1].team_2[1] }}
-            </td>
-            <td class="text-center">
-              <div>
-                <input
-                  type="number"
-                  placeholder="0"
-                  [(ngModel)]="game[1].score.team_2"
-                />
-              </div>
-            </td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
-    <div class="table-footer flex justify-between">
-      <div>
-        <!-- <span><img src="assets/images/e-logo.png" alt="" /></span> -->
-        <span
-          >eleagueonline.com: Want to run a friends and family league?
-          <a>Signup</a> and build your own Digital Club.</span
-        >
-      </div>
+        <tr>
+          <td>
+            <span
+              ><img
+                [src]="
+                  game[1].team_2[0] === game[1].returner
+                    ? 'assets/images/receive-active-icon.svg'
+                    : 'assets/images/receive-inactive-icon.svg'
+                "
+                alt="" /></span
+            >{{ game[1].team_2[0] }}
+          </td>
+          <td>
+            <span
+              ><img
+                [src]="
+                  game[1].team_2[1] === game[1].returner
+                    ? 'assets/images/receive-active-icon.svg'
+                    : 'assets/images/receive-inactive-icon.svg'
+                "
+                alt="" /></span
+            >{{ game[1].team_2[1] }}
+          </td>
+          <td class="text-center">
+            <div>
+              <input
+                type="number"
+                placeholder="0"
+                [(ngModel)]="game[1].score.team_2"
+              />
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <div class="table-footer flex justify-between">
+    <div>
+      <!-- <span><img src="assets/images/e-logo.png" alt="" /></span> -->
+      <span
+        >eleagueonline.com: Want to run a friends and family league?
+        <a>Signup</a> and build your own Digital Club.</span
+      >
     </div>
   </div>
 </div>

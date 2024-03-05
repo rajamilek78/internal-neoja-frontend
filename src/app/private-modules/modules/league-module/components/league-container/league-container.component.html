@@ -85,11 +85,13 @@
       </div>
     </div>
   </div>
-  <app-print-round [data]="groups"
+  <!-- <app-print-round [data]="groups"
   #printRoundComponent
   [leagueID]="leagueID"
   [date]="rawData?.header?.date"
   [clubID]="selectedClubID">
-</app-print-round>
-<app-print-round-format-one [data]="rawData"></app-print-round-format-one>
+</app-print-round>-->
+<div *ngIf="rawData">
+<app-print-round-format-one [data]="rawData" [groups]="groups"></app-print-round-format-one>
+</div>
 </div>

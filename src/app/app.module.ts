@@ -15,6 +15,7 @@ import { API_ENDPOINTS } from './helpers/constants/api-constants';
 import { CoreModule } from "./core";
 import { DateFormatDirective } from './helpers/directives/date-format.directive';
 import { SignupDialogueComponent } from './public-modules/components/signup-dialogue/signup-dialogue.component';
+import { CustomSidenavComponent } from './public-modules/components/custom-sidenav/custom-sidenav.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SignupDialogueComponent } from './public-modules/components/signup-dial
     AboutUsPageComponent,
     HomePageComponent,
     DateFormatDirective,
-    SignupDialogueComponent
+    SignupDialogueComponent,
+    CustomSidenavComponent
   ],
   imports: [
     BrowserModule,

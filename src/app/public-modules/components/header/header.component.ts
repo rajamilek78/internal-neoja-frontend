@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ChangeDetectorRef,
+  signal,
+  computed,
+} from '@angular/core';
 import { RouteConstant } from '../../../helpers/constants';
 import { SharedService } from '@app/core';
 import { Subscription } from 'rxjs';
@@ -16,6 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userDetail!: UserModel | null;
   userName = '';
   clubName = '';
+  collapsed = signal(false);
 
   constructor(
     private sharedService: SharedService,
@@ -56,6 +64,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   error: (e) => console.error(e),
     // });
   };
+
+  sidenavWidth = computed(() => (this.collapsed() ? '64px' : '250px'));
 
   get homePageUrl() {
     return `${RouteConstant.HOME_PAGE}`;
