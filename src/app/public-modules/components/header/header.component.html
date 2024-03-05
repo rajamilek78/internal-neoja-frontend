@@ -3,7 +3,8 @@
     <div class="flex justify-between">
       <div class="flex justify-center">
         <div *ngIf="isLoggedIn">
-          <button mat-icon-button (click)="collapsed.set(!collapsed())">
+          <!-- <button mat-icon-button (click)="collapsed.set(!collapsed())"> -->
+          <button mat-icon-button (click)="toggleClick.emit($event)">
             <mat-icon>menu</mat-icon>
           </button>
         </div>

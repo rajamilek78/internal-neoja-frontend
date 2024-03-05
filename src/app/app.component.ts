@@ -13,7 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private loaderSubscriber$!: Subscription;
   collapsed = signal(false);
 
-  sidenavWidth = computed(() => (this.collapsed() ? '64px' : '250px'));
+  sidenavWidth = computed(() => (this.collapsed() ? '250px' : '0px'));
 
   constructor(private sharedService: SharedService) {}
 

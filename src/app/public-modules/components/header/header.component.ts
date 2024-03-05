@@ -5,6 +5,8 @@ import {
   ChangeDetectorRef,
   signal,
   computed,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 import { RouteConstant } from '../../../helpers/constants';
 import { SharedService } from '@app/core';
@@ -24,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userName = '';
   clubName = '';
   collapsed = signal(false);
+  @Output() toggleClick = new EventEmitter<any>;
 
   constructor(
     private sharedService: SharedService,

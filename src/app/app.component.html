@@ -1,9 +1,9 @@
 <div *ngIf="isLoading" class="app-loader">
   <span class="loader"></span>
 </div>
-<app-header></app-header>
+<app-header (toggleClick) = "collapsed.set(!collapsed())"></app-header>
 <mat-sidenav-container>
-  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+  <mat-sidenav mode="side" [style.width]="sidenavWidth()">
     <app-custom-sidenav [collapsed]="collapsed()"></app-custom-sidenav>
   </mat-sidenav>
   <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
