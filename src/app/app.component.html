@@ -2,7 +2,14 @@
   <span class="loader"></span>
 </div>
 <app-header></app-header>
-<div class="panel-body">
-  <router-outlet />
-</div>
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+    <app-custom-sidenav [collapsed]="collapsed()"></app-custom-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <div class="panel-body">
+      <router-outlet />
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 <app-footer></app-footer>

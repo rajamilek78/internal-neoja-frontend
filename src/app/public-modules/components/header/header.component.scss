@@ -33,6 +33,10 @@
       &:hover {
         color: $white-color;
       }
+
+      @include respond("phone") {
+        display: none !important;
+      }
     }
   }
 
@@ -50,5 +54,16 @@
 
   .mr-1 {
     margin-left: 1rem !important;
+  }
+}
+
+
+@include respond("phone") {
+  .header {
+    .container {
+      .align-center {
+        display: none;
+      }
+    }
   }
 }
