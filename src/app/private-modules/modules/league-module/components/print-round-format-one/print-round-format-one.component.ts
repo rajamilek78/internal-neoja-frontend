@@ -11,6 +11,7 @@ export class PrintRoundFormatOneComponent implements OnInit{
   // groups : any;
   ngOnInit(): void {
     console.log(this.data);
+    console.log(this.groups);
     // if(this.data){
     //   this.groups = Object.keys(this.data.round.groups || this.data.groups).map((key) =>({
     //     name : key,
