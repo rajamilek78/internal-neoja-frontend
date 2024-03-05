@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userName = '';
   clubName = '';
   collapsed = signal(false);
-  @Output() toggleClick = new EventEmitter<any>;
+  @Output() toggleClick = new EventEmitter<any>();
 
   constructor(
     private sharedService: SharedService,

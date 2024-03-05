@@ -1,10 +1,14 @@
 <div class="header">
   <div class="container">
     <div class="flex justify-between">
-      <div class="flex justify-center">
+      <div class="flex justify-end">
         <div *ngIf="isLoggedIn">
           <!-- <button mat-icon-button (click)="collapsed.set(!collapsed())"> -->
-          <button mat-icon-button (click)="toggleClick.emit($event)">
+          <button
+            mat-icon-button
+            (click)="toggleClick.emit($event)"
+            class="toggle-btn"
+          >
             <mat-icon>menu</mat-icon>
           </button>
         </div>

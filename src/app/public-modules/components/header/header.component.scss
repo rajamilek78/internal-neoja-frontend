@@ -11,10 +11,14 @@
   padding: 2rem 0rem;
 
   &__logo {
-    width: 12%;
+    width: 42%;
 
     img {
       width: 100%;
+    }
+
+    @include respond("phone") {
+      width: 60%;
     }
   }
 
@@ -65,5 +69,15 @@
         display: none;
       }
     }
+  }
+}
+
+.toggle-btn {
+  display: none;
+
+  @include respond("phone") {
+    color: $white-color;
+    display: block;
+    margin-right: 1rem;
   }
 }

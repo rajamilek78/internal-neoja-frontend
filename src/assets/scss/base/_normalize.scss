@@ -1448,6 +1448,10 @@ app-upload-player-container {
         }
       }
     }
+
+    @include respond ("phone") {
+      margin-top: 9rem;
+    }
   }
 
   &__box {
@@ -1477,6 +1481,10 @@ app-upload-player-container {
         line-height: 2.1rem;
         letter-spacing: 0.2rem !important;
       }
+    }
+
+    @include respond ("phone") {
+      margin-top: 9rem;
     }
   }
 }
