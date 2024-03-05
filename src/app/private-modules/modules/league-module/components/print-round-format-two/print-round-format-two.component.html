@@ -1,0 +1,138 @@
+<div *ngFor="let group of groups">
+    <h1>{{group.name}}</h1>
+    <!-- <div class="flex justify-between tab-sub-header">
+      <b>Round {{ data.header?.round || data.round?.header?.round }}</b>
+      <b>{{ leagueID }}</b>
+      <b>{{ data.header?.date || data.round?.header?.date }}</b>
+    </div> -->
+    <div class="overflow">
+      <div class="parent-table flex justify-center align-start">
+        <div
+          class="player-name name-cell flex justify-center align-start flex-column"
+        >
+          <div class="cell bg-cell justify-end">Players</div>
+          <div
+            *ngFor="let player of group.data.group_details.players"
+            class="cell-1 justify-end"
+          >
+            {{ player }}
+            <!-- {{group.data | json}} -->
+          </div>
+        </div>
+        <div class="player-game flex justify-end align-start">
+          <div class="border-1" *ngFor="let game of group.data.games">
+            <div
+              class="flex justify-center align-center flex-column game-header"
+            >
+              <div class="cell bg-cell">
+                <!-- {{ game[0] }} -->
+                {{group | json}}
+              </div>
+              <div
+                class="flex justify-space-even width-100"
+                *ngFor="let player of group.data.group_details.players"
+              >
+              <!-- {{player | json}} -->
+                <!-- <div class="td-cell cell">
+                  <span>
+                    <img
+                      *ngIf="game[1].server === player"
+                      src="assets/images/serve-active-icon.svg"
+                      alt=""
+                      width="26px"
+                    />
+                    <img
+                      *ngIf="
+                        game[1].server !== player &&
+                        game[1].team_1.indexOf(player) > -1
+                      "
+                      src="assets/images/serve-inactive-icon.svg"
+                      alt=""
+                    />
+                  </span>
+                  <span>
+                    <img
+                      *ngIf="game[1].returner === player"
+                      src="assets/images/receive-active-icon.svg"
+                      alt=""
+                      width="26px"
+                    />
+                    <img
+                      *ngIf="
+                        game[1].returner !== player &&
+                        game[1].team_2.indexOf(player) > -1
+                      "
+                      src="assets/images/receive-inactive-icon.svg"
+                      alt=""
+                    />
+                  </span>
+                  <span *ngIf="game[1].bye.indexOf(player) > -1">
+                    <img
+                      src="assets/images/bye-default-icon.svg"
+                      alt=""
+                      width="26px"
+                    />
+                  </span>
+                  ⁠ <input
+                    *ngIf="game[1].team_1.indexOf(player) > -1"
+                    type="text"
+                    class="format-two-input"
+                    [(ngModel)]="game[1].score.team_1"
+                    style="
+                      width: 65px;
+                      background-color: transparent;
+                      font-size: 18px;
+                    "
+                  />
+                  <input
+                    *ngIf="game[1].team_2.indexOf(player) > -1"
+                    type="text"
+                    class="format-two-input"
+                    [(ngModel)]="game[1].score.team_2"
+                    style="
+                      width: 65px;
+                      background-color: transparent;
+                      font-size: 18px;
+                    "
+                  /> ⁠
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center flex-column">
+            <div class="cell bg-cell">Total</div>
+            <div class="flex justify-center flex-column">
+              <div class="cell flex justify-center"></div>
+              <div class="cell flex justify-center"></div>
+              <div class="cell flex justify-center"></div>
+              <div class="cell flex justify-center"></div>
+              <div class="cell flex justify-center"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table-footer flex justify-between">
+        <div>
+          <span
+            >eleagueonline.com: Want to run a friends and family league?
+            <a>Signup</a> and build your own Digital Club.</span
+          >
+        </div>
+        <div class="flex justify-start">
+          <div>
+            <span><img src="assets/images/serve-active-icon.svg" alt="" /></span
+            ><small>Serves</small>
+          </div>
+          <div>
+            <span
+              ><img src="assets/images/receive-active-icon.svg" alt="" /></span
+            ><small class="green-font">Returns</small>
+          </div>
+          <div>
+            <span><img src="assets/images/bye-default-icon.svg" alt="" /></span
+            ><small class="red-font">Bye</small>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

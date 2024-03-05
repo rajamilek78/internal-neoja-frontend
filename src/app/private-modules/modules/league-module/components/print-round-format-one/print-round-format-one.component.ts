@@ -11,19 +11,15 @@ export class PrintRoundFormatOneComponent implements OnInit{
   @Input() data : any;
   @Input() groups : any;
   @Input() clubID : any;
-  header:any;
+  @Input() roundCount! : string;
+  @Input() header:any;
   // groups : any;
   ngOnInit(): void {
-    this.header = this.data.header || this.data.round.header;
-    console.log(this.data);
-    console.log(this.groups);
-    // if(this.data){
-    //   this.groups = Object.keys(this.data.round.groups || this.data.groups).map((key) =>({
-    //     name : key,
-    //     data : this.data.round.groups[key]
-    //   }));
-    // }
+    // this.header = this.data.header || this.data.round.header;
+     /*console.log(this.data);
+    console.log(this.groups);*/
   }
+
   getKeys(obj: any): string[] {
     return Object.keys(obj);
   }
