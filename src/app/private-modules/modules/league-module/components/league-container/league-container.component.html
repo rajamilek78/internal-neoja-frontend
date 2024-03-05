@@ -55,7 +55,6 @@
           [roundCount]="roundID"
           [leagueID]="leagueID"
           [clubID]="selectedClubID"
-          id="playerData"
           [isEdit]="isEdit"
           (blurTeamScore)="onBlurTeamScore($event)"
         ></app-league-table-format-one>
@@ -70,7 +69,6 @@
           [roundCount]="roundID"
           [leagueID]="leagueID"
           [clubID]="selectedClubID"
-          id="playerData"
           [isEdit]="isEdit"
           (blurTeamScore)="onBlurTeamScore($event)"
         ></app-league-table-format-two> ⁠
@@ -92,6 +90,6 @@
   [clubID]="selectedClubID">
 </app-print-round>-->
 <div *ngIf="rawData">
-<app-print-round-format-one [data]="rawData" [groups]="groups"></app-print-round-format-one>
+<app-print-round-format-one [data]="rawData" [groups]="groups" [clubID]="selectedClubID"></app-print-round-format-one>
 </div>
 </div>

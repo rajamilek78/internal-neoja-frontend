@@ -54,7 +54,7 @@ export class ViewScoreTableComponent implements OnInit{
     this.completedLeagueService.getLeagueScores(urlString).subscribe({
       next : (res : any)=>{
       
-        this.leagueScores = res.league_scores;
+        this.leagueScores = res;
         console.log("this is response from view score",res);
         
         console.log(this.leagueScores);
