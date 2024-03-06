@@ -1,15 +1,12 @@
 <div *ngIf="isLoading" class="app-loader">
   <span class="loader"></span>
 </div>
-<app-header (toggleClick) = "collapsed.set(!collapsed())"></app-header>
-<mat-sidenav-container>
-  <mat-sidenav mode="side" [style.width]="sidenavWidth()">
-    <app-custom-sidenav [collapsed]="collapsed()"></app-custom-sidenav>
-  </mat-sidenav>
-  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
-    <div class="panel-body">
-      <router-outlet />
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<app-header
+  [showSidebar]="showSidebar"
+  (openCloseSidebar)="onOpenCloseSidebar($event)"
+></app-header>
+<div class="panel-body">
+  <router-outlet />
+</div>
+<app-custom-sidenav *ngIf="showSidebar"></app-custom-sidenav>
 <app-footer></app-footer>

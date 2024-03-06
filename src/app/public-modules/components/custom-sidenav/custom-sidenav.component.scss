@@ -1,3 +1,25 @@
-a {
-    color: black;
+@import "../../../../assets/scss/abstracts/abstracts";
+
+
+.sidenav-visible {
+    position: fixed;
+    top: 10rem;
+    left: 0rem;
+    width: 20rem;
+    height: 100%;
+    background-color: $white-color;
+
+    ul {
+        li {
+            padding: 2rem;
+
+            span {
+                a {
+                    color: $primary-color;
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
 }

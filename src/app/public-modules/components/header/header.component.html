@@ -2,15 +2,14 @@
   <div class="container">
     <div class="flex justify-between">
       <div class="flex justify-end">
-        <div *ngIf="isLoggedIn">
+        <div *ngIf="isLoggedIn" class="toggle-btn">
           <!-- <button mat-icon-button (click)="collapsed.set(!collapsed())"> -->
-          <button
-            mat-icon-button
-            (click)="toggleClick.emit($event)"
-            class="toggle-btn"
-          >
-            <mat-icon>menu</mat-icon>
-          </button>
+          <a *ngIf="showSidebar" (click)="onOpenCloseSidebar(false)"
+            ><img src="../../../../assets/images/close-header-icon.svg" alt=""
+          /></a>
+          <a *ngIf="!showSidebar" (click)="onOpenCloseSidebar(true)"
+            ><img src="../../../../assets/images/menu-header-icon.svg" alt=""
+          /></a>
         </div>
         <div class="header__logo">
           <a [routerLink]="homePageUrl">

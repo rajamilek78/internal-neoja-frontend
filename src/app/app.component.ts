@@ -11,9 +11,10 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'eleague-online';
   isLoading = false;
   private loaderSubscriber$!: Subscription;
-  collapsed = signal(false);
+  // collapsed = signal(false);
+  showSidebar = false;
 
-  sidenavWidth = computed(() => (this.collapsed() ? '250px' : '0px'));
+  // sidenavWidth = computed(() => (this.collapsed() ? '250px' : '0px'));
 
   constructor(private sharedService: SharedService) {}
 
@@ -34,4 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isLoading = isLoading;
       });
   }
+
+  onOpenCloseSidebar = (val: boolean) => {
+    this.showSidebar = val;
+  };
 }
