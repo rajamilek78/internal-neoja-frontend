@@ -245,14 +245,6 @@ a {
   overflow-y: auto;
 }
 
-.overflow {
-
-  @include respond("phone") {
-    overflow-x: scroll !important;
-  }
-
-}
-
 // img or icon btn scss
 .primary-btn,
 .primary-btn-light,
@@ -623,10 +615,6 @@ textarea {
     img {
       width: 100%;
     }
-
-    @include respond("phone") {
-      display: none;
-    }
   }
 
   &__form {
@@ -671,17 +659,6 @@ textarea {
         margin-top: 3.6rem !important;
       }
     }
-
-    @include respond("phone") {
-      padding: 0rem;
-      margin-left: 0rem;
-      width: 100%;
-    }
-  }
-
-  @include respond("phone") {
-    transform: translateY(62%);
-    flex-direction: column;
   }
 }
 
@@ -690,10 +667,6 @@ textarea {
 app-upload-player-container {
   .dropdown {
     margin-top: 3.5rem;
-
-    @include respond("phone") {
-      flex-direction: column;
-    }
   }
 }
 
@@ -702,14 +675,18 @@ app-upload-player-container {
   .alert-msg {
     margin-top: 3.4rem;
     padding: 1.6rem;
-    background-color: rgba($yellow-color, 0.05);
+    background-color: rgba($primary-color, 0.05);
     border-radius: 1.2rem;
     width: fit-content;
 
     p {
-      color: $yellow-color;
+      color: $primary-color;
       font-size: 1.4rem;
       margin-left: 1.6rem;
+    }
+
+    img {
+      vertical-align: middle;
     }
   }
 
@@ -888,11 +865,31 @@ app-upload-player-container {
         padding-right: 1.6rem;
       }
 
+      .row-field-dlt {
+        width: 6%;
+        padding-right: 1.6rem;
+        text-align: center;
+      }
+
       .row-title {
         border-bottom: 1px solid rgba($black-color, 0.1);
         width: 47%;
         padding-bottom: 1.85rem;
         padding-right: 1.6rem;
+
+        small {
+          color: rgba($black-color, 0.8);
+          font-size: 1.6rem;
+          font-weight: 600;
+          line-height: 1.8rem;
+        }
+      }
+
+      .row-title-dlt {
+        text-align: center;
+        border-bottom: 1px solid rgba($black-color, 0.1);
+        width: 6%;
+        padding-bottom: 1.85rem;
 
         small {
           color: rgba($black-color, 0.8);
@@ -914,10 +911,6 @@ app-upload-player-container {
         margin-right: 0.8rem;
       }
 
-    }
-
-    @include respond("phone") {
-      overflow-x: scroll !important;
     }
 
   }
@@ -1111,17 +1104,6 @@ app-upload-player-container {
       }
     }
   }
-
-  @include respond("phone") {
-    .align-end {
-      flex-direction: column;
-
-      .align-center {
-        flex-direction: column;
-        width: 100%;
-      }
-    }
-  }
 }
 
 // view-score scss
@@ -1211,10 +1193,6 @@ app-upload-player-container {
     img {
       width: 100%;
     }
-
-    @include respond("phone") {
-      display: none;
-    }
   }
 
   &__form {
@@ -1258,17 +1236,6 @@ app-upload-player-container {
         }
       }
     }
-
-    @include respond("phone") {
-      margin-left: 0rem;
-      width: 100%;
-      padding: 0rem;
-    }
-  }
-
-  @include respond("phone") {
-    flex-direction: column;
-    transform: translateY(22%);
   }
 }
 
@@ -1309,10 +1276,6 @@ app-upload-player-container {
 
     .col-md-6 {
       max-width: 45%;
-
-      @include respond ("phone") {
-        margin-top: 4rem;
-      }
     }
 
     h6 {
@@ -1362,15 +1325,10 @@ app-upload-player-container {
           line-height: 2.4rem;
         }
       }
-
-      @include respond ("phone") {
-        margin-top: 8rem;
-      }
     }
 
     @include respond ("phone") {
       flex-direction: column;
-      margin-top: 5rem;
     }
   }
 
@@ -1385,10 +1343,6 @@ app-upload-player-container {
       line-height: 6.7rem;
       letter-spacing: 0.2rem;
       word-spacing: 0.2rem;
-    }
-
-    @include respond ("phone") {
-      margin-top: 9rem;
     }
   }
 
@@ -1448,10 +1402,6 @@ app-upload-player-container {
         }
       }
     }
-
-    @include respond ("phone") {
-      margin-top: 9rem;
-    }
   }
 
   &__box {
@@ -1481,10 +1431,6 @@ app-upload-player-container {
         line-height: 2.1rem;
         letter-spacing: 0.2rem !important;
       }
-    }
-
-    @include respond ("phone") {
-      margin-top: 9rem;
     }
   }
 }
@@ -1570,11 +1516,4 @@ app-upload-player-container {
     }
   }
 
-  @include respond ("phone") {
-    .flex-1 {
-      flex: 50%;
-    }
-
-    .sub-footer {}
-  }
 }
