@@ -238,8 +238,14 @@ export class UploadPlayerDataComponent implements OnInit {
   }
 
   openDialogue(index:number): void {
+    const player = this.players.at(index).value; // Get the player at the given index
     const dialogueRef = this.dialog.open(DeleteDetailDialogueComponent, {
       width: '450px',
+      data : {
+        playerName : player.name,
+        players : this.players,
+        index : index
+      }
     });
     dialogueRef.afterClosed().subscribe((result) => {
       console.log('the dialogue is closed now');

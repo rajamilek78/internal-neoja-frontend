@@ -11,13 +11,13 @@
     <div>
       <div class="mb-1">
         <b
-          >Are you sure <span>Raviraj</span> is NOT available for round
+          >Are you sure <span>{{playerName}}</span> is NOT available for round
           <span>6</span> ?</b
         >
       </div>
       <div>
         <small
-          >Upon confirmation, Raviraj will be excluded from round
+          >Upon confirmation, {{playerName}} will be excluded from round
           <span>6</span> game fixtures.</small
         >
       </div>
@@ -29,7 +29,7 @@
         <button type="button" class="btn" (click)="close()">No</button>
       </div>
       <div class="primary-btn">
-        <button type="button" class="btn" (click)="close()">Yes</button>
+        <button type="button" class="btn" (click)="delete(index)">Yes</button>
       </div>
     </div>
   </div>
