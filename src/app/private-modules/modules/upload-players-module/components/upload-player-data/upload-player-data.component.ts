@@ -51,6 +51,8 @@ export class UploadPlayerDataComponent implements OnInit {
     this.userSubscriber();
     if (this.roundsLength >= 1) {
       this.leagueSummary();
+    }else{
+      this.addPlayer();
     }
     this.leagueIDSubscription =
       this.SharedCommonService.leagueChanged.subscribe(
