@@ -144,7 +144,7 @@ export class CreateLeagueDialogComponent
   close() {
     this.dialog.close();
   }
-  // get formControls() {
-  //   return this.leagueCRUD_Form.controls;
-  // }
+  get formControls() {
+    return this.leagueCRUD_Form.controls;
+  }
 }
