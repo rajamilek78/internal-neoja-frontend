@@ -120,7 +120,7 @@ export class CreateLeagueDialogComponent
     });
     const urlString = `${
       this.data.clubID
-    }/${this.leagueCRUD_Form.value.name.toUpperCase()}`;
+    }/${this.leagueID}`;
     this.leagueService
       .updateLeague(urlString, this.leagueCRUD_Form.value)
       .subscribe({
