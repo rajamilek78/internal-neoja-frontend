@@ -1,0 +1,102 @@
+<div id="print-section">
+  <div *ngFor="let group of groups" class="container groupContainer">
+    <h1>{{ group.name }}</h1>
+    <div class="flex justify-between tab-sub-header">
+      <b>{{ clubID }}</b>
+      <b>Round {{ header?.round }}</b>
+      <b>{{ header?.date }}</b>
+    </div>
+    <table class="table-1">
+      <thead>
+        <tr>
+          <th>Match</th>
+          <th colspan="2">Players</th>
+          <th>Score</th>
+          <th>Bye</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let game of getKeys(group.data.games)">
+          <tr>
+            <td rowspan="2" class="text-center">{{ game }}</td>
+            <td>
+              <span
+                ><img
+                  [src]="
+                    group.data.games[game].team_1[0] ===
+                    group.data.games[game].server
+                      ? 'assets/images/serve-active-icon.svg'
+                      : 'assets/images/serve-inactive-icon.svg'
+                  "
+                  alt=""
+              /></span>
+              {{ group.data.games[game].team_1[0] }}
+            </td>
+            <td>
+              <span
+                ><img
+                  [src]="
+                    group.data.games[game].team_1[1] ===
+                    group.data.games[game].server
+                      ? 'assets/images/serve-active-icon.svg'
+                      : 'assets/images/serve-inactive-icon.svg'
+                  "
+                  alt=""
+              /></span>
+              {{ group.data.games[game].team_1[1] }}
+            </td>
+            <td class="text-center">
+              <div>
+                <input
+                  type="number"
+                  placeholder="0"
+                  [(ngModel)]="group.data.games[game].score.team_1"
+                />
+              </div>
+            </td>
+            <td rowspan="2" class="bye-name">
+              {{ group.data.games[game].bye }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span
+                ><img
+                  [src]="
+                    group.data.games[game].team_2[0] ===
+                    group.data.games[game].returner
+                      ? 'assets/images/receive-active-icon.svg'
+                      : 'assets/images/receive-inactive-icon.svg'
+                  "
+                  alt=""
+              /></span>
+              {{ group.data.games[game].team_2[0] }}
+            </td>
+            <td>
+              <span
+                ><img
+                  [src]="
+                    group.data.games[game].team_2[1] ===
+                    group.data.games[game].returner
+                      ? 'assets/images/receive-active-icon.svg'
+                      : 'assets/images/receive-inactive-icon.svg'
+                  "
+                  alt=""
+              /></span>
+              {{ group.data.games[game].team_2[1] }}
+            </td>
+            <td class="text-center">
+              <div>
+                <input
+                  type="number"
+                  placeholder="0"
+                  [(ngModel)]="group.data.games[game].score.team_2"
+                />
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

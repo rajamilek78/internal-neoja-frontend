@@ -1,6 +1,6 @@
 <div class="modal">
   <div class="modal__header flex justify-between">
-    <h6>Delete</h6>
+    <h6>Mark No-Show</h6>
     <div>
       <a (click)="close()"
         ><span><img src="assets/images/close-icon.svg" alt="" /></span
@@ -9,24 +9,27 @@
   </div>
   <div class="modal__body">
     <div>
-      <div><b>Are you sure you want to Delete Player ?</b></div>
+      <div class="mb-1">
+        <b
+          >Are you sure <span>{{playerName}}</span> is NOT available for round
+          <span>{{roundCount}}</span> ?</b
+        >
+      </div>
       <div>
         <small
-          >Upon confirmation, this player will be deleted and you won't be able
-          to make any further changes.</small
+          >Upon confirmation, {{playerName}} will be excluded from round
+          <span>{{roundCount}}</span> game fixtures.</small
         >
       </div>
     </div>
   </div>
   <div class="modal__footer">
     <div class="flex justify-end">
-      <div class="primary-btn">
-        <button type="button" class="btn" (click)="close()">Yes</button>
+      <div class="secondary-btn-light mr-1">
+        <button type="button" class="btn" (click)="close()">No</button>
       </div>
-      <div class="secondary-btn-light">
-        <button type="button" class="btn" (click)="close()">
-          No, I want to make changes.
-        </button>
+      <div class="primary-btn">
+        <button type="button" class="btn" (click)="delete(index)">Yes</button>
       </div>
     </div>
   </div>

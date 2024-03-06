@@ -13,7 +13,7 @@
         </div> -->
         <div class="flex mr-1">
           <span><img src="assets/images/company-icon.svg" alt="" /></span
-          ><small>{{selectedClubID}}</small>
+          ><small>{{ selectedClubID }}</small>
         </div>
         <div class="table-buttons flex justify-end">
           <div>
@@ -37,7 +37,7 @@
           <div class="primary-btn">
             <button
               class="btn flex justify-center"
-              (click)="downloadTableAsPDF()"
+              (click)="onClickDownload()"
             >
               <span><img src="assets/images/download-icon.svg" alt="" /></span
               >Download
@@ -52,6 +52,7 @@
           *ngIf="selectedFormat == '1' && groups"
           [groups]="groups"
           [data]="rawData"
+          id="playerData"
           [roundCount]="roundID"
           [leagueID]="leagueID"
           [clubID]="selectedClubID"
@@ -65,13 +66,15 @@
         <app-league-table-format-two
           *ngIf="selectedFormat == '2' && groups"
           [groups]="groups"
+          id="playerData"
           [data]="rawData"
           [roundCount]="roundID"
           [leagueID]="leagueID"
           [clubID]="selectedClubID"
           [isEdit]="isEdit"
           (blurTeamScore)="onBlurTeamScore($event)"
-        ></app-league-table-format-two> ⁠
+        ></app-league-table-format-two
+        > ⁠
       </div>
     </div>
     <div class="upload__button flex justify-end" *ngIf="isEdit">
@@ -89,7 +92,21 @@
   [date]="rawData?.header?.date"
   [clubID]="selectedClubID">
 </app-print-round>-->
-<div *ngIf="rawData">
-<app-print-round-format-one [data]="rawData" [groups]="groups" [clubID]="selectedClubID"></app-print-round-format-one>
-</div>
+  <!-- <div *ngIf="rawData"> -->
+  <!-- <app-print-round-format-one *ngIf="isInvisilePdf"
+    [data]="rawData"
+    [groups]="groups"
+    [clubID]="selectedClubID"
+  ></app-print-round-format-one> -->
+  <!-- <app-print-round-format-two
+  [groups]="groups"
+  >
+  </app-print-round-format-two> -->
+  <!-- <app-print-container
+    [data]="rawData"
+    [groups]="groups"
+    [roundCount]="roundID"
+    [clubID]="selectedClubID">
+  </app-print-container> -->
+  <!-- </div> -->
 </div>

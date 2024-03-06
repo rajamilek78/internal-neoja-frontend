@@ -20,32 +20,38 @@
                 <tr>
                   <th>Rank</th>
                   <th>Players</th>
-                  <th>Rating%</th>
+                  <th>Rating</th>
                   <th>Points Scored</th>
                   <th>Points Possible</th>
+                  <th>Points Won %</th>
                   <th>Games Played</th>
-                  <th class="green-font">+ Won</th>
-                  <!-- <th class="red-font">- Losses</th> -->
-                  <th>Win%</th>
-                  <th>History</th>
+                  <th>Games Possible</th>
+                  <th>Games Played %</th>
+                  <th class="green-font">Games Won</th>
+                  <th class="red-font">Games Lost</th>
+                  <th>Games Won %%</th>
+                  <th>Game History</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
                   *ngFor="
-                    let player of round.value.individual | keyvalue;
+                    let player of round.value.cumulative | keyvalue;
                     let i = index
                   "
                 >
                   <td>{{ i + 1 }}</td>
                   <td>{{ player.key }}</td>
-                  <td>{{ player.value.rating }}</td>
+                  <td>{{ player.value.weighted_rating }}</td>
                   <td>{{ player.value.points_scored }}</td>
                   <td>{{ player.value.points_possible }}</td>
-                  <td>{{ player.value.played }}</td>
-                  <td class="green-font">{{ player.value.won }}</td>
-                  <!-- <td class="red-font">-7</td> -->
-                  <td>{{ player.value.win_percent }}</td>
+                  <td>{{ player.value.points_won_percent }}</td>
+                  <td>{{ player.value.games_played }}</td>
+                  <td>{{ player.value.games_possible }}</td>
+                  <td>{{ player.value.games_played_percent }}</td>
+                  <td class="green-font">{{ player.value.games_won }}</td>
+                  <td class="red-font">{{ player.value.games_lost }}</td>
+                  <td>{{ player.value.games_won_percent }}</td>
                   <td class="flex justify-center">
                     <div
                       *ngFor="
@@ -75,7 +81,7 @@
             </table>
           </div>
           <div class="view-score-title">
-            <h6>Cumulative score</h6>
+            <h6>This Round</h6>
           </div>
           <div class="overflow">
             <table class="table-2">
@@ -83,38 +89,42 @@
                 <tr>
                   <th>Rank</th>
                   <th>Players</th>
-                  <th>Rating%</th>
+                  <th>Rating</th>
                   <th>Points Scored</th>
                   <th>Points Possible</th>
+                  <th>Points Won %</th>
                   <th>Games Played</th>
-                  <th class="green-font">+ Won</th>
-                  <!-- <th class="red-font">- Losses</th> -->
-                  <th>Win%</th>
-                  <th>History</th>
+                  <th>Games Possible</th>
+                  <th>Games Played %</th>
+                  <th class="green-font">Games Won</th>
+                  <th class="red-font">Games Lost</th>
+                  <th>Games Won %%</th>
+                  <th>Game History</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
                   *ngFor="
-                    let player of round.value.cumulative | keyvalue;
+                    let player of round.value.individual | keyvalue;
                     let i = index
                   "
                 >
                   <td>{{ i + 1 }}</td>
                   <td>{{ player.key }}</td>
-                  <td>{{ player.value.rating }}</td>
+                  <td>{{ player.value.weighted_rating }}</td>
                   <td>{{ player.value.points_scored }}</td>
                   <td>{{ player.value.points_possible }}</td>
-                  <td>{{ player.value.played }}</td>
-                  <td class="green-font">{{ player.value.won }}</td>
-                  <!-- <td class="red-font">-7</td> -->
-                  <td>{{ player.value.win_percent }}</td>
+                  <td>{{ player.value.points_won_percent }}</td>
+                  <td>{{ player.value.games_played }}</td>
+                  <td>{{ player.value.games_possible }}</td>
+                  <td>{{ player.value.games_played_percent }}</td>
+                  <td class="green-font">{{ player.value.games_won }}</td>
+                  <td class="red-font">{{ player.value.games_lost }}</td>
+                  <td>{{ player.value.games_won_percent }}</td>
                   <td class="flex justify-center">
                     <div
                       *ngFor="
-                        let winLose of player.value.win_lose_history
-                          .split(',')
-                          .reverse()
+                        let winLose of player.value.win_lose_history.split(',')
                       "
                     >
                       <div

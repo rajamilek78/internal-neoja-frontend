@@ -31,11 +31,14 @@ export class CreateLeagueDialogComponent
   }
   ngOnInit(): void {
     this.initLeagueForm();
-    if (this.data.league) {
-      this.leagueID = this.data.league.name.toUpperCase();
+    if (this.data.leagueID) {
+      // this.leagueID = this.data.leagueID.toUpperCase();
+      this.leagueID = this.data.leagueID;
+      this.clubID = this.data.clubID;
+      this.getLeagueByID();
+    }else{
       this.clubID = this.data.clubID;
     }
-    this.getLeagueByID();
   }
   initLeagueForm() {
     this.leagueCRUD_Form = this.createForm({
@@ -117,7 +120,7 @@ export class CreateLeagueDialogComponent
     });
     const urlString = `${
       this.data.clubID
-    }/${this.leagueCRUD_Form.value.name.toUpperCase()}`;
+    }/${this.leagueID}`;
     this.leagueService
       .updateLeague(urlString, this.leagueCRUD_Form.value)
       .subscribe({
@@ -131,7 +134,7 @@ export class CreateLeagueDialogComponent
       });
   }
   onFormSubmit() {
-    if (this.data.league) {
+    if (this.leagueID) {
       this.updateLeague();
     } else {
       this.onClickAddLeague();

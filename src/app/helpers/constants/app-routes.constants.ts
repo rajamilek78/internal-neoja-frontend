@@ -4,6 +4,7 @@ export class RouteConstant {
 
   public static readonly UPLOAD_PLAYER_CONTAINER = 'build-round';
   public static readonly LEAGUE_CONTAINER = 'fixtures';
+  public static readonly PRINT_CONTAINER = 'print';
   public static readonly GENERATE_LEAGUE = 'manage-leagues';
   public static readonly HOME_PAGE = '';
   

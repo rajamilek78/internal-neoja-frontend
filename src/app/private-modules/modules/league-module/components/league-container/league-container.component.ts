@@ -38,6 +38,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   leagueID!: string;
   roundID: string = '';  
   groupsArrayToBeUpdated: any[] = [];
+  isInvisilePdf = false;
 
   constructor(
     private SharedCommonService: SharedCommonService,
@@ -143,6 +144,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       header:{
         day: this.rawData.header.day,
         date: this.rawData.header.date,
+        round: this.rawData.header.round
       },
     
       groups: groups,
@@ -193,27 +195,37 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     this.selectedGroup = this.groups[event.index];
     console.log(group);
   }
+  onClickDownloadAll(){
+    
+  }
 
-  downloadTableAsPDF() {
-    // const data = document.getElementById('playerData'); // Replace with the id of your table
-    // if (data) {
-    //   html2canvas(data, { scale: 2 }).then((canvas) => {
-    //     // Few necessary setting options
-    //     const imgWidth = 208;
-    //     const pageHeight = 295;
-    //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    //     const heightLeft = imgHeight;
-
-    //     const contentDataURL = canvas.toDataURL('image/png');
-    //     const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-    //     const position = 0;
-    //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-    //     pdf.save('TableData.pdf'); // Generated PDF
-    //   });
-    // } else {
-    //   console.error('Element not found');
+  onClickDownload() {
+    // this.isInvisilePdf = true;
+    // const a = document.getElementById("overflowHidden");
+    // if(a){
+    //   a.style.overflow = 'hidden';
     // }
+    // setTimeout(()=>{
+    //   this.printComponent.downloadTableAsPDF();
+    // }, 10);
+    const data = document.getElementById('playerData'); // Replace with the id of your table
+    if (data) {
+      html2canvas(data, { scale: 2 }).then((canvas) => {
+        // Few necessary setting options
+        const imgWidth = 208;
+        const pageHeight = 295;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const heightLeft = imgHeight;
+
+        const contentDataURL = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+        const position = 0;
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        pdf.save('TableData.pdf'); // Generated PDF
+      });
+    } else {
+      console.error('Element not found');
+    }
     // this.router.navigate(['players-league/print']);
-    this.printComponent.downloadTableAsPDF();
   }
 }
