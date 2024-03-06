@@ -7,22 +7,6 @@
             <div>
               <!-- <h6>Leagues</h6> -->
             </div>
-            <!-- <div class="flex justify-end">
-              <div class="flex mr-1">
-                <span
-                  ><img
-                    src="assets/images/club-icon.svg"
-                    alt="" /></span
-                ><small>LFTM-CROSSTOWN</small>
-              </div>
-              <div class="flex mr-1">
-                <span
-                  ><img
-                    src="assets/images/company-icon.svg"
-                    alt="" /></span
-                ><small>Drop Shot Pickleball</small>
-              </div>
-            </div> -->
           </div>
 
           <div class="col-md-6">
@@ -62,7 +46,7 @@
               <td>{{league.doubles ? 'Yes' : 'No'}}</td>
               <td>{{league.active ? 'Yes' : 'No'}}</td>
               <td>
-                <a (click)="openDialogue(league)">
+                <a (click)="openDialogue(league.id)">
                   <img src="assets/images/edit-icon.svg" alt="" />
                 </a>
                 <!-- <a>
