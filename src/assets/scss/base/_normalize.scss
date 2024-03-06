@@ -812,9 +812,23 @@ app-upload-player-container {
 
       .row-title-two {
         border-bottom: 1px solid rgba($black-color, 0.1) !important;
-        width: 18% !important;
+        width: 15% !important;
         padding-bottom: 1.85rem !important;
         padding-right: 1.6rem !important;
+
+        small {
+          color: rgba($black-color, 0.8) !important;
+          font-size: 1.6rem !important;
+          font-weight: 600 !important;
+          line-height: 1.8rem !important;
+        }
+      }
+
+      .row-title-two-dlt {
+        border-bottom: 1px solid rgba($black-color, 0.1) !important;
+        width: 6% !important;
+        padding-bottom: 1.85rem !important;
+        text-align: center !important;
 
         small {
           color: rgba($black-color, 0.8) !important;
@@ -840,8 +854,12 @@ app-upload-player-container {
       }
 
       .row-field-two {
-        width: 18% !important;
+        width: 15% !important;
         padding-right: 1.6rem !important;
+      }
+
+      .row-field-two-dlt {
+        width: 6% !important;
       }
 
       .toggle-square {
@@ -865,11 +883,30 @@ app-upload-player-container {
         padding-right: 1.6rem;
       }
 
+      .row-field-dlt {
+        width: 6%;
+        text-align: center;
+      }
+
       .row-title {
         border-bottom: 1px solid rgba($black-color, 0.1);
         width: 47%;
         padding-bottom: 1.85rem;
         padding-right: 1.6rem;
+
+        small {
+          color: rgba($black-color, 0.8);
+          font-size: 1.6rem;
+          font-weight: 600;
+          line-height: 1.8rem;
+        }
+      }
+
+      .row-title-dlt {
+        border-bottom: 1px solid rgba($black-color, 0.1);
+        width: 6%;
+        padding-bottom: 1.85rem;
+        text-align: center;
 
         small {
           color: rgba($black-color, 0.8);

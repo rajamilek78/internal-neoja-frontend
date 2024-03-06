@@ -2,38 +2,39 @@
   <div class="upload-by-data">
     <div class="upload">
       <div class="upload__data">
-        <div
-          class="flex justify-end align-end MT-2-half title"
-          [ngClass]="{
-            'round-one': true,
-            'round-two': roundsLength >= 1
-          }"
-        >
-          <div class="row-title">
-            <small>Players</small>
-          </div>
-          <div
-            [ngClass]="{
-              'row-title': true,
-              'row-title-two': roundsLength >= 1
-            }"
-          >
-            <small>Rating%</small>
-          </div>
-          <div class="row-title-two" *ngIf="roundsLength >= 1">
-            <small>History</small>
-          </div>
-          <div
-            [ngClass]="{
-              'row-title': true,
-              'row-title-two': roundsLength >= 1
-            }"
-          >
-            <small>No-Show</small>
-          </div>
-          <!-- <div><small>Rating</small></div> -->
-        </div>
         <div formArrayName="players">
+          <div
+            class="flex justify-end align-end MT-2-half title"
+            [ngClass]="{
+              'round-one': true,
+              'round-two': roundsLength >= 1
+            }"
+          >
+            <div class="row-title">
+              <small>Players</small>
+            </div>
+            <div
+              [ngClass]="{
+                'row-title': true,
+                'row-title-two': roundsLength >= 1
+              }"
+            >
+              <small>Rating%</small>
+            </div>
+            <div class="row-title-two" *ngIf="roundsLength >= 1">
+              <small>History</small>
+            </div>
+            <div
+              [ngClass]="{
+                'row-title-dlt': true,
+                'row-title-two-dlt': roundsLength >= 1
+              }"
+            >
+              <small>No-Show</small>
+            </div>
+            <!-- <div><small>Rating</small></div> -->
+          </div>
+
           <div
             *ngFor="let player of players.controls; let i = index"
             [formGroupName]="i"
@@ -78,7 +79,7 @@
             </div>
             <div class="row-field-two" *ngIf="roundsLength >= 1">
               <!-- Display win/lose history -->
-              <div class="flex justify-center">
+              <div class="flex justify-end">
                 <ng-container *ngIf="player.value.winLoseHistory">
                   <div *ngFor="let winLose of player.value.winLoseHistory">
                     <div
@@ -148,12 +149,17 @@
                 </div>
               </div>
             </div>
-            <div>
+            <div
+              [ngClass]="{
+                'row-field-dlt': true,
+                'row-field-two-dlt': roundsLength >= 1
+              }"
+            >
               <button
                 (click)="deletePlayer(i)"
                 type="button"
                 class="delete-icon flex justify-center"
-                matTooltip="no-show"
+                matTooltip="No show"
               >
                 <img
                   src="../../../../../../assets/images/no-show iocn.svg"
