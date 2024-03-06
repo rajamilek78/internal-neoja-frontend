@@ -203,7 +203,8 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       clubID: this.selectedClubID
     };
     this.leagueService.setRoundData(data);
-    this.router.navigate(['fixtures/print-container']);
+    // this.router.navigate(['fixtures/print-container']);
+    window.open('/fixtures/print-container', '_blank');
     }
 
   onClickDownload() {
