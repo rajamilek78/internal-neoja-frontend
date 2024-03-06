@@ -151,14 +151,16 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       groups: groups,
       players: this.rawData.players };
     console.log(body);
-    this.leagueService.updateScore(urlString, body).subscribe({
-      next: (res: any) => {
-        this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-    });
+    setTimeout(() => {
+      this.leagueService.updateScore(urlString, body).subscribe({
+        next: (res: any) => {
+          this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+      });
+    }, 100);
   }
   
   onBlurTeamScore = (event) => {
