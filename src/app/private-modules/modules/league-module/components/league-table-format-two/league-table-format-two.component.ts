@@ -13,10 +13,6 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   selectedTabIndex = 0;
   @Output() blurTeamScore = new EventEmitter<any>();
   @Input() isEdit!: boolean;
-  // teamOnePlayer: any = [];
-  // teamTwoPlayer: any = [];
-  // allPlayers = [];
-
   @Input() groups: any;
   @Input() data: any;
   @Input() responseData: any;
@@ -25,6 +21,8 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   @Input() roundCount!: string;
 
   ngOnInit(): void {
+    console.log(this.groups);
+    
     if (this.groups && this.groups.length > 0) {
       this.games = Object.entries(this.groups[this.selectedTabIndex].data.games);
       // Initialize score property for each game
@@ -38,16 +36,28 @@ export class LeagueTableFormatTwoComponent implements OnInit {
       console.log(this.players);
     }
   }
-  // updateScore(player, game, newScore) {
-  //   game[1].score[player] = newScore;
-  //   this.scoreUpdated.emit(this.games);
-  // }
-  onTabChanged($event) {
+  onBlurTeamScore = () => {
+    const groups = JSON.parse(JSON.stringify(this.groups));
+    const gameObj: any = {};
+    for (let i = 0; i < this.games.length; i++) {
+      const game = this.games[i];
+      const gameName = game[0];
+      const gameVal = game[1];
+      gameObj[gameName] = gameVal;
+    }
+    groups[this.selectedTabIndex].data.games = { ...gameObj };
+    this.blurTeamScore.emit({
+      groups: [...groups],
+    });
+};
+
+onTabChanged($event) {
     let clickedIndex = $event.index;
     this.selectedTabIndex = clickedIndex;
     this.games = Object.entries(
       this.groups[this.selectedTabIndex].data.games
     );
-  }
+};
+
 }
 
