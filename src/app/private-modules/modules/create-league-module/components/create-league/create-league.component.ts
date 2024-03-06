@@ -43,28 +43,25 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
   };
   // To get all league's list
   getAllLeagues() {
-    //const companyID = this.userDetail?.owned_companies;
-    // const clubID = this.userDetail?.owned_clubs;
-    // this.companyIDclubID = `${clubID}`;
     const urlString = `${this.clubID}/all`
-    // const companyIDclubID_Str = `${this.companyIDclubID}/all`;
     this.commonService.getAllLeagues(`${urlString}`).subscribe({
       next: (res: any) => {
-        this.leagues = Object.values(res);
-      },
+        this.leagues = Object.keys(res).map(id => ({id, ...res[id]}));
+        console.log(this.leagues);
+        },
       error: (err: any) => {
         console.log(err);
       },
     });
   }
-  // To open dialog to create, edit and delete league
-  openDialogue(league?: any): void {
+  // To open dialog to create and edit league.
+  openDialogue(leagueID?: any): void {
     const dialogueRef = this.dialog.open(CreateLeagueDialogComponent, {
       width: '450px',
-      data: { clubID: this.clubID, league: league },
+      data: { clubID: this.clubID, leagueID: leagueID },
     });
     dialogueRef.afterClosed().subscribe((result) => {
-      this.getAllLeagues(); // refresh the leagues
+      this.getAllLeagues(); // to refresh the leagues.
     });
   }
 }

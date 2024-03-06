@@ -144,6 +144,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       header:{
         day: this.rawData.header.day,
         date: this.rawData.header.date,
+        round: this.rawData.header.round
       },
     
       groups: groups,
