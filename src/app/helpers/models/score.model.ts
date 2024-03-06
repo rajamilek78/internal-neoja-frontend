@@ -9,12 +9,17 @@ export interface Players {
     [playerName: string]: PlayerScore;
 }
 export interface PlayerScore {
-    played: number;
+    games_played: number;
+    games_possible: number;
     points_possible: number;
+    games_played_percent: number;
     points_scored: number;
-    rating: number;
+    weighted_rating: number;
+    points_won_percent: number;
     win_percent: number;
-    won: number;
+    games_won: number;
+    games_lost: number;
+    games_won_percent: number;
     win_lose_history : string;
 }
 
