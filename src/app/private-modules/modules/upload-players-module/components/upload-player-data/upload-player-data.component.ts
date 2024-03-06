@@ -244,6 +244,7 @@ export class UploadPlayerDataComponent implements OnInit {
     const dialogueRef = this.dialog.open(DeleteDetailDialogueComponent, {
       width: '450px',
       data : {
+        roundCount : this.roundCount,
         playerName : player.name,
         players : this.players,
         index : index

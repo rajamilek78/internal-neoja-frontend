@@ -7,12 +7,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrl: './delete-detail-dialogue.component.scss',
 })
 export class DeleteDetailDialogueComponent {
+  roundCount! : number;
   players: any;
   index: number;
   playerName!:string;
   
   constructor(private dialog: MatDialogRef<DeleteDetailDialogueComponent>, @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.roundCount = data.roundCount;
     this.players = data.players;
     this.playerName = data.playerName;
     this.index = data.index; // Assign index value from data
