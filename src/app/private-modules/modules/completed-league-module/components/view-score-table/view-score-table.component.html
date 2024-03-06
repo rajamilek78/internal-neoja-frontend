@@ -52,27 +52,31 @@
                   <td class="green-font">{{ player.value.games_won }}</td>
                   <td class="red-font">{{ player.value.games_lost }}</td>
                   <td>{{ player.value.games_won_percent }}</td>
-                  <td class="flex justify-center">
-                    <div
-                      *ngFor="
-                        let winLose of player.value.win_lose_history.split(',')
-                      "
-                    >
+                  <td>
+                    <div class="flex justify-center">
                       <div
-                        class="status-square bg-red flex justify-center"
-                        [ngClass]="{
-                          'bg-green': winLose === '1',
-                          'bg-red': winLose === '0'
-                        }"
+                        *ngFor="
+                          let winLose of player.value.win_lose_history.split(
+                            ','
+                          )
+                        "
                       >
-                        <img
-                          [src]="
-                            winLose === '1'
-                              ? 'assets/images/w-latter.svg'
-                              : 'assets/images/l-latter.svg'
-                          "
-                          alt=""
-                        />
+                        <div
+                          class="status-square bg-red flex justify-center"
+                          [ngClass]="{
+                            'bg-green': winLose === '1',
+                            'bg-red': winLose === '0'
+                          }"
+                        >
+                          <img
+                            [src]="
+                              winLose === '1'
+                                ? 'assets/images/w-latter.svg'
+                                : 'assets/images/l-latter.svg'
+                            "
+                            alt=""
+                          />
+                        </div>
                       </div>
                     </div>
                   </td>
@@ -121,27 +125,31 @@
                   <td class="green-font">{{ player.value.games_won }}</td>
                   <td class="red-font">{{ player.value.games_lost }}</td>
                   <td>{{ player.value.games_won_percent }}</td>
-                  <td class="flex justify-center">
-                    <div
-                      *ngFor="
-                        let winLose of player.value.win_lose_history.split(',')
-                      "
-                    >
+                  <td>
+                    <div class="flex justify-center">
                       <div
-                        class="status-square bg-red flex justify-center"
-                        [ngClass]="{
-                          'bg-green': winLose === '1',
-                          'bg-red': winLose === '0'
-                        }"
+                        *ngFor="
+                          let winLose of player.value.win_lose_history.split(
+                            ','
+                          )
+                        "
                       >
-                        <img
-                          [src]="
-                            winLose === '1'
-                              ? 'assets/images/w-latter.svg'
-                              : 'assets/images/l-latter.svg'
-                          "
-                          alt=""
-                        />
+                        <div
+                          class="status-square bg-red flex justify-center"
+                          [ngClass]="{
+                            'bg-green': winLose === '1',
+                            'bg-red': winLose === '0'
+                          }"
+                        >
+                          <img
+                            [src]="
+                              winLose === '1'
+                                ? 'assets/images/w-latter.svg'
+                                : 'assets/images/l-latter.svg'
+                            "
+                            alt=""
+                          />
+                        </div>
                       </div>
                     </div>
                   </td>
