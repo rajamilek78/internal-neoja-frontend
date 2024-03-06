@@ -15,16 +15,16 @@ export class PrintRoundFormatOneComponent implements OnInit{
   @Input() header:any;
   // groups : any;
   ngOnInit(): void {
-    // this.header = this.data.header || this.data.round.header;
-     /*console.log(this.data);
-    console.log(this.groups);*/
+    if(this.data){
+      setTimeout(() => {
+        this.downloadTableAsPDF();
+      }, 4000);
+    }
   }
 
   getKeys(obj: any): string[] {
     return Object.keys(obj);
   }
-
-  
   downloadTableAsPDF() {
     const groups = document.getElementsByClassName('groupContainer');
     const pdf = new jsPDF('p', 'mm', 'a4');

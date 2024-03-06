@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LeagueContainerComponent,  } from './components';
-import { PrintRoundFormatOneComponent } from './components/print-round-format-one/print-round-format-one.component';
+import { LeagueContainerComponent, PrintContainerComponent} from './components';
 
 const routes: Routes = [
   {
     path: '',
     component: LeagueContainerComponent,
   },
-  { path : 'print', component :PrintRoundFormatOneComponent }
+  { path : 'print-container', component :PrintContainerComponent }
 ];
 
 @NgModule({
