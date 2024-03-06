@@ -196,8 +196,16 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     console.log(group);
   }
   onClickDownloadAll(){
-    
-  }
+    const data = {
+      rawData: this.rawData,
+      groups: this.groups,
+      roundCount: this.roundID,
+      clubID: this.selectedClubID
+    };
+    this.leagueService.setRoundData(data);
+    // this.router.navigate(['fixtures/print-container']);
+    window.open('/fixtures/print-container', '_blank');
+    }
 
   onClickDownload() {
     // this.isInvisilePdf = true;

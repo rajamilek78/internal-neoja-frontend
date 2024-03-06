@@ -12,3 +12,7 @@
 //     top: 0;
 //     visibility: hidden;
 // }
+::ng-deep app-print-container{
+    // background-color: red;
+    display: none;
+}
