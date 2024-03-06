@@ -675,14 +675,18 @@ app-upload-player-container {
   .alert-msg {
     margin-top: 3.4rem;
     padding: 1.6rem;
-    background-color: rgba($yellow-color, 0.05);
+    background-color: rgba($primary-color, 0.05);
     border-radius: 1.2rem;
     width: fit-content;
 
     p {
-      color: $yellow-color;
+      color: $primary-color;
       font-size: 1.4rem;
       margin-left: 1.6rem;
+    }
+
+    img {
+      vertical-align: middle;
     }
   }
 
@@ -1491,5 +1495,5 @@ app-upload-player-container {
       }
     }
   }
-  
+
 }
