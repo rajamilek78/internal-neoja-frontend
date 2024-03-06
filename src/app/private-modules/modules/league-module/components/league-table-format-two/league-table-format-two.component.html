@@ -76,7 +76,8 @@
                   </span>
                   ⁠ <input
                     *ngIf="game[1].team_1.indexOf(player) > -1 && isEdit"
-                    type="text"
+                    type="number"
+                    (blur)="onBlurTeamScore()"
                     class="format-two-input"
                     [(ngModel)]="game[1].score.team_1"
                     style="
@@ -87,7 +88,8 @@
                   />
                   <input
                     *ngIf="game[1].team_2.indexOf(player) > -1 && isEdit"
-                    type="text"
+                    type="number"
+                    (blur)="onBlurTeamScore()"
                     class="format-two-input"
                     [(ngModel)]="game[1].score.team_2"
                     style="
@@ -95,7 +97,7 @@
                       background-color: transparent;
                       font-size: 18px;
                     "
-                  /> ⁠
+                  /> 
                 </div>
                 <!-- {{game[1].score | json}} -->
               </div>

@@ -20,6 +20,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   constructor(private SharedCommonService: SharedCommonService) {}
 
   ngOnInit(): void {
+    console.log(this.groups);
     console.log(this.data);
     
     // console.log(this.isEdit)
@@ -45,6 +46,8 @@ export class LeagueTableFormatOneComponent implements OnInit {
 
   onBlurTeamScore = () => {
     const groups = JSON.parse(JSON.stringify(this.groups));
+    console.log(groups);
+    
     const gameObj: any = {};
     for (let i = 0; i < this.gamesArray.length; i++) {
       const game = this.gamesArray[i];
