@@ -5,6 +5,9 @@ import {
   ChangeDetectorRef,
   signal,
   computed,
+  EventEmitter,
+  Output,
+  Input,
 } from '@angular/core';
 import { RouteConstant } from '../../../helpers/constants';
 import { SharedService } from '@app/core';
@@ -19,11 +22,15 @@ import { SignupDialogueComponent } from '../signup-dialogue/signup-dialogue.comp
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @Output() openCloseSidebar = new EventEmitter<boolean>();
+  @Input() showSidebar = false;
+
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   userName = '';
   clubName = '';
-  collapsed = signal(false);
+
+  // collapsed = signal(false);
 
   constructor(
     private sharedService: SharedService,
@@ -65,7 +72,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // });
   };
 
-  sidenavWidth = computed(() => (this.collapsed() ? '64px' : '250px'));
+  onOpenCloseSidebar = (val: boolean) => {
+    this.openCloseSidebar.emit(val);
+  };
+
+  // sidenavWidth = computed(() => (this.collapsed() ? '64px' : '250px'));
 
   get homePageUrl() {
     return `${RouteConstant.HOME_PAGE}`;

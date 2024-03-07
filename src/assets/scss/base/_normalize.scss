@@ -245,6 +245,14 @@ a {
   overflow-y: auto;
 }
 
+.overflow {
+
+  @include respond("phone") {
+    overflow-x: scroll !important;
+  }
+
+}
+
 // img or icon btn scss
 .primary-btn,
 .primary-btn-light,
@@ -615,6 +623,10 @@ textarea {
     img {
       width: 100%;
     }
+
+    @include respond("phone") {
+      display: none;
+    }
   }
 
   &__form {
@@ -659,6 +671,17 @@ textarea {
         margin-top: 3.6rem !important;
       }
     }
+
+    @include respond("phone") {
+      padding: 0rem;
+      margin-left: 0rem;
+      width: 100%;
+    }
+  }
+
+  @include respond("phone") {
+    transform: translateY(62%);
+    flex-direction: column;
   }
 }
 
@@ -667,6 +690,10 @@ textarea {
 app-upload-player-container {
   .dropdown {
     margin-top: 3.5rem;
+
+    @include respond("phone") {
+      flex-direction: column;
+    }
   }
 }
 
@@ -681,6 +708,24 @@ app-upload-player-container {
 
     p {
       color: $primary-color;
+      font-size: 1.4rem;
+      margin-left: 1.6rem;
+    }
+
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  .alert-msg-yellow {
+    margin-top: 3.4rem;
+    padding: 1.6rem;
+    background-color: rgba($yellow-color, 0.05);
+    border-radius: 1.2rem;
+    width: fit-content;
+
+    p {
+      color: $yellow-color;
       font-size: 1.4rem;
       margin-left: 1.6rem;
     }
@@ -822,6 +867,10 @@ app-upload-player-container {
           font-weight: 600 !important;
           line-height: 1.8rem !important;
         }
+
+        @include respond("phone") {
+          width: 100% !important;
+        }
       }
 
       .row-title-two-dlt {
@@ -856,6 +905,10 @@ app-upload-player-container {
       .row-field-two {
         width: 15% !important;
         padding-right: 1.6rem !important;
+
+        @include respond("phone") {
+          width: 100% !important;
+        }
       }
 
       .row-field-two-dlt {
@@ -928,6 +981,10 @@ app-upload-player-container {
         margin-right: 0.8rem;
       }
 
+    }
+
+    @include respond("phone") {
+      overflow-x: scroll !important;
     }
 
   }
@@ -1019,6 +1076,10 @@ app-upload-player-container {
 
     .secondary-btn-light {
       margin-left: 0.8rem;
+    }
+
+    @include respond("phone") {
+      top: 5rem;
     }
   }
 }
@@ -1121,6 +1182,17 @@ app-upload-player-container {
       }
     }
   }
+
+  @include respond("phone") {
+    .align-end {
+      flex-direction: column;
+
+      .align-center {
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+  }
 }
 
 // view-score scss
@@ -1197,6 +1269,18 @@ app-upload-player-container {
   .mb-1 {
     margin-bottom: 3.2rem !important;
   }
+
+  @include respond("phone") {
+    .flex {
+      flex-direction: column-reverse;
+
+      h6 {
+        margin-top: 1rem;
+      }
+    }
+
+    width: 100%;
+  }
 }
 
 // contact-us-page
@@ -1209,6 +1293,10 @@ app-upload-player-container {
 
     img {
       width: 100%;
+    }
+
+    @include respond("phone") {
+      display: none;
     }
   }
 
@@ -1253,6 +1341,17 @@ app-upload-player-container {
         }
       }
     }
+
+    @include respond("phone") {
+      margin-left: 0rem;
+      width: 100%;
+      padding: 0rem;
+    }
+  }
+
+  @include respond("phone") {
+    flex-direction: column;
+    transform: translateY(22%);
   }
 }
 
@@ -1293,6 +1392,10 @@ app-upload-player-container {
 
     .col-md-6 {
       max-width: 45%;
+
+      @include respond ("phone") {
+        margin-top: 4rem;
+      }
     }
 
     h6 {
@@ -1342,10 +1445,15 @@ app-upload-player-container {
           line-height: 2.4rem;
         }
       }
+
+      @include respond ("phone") {
+        margin-top: 8rem;
+      }
     }
 
     @include respond ("phone") {
       flex-direction: column;
+      margin-top: 5rem;
     }
   }
 
@@ -1360,6 +1468,10 @@ app-upload-player-container {
       line-height: 6.7rem;
       letter-spacing: 0.2rem;
       word-spacing: 0.2rem;
+    }
+
+    @include respond ("phone") {
+      margin-top: 9rem;
     }
   }
 
@@ -1533,4 +1645,11 @@ app-upload-player-container {
     }
   }
 
+  @include respond ("phone") {
+    .flex-1 {
+      flex: 50%;
+    }
+
+    .sub-footer {}
+  }
 }

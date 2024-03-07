@@ -1,18 +1,22 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from "rxjs";
-import { SharedService } from "./core";
+import { Component, OnDestroy, OnInit, computed, signal } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SharedService } from './core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'eleague-online';
   isLoading = false;
   private loaderSubscriber$!: Subscription;
+  // collapsed = signal(false);
+  showSidebar = false;
 
-  constructor(private sharedService: SharedService) { }
+  // sidenavWidth = computed(() => (this.collapsed() ? '250px' : '0px'));
+
+  constructor(private sharedService: SharedService) {}
 
   ngOnInit(): void {
     this.subscribeIsLoading();
@@ -20,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.loaderSubscriber$) {
-      this.loaderSubscriber$.unsubscribe()
+      this.loaderSubscriber$.unsubscribe();
     }
   }
 
@@ -31,4 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isLoading = isLoading;
       });
   }
+
+  onOpenCloseSidebar = (val: boolean) => {
+    this.showSidebar = val;
+  };
 }

@@ -10,7 +10,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+} from '@angular/material/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
@@ -27,8 +32,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { ClipboardModule } from '@angular/cdk/clipboard';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatDialogContent } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
 // import { MomentDateAdapter } from '@angular/material-moment-adapter';
 // import { MY_FORMATS } from '@app/helpers';
 
@@ -63,7 +69,8 @@ import { MatDialogContent } from '@angular/material/dialog';
     MatSliderModule,
     ClipboardModule,
     MatCardModule,
-    MatDialogContent
+    MatDialogContent,
+    MatSidenavModule,
   ],
   exports: [
     MatCardModule,
@@ -95,11 +102,12 @@ import { MatDialogContent } from '@angular/material/dialog';
     MatChipsModule,
     MatSlideToggleModule,
     MatSliderModule,
-    ClipboardModule
+    ClipboardModule,
+    MatSidenavModule,
   ],
   providers: [
     // { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     // { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

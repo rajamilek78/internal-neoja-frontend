@@ -12,7 +12,7 @@ import { ContactUsPageComponent } from './public-modules/components/contact-us/c
 import { AboutUsPageComponent } from './public-modules/components/about-us/about-us-page.component';
 import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
 import { API_ENDPOINTS } from './helpers/constants/api-constants';
-import { CoreModule } from "./core";
+import { CoreModule } from './core';
 import { DateFormatDirective } from './helpers/directives/date-format.directive';
 import { SignupDialogueComponent } from './public-modules/components/signup-dialogue/signup-dialogue.component';
 import { CustomSidenavComponent } from './public-modules/components/custom-sidenav/custom-sidenav.component';
@@ -27,7 +27,7 @@ import { CustomSidenavComponent } from './public-modules/components/custom-siden
     HomePageComponent,
     DateFormatDirective,
     SignupDialogueComponent,
-    CustomSidenavComponent
+    CustomSidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,4 +40,4 @@ import { CustomSidenavComponent } from './public-modules/components/custom-siden
   providers: [API_ENDPOINTS],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -11,10 +11,14 @@
   padding: 2rem 0rem;
 
   &__logo {
-    width: 12%;
+    width: 42%;
 
     img {
       width: 100%;
+    }
+
+    @include respond("phone") {
+      width: 60%;
     }
   }
 
@@ -33,6 +37,10 @@
       &:hover {
         color: $white-color;
       }
+
+      @include respond("phone") {
+        display: none !important;
+      }
     }
   }
 
@@ -50,5 +58,26 @@
 
   .mr-1 {
     margin-left: 1rem !important;
+  }
+}
+
+
+@include respond("phone") {
+  .header {
+    .container {
+      .align-center {
+        display: none;
+      }
+    }
+  }
+}
+
+.toggle-btn {
+  display: none;
+
+  @include respond("phone") {
+    color: $white-color;
+    display: block;
+    margin-right: 1rem;
   }
 }

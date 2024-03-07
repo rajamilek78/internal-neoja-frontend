@@ -1,1 +1,36 @@
-<p>custom-sidenav works!</p>
+<div class="sidenav-visible">
+  <ul>
+    <li>
+      <div>
+        <div>
+          <img src="assets/images/club iocn.svg" alt="" class="mr-1" />
+        </div>
+        <div>
+          <b>DSHT-SHAKOPEE</b>
+        </div>
+      </div>
+    </li>
+    <li>
+      <span
+        ><a [routerLink]="leagueList" routerLinkActive="active"
+          >Leagues</a
+        ></span
+      >
+    </li>
+    <li>
+      <span
+        ><a [routerLink]="buildLeagueUrl" routerLinkActive="active"
+          >Build Round</a
+        ></span
+      >
+    </li>
+    <li>
+      <span
+        ><a [routerLink]="completedLeague" routerLinkActive="active"
+          >Scoreboard</a
+        ></span
+      >
+    </li>
+    <li></li>
+  </ul>
+</div>
