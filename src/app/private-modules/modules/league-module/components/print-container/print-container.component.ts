@@ -18,6 +18,8 @@ export class PrintContainerComponent {
   constructor(private leagueService : LeagueModuleService){}
   // groups : any;
   ngOnInit(): void {
+    console.log(this.data);
+    
     this.leagueService.getRoundData().subscribe(data => {
       if(data){
         this.data = data.rawData;
