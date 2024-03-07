@@ -38,6 +38,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   roundID: string = '';  
   groupsArrayToBeUpdated: any[] = [];
   isInvisilePdf = false;
+  roundCount!:number;
 
   constructor(
     private SharedCommonService: SharedCommonService,
@@ -79,6 +80,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       data: {
         leagueID: this.leagueID,
         responseData: this.responseData,
+        roundCount : this.roundCount
       },
     });
     dialogueRef.afterClosed().subscribe((result) => {
@@ -89,6 +91,8 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   getMatchData() {
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.rawData = data;
+      this.roundCount = this.rawData.round.header.round;
+      console.log(this.roundCount)
       this.responseData = data;
       console.log(this.rawData);
       if (this.responseData) {

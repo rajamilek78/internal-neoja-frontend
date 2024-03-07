@@ -13,6 +13,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   @Input() roundCount!: string;
   @Input() groups: any;
   @Output() blurTeamScore = new EventEmitter<any>();
+  @Output() roundChanged = new EventEmitter<number>();
   @Input() isEdit !: boolean 
   gamesArray: any;
   selectedTabIndex = 0;

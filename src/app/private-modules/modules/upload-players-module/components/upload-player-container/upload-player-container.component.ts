@@ -59,11 +59,13 @@ export class UploadPlayerContainerComponent implements OnInit {
     // const compnyclubStr = `${ownedClubs}/all`;
     this.commonService.getAllLeagues(urlString).subscribe({
       next: (res: any) => {
-        console.log(res);
-        this.leagues = Object.keys(res).map((key) => ({
-          name: key,
-          description: res[key].description,
-        }));
+        // this.leagues = Object.keys(res).map((key) => ({
+        //   name: key,
+        //   description: res[key].description,
+        // }));
+        this.leagues = Object.keys(res).map(id => ({id, ...res[id]}));
+        console.log(this.leagues);
+        
       },
       error: (err: any) => {},
     });
