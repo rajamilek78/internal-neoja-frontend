@@ -17,6 +17,7 @@ export class LockDataDialogueComponent implements OnInit{
   responseData: any;
   commonService: any;
   leagueID!: string| null;
+  roundCount!:number;
   
  
   constructor ( private router : Router, private dialogeref : MatDialogRef<LockDataDialogueComponent>, private sharedService: SharedService,
@@ -28,6 +29,9 @@ export class LockDataDialogueComponent implements OnInit{
     console.log(this.data.leagueID);
     this.userSubscriber();
     this.leagueID = localStorage.getItem('leagueID');
+    if(this.data){
+      this.roundCount = this.data.roundCount;
+    }
   }
  
 
