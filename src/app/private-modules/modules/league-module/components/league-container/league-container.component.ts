@@ -15,7 +15,6 @@ import { UserModel } from '@app/helpers/models';
 import { SharedUserService } from '@app/core';
 import { RouteConstant } from '@app/helpers/constants';
 import { PrintRoundComponent } from '../print-round/print-round.component';
-import { ROUND_DATA } from './response.constant';
 import { PrintRoundFormatOneComponent } from '../print-round-format-one/print-round-format-one.component';
 
 @Component({
@@ -57,11 +56,6 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     // }
   }
   ngOnInit(): void {
-    // this.rawData = ROUND_DATA;
-    // if (performance.navigation.type > 2) {
-    //   // Redirect to the home page
-    //   this.router.navigate(['upload-players']);
-    // }
     this.userSubscriber();
     this.route.params.subscribe((params) => {
       this.isEdit = params['isEdit'];
