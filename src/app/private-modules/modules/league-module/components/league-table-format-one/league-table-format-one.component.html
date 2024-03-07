@@ -7,7 +7,7 @@
   <mat-tab *ngFor="let group of groups" [label]="group.name">
     <div class="flex justify-between tab-sub-header">
       <b>Round {{ data.header?.round || data.round?.header?.round }}</b>
-      <b>{{ leagueID }}</b>
+      <b>{{ leagueName }}</b>
       <b>{{
         data.header?.date || data.round?.header?.date
           | date : "EEE, MMM dd yyyy"

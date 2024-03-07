@@ -6,10 +6,10 @@
         <mat-form-field>
           <mat-select
             (selectionChange)="onLeagueSelect($event.value)"
-            [(value)]="leagueID"
+            [(value)]="selectedLeague"
             placeholder="Select"
           >
-            <mat-option *ngFor="let league of leagues" [value]="league.id">{{
+            <mat-option *ngFor="let league of leagues" [value]="league">{{
               league.name
             }}</mat-option>
           </mat-select>
@@ -49,7 +49,7 @@
         [(ngModel)]="selectedFormat"
         (change)="onRadioButtonChange()"
       >
-        <mat-radio-button value="1" [disabled]="isDisableUploadByFile"
+        <mat-radio-button value="1"
           >Upload by file</mat-radio-button
         >
         <mat-radio-button value="2">Upload by data</mat-radio-button>
@@ -60,6 +60,7 @@
         [roundCount]="roundCount"
         [selectedDate]="selectedDate"
         [leagueIdPass]="leagueID"
+        [selectedLeague]="selectedLeague"
       ></app-upload-player-file>
     </div>
     <div *ngIf="selectedFormat == '2'">
@@ -68,6 +69,7 @@
         [roundCount]="roundCount"
         [roundsLength]="roundsLength"
         [leagueID]="leagueID"
+        [selectedLeague]="selectedLeague"
       ></app-upload-player-data>
     </div>
   </div>

@@ -409,7 +409,7 @@ textarea {
       input {
         background-color: transparent !important;
         text-align: center;
-        font-size: 1.4rem;
+        font-size: 18px;
 
         &:focus {
           outline: none;
@@ -1573,7 +1573,7 @@ app-upload-player-container {
   margin-top: 4.7rem;
 
   &__logo {
-    width: 42%;
+    width: 18rem;
 
     a {
       padding-left: 0rem !important;

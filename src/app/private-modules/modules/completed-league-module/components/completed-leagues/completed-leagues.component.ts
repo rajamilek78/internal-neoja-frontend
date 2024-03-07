@@ -27,6 +27,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   companies: { [key: string]: { name: string; description: string } } = {};
   newCompanies!: CompanyModel[];
   clubs: { [key: string]: { name: string; phone: string; address: any } } = {};
+  selectedLeagueName!: string;
   // clubs : any;
   constructor(
     private commonService: CommonService,
@@ -68,7 +69,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   edit(roundID?) {
     this.router.navigate([
       RouteConstant.LEAGUE_CONTAINER,
-      { isEdit: true, roundID: roundID, leagueID: this.selectedLeague },
+      { isEdit: true, roundID: roundID, leagueID: this.selectedLeague, leagueName : this.selectedLeagueName},
     ]);
   }
   // Subcribe loggedIn user's Details
@@ -99,7 +100,12 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
           id: key,
           name: res[key].name,
         }));
+        console.log(this.leagues);
+        
         this.selectedLeague = this.leagues[0].id;
+        this.selectedLeagueName = this.leagues[0].name;
+        console.log(this.selectedLeagueName);
+        
         this.getAllRounds();
         console.log(this.leagues);
       },
@@ -129,9 +135,18 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   //   });
   // }
 
-  onLeagueChange = () => {
-    this.getAllRounds();
-  };
+  // onLeagueChange = () => {
+  //   this.getAllRounds();
+  // };
+  onLeagueChange() {
+    const selectedLeague = this.leagues.find(league => league.id === this.selectedLeague);
+    if (selectedLeague) {
+      this.getAllRounds();
+      this.selectedLeagueName = selectedLeague.name;
+      } else {
+      this.selectedLeagueName = '';
+    }
+  }
 
   getAllRounds() {
     const urlString = `${this.selectedClubID}/${this.selectedLeague}/all`;

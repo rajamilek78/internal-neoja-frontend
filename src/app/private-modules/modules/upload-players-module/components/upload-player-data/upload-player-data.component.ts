@@ -23,6 +23,7 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() roundCount!: number;
   @Input() roundsLength!: number;
   @Input() leagueID!: string;
+  @Input() selectedLeague: any;
   // @Input() selectedDay!: number;
   @Input() selectedDate!: Date;
   isDropInDisabled = true;
@@ -200,7 +201,10 @@ export class UploadPlayerDataComponent implements OnInit {
             this.SharedCommonService.setMatchData(res);
             this.router.navigate([
               RouteConstant.LEAGUE_CONTAINER,
-              { leagueID: this.leagueID },
+              { 
+                leagueID: this.leagueID,
+                selectedLeague : this.selectedLeague
+              },
             ]);
           },
           error: (err: any) => {

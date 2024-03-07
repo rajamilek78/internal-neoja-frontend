@@ -19,7 +19,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   leagues: any[] = [];
-  selectedLeague!: string;
+  selectedLeague: any;
   selectedDate! : Date;
   roundCount!:number;
 
@@ -71,10 +71,13 @@ export class UploadPlayerContainerComponent implements OnInit {
     });
   }
 
-  onLeagueSelect(leagueName: string) {
-    this.leagueID = leagueName;
-    localStorage.setItem('leagueID',this.leagueID)
-
+  onLeagueSelect(league : any) {
+    this.selectedLeague = league;
+    this.leagueID = league.id;
+    if(league){
+      localStorage.setItem('leagueID',this.selectedLeague.id);
+      localStorage.setItem('leagueName',this.selectedLeague.name);
+    }
     const clubLeagueStr = `${this.clubID}/${this.leagueID}/all`;
     this.commonService.getRounds(clubLeagueStr).subscribe({
       next: (res: any) => {
@@ -85,7 +88,7 @@ export class UploadPlayerContainerComponent implements OnInit {
         // } else {
         //   this.roundsLength = 0; // Set roundsLength to null if the response is null
         // }
-        this.selectedFormat = this.roundsLength >= 1 ? '2' : '1';
+        // this.selectedFormat = this.roundsLength >= 1 ? '2' : '1';
         this.SharedCommonService.setLeagueID(this.leagueID);
         this.cdr.detectChanges();
       },

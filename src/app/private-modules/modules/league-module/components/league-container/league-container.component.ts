@@ -34,6 +34,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   isEdit: boolean = false;
   //selectedCompanyID!: string;
   selectedClubID!: string;
+  leagueName! : string;
   leagueID!: string;
   roundID: string = '';  
   groupsArrayToBeUpdated: any[] = [];
@@ -62,9 +63,9 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       this.isEdit = params['isEdit'];
       this.roundID = params['roundID'];
       this.leagueID = params['leagueID'];
-     
-
-    });
+      this.leagueName = params['leagueName'];
+      // this.selectedLeague = params['selectedLeague'];
+     });
     console.log(this.isEdit);
     if (this.isEdit) {
       this.getRoundById();

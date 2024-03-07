@@ -11,6 +11,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   @Input() leagueID!: string;
   @Input() clubID!: string;
   @Input() roundCount!: string;
+  @Input() leagueName!: string;
   @Input() groups: any;
   @Output() blurTeamScore = new EventEmitter<any>();
   @Output() roundChanged = new EventEmitter<number>();

@@ -21,6 +21,7 @@ export class UploadPlayerFileComponent {
   @Input() leagueIdPass: any;
   @Input() roundCount!: number | undefined;
   @Input() selectedDate!: Date;
+  @Input() selectedLeague: any;
 
   constructor(
     private commonservice: CommonService,
@@ -126,7 +127,7 @@ export class UploadPlayerFileComponent {
           this.SharedCommonService.setMatchData(res);
           this.router.navigate([
             RouteConstant.LEAGUE_CONTAINER,
-            { leagueID: this.leagueIdPass },
+            { leagueID: this.leagueIdPass, leagueName : this.selectedLeague.name },
           ]);
         },
         error: (err: any) => {

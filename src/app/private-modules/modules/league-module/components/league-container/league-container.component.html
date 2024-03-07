@@ -4,7 +4,7 @@
   <div class="container">
     <div class="league-title">
       <div>
-        <h6>{{ leagueID }}</h6>
+        <h6>{{ leagueName }}</h6>
       </div>
       <div class="flex justify-end">
         <!-- <div class="flex mr-1">
@@ -18,8 +18,8 @@
         <div class="table-buttons flex justify-end">
           <div>
             <select [(ngModel)]="selectedFormat" (change)="onSelectionChange()">
-              <option value="1">Format 2</option>
               <option value="2">Format 1</option>
+              <option value="1">Format 2</option>
             </select>
           </div>
           <div class="secondary-btn-light">
@@ -62,6 +62,7 @@
           [groups]="groups"
           [data]="rawData"
           id="playerData"
+          [leagueName]="leagueName"
           [roundCount]="roundID"
           [leagueID]="leagueID"
           [clubID]="selectedClubID"
@@ -75,6 +76,7 @@
         <app-league-table-format-two
           *ngIf="selectedFormat == '2' && groups"
           [groups]="groups"
+          [leagueName]="leagueName"
           id="playerData"
           [data]="rawData"
           [roundCount]="roundID"
