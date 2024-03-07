@@ -203,7 +203,8 @@ export class UploadPlayerDataComponent implements OnInit {
               RouteConstant.LEAGUE_CONTAINER,
               { 
                 leagueID: this.leagueID,
-                selectedLeague : this.selectedLeague
+                selectedLeague : this.selectedLeague,
+                leagueName : this.selectedLeague.name
               },
             ]);
           },
