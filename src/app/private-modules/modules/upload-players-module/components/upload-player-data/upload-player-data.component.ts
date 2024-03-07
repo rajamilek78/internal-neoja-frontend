@@ -139,7 +139,7 @@ export class UploadPlayerDataComponent implements OnInit {
                 Validators.required,
               ],
               score: [
-                { value: playerData.rating, disabled: true },
+                { value: playerData.weighted_rating, disabled: true },
                 Validators.required,
               ],
               winLoseHistory: [{ value: winLoseHistory, disabled: true }],

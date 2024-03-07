@@ -207,7 +207,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     };
     this.leagueService.setRoundData(data);
     // this.router.navigate(['fixtures/print-container']);
-    window.open('/fixtures/print-container', '_blank');
+    window.open(`${RouteConstant.PRINT_CONTAINER}`, '_blank');
     }
 
   onClickDownload() {
