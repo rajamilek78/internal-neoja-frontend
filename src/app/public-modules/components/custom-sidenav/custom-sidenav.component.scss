@@ -5,12 +5,14 @@
     position: fixed;
     top: 10rem;
     left: 0rem;
-    width: 20rem;
+    width: 22rem;
     height: 100%;
     background-color: $white-color;
     z-index: 10;
 
     ul {
+        padding-top: 2rem;
+
         li {
             padding: 2rem;
 
@@ -20,6 +22,12 @@
                     font-size: 1.6rem;
                     font-weight: 600;
                 }
+            }
+
+            b {
+                color: $primary-color;
+                font-size: 1.6rem;
+                font-weight: 600;
             }
         }
     }
