@@ -7,7 +7,7 @@ export class RouteConstant {
   public static readonly PRINT_CONTAINER = `${RouteConstant.LEAGUE_CONTAINER}/print-container`;
   public static readonly GENERATE_LEAGUE = 'manage-leagues';
   public static readonly HOME_PAGE = '';
-  
+
   public static readonly ABOUT_US_PAGE = 'about-us';
   public static readonly CONTACT_US_PAGE = 'contact-us';
 
