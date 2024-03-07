@@ -515,8 +515,9 @@ textarea {
   .td-cell {
     span {
       img {
-        // background-color: red;
-        margin-right: 5.5rem !important;
+        position: relative;
+        top: 0.4rem;
+        margin-right: 1.5rem !important;
       }
     }
   }
@@ -545,19 +546,28 @@ textarea {
   }
 
   .player-name {
-    flex: 20%;
+    flex: 15%;
     border-right: 1px solid rgba($black-color, 0.1);
     justify-content: stretch !important;
     height: 100%;
   }
 
   .player-game {
-    flex: 80%;
+    flex: 85%;
     width: max-content;
 
     div {
       flex-grow: 1;
     }
+
+    input {
+      text-align: center;
+      width: 5.5rem;
+      background-color: transparent;
+      font-size: 18px;
+      padding: 0.5rem;
+    }
+
   }
 }
 
@@ -1531,6 +1541,10 @@ app-upload-player-container {
         }
       }
     }
+
+    @include respond ("phone") {
+      margin-top: 9rem;
+    }
   }
 
   &__box {
@@ -1549,7 +1563,7 @@ app-upload-player-container {
       transform: skew(-14deg);
 
       img {
-        width: 6%;
+        width: 4rem;
         margin-bottom: 0.8rem;
       }
 
@@ -1560,6 +1574,10 @@ app-upload-player-container {
         line-height: 2.1rem;
         letter-spacing: 0.2rem !important;
       }
+    }
+
+    @include respond ("phone") {
+      margin: 9rem 0rem;
     }
   }
 }
