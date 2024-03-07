@@ -1255,7 +1255,10 @@ app-upload-player-container {
   @include respond("phone") {
     .flex {
       flex-direction: column-reverse;
-      margin-top: 1rem;
+
+      h6 {
+        margin-top: 1rem;
+      }
     }
 
     width: 100%;
