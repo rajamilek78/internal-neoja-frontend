@@ -367,6 +367,10 @@ textarea {
   color: $black-color;
   line-height: 1.9rem;
   border-bottom: 1px solid rgba($black-color, 0.1);
+
+  @include respond("phone") {
+    min-width: 105rem;
+  }
 }
 
 
@@ -1089,7 +1093,7 @@ app-upload-player-container {
     }
 
     @include respond("phone") {
-      top: 5rem;
+      top: 6rem;
     }
   }
 }
@@ -1106,6 +1110,11 @@ app-upload-player-container {
     right: 0rem;
     margin-right: 0rem !important;
     z-index: 10;
+  }
+
+
+  @include respond("phone") {
+    margin-top: 8rem;
   }
 
 }
@@ -1382,6 +1391,10 @@ app-upload-player-container {
 
     span {
       color: $primary-color;
+    }
+
+    @include respond ("phone") {
+      margin: 0rem;
     }
   }
 
