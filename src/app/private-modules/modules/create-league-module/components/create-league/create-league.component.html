@@ -23,21 +23,21 @@
         </div>
       </div>
       <div class="overflow">
-        <table class="table-2">
+        <table class="table-2" matSort (matSortChange)="sortData($event)">
           <thead>
             <tr>
               <th width="10%"># Sr No.</th>
-              <th width="25%">Name</th>
-              <th width="15%">Schedule</th>
-              <th width="10%">Dupr Rec.</th>
-              <th width="10%">Type</th>
-              <th width="10%">Doubles</th>
-              <th width="10%">Active</th>
+              <th width="25%" mat-sort-header="name">Name</th>
+              <th width="15%" mat-sort-header="schedule">Schedule</th>
+              <th width="10%" mat-sort-header="duprRec">Dupr Rec.</th>
+              <th width="10%" mat-sort-header="type">Type</th>
+              <th width="10%" mat-sort-header="doubles">Doubles</th>
+              <th width="10%" mat-sort-header="active">Active</th>
               <th width="10%">Edit</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let league of leagues; index as i">
+            <tr *ngFor=" let league of sortedLeague; let i = index;">
               <td>{{ i + 1 }}</td>
               <td>{{ league.name }}</td>
               <td>
