@@ -28,9 +28,10 @@ export class LockDataDialogueComponent implements OnInit{
     console.log(this.data)
     console.log(this.data.leagueID);
     this.userSubscriber();
-    this.leagueID = localStorage.getItem('leagueID');
+    // this.leagueID = localStorage.getItem('leagueID');
     if(this.data){
       this.roundCount = this.data.roundCount;
+      this.leagueID = this.data.leagueID;
     }
   }
  

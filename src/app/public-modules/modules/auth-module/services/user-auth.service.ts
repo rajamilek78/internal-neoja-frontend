@@ -12,7 +12,7 @@ export class UserAuthService {
   }
 
   logIn = (data : any): Observable<any> => {
-    return this.apiManager.postApis(`${API_ENDPOINTS.LOGIN}`,data)
+    return this.apiManager.postApis(`${API_ENDPOINTS.LOGIN}`,data,false,true)
   };
 
   handleAuthResponse = (response) => {

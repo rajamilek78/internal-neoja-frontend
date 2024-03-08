@@ -5,13 +5,15 @@ import { AppLogger } from '@app/helpers/functions';
 import { AppConstant, HttpMethodsTypeEnum, } from '@app/helpers/constants';
 import { SharedService } from './shared.service';
 import { HttpHelperService } from './http-helper.service';
+import { SnackBarService } from './snackbar.service';
 
 @Injectable()
 export class APIManager extends HttpHelperService {
 
   constructor(sharedService: SharedService,
+    snackBarService: SnackBarService,
     http: HttpClient) {
-    super(sharedService, http);
+    super(sharedService, http,snackBarService);
   }
 
   // return authorization header

@@ -1,4 +1,10 @@
-import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CommonService, SharedService } from '../../../../../core/services';
 import { Router } from '@angular/router';
@@ -7,6 +13,7 @@ import { SharedCommonService } from '../../../../../helpers/services';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { DatePipe } from '@angular/common';
+import { SnackBarService } from '@app/core/services/snackbar.service';
 @Component({
   selector: 'app-upload-player-file',
   templateUrl: './upload-player-file.component.html',
@@ -26,8 +33,9 @@ export class UploadPlayerFileComponent {
   constructor(
     private commonservice: CommonService,
     private SharedCommonService: SharedCommonService,
+    private snackbarService: SnackBarService,
     private router: Router,
-    private datePipe : DatePipe,
+    private datePipe: DatePipe,
     private sharedService: SharedService
   ) {}
 
@@ -84,7 +92,7 @@ export class UploadPlayerFileComponent {
           if (['txt', 'csv', 'xlx', 'xlsx'].includes(fileType || '')) {
             this.files = [...this.files, file];
           } else {
-            alert("Invalid file type");
+            alert('Invalid file type');
           }
         } else {
           alert('You can only upload a maximum of 3 files at a time');
@@ -94,7 +102,7 @@ export class UploadPlayerFileComponent {
     }
     inputElement.value = '';
   }
-  
+
   onFileRemoved(file: File) {
     const index = this.files.indexOf(file);
     if (index > -1) {
@@ -102,14 +110,16 @@ export class UploadPlayerFileComponent {
     }
     this.fileInput.nativeElement.value = '';
   }
-  
 
   onFileDropped(event: CdkDragDrop<File[]>) {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
   onUpload() {
-    const formattedDate = this.datePipe.transform(this.selectedDate, 'MM/dd/yyyy');
-    const clubID = this.userDetail?.club_id
+    const formattedDate = this.datePipe.transform(
+      this.selectedDate,
+      'MM/dd/yyyy'
+    );
+    const clubID = this.userDetail?.club_id;
     const clubLeagueStr = `${clubID}/${this.leagueIdPass}`;
 
     // Loop through each file to upload
@@ -127,10 +137,15 @@ export class UploadPlayerFileComponent {
           this.SharedCommonService.setMatchData(res);
           this.router.navigate([
             RouteConstant.LEAGUE_CONTAINER,
-            { leagueID: this.leagueIdPass, leagueName : this.selectedLeague.name },
+            {
+              leagueID: this.leagueIdPass,
+              leagueName: this.selectedLeague.name,
+            },
           ]);
         },
         error: (err: any) => {
+          const message = err.error.message;
+          this.snackbarService.setSnackBarMessage(message);
           console.log(err);
         },
       });

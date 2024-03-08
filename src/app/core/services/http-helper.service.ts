@@ -5,12 +5,15 @@ import { catchError, finalize, tap } from 'rxjs/operators';
 import { SharedService } from './shared.service';
 import { HttpMethodsTypeEnum } from '@app/helpers/constants';
 import { AppLogger, isEmpty } from '@app/helpers/functions';
+import { SnackBarService } from './snackbar.service';
 
 @Injectable()
 export class HttpHelperService {
 
     constructor(protected sharedService: SharedService,
-        protected http: HttpClient) {
+        protected http: HttpClient,
+        protected snackBarService: SnackBarService
+        ) {
     }
 
     /**
@@ -24,7 +27,7 @@ export class HttpHelperService {
         return this.apiCall(methodType, url, params, httpOptions, searchParams)
             .pipe(
                 tap((response: any) => {
-                    // this.setSnackBarMessage(response, showToast, customMessage);
+                    this.setSnackBarMessage(response, showToast, customMessage);
                     return response || {};
                 }),
                 catchError(
@@ -111,6 +114,7 @@ export class HttpHelperService {
     private setSnackBarMessage(res: any, show?: boolean, customMessage?: string) {
         const msg = customMessage || res && res.message;
         if (show && msg) {
+            this.snackBarService.setSnackBarMessage(msg);
         }
     }
 }

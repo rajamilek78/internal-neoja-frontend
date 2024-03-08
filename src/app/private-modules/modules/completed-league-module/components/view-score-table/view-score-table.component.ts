@@ -6,35 +6,38 @@ import { UserModel } from '@app/helpers/models';
 import { ActivatedRoute } from '@angular/router';
 import { RoundScore, ScoreModel } from '@app/helpers/models/score.model';
 import { KeyValue } from '@angular/common';
+import { SnackBarService } from '@app/core/services/snackbar.service';
 
 @Component({
   selector: 'app-view-score-table',
   templateUrl: './view-score-table.component.html',
-  styleUrl: './view-score-table.component.scss'
+  styleUrl: './view-score-table.component.scss',
 })
-export class ViewScoreTableComponent implements OnInit{
+export class ViewScoreTableComponent implements OnInit {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   //selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
-  leagueScores!:ScoreModel | null;
-  constructor ( 
-    private completedLeagueService : CompletedLeagueService,
-    private sharedUserService : SharedUserService,
-    private route : ActivatedRoute
-    ){}
+  leagueScores!: ScoreModel | null;
+  constructor(
+    private completedLeagueService: CompletedLeagueService,
+    private sharedUserService: SharedUserService,
+    private snackbarService: SnackBarService,
+    private route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
-    this.route.params.subscribe( params =>{
+    this.route.params.subscribe((params) => {
       this.leagueID = params['leagueID'];
     });
-    console.log("this is selected league id ",this.leagueID);
+    console.log('this is selected league id ', this.leagueID);
     this.userSubscriber();
     this.getLeagueScore();
   }
 
   userSubscriber = () => {
-    this.userDetailSub$ = this.sharedUserService.getUserDetailCall()
+    this.userDetailSub$ = this.sharedUserService
+      .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedUserService.getUser();
         console.log(this.userDetail);
@@ -43,35 +46,34 @@ export class ViewScoreTableComponent implements OnInit{
           const clubIDs = this.userDetail.owned_clubs;
           this.selectedClubID = this.userDetail.club_id;
           //this.selectedCompanyID = companyIDs[0];
-
         }
       });
   };
 
-  getLeagueScore(){
-    
-    const urlString = `${this.selectedClubID}/${this.leagueID}`
+  getLeagueScore() {
+    const urlString = `${this.selectedClubID}/${this.leagueID}`;
     this.completedLeagueService.getLeagueScores(urlString).subscribe({
-      next : (res : any)=>{
-      
+      next: (res: any) => {
         this.leagueScores = res;
-        console.log("this is response from view score",res);
-        
+        console.log('this is response from view score', res);
+
         console.log(this.leagueScores);
-        },
-        error : (err : any)=>{
-          console.log(err);
-        }
-    })
+      },
+      error: (err: any) => {
+        const message = err.error.message;
+        this.snackbarService.setSnackBarMessage(message);
+        console.log(err);
+      },
+    });
   }
-  sortRounds = (a: KeyValue<string,RoundScore>, b: KeyValue<string,RoundScore>): number => {
+  sortRounds = (
+    a: KeyValue<string, RoundScore>,
+    b: KeyValue<string, RoundScore>
+  ): number => {
     return parseInt(a.key) - parseInt(b.key);
-  }
-  
-  
+  };
+
   // handleResponse(res){
 
   // }
-
-
 }

@@ -11,7 +11,7 @@
             }"
           >
             <div class="row-title">
-              <small>Players ( Round 1 Players : {{roundOnePlayersCount}} , Drop In Players : {{dropInPlayersCount}})</small>
+              <small>Players <span *ngIf="roundOnePlayersCount || dropInPlayersCount">( Round 1 Players : <b>{{roundOnePlayersCount}}</b>, Drop In Players : <b>{{dropInPlayersCount}}</b>)</span></small>
             </div>
             <div
               [ngClass]="{

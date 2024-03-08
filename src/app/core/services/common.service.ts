@@ -34,13 +34,13 @@ export class CommonService {
     return this.apiManager.getApis(`${API_ENDPOINTS.GET_LEAGUES_SUMMARY}/${path}`, {}, true)
   }
   creatRound(path : string , bodyData){
-    return this.apiManager.postApis(`${API_ENDPOINTS.CREAT_ROUND}/${path}`, bodyData, true)
+    return this.apiManager.postApis(`${API_ENDPOINTS.CREAT_ROUND}/${path}`, bodyData, false,true)
   }
   lockScore(path: string){
-    return this.apiManager.postApis(`${API_ENDPOINTS.LOCK_SCORE}/${path}`, true)
+    return this.apiManager.postApis(`${API_ENDPOINTS.LOCK_SCORE}/${path}`, false,true)
   }
   contactUs(data :any){
-    return this.apiManager.postApis(`${API_ENDPOINTS.CONTACT_US}`, data,true)
+    return this.apiManager.postApis(`${API_ENDPOINTS.CONTACT_US}`, data,false,true)
   }
 
   getAllClubs(token?: string): Observable<any> {
@@ -92,13 +92,13 @@ export class CommonService {
   // }
 
   uploadData(path: string,bodyData){
-    return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_DATA}/${path}`, bodyData, true)
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_DATA}/${path}`, bodyData, false,true)
   }
   uploadDataRound2(path: string,bodyData){
-    return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_DATA_Round2}/${path}`, bodyData, true)
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_DATA_Round2}/${path}`, bodyData, false,true)
   }
   uploadFile(path: string,bodyData){
-    return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_FILE}/${path}`, bodyData, true)
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPLOAD_FILE}/${path}`, bodyData, false,true)
   }
 
 

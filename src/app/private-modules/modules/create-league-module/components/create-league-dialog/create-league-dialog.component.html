@@ -1,6 +1,6 @@
 <form class="modal" [formGroup]="leagueCRUD_Form" (ngSubmit)="onFormSubmit()">
   <div class="modal__header flex justify-between">
-    <h6>{{ data.league ? "Edit" : "Add" }} League</h6>
+    <h6>{{ data.leagueID ? "Edit" : "Add" }} League</h6>
     <div>
       <span (click)="close()"
         ><img src="assets/images/close-icon.svg" alt=""

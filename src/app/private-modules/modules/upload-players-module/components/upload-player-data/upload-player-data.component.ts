@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDetailDialogueComponent } from '../delete-detail-dialogue/delete-detail-dialogue.component';
+import { SnackBarService } from '@app/core/services/snackbar.service';
 @Component({
   selector: 'app-upload-player-data',
   templateUrl: './upload-player-data.component.html',
@@ -40,6 +41,7 @@ export class UploadPlayerDataComponent implements OnInit {
     private router: Router,
     private sharedService: SharedService,
     private commonservice: CommonService,
+    private snackbarService : SnackBarService,
     private datePipe: DatePipe,
     private SharedCommonService: SharedCommonService,
     private dialog: MatDialog
@@ -49,7 +51,7 @@ export class UploadPlayerDataComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit() {    
     // this.addPlayers(this.playerCount);
     this.userSubscriber();
     if (this.roundsLength >= 1) {
@@ -159,6 +161,8 @@ export class UploadPlayerDataComponent implements OnInit {
         // this.updateToggleState();
       },
       error: (err: any) => {
+        const message = err.error.message
+this.snackbarService.setSnackBarMessage(message);
         console.log(err);
       },
     });
@@ -207,14 +211,12 @@ export class UploadPlayerDataComponent implements OnInit {
             this.SharedCommonService.setMatchData(res);
             this.router.navigate([
               RouteConstant.LEAGUE_CONTAINER,
-              { 
-                leagueID: this.leagueID,
-                selectedLeague : this.selectedLeague,
-                leagueName : this.selectedLeague.name
-              },
+              { leagueID: this.leagueID,leagueName : this.selectedLeague.name},
             ]);
           },
           error: (err: any) => {
+            const message = err.error.message
+this.snackbarService.setSnackBarMessage(message);
             console.log(err);
           },
         });
@@ -236,10 +238,12 @@ export class UploadPlayerDataComponent implements OnInit {
           this.SharedCommonService.setMatchData(res);
           this.router.navigate([
             RouteConstant.LEAGUE_CONTAINER,
-            { leagueID: this.leagueID },
+            { leagueID: this.leagueID, leagueName : this.selectedLeague.name},
           ]);
         },
         error: (err: any) => {
+          const message = err.error.message
+this.snackbarService.setSnackBarMessage(message);
           console.log(err);
         },
       });

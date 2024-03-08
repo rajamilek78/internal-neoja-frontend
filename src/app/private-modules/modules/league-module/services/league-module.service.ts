@@ -15,7 +15,7 @@ export class LeagueModuleService {
     return this.apiManager.getApis(`${API_ENDPOINTS.GET_ROUND_BY_ID}/${path}`,{}, true);
   }
   updateScore(path : string, bodyData : any): Observable <any>{
-    return this.apiManager.postApis(`${API_ENDPOINTS.UPDATE_ROUND_BY_ID}/${path}`,bodyData, true);
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPDATE_ROUND_BY_ID}/${path}`,bodyData, false,true);
   }
 
   setRoundData(data:any){

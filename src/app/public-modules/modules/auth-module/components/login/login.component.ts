@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouteConstant } from "@app/helpers/constants";
 import { FormBaseComponent } from "@app/utility/components";
 import { UserAuthService } from '../../services';
+import { SnackBarService } from '@app/core/services/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
   constructor(private router: Router,
     fb: FormBuilder,
     private userAuthService: UserAuthService,
+    private snackbarService : SnackBarService,
     private snackbar : MatSnackBar
   ) {
     super(fb)
@@ -46,10 +48,12 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
         },
         error: (err: any) => {
           console.log(err);
-          this.snackbar.open('Invalid Credentials', 'Close',{
-            duration : 5000,
-            panelClass : ['mat-toolbar','mat-warn']
-          });
+          const message = err.error.message
+          this.snackbarService.setSnackBarMessage(message);
+          // this.snackbar.open(`${err.error.message}`, 'Close',{
+          //   duration : 5000,
+          //   panelClass : ['mat-toolbar','mat-warn']
+          // });
         }
       })
     }

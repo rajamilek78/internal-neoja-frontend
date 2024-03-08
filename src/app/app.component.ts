@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, computed, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SharedService } from './core';
+import { SnackBarService } from './core/services/snackbar.service';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +17,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // sidenavWidth = computed(() => (this.collapsed() ? '250px' : '0px'));
 
-  constructor(private sharedService: SharedService) {}
+  constructor(private sharedService: SharedService, private snackBarService : SnackBarService) {}
 
   ngOnInit(): void {
     this.subscribeIsLoading();
+    this.snackBarService.initSnackBar();
   }
 
   ngOnDestroy() {

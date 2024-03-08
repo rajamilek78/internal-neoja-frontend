@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { SharedCommonService } from '../../../../../core/services/shared-common.service';
+import { SnackBarService } from '@app/core/services/snackbar.service';
 
 @Component({
   selector: 'app-league-table-format-one',
@@ -19,7 +20,9 @@ export class LeagueTableFormatOneComponent implements OnInit {
   gamesArray: any;
   selectedTabIndex = 0;
 
-  constructor(private SharedCommonService: SharedCommonService) {}
+  constructor(
+    private SharedCommonService: SharedCommonService,
+    ) {}
 
   ngOnInit(): void {
     console.log(this.groups);

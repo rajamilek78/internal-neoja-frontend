@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { SharedCommonService } from '../../../../../core/services/shared-common.service';
 import { jsPDF } from 'jspdf';
@@ -16,30 +16,32 @@ import { SharedUserService } from '@app/core';
 import { RouteConstant } from '@app/helpers/constants';
 import { PrintRoundComponent } from '../print-round/print-round.component';
 import { PrintRoundFormatOneComponent } from '../print-round-format-one/print-round-format-one.component';
+import { SnackBarService } from '@app/core/services/snackbar.service';
 
 @Component({
   selector: 'app-league-container',
   templateUrl: './league-container.component.html',
   styleUrl: './league-container.component.scss',
 })
-export class LeagueContainerComponent implements OnInit, AfterViewInit{
-  @ViewChild(PrintRoundFormatOneComponent) printComponent! : PrintRoundFormatOneComponent;
+export class LeagueContainerComponent implements OnInit, AfterViewInit {
+  @ViewChild(PrintRoundFormatOneComponent)
+  printComponent!: PrintRoundFormatOneComponent;
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   groups: any;
   responseData: any;
-  rawData :any;
+  rawData: any;
   selectedFormat = '2';
   selectedGroup!: any;
   isEdit: boolean = false;
   //selectedCompanyID!: string;
   selectedClubID!: string;
-  leagueName! : string;
+  leagueName!: string;
   leagueID!: string;
-  roundID: string = '';  
+  roundID: string = '';
   groupsArrayToBeUpdated: any[] = [];
   isInvisilePdf = false;
-  roundCount!:number;
+  roundCount!: number;
 
   constructor(
     private SharedCommonService: SharedCommonService,
@@ -47,12 +49,11 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
+    private snackbarService: SnackBarService,
     private leagueService: LeagueModuleService,
     private sharedUserService: SharedUserService
   ) {}
   ngAfterViewInit() {
-    
-    
     // if (!this.isEdit && window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
     //   this.router.navigate(['upload-players']);
     // }
@@ -65,7 +66,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       this.leagueID = params['leagueID'];
       this.leagueName = params['leagueName'];
       // this.selectedLeague = params['selectedLeague'];
-     });
+    });
     console.log(this.isEdit);
     if (this.isEdit) {
       this.getRoundById();
@@ -73,7 +74,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       this.getMatchData();
     }
   }
- 
+
   openDialogue(): void {
     console.log(this.leagueID);
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
@@ -81,7 +82,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
       data: {
         leagueID: this.leagueID,
         responseData: this.responseData,
-        roundCount : this.roundCount
+        roundCount: this.roundCount,
       },
     });
     dialogueRef.afterClosed().subscribe((result) => {
@@ -93,14 +94,16 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.rawData = data;
       this.roundCount = this.rawData.round.header.round;
-      console.log(this.roundCount)
+      console.log(this.roundCount);
       this.responseData = data;
       console.log(this.rawData);
       if (this.responseData) {
-        this.groups = Object.keys(this.responseData.round.groups).map((key) => ({
-          name: key,
-          data: this.responseData.round.groups[key],
-        }));
+        this.groups = Object.keys(this.responseData.round.groups).map(
+          (key) => ({
+            name: key,
+            data: this.responseData.round.groups[key],
+          })
+        );
         console.log(this.groups);
       } else {
         console.log('No fixtures found in responseData.');
@@ -127,6 +130,8 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
         }
       },
       error: (err: any) => {
+        const message = err.error.message;
+        this.snackbarService.setSnackBarMessage(message);
         console.log(err);
       },
     });
@@ -140,15 +145,16 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     const groups = Object.assign({}, ...this.groupsArrayToBeUpdated);
     const urlString = `${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
     const body = {
-      header:{
+      header: {
         day: this.rawData.header.day,
         date: this.rawData.header.date,
         round: this.rawData.header.round,
-        score_locked : false
+        score_locked: false,
       },
-    
+
       groups: groups,
-      players: this.rawData.players };
+      players: this.rawData.players,
+    };
     console.log(body);
     setTimeout(() => {
       this.leagueService.updateScore(urlString, body).subscribe({
@@ -156,12 +162,14 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
           this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
         },
         error: (err: any) => {
+          const message = err.error.message;
+          this.snackbarService.setSnackBarMessage(message);
           console.log(err);
         },
       });
     }, 100);
   }
-  
+
   onBlurTeamScore = (event) => {
     const { groups } = event;
     this.groupsArrayToBeUpdated = [...groups];
@@ -176,7 +184,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
         console.log(this.userDetail);
         if (this.userDetail) {
           //const companyIDs = this.userDetail.owned_companies;
-          this.selectedClubID = this.userDetail.club_id
+          this.selectedClubID = this.userDetail.club_id;
         }
       });
   };
@@ -184,7 +192,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
   saveRound() {
     this.router.navigate(['players-league/completed-leagues']);
   }
-  onCancel(){
+  onCancel() {
     this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
   }
 
@@ -197,17 +205,17 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit{
     this.selectedGroup = this.groups[event.index];
     console.log(group);
   }
-  onClickDownloadAll(){
+  onClickDownloadAll() {
     const data = {
       rawData: this.rawData,
       groups: this.groups,
       roundCount: this.roundID,
-      clubID: this.selectedClubID
+      clubID: this.selectedClubID,
     };
     this.leagueService.setRoundData(data);
     // this.router.navigate(['fixtures/print-container']);
     window.open(`${RouteConstant.PRINT_CONTAINER}`, '_blank');
-    }
+  }
 
   onClickDownload() {
     // this.isInvisilePdf = true;
