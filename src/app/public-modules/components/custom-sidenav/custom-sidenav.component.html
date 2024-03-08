@@ -1,4 +1,4 @@
-<div class="sidenav-visible" #sidenav>
+<div class="sidenav-visible">
   <ul>
     <li>
       <div class="flex justify-end">
@@ -16,21 +16,30 @@
     </li>
     <li>
       <span
-        ><a [routerLink]="leagueList" routerLinkActive="active"
+        ><a
+          [routerLink]="leagueList"
+          routerLinkActive="active"
+          (click)="onCloseSidebar()"
           >Leagues</a
         ></span
       >
     </li>
     <li>
       <span
-        ><a [routerLink]="buildLeagueUrl" routerLinkActive="active"
+        ><a
+          [routerLink]="buildLeagueUrl"
+          routerLinkActive="active"
+          (click)="onCloseSidebar()"
           >Build Round</a
         ></span
       >
     </li>
     <li>
       <span
-        ><a [routerLink]="completedLeague" routerLinkActive="active"
+        ><a
+          [routerLink]="completedLeague"
+          routerLinkActive="active"
+          (click)="onCloseSidebar()"
           >Scoreboard</a
         ></span
       >

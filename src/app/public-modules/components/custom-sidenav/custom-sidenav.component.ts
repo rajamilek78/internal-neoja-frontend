@@ -16,25 +16,14 @@ import { RouteConstant } from '@app/helpers/constants';
   styleUrl: './custom-sidenav.component.scss',
 })
 export class CustomSidenavComponent {
-  // sideNavCollapsed = signal(false);
-  // @Input() set collapsed(val: boolean) {
-  //   this.sideNavCollapsed.set(val);
-  // }
-  @ViewChild('sidenav') sidenav!: ElementRef;
-  @Output() sidebarClosed = new EventEmitter<void>();
+  @Output() openCloseSidebar = new EventEmitter<boolean>();
 
   constructor(private router: Router) {}
-  ngOnInit() {
-    this.router.events.subscribe(() => {
-      this.closeSidenav();
-    });
-  }
+  ngOnInit() {}
 
-  closeSidenav() {
-    // Close the side navigation here
-    // You can access the nativeElement property to manipulate the DOM
-    this.sidenav.nativeElement.style.display = 'none';
-  }
+  onCloseSidebar = () => {
+    this.openCloseSidebar.emit(false);
+  };
 
   get buildLeagueUrl() {
     return `${RouteConstant.UPLOAD_PLAYER_CONTAINER}`;

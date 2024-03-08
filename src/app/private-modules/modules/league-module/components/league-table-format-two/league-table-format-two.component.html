@@ -7,7 +7,10 @@
     <div class="flex justify-between tab-sub-header">
       <b>Round {{ data.header?.round || data.round?.header?.round }}</b>
       <b>{{ leagueName }}</b>
-      <b>{{ data.header?.date || data.round?.header?.date | date:'EEE, MMM dd yyyy'}}</b>
+      <b>{{
+        data.header?.date || data.round?.header?.date
+          | date : "EEE, MMM dd yyyy"
+      }}</b>
     </div>
     <div class="overflow">
       <div class="parent-table flex justify-center align-start">
@@ -74,31 +77,25 @@
                       width="26px"
                     />
                   </span>
+                  <input
+                    *ngIf="!isEdit"
+                    type="number"
+                    class="format-two-input"
+                    disabled
+                  />
                   ⁠ <input
                     *ngIf="game[1].team_1.indexOf(player) > -1 && isEdit"
                     type="number"
-                    placeholder="0"
                     (blur)="onBlurTeamScore()"
                     class="format-two-input"
                     [(ngModel)]="game[1].score.team_1"
-                    style="
-                      width: 65px;
-                      background-color: transparent;
-                      font-size: 18px;
-                    "
                   />
                   <input
                     *ngIf="game[1].team_2.indexOf(player) > -1 && isEdit"
                     type="number"
-                    placeholder="0"
                     (blur)="onBlurTeamScore()"
                     class="format-two-input"
                     [(ngModel)]="game[1].score.team_2"
-                    style="
-                      width: 65px;
-                      background-color: transparent;
-                      font-size: 18px;
-                    "
                   /> 
                 </div>
                 <!-- {{game[1].score | json}} -->
