@@ -28,6 +28,8 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() selectedDate!: Date;
   isDropInDisabled = true;
   isNoShowDisabled = false;
+  roundOnePlayersCount!:number;
+  dropInPlayersCount!:number;
   //@Input() leagueID!: string;
   leagueIDSubscription!: Subscription;
 
@@ -121,6 +123,10 @@ export class UploadPlayerDataComponent implements OnInit {
     this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
       next: (res: any) => {
         console.log(res);
+        this.roundOnePlayersCount = res.round1_player_count;
+        this.dropInPlayersCount = res.drop_in_player_count;
+        console.log(this.roundOnePlayersCount,this.dropInPlayersCount);
+        
         this.leagueSummaryData = res;
         const playersArray = this.playerForm.get('players') as FormArray;
         playersArray.clear();

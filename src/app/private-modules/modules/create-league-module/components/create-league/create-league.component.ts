@@ -33,14 +33,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
       this.userDetailSub$.unsubscribe();
     }
   }
-
-  // sortData(sort: Sort) {
-  //   const data = this.leagues.slice();
-  //   if (!sort.active || sort.direction === '') {
-  //     this.sortedLeague = data;
-  //     return;
-  //   }
-  // }
+  // To sort table data.
   sortData(sort: Sort) {
     const data = this.leagues.slice();
     if (!sort.active || sort.direction === '') {
@@ -87,7 +80,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
   };
   // To get all league's list
   getAllLeagues() {
-    const urlString = `${this.clubID}/all`
+    const urlString = `${this.clubID}`
     this.commonService.getAllLeagues(`${urlString}`).subscribe({
       next: (res: any) => {
         this.leagues = Object.keys(res).map(id => ({id, ...res[id]}));

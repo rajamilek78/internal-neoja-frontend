@@ -55,7 +55,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   getAllLeagues() {
     // const ownedCompanies = this.userDetail?.owned_companies;
     // const clubID = this.userDetail?.club_id;
-    const urlString = `${this.clubID}/all`
+    const urlString = `${this.clubID}`
     // const compnyclubStr = `${ownedClubs}/all`;
     this.commonService.getAllLeagues(urlString).subscribe({
       next: (res: any) => {
@@ -88,7 +88,7 @@ export class UploadPlayerContainerComponent implements OnInit {
         // } else {
         //   this.roundsLength = 0; // Set roundsLength to null if the response is null
         // }
-        // this.selectedFormat = this.roundsLength >= 1 ? '2' : '1';
+        this.selectedFormat = this.roundsLength >= 1 ? '2' : '1';
         this.SharedCommonService.setLeagueID(this.leagueID);
         this.cdr.detectChanges();
       },

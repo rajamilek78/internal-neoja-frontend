@@ -93,7 +93,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     // const clubID = this.userDetail?.owned_clubs;
     // this.companyIDClubIDSTr = `${clubID}`;
     // const companyIDclubIDStr = `${this.companyIDClubIDSTr}/all`;
-    const urlString = `${this.selectedClubID}/all`
+    const urlString = `${this.selectedClubID}`
     this.commonService.getAllLeagues(`${urlString}`).subscribe({
       next: (res: any) => {
         this.leagues = Object.keys(res).map((key) => ({

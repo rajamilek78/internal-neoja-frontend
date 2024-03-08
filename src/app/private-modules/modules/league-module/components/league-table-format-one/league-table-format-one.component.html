@@ -4,7 +4,7 @@
   [(selectedIndex)]="selectedTabIndex"
   (selectedTabChange)="onTabChanged($event)"
 >
-  <mat-tab *ngFor="let group of groups" [label]="group.name">
+  <mat-tab *ngFor="let group of groups" [label]="'Group ' + group.name">
     <div class="flex justify-between tab-sub-header">
       <b>Round {{ data.header?.round || data.round?.header?.round }}</b>
       <b>{{ leagueName }}</b>
