@@ -46,7 +46,6 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
       switch (sort.active) {
         case 'name':
           return this.compare(a.name, b.name, isAsc);
-        case 'duprRec':
         case 'schedule':
           return this.compare(new Date(a.start_date).toString(), new Date(b.start_date).toString(), isAsc);
         case 'duprRec':
