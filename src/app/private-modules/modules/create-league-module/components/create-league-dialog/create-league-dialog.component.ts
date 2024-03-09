@@ -4,6 +4,7 @@ import { FormBaseComponent } from '@app/utility/components';
 import { LeagueService } from '../../services/league.service';
 import { DatePipe } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SnackBarService } from '@app/core/services/snackbar.service';
 
 @Component({
   selector: 'app-create-league-dialog',
@@ -25,7 +26,8 @@ export class CreateLeagueDialogComponent
     private datePipe: DatePipe,
     private dialog: MatDialogRef<CreateLeagueDialogComponent>,
     fb: FormBuilder,
-    private leagueService: LeagueService
+    private leagueService: LeagueService,
+    private snackbarService: SnackBarService
   ) {
     super(fb);
   }
@@ -36,7 +38,7 @@ export class CreateLeagueDialogComponent
       this.leagueID = this.data.leagueID;
       this.clubID = this.data.clubID;
       this.getLeagueByID();
-    }else{
+    } else {
       this.clubID = this.data.clubID;
     }
   }
@@ -66,12 +68,14 @@ export class CreateLeagueDialogComponent
           dupr_recorded: res.header.dupr_recorded,
           type: res.header.type,
           doubles: res.header.doubles,
-          active : res.header.active,
+          active: res.header.active,
           rounds_per_day: String(res.header.rounds_per_day),
         });
         console.log('this is league', res);
       },
       error: (err) => {
+        const message = err.error.message;
+        this.snackbarService.setSnackBarMessage(message);
         console.log(err);
       },
     });
@@ -101,6 +105,8 @@ export class CreateLeagueDialogComponent
             this.close();
           },
           error: (err: any) => {
+            const message = err.error.message;
+            this.snackbarService.setSnackBarMessage(message);
             console.log(err);
           },
         });
@@ -120,9 +126,7 @@ export class CreateLeagueDialogComponent
       start_date: formattedStartDate,
       end_date: formattedEndDate,
     });
-    const urlString = `${
-      this.data.clubID
-    }/${this.leagueID}`;
+    const urlString = `${this.data.clubID}/${this.leagueID}`;
     this.leagueService
       .updateLeague(urlString, this.leagueCRUD_Form.value)
       .subscribe({
@@ -131,6 +135,8 @@ export class CreateLeagueDialogComponent
           this.close();
         },
         error: (err: any) => {
+          const message = err.error.message;
+          this.snackbarService.setSnackBarMessage(message);
           console.log(err);
         },
       });

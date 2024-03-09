@@ -15,7 +15,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   @Input() leagueName!: string;
   @Input() groups: any;
   @Output() blurTeamScore = new EventEmitter<any>();
-  @Output() roundChanged = new EventEmitter<number>();
+  @Output() selectedTab = new EventEmitter<number>();
   @Input() isEdit !: boolean 
   gamesArray: any;
   selectedTabIndex = 0;
@@ -25,6 +25,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    this.selectedTab.emit(this.selectedTabIndex + 1);
     console.log(this.groups);
     console.log(this.data);
     
@@ -44,6 +45,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   onTabChanged($event) {
     let clickedIndex = $event.index;
     this.selectedTabIndex = clickedIndex;
+    this.selectedTab.emit(this.selectedTabIndex + 1);
     this.gamesArray = Object.entries(
       this.groups[this.selectedTabIndex].data.games
     );
@@ -63,6 +65,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
     groups[this.selectedTabIndex].data.games = { ...gameObj };
     this.blurTeamScore.emit({
       groups: [...groups],
+      isTouched: true
     });
   };
 }

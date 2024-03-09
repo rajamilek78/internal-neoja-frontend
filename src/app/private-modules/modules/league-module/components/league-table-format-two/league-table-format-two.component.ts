@@ -12,6 +12,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   isServing: boolean = true;
   selectedTabIndex = 0;
   @Output() blurTeamScore = new EventEmitter<any>();
+  @Output() selectedTab = new EventEmitter<number>();
   @Input() isEdit!: boolean;
   @Input() groups: any;
   @Input() data: any;
@@ -22,6 +23,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   @Input() leagueName!: string;
 
   ngOnInit(): void {
+    this.selectedTab.emit(this.selectedTabIndex + 1);
     console.log(this.groups);
     
     if (this.groups && this.groups.length > 0) {
@@ -55,6 +57,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
 
 onTabChanged($event) {
     let clickedIndex = $event.index;
+    this.selectedTab.emit(this.selectedTabIndex + 1);
     this.selectedTabIndex = clickedIndex;
     this.games = Object.entries(
       this.groups[this.selectedTabIndex].data.games

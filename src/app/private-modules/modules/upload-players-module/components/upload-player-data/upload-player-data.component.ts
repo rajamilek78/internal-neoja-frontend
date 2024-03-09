@@ -1,13 +1,13 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { CommonService, SharedService } from '@app/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CommonService, SharedService } from '@app/core';
 import { SharedCommonService } from '@app/helpers/services';
 import { RouteConstant } from '@app/helpers/constants';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
-import { MatDialog } from '@angular/material/dialog';
 import { DeleteDetailDialogueComponent } from '../delete-detail-dialogue/delete-detail-dialogue.component';
 import { SnackBarService } from '@app/core/services/snackbar.service';
 @Component({
@@ -29,8 +29,8 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() selectedDate!: Date;
   isDropInDisabled = true;
   isNoShowDisabled = false;
-  roundOnePlayersCount!:number;
-  dropInPlayersCount!:number;
+  roundOnePlayersCount!: number;
+  dropInPlayersCount!: number;
   //@Input() leagueID!: string;
   leagueIDSubscription!: Subscription;
 
@@ -41,7 +41,7 @@ export class UploadPlayerDataComponent implements OnInit {
     private router: Router,
     private sharedService: SharedService,
     private commonservice: CommonService,
-    private snackbarService : SnackBarService,
+    private snackbarService: SnackBarService,
     private datePipe: DatePipe,
     private SharedCommonService: SharedCommonService,
     private dialog: MatDialog
@@ -51,12 +51,12 @@ export class UploadPlayerDataComponent implements OnInit {
     });
   }
 
-  ngOnInit() {    
+  ngOnInit() {
     // this.addPlayers(this.playerCount);
     this.userSubscriber();
     if (this.roundsLength >= 1) {
       this.leagueSummary();
-    }else{
+    } else {
       this.addPlayer();
     }
     this.leagueIDSubscription =
@@ -97,8 +97,6 @@ export class UploadPlayerDataComponent implements OnInit {
     this.players.push(this.createPlayer());
   }
 
-  
-
   addPlayers(count: number): void {
     for (let i = 0; i < count; i++) {
       this.addPlayer();
@@ -123,50 +121,50 @@ export class UploadPlayerDataComponent implements OnInit {
   leagueSummary() {
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
     this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.roundOnePlayersCount = res.round1_player_count;
-        this.dropInPlayersCount = res.drop_in_player_count;
-        console.log(this.roundOnePlayersCount,this.dropInPlayersCount);
-        
-        this.leagueSummaryData = res;
-        const playersArray = this.playerForm.get('players') as FormArray;
-        playersArray.clear();
-        for (const playerName in this.leagueSummaryData.players) {
-          if (
-            this.leagueSummaryData.players.hasOwnProperty(playerName)
-          ) {
-            const playerData =
-              this.leagueSummaryData.players[playerName];
-            const winLoseHistory = playerData.win_lose_history
-              ? playerData.win_lose_history.split(',').reverse()
-              : [];
-            const round = playerData.in_round1;
-            const playerGroup = this.fb.group({
-              name: [
-                { value: playerName, disabled: true },
-                Validators.required,
-              ],
-              score: [
-                { value: playerData.weighted_rating, disabled: true },
-                Validators.required,
-              ],
-              winLoseHistory: [{ value: winLoseHistory, disabled: true }],
-              round: [{ value: round, disabled: true }],
+        next: (res: any) => {
+            this.roundOnePlayersCount = res.round1_player_count;
+            this.dropInPlayersCount = res.drop_in_player_count;
+            this.leagueSummaryData = res;
+            console.log(this.leagueSummaryData);
+            let sortedPlayers = Object.entries(this.leagueSummaryData.players);
+            sortedPlayers.sort((a, b) => {
+                console.log('a:', a, 'b:', b);
+                return (b[1] as any)['weighted_rating'] - (a[1] as any)['weighted_rating'];
             });
+            const playersArray = this.playerForm.get('players') as FormArray;
+            playersArray.clear();
+            for (let i = 0; i < sortedPlayers.length; i++) {
+                let playerName = sortedPlayers[i][0];
+                let playerData = sortedPlayers[i][1] as any;
+                const winLoseHistory = playerData.win_lose_history
+                    ? playerData.win_lose_history.split(',').reverse()
+                    : [];
+                const round = playerData.in_round1;
+                const playerGroup = this.fb.group({
+                    name: [
+                        { value: playerName, disabled: true },
+                        Validators.required,
+                    ],
+                    score: [
+                        { value: playerData.weighted_rating, disabled: true },
+                        Validators.required,
+                    ],
+                    winLoseHistory: [{ value: winLoseHistory, disabled: true }],
+                    round: [{ value: round, disabled: true }],
+                });
 
-            playersArray.push(playerGroup);
-          }
-        }
-        // this.updateToggleState();
-      },
-      error: (err: any) => {
-        const message = err.error.message
-this.snackbarService.setSnackBarMessage(message);
-        console.log(err);
-      },
+                playersArray.push(playerGroup);
+            }
+            // this.updateToggleState();
+        },
+        error: (err: any) => {
+            const message = err.error.message;
+            this.snackbarService.setSnackBarMessage(message);
+            console.log(err);
+        },
     });
-  }
+}
+
 
   onPlayerCountChange(count: number): void {
     if (this.players) {
@@ -211,12 +209,12 @@ this.snackbarService.setSnackBarMessage(message);
             this.SharedCommonService.setMatchData(res);
             this.router.navigate([
               RouteConstant.LEAGUE_CONTAINER,
-              { leagueID: this.leagueID,leagueName : this.selectedLeague.name},
+              { leagueID: this.leagueID, leagueName: this.selectedLeague.name },
             ]);
           },
           error: (err: any) => {
-            const message = err.error.message
-this.snackbarService.setSnackBarMessage(message);
+            const message = err.error.message;
+            this.snackbarService.setSnackBarMessage(message);
             console.log(err);
           },
         });
@@ -238,35 +236,84 @@ this.snackbarService.setSnackBarMessage(message);
           this.SharedCommonService.setMatchData(res);
           this.router.navigate([
             RouteConstant.LEAGUE_CONTAINER,
-            { leagueID: this.leagueID, leagueName : this.selectedLeague.name},
+            { leagueID: this.leagueID, leagueName: this.selectedLeague.name },
           ]);
         },
         error: (err: any) => {
-          const message = err.error.message
-this.snackbarService.setSnackBarMessage(message);
+          const message = err.error.message;
+          this.snackbarService.setSnackBarMessage(message);
           console.log(err);
         },
       });
     }
   }
-  deletePlayer(index:number): void {
+  deletePlayer(index: number): void {
     //this.players.removeAt(index);
     this.openDialogue(index);
   }
 
-  openDialogue(index:number): void {
+  openDialogue(index: number): void {
     const player = this.players.at(index).value; // Get the player at the given index
     const dialogueRef = this.dialog.open(DeleteDetailDialogueComponent, {
       width: '450px',
-      data : {
-        roundCount : this.roundCount,
-        playerName : player.name,
-        players : this.players,
-        index : index
-      }
+      data: {
+        roundCount: this.roundCount,
+        playerName: player.name,
+        players: this.players,
+        index: index,
+      },
     });
     dialogueRef.afterClosed().subscribe((result) => {
       console.log('the dialogue is closed now');
     });
   }
+  // leagueSummary() {
+  //   const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
+  //   this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
+  //     next: (res: any) => {
+  //       this.roundOnePlayersCount = res.round1_player_count;
+  //       this.dropInPlayersCount = res.drop_in_player_count;
+  //       this.leagueSummaryData = res;
+  //       console.log(this.leagueSummaryData);
+  //       let sortedPlayers = Object.entries(this.leagueSummaryData.players);
+  //       sortedPlayers.sort((a, b) => {
+  //         console.log('a:', a, 'b:', b);
+  //         return (
+  //           (a[1] as any)['weighted_rating'] - (b[1] as any)['weighted_rating']
+  //         );
+  //       });
+  //       const playersArray = this.playerForm.get('players') as FormArray;
+  //       playersArray.clear();
+  //       for (const playerName in this.leagueSummaryData.players) {
+  //         if (this.leagueSummaryData.players.hasOwnProperty(playerName)) {
+  //           const playerData = this.leagueSummaryData.players[playerName];
+  //           const winLoseHistory = playerData.win_lose_history
+  //             ? playerData.win_lose_history.split(',').reverse()
+  //             : [];
+  //           const round = playerData.in_round1;
+  //           const playerGroup = this.fb.group({
+  //             name: [
+  //               { value: playerName, disabled: true },
+  //               Validators.required,
+  //             ],
+  //             score: [
+  //               { value: playerData.weighted_rating, disabled: true },
+  //               Validators.required,
+  //             ],
+  //             winLoseHistory: [{ value: winLoseHistory, disabled: true }],
+  //             round: [{ value: round, disabled: true }],
+  //           });
+
+  //           playersArray.push(playerGroup);
+  //         }
+  //       }
+  //       // this.updateToggleState();
+  //     },
+  //     error: (err: any) => {
+  //       const message = err.error.message;
+  //       this.snackbarService.setSnackBarMessage(message);
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 }

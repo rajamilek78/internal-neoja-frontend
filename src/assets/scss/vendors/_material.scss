@@ -446,3 +446,6 @@ mat-checkbox .mdc-label {
 .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
   background-color: $primary-color !important;
 }
+app-snack-bar .material-symbols-outlined{
+  display: none;
+}

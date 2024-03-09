@@ -55,7 +55,7 @@
                     type="number"
                     placeholder="0"
                     [(ngModel)]="game[1].score.team_1"
-                    (blur)="onBlurTeamScore()"
+                    (keyup)="onBlurTeamScore()"
                   />
                 </div>
               </td>
@@ -90,7 +90,7 @@
                     type="number"
                     placeholder="0"
                     [(ngModel)]="game[1].score.team_2"
-                    (blur)="onBlurTeamScore()"
+                    (keyup)="onBlurTeamScore()"
                   />
                 </div>
               </td>

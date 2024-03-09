@@ -15,7 +15,7 @@
           [label]="'Round ' + round.key"
         >
           <div class="overflow">
-            <table class="table-2">
+            <table class="table-2" matSort (matSortChange)="sortData($event)">
               <thead>
                 <tr>
                   <th>Rank</th>
@@ -30,7 +30,7 @@
                   <th class="green-font">Games Won</th>
                   <th class="red-font">Games Lost</th>
                   <th>Games Won %</th>
-                  <th>Game History</th>
+                  <th matTooltip="Latest game first">Game History</th>
                 </tr>
               </thead>
               <tbody>
@@ -103,7 +103,7 @@
                   <th class="green-font">Games Won</th>
                   <th class="red-font">Games Lost</th>
                   <th>Games Won %</th>
-                  <th>Game History</th>
+                  <th matTooltip="Latest game first">Game History</th>
                 </tr>
               </thead>
               <tbody>

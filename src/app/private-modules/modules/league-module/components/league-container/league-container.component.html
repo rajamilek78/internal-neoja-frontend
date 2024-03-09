@@ -68,6 +68,7 @@
           [clubID]="selectedClubID"
           [isEdit]="isEdit"
           (blurTeamScore)="onBlurTeamScore($event)"
+          (selectedTab)="handleTabChange($event)"
         ></app-league-table-format-one>
       </div>
     </div>
@@ -84,6 +85,7 @@
           [clubID]="selectedClubID"
           [isEdit]="isEdit"
           (blurTeamScore)="onBlurTeamScore($event)"
+          (selectedTab)="handleTabChange($event)"
         ></app-league-table-format-two
         > 
       </div>

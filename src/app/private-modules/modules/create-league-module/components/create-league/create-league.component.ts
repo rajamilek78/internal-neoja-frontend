@@ -5,6 +5,7 @@ import { CommonService, SharedUserService } from '@app/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { Sort } from '@angular/material/sort';
+import { SnackBarService } from '@app/core/services/snackbar.service';
 
 @Component({
   selector: 'app-create-league',
@@ -21,7 +22,8 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
   constructor(
     private dialog: MatDialog,
     private commonService: CommonService,
-    private sharedUserService: SharedUserService
+    private sharedUserService: SharedUserService,
+    private snackbarService : SnackBarService
   ) {
   }
   ngOnInit(): void {
@@ -82,11 +84,14 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
     const urlString = `${this.clubID}`
     this.commonService.getAllLeagues(`${urlString}`).subscribe({
       next: (res: any) => {
+        console.log(res);
         this.leagues = Object.keys(res).map(id => ({id, ...res[id]}));
         this.sortedLeague = this.leagues.slice();
         console.log(this.leagues);
         },
       error: (err: any) => {
+        const message = err.error.message;
+          this.snackbarService.setSnackBarMessage(message);
         console.log(err);
       },
     });

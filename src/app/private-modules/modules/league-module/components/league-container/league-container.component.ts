@@ -177,6 +177,10 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit {
     this.isTouched = event.isTouched;
     this.groupsArrayToBeUpdated = [...groups];
   };
+  handleTabChange(event){
+    this.selectedGroup = `Group ${event}`;
+    console.log(this.selectedGroup);
+}
 
   // Subcribe loggedIn user's Details
   userSubscriber = () => {
@@ -237,12 +241,12 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit {
         const pageHeight = 295;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
         const heightLeft = imgHeight;
-
         const contentDataURL = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
         const position = 0;
         pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-        pdf.save('TableData.pdf'); // Generated PDF
+        const filename = `Round ${this.roundCount}_${this.selectedGroup}.pdf`;
+        pdf.save(filename); // Generated PDF
       });
     } else {
       console.error('Element not found');
