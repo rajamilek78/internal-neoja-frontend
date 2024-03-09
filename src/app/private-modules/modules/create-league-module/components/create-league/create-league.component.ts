@@ -58,7 +58,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
         case 'doubles':
           return this.compare(a.doubles, b.doubles, isAsc);
         case 'active':
-          return this.compare(a.active, b.active, isAsc);
+          return this.compare(b.active, a.active, isAsc);
         default:
           return 0;
       }
