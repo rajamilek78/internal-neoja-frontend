@@ -26,9 +26,9 @@ html {
   //   font-size: 8px;
   // }
 
-  // @include respond("tab-port") {
-  //   font-size: 8.5px;
-  // }
+  @include respond("tab-port") {
+    font-size: 8.5px;
+  }
 
   @include respond("phone") {
     font-size: 8px;
@@ -86,10 +86,6 @@ a {
   width: 100%;
 }
 
-// .title {
-//   width: 96%;
-// }
-
 .pt-1 {
   padding-top: 1.8rem !important;
 }
@@ -136,7 +132,7 @@ a {
   width: 90% !important;
 
   @include respond("tab-port") {
-    width: 95%;
+    width: 95% !important;
   }
 }
 
@@ -691,11 +687,19 @@ textarea {
       margin-left: 0rem;
       width: 100%;
     }
+
+    @include respond("tab-port") {
+      margin-left: 15rem;
+    }
   }
 
   @include respond("phone") {
     transform: translateY(62%);
     flex-direction: column;
+  }
+
+  @include respond("tab-port") {
+    transform: translateY(62%);
   }
 }
 
