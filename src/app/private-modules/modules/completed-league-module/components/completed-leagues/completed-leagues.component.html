@@ -50,7 +50,7 @@
     </div>
     <div class="row" *ngIf="rounds">
       <div
-        class="col-md-3 MB-2"
+        class="col-md-3 col-sm-4 MB-2"
         [ngClass]="{ disabled: round.roundDetails.header?.score_locked }"
         *ngFor="let round of rounds; let i = index"
       >
