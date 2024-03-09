@@ -242,6 +242,9 @@ a {
 }
 
 .overflow {
+  @include respond("tab-port") {
+    overflow-x: scroll !important;
+  }
 
   @include respond("phone") {
     overflow-x: scroll !important;
@@ -1075,9 +1078,11 @@ app-upload-player-container {
     }
   }
 }
-.grey-row{
+
+.grey-row {
+
   // color: rgba($gray-color, 0.1) !important;
-  td{
+  td {
     color: rgba($gray-color, 0.5) !important;
   }
 }
