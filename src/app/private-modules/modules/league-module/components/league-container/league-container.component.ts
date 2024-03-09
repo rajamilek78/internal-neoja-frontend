@@ -118,6 +118,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit {
     this.leagueService.getRoundByID(urlString).subscribe({
       next: (res: any) => {
         this.rawData = res;
+        this.roundCount = this.rawData.header?.round;
         this.responseData = res ? res.groups || res : [];
         console.log(this.rawData);
         console.log(this.responseData);
