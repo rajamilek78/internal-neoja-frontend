@@ -242,6 +242,9 @@ a {
 }
 
 .overflow {
+  @include respond("tab-port") {
+    overflow-x: scroll !important;
+  }
 
   @include respond("phone") {
     overflow-x: scroll !important;
@@ -848,6 +851,16 @@ app-upload-player-container {
   &__data {
     margin-top: 1.5rem;
 
+    @include respond("phone") {
+      overflow-x: scroll !important;
+    }
+
+    .tablet-width{
+      @include respond("phone") {
+        min-width: 90rem;
+      }
+    }
+
     input,
     textarea {
       padding: 1rem 0.4rem;
@@ -1031,12 +1044,6 @@ app-upload-player-container {
       }
 
     }
-
-    @include respond("phone") {
-      overflow-x: scroll !important;
-      min-width: 75rem;
-    }
-
   }
 }
 
@@ -1075,9 +1082,11 @@ app-upload-player-container {
     }
   }
 }
-.grey-row{
+
+.grey-row {
+
   // color: rgba($gray-color, 0.1) !important;
-  td{
+  td {
     color: rgba($gray-color, 0.5) !important;
   }
 }

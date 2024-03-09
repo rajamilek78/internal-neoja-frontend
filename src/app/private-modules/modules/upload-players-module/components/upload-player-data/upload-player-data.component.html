@@ -2,7 +2,7 @@
   <div class="upload-by-data">
     <div class="upload">
       <div class="upload__data">
-        <div formArrayName="players">
+        <div class="tablet-width" formArrayName="players">
           <div
             class="flex justify-end align-end MT-2-half title"
             [ngClass]="{
@@ -102,7 +102,7 @@
                 </ng-container>
                 <div
                   *ngIf="!player.value.winLoseHistory"
-                  class="flex justify-center mr-3"
+                  class="flex justify-center mr-3 null-img"
                 >
                   <div class="mr-3">
                     <span

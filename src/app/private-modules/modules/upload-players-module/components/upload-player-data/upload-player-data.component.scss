@@ -1,0 +1,9 @@
+@import "../../../../../../assets/scss/abstracts/abstracts";
+
+.null-img{
+    img{
+        @include respond("tab-port") {
+            width: 2.4rem;
+        }
+    }
+}
