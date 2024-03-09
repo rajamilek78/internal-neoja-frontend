@@ -52,7 +52,7 @@
         <mat-radio-button value="1"
           >Upload by file</mat-radio-button
         >
-        <mat-radio-button value="2">Upload by data</mat-radio-button>
+        <mat-radio-button value="2" [disabled]="!selectedLeague">Upload by data</mat-radio-button>
       </mat-radio-group>
     </div>
     <div *ngIf="selectedFormat == '1'">
