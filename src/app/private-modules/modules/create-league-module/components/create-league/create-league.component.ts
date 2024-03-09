@@ -19,6 +19,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
   clubID!: string ;
   leagues!: any[];
   sortedLeague! : any[];
+  sort: Sort = {active: 'active', direction: 'asc'};
   constructor(
     private dialog: MatDialog,
     private commonService: CommonService,
@@ -87,6 +88,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
         console.log(res);
         this.leagues = Object.keys(res).map(id => ({id, ...res[id]}));
         this.sortedLeague = this.leagues.slice();
+        this.sortData(this.sort)
         console.log(this.leagues);
         },
       error: (err: any) => {
