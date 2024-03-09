@@ -1,8 +1,8 @@
 import { environment } from "../../../environments/environment";
 
-const AUTH_BASE_URL = `${environment.apiUrl}/auth`;
-const COMMON_URL = `${environment.apiUrl}`;
-const COMPANY_URL = `${environment.companyUrl}`
+const AUTH_BASE_URL = `${environment.eloBuildRoundURL}/auth`;
+const COMMON_URL = `${environment.eloBuildRoundURL}`;
+const COMPANY_URL = `${environment.eloDbOperationURL}`
 
 export class API_ENDPOINTS{
     public static LOGIN = `${COMPANY_URL}/login1`

@@ -10,7 +10,7 @@ import { APIManager } from "./api-manager.service";
 })
 export class CommonService {
   // token = localStorage.getItem('token');
-  private baseurl = environment.apiUrl;
+  private baseurl = environment.eloBuildRoundURL;
 
   // remove http from here and use apiManager service, similar to login
   constructor(private http: HttpClient,
