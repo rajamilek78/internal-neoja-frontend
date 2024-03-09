@@ -49,6 +49,7 @@ export class CreateLeagueDialogComponent
       dupr_recorded: [false],
       type: [''],
       doubles: [true],
+      active: [true],
       rounds_per_day: [0],
     });
   }
@@ -65,6 +66,7 @@ export class CreateLeagueDialogComponent
           dupr_recorded: res.header.dupr_recorded,
           type: res.header.type,
           doubles: res.header.doubles,
+          active : res.header.active,
           rounds_per_day: String(res.header.rounds_per_day),
         });
         console.log('this is league', res);
