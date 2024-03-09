@@ -49,6 +49,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
     groups[this.selectedTabIndex].data.games = { ...gameObj };
     this.blurTeamScore.emit({
       groups: [...groups],
+      isTouched: true
     });
 };
 

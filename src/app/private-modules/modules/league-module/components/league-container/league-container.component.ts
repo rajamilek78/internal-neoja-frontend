@@ -42,7 +42,9 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit {
   groupsArrayToBeUpdated: any[] = [];
   isInvisilePdf = false;
   roundCount!: number;
-
+  isTouched: boolean = false;
+  
+  
   constructor(
     private SharedCommonService: SharedCommonService,
     private cdr: ChangeDetectorRef,
@@ -172,6 +174,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit {
 
   onBlurTeamScore = (event) => {
     const { groups } = event;
+    this.isTouched = event.isTouched;
     this.groupsArrayToBeUpdated = [...groups];
   };
 

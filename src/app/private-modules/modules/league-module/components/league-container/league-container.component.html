@@ -90,7 +90,7 @@
     </div>
     <div class="upload__button flex justify-end" *ngIf="isEdit">
       <div class="primary-btn">
-        <button type="button" class="btn" (click)="onSaveClick()">Save</button>
+        <button type="button" class="btn" (click)="onSaveClick()" [disabled]="!isTouched">Save</button>
       </div>
       <div class="secondary-btn-light">
         <button type="button" class="btn" (click)="onCancel()">Cancel</button>
