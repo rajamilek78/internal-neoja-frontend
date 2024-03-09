@@ -16,10 +16,6 @@
     img {
       width: 100%;
     }
-
-    @include respond("phone") {
-      width: 60%;
-    }
   }
 
   span {
@@ -37,14 +33,18 @@
       &:hover {
         color: $white-color;
       }
-
-      @include respond("phone") {
-        display: none !important;
-      }
     }
 
     @include respond("tab-port") {
+      &:last-child {
+        margin-right: 0rem;
+      }
+
       margin-right: 1.2rem;
+    }
+
+    @include respond("phone") {
+      display: none !important;
     }
   }
 

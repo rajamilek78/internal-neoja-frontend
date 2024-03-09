@@ -634,6 +634,10 @@ textarea {
       width: 100%;
     }
 
+    @include respond("tab-port") {
+      display: none;
+    }
+
     @include respond("phone") {
       display: none;
     }
@@ -682,24 +686,27 @@ textarea {
       }
     }
 
+    @include respond("tab-port") {
+      padding: 0rem;
+      margin-left: 0rem;
+      width: 80%;
+    }
+
     @include respond("phone") {
       padding: 0rem;
       margin-left: 0rem;
       width: 100%;
     }
+  }
 
-    @include respond("tab-port") {
-      margin-left: 15rem;
-    }
+  @include respond("tab-port") {
+    transform: translateY(77%);
+    flex-direction: column;
   }
 
   @include respond("phone") {
     transform: translateY(62%);
     flex-direction: column;
-  }
-
-  @include respond("tab-port") {
-    transform: translateY(62%);
   }
 }
 
@@ -871,6 +878,14 @@ app-upload-player-container {
           font-weight: 600 !important;
           line-height: 1.8rem !important;
         }
+
+        @include respond("tab-port") {
+          width: 52% !important;
+        }
+
+        @include respond("phone") {
+          width: 44% !important;
+        }
       }
 
       .row-title-two {
@@ -887,7 +902,11 @@ app-upload-player-container {
         }
 
         @include respond("phone") {
-          width: 100% !important;
+          width: 25% !important;
+        }
+
+        @include respond("tab-port") {
+          width: 21% !important;
         }
       }
 
@@ -918,14 +937,26 @@ app-upload-player-container {
             right: 1rem !important;
           }
         }
+
+        @include respond("tab-port") {
+          width: 52% !important;
+        }
+
+        @include respond("phone") {
+          width: 44% !important;
+        }
       }
 
       .row-field-two {
         width: 15% !important;
         padding-right: 1.6rem !important;
 
+        @include respond("tab-port") {
+          width: 21% !important;
+        }
+
         @include respond("phone") {
-          width: 100% !important;
+          width: 25% !important;
         }
       }
 
@@ -1003,6 +1034,7 @@ app-upload-player-container {
 
     @include respond("phone") {
       overflow-x: scroll !important;
+      min-width: 75rem;
     }
 
   }
@@ -1043,7 +1075,8 @@ app-upload-player-container {
     }
   }
 }
-.grey-row{
+
+.grey-row {
   background-color: rgba($gray-color, 0.5);
 }
 
@@ -1296,6 +1329,10 @@ app-upload-player-container {
     margin-bottom: 3.2rem !important;
   }
 
+  @include respond ("tab-port") {
+    width: 100%;
+  }
+
   @include respond("phone") {
     .flex {
       flex-direction: column-reverse;
@@ -1319,6 +1356,10 @@ app-upload-player-container {
 
     img {
       width: 100%;
+    }
+
+    @include respond("tab-port") {
+      display: none;
     }
 
     @include respond("phone") {
@@ -1368,11 +1409,22 @@ app-upload-player-container {
       }
     }
 
+    @include respond("tab-port") {
+      margin-left: 0rem;
+      width: 90%;
+      padding: 0rem;
+    }
+
     @include respond("phone") {
       margin-left: 0rem;
       width: 100%;
       padding: 0rem;
     }
+  }
+
+  @include respond("tab-port") {
+    flex-direction: column;
+    transform: translateY(35%);
   }
 
   @include respond("phone") {
@@ -1394,14 +1446,9 @@ app-upload-player-container {
     font-size: 4.8rem;
 
     line-height: 5.7rem;
-    margin: 0rem 9.6rem 0.8rem 0rem;
 
     span {
       color: $primary-color;
-    }
-
-    @include respond ("phone") {
-      margin: 0rem;
     }
   }
 
@@ -1481,6 +1528,10 @@ app-upload-player-container {
       }
     }
 
+    @include respond ("tab-port") {
+      margin-top: 15rem;
+    }
+
     @include respond ("phone") {
       flex-direction: column;
       margin-top: 5rem;
@@ -1498,6 +1549,10 @@ app-upload-player-container {
       line-height: 6.7rem;
       letter-spacing: 0.2rem;
       word-spacing: 0.2rem;
+    }
+
+    @include respond ("tab-port") {
+      margin-top: 15rem;
     }
 
     @include respond ("phone") {
@@ -1562,6 +1617,10 @@ app-upload-player-container {
       }
     }
 
+    @include respond ("tab-port") {
+      margin-top: 15rem;
+    }
+
     @include respond ("phone") {
       margin-top: 9rem;
     }
@@ -1594,6 +1653,10 @@ app-upload-player-container {
         line-height: 2.1rem;
         letter-spacing: 0.2rem !important;
       }
+    }
+
+    @include respond ("tab-port") {
+      margin: 15rem 0rem;
     }
 
     @include respond ("phone") {
