@@ -93,7 +93,7 @@
                   <input
                     *ngIf="game[1].team_2.indexOf(player) > -1 && isEdit"
                     type="number"
-                    (blur)="onBlurTeamScore()"
+                    (keyup)="onBlurTeamScore()"
                     class="format-two-input"
                     [(ngModel)]="game[1].score.team_2"
                   /> 

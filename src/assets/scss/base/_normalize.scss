@@ -1040,7 +1040,10 @@ app-upload-player-container {
   }
 }
 .grey-row{
-  background-color: rgba($gray-color, 0.5);
+  // color: rgba($gray-color, 0.1) !important;
+  td{
+    color: rgba($gray-color, 0.5) !important;
+  }
 }
 
 // league screen scss
