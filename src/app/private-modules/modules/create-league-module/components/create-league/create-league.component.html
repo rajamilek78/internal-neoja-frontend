@@ -26,15 +26,15 @@
         <table class="table-2" matSort (matSortChange)="sortData($event)">
           <thead>
             <tr>
-              <th width="10%"># Sr No.</th>
-              <th width="25%" mat-sort-header="name">Name</th>
-              <th width="5%">Last Round</th>
-              <th width="15%" mat-sort-header="schedule">Schedule</th>
-              <th width="10%" mat-sort-header="duprRec">Dupr Rec.</th>
-              <th width="10%" mat-sort-header="type">Type</th>
-              <th width="10%" mat-sort-header="doubles">Doubles</th>
-              <th width="10%" mat-sort-header="active">Active</th>
-              <th width="10%">Edit</th>
+              <th width="7%"># Sr No.</th>
+              <th width="28%" mat-sort-header="name">Name</th>
+              <th width="9%">Last Round</th>
+              <th width="17%" mat-sort-header="schedule">Schedule</th>
+              <th width="8%" mat-sort-header="duprRec">Dupr Rec.</th>
+              <th width="8%" mat-sort-header="type">Type</th>
+              <th width="9%" mat-sort-header="doubles">Doubles</th>
+              <th width="9%" mat-sort-header="active">Active</th>
+              <th width="5%">Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -42,16 +42,16 @@
               <td>{{ i + 1 }}</td>
               <td>{{ league.name }}</td>
               <td>{{ league.last_round_id }}</td>
-              <td>
+              <td class="text-left">
                 {{ league.start_date | date : "MM/dd/yyyy" }} -
                 {{ league.end_date | date : "MM/dd/yyyy" }}
               </td>
-              <td>{{ league.dupr_recorded ? "Yes" : "No" }}</td>
-              <td>
+              <td class="text-left">{{ league.dupr_recorded ? "Yes" : "No" }}</td>
+              <td class="text-left">
                 {{ league.type.charAt(0).toUpperCase() + league.type.slice(1) }}
               </td>
-              <td>{{ league.doubles ? "Yes" : "No" }}</td>
-              <td>{{ league.active ? "Yes" : "No" }}</td>
+              <td class="text-left">{{ league.doubles ? "Yes" : "No" }}</td>
+              <td class="text-left">{{ league.active ? "Yes" : "No" }}</td>
               <td>
                 <a (click)="openDialogue(league.id)">
                   <img src="assets/images/edit-icon.svg" alt="" />
