@@ -64,7 +64,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   viewScore() {
     this.router.navigate([
       RouteConstant.VIEW_SCORES_ROUTE,
-      { leagueID: this.selectedLeague },
+      { clubId: this.selectedClubID, leagueID: this.selectedLeague },
     ]);
   }
   // To Update Score

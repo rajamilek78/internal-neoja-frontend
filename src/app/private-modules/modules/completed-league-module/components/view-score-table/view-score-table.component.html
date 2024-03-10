@@ -2,7 +2,8 @@
   <div class="container">
     <div class="view-score-title">
       <div>
-        <h6>Score</h6>
+        <h6>Score <b *ngIf="leagueName">- (League: {{leagueName}})</b>
+        </h6>
         <small
           >See all the scores in here of overall rounds, clubs & company</small
         >

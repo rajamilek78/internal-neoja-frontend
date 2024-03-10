@@ -8,6 +8,7 @@ import { RoundScore, ScoreModel } from '@app/helpers/models/score.model';
 import { KeyValue } from '@angular/common';
 import { SnackBarService } from '@app/core/services/snackbar.service';
 import { Sort } from '@angular/material/sort';
+import { LeagueService } from '@app/private-modules/modules/create-league-module/services/league.service';
 
 @Component({
   selector: 'app-view-score-table',
@@ -23,19 +24,25 @@ export class ViewScoreTableComponent implements OnInit {
   // leagueScores!: ScoreModel;
   leagueScores!: any;
   SortedLeagueScores!: any;
+  leagueName!: string;
+
   constructor(
     private completedLeagueService: CompletedLeagueService,
     private sharedUserService: SharedUserService,
     private snackbarService: SnackBarService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private leagueService: LeagueService
   ) {}
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
+      this.selectedClubID = params['clubId'];
       this.leagueID = params['leagueID'];
     });
     console.log('this is selected league id ', this.leagueID);
     this.userSubscriber();
     this.getLeagueScore();
+    this.getLeagueName();
   }
 
   userSubscriber = () => {
@@ -47,11 +54,26 @@ export class ViewScoreTableComponent implements OnInit {
         if (this.userDetail) {
           //const companyIDs = this.userDetail.owned_companies;
           const clubIDs = this.userDetail.owned_clubs;
-          this.selectedClubID = this.userDetail.club_id;
+          // this.selectedClubID = this.userDetail.club_id;
+          console.log(this.selectedClubID);
           //this.selectedCompanyID = companyIDs[0];
         }
       });
   };
+
+  getLeagueName = () => {
+    const urlString = `${this.selectedClubID}/${this.leagueID}`;
+    this.leagueService.getLeagueById(urlString).subscribe({
+      next: (res) => {
+        this.leagueName = res.header.name
+      },
+      error: (err) => {
+        const message = err.error.message;
+        this.snackbarService.setSnackBarMessage(message);
+        console.log(err);
+      },
+    });
+  }
 
   getLeagueScore() {
     const urlString = `${this.selectedClubID}/${this.leagueID}`;
