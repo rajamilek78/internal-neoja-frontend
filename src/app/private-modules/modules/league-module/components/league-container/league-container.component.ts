@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { SharedCommonService } from '../../../../../core/services/shared-common.service';
 import { jsPDF } from 'jspdf';
@@ -23,7 +23,7 @@ import { SnackBarService } from '@app/core/services/snackbar.service';
   templateUrl: './league-container.component.html',
   styleUrl: './league-container.component.scss',
 })
-export class LeagueContainerComponent implements OnInit, AfterViewInit {
+export class LeagueContainerComponent implements OnInit, AfterViewInit,OnDestroy {
   @ViewChild(PrintRoundFormatOneComponent)
   printComponent!: PrintRoundFormatOneComponent;
   userDetailSub$!: Subscription;
@@ -67,6 +67,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit {
       this.roundID = params['roundID'];
       this.leagueID = params['leagueID'];
       this.leagueName = params['leagueName'];
+      this.selectedClubID = params['clubId'];
       // this.selectedLeague = params['selectedLeague'];
     });
     console.log(this.isEdit);
@@ -76,6 +77,23 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit {
       this.getMatchData();
     }
   }
+  ngOnDestroy(): void {
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
+  }
+  userSubscriber = () => {
+    this.userDetailSub$ = this.sharedUserService
+      .getUserDetailCall()
+      .subscribe(() => {
+        this.userDetail = this.sharedUserService.getUser();
+        console.log(this.userDetail);
+        if (this.userDetail) {
+          //const companyIDs = this.userDetail.owned_companies;
+          // this.selectedClubID = this.userDetail.club_id;
+        }
+      });
+  };
 
   openDialogue(): void {
     console.log(this.leagueID);
@@ -184,18 +202,7 @@ export class LeagueContainerComponent implements OnInit, AfterViewInit {
 }
 
   // Subcribe loggedIn user's Details
-  userSubscriber = () => {
-    this.userDetailSub$ = this.sharedUserService
-      .getUserDetailCall()
-      .subscribe(() => {
-        this.userDetail = this.sharedUserService.getUser();
-        console.log(this.userDetail);
-        if (this.userDetail) {
-          //const companyIDs = this.userDetail.owned_companies;
-          this.selectedClubID = this.userDetail.club_id;
-        }
-      });
-  };
+ 
 
   saveRound() {
     this.router.navigate(['players-league/completed-leagues']);

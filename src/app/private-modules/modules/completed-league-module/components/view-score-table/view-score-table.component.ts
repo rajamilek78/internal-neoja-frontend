@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CompletedLeagueService } from '../../services/completed-league.service';
 import { SharedUserService } from '@app/core';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { LeagueService } from '@app/private-modules/modules/create-league-module
   templateUrl: './view-score-table.component.html',
   styleUrl: './view-score-table.component.scss',
 })
-export class ViewScoreTableComponent implements OnInit {
+export class ViewScoreTableComponent implements OnInit ,OnDestroy{
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   //selectedCompanyID!: string;
@@ -45,6 +45,11 @@ export class ViewScoreTableComponent implements OnInit {
     this.getLeagueName();
   }
 
+  ngOnDestroy(): void {
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
+  }
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedUserService
       .getUserDetailCall()
@@ -53,9 +58,9 @@ export class ViewScoreTableComponent implements OnInit {
         // console.log(this.userDetail);
         if (this.userDetail) {
           //const companyIDs = this.userDetail.owned_companies;
-          const clubIDs = this.userDetail.owned_clubs;
+          // const clubIDs = this.userDetail.owned_clubs;
           // this.selectedClubID = this.userDetail.club_id;
-          console.log(this.selectedClubID);
+          // console.log(this.selectedClubID);
           //this.selectedCompanyID = companyIDs[0];
         }
       });
