@@ -31,11 +31,13 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
     this.userSubscriber();
     this.getAllLeagues();
   }
+
   ngOnDestroy(): void {
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
   }
+  
   // To sort table data.
   sortData(sort: Sort) {
     const data = this.leagues.slice();

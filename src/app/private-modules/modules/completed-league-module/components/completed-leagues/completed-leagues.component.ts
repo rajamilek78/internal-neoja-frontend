@@ -72,6 +72,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     this.router.navigate([
       RouteConstant.LEAGUE_CONTAINER,
       {
+        clubId: this.selectedClubID,
         isEdit: true,
         roundID: roundID,
         leagueID: this.selectedLeague,

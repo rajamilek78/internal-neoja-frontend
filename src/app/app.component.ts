@@ -18,7 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // sidenavWidth = computed(() => (this.collapsed() ? '250px' : '0px'));
 
-  constructor(private sharedService: SharedService, private snackBarService : SnackBarService) {}
+  constructor(private sharedService: SharedService, private snackBarService : SnackBarService) {
+  }
 
   ngOnInit(): void {
     this.subscribeIsLoading();
