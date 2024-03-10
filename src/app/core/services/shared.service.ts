@@ -4,7 +4,7 @@ import {
   APPStorage,
   RouteConstant,
 } from "@app/helpers/constants";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { SharedUserService } from "./shared-user.service";
 
 @Injectable()
@@ -14,6 +14,7 @@ export class SharedService extends SharedUserService {
   private _token = "";
   private isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private isLoginRequired: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  userDetailSub$!: Subscription;
 
   constructor(private router: Router) {
     super();
@@ -62,7 +63,7 @@ export class SharedService extends SharedUserService {
     this.setToken('');
     this.setUser(null);
     this.setLoginRequired(false);
-    localStorage.clear();
+    // localStorage.clear();
   }
 
   logout(isRedirectToLogin = true): void {
@@ -70,7 +71,13 @@ export class SharedService extends SharedUserService {
     if (isRedirectToLogin && this.router.url !== `/${RouteConstant.LOGIN}`) {
       this.router.navigate([`/${RouteConstant.LOGIN}`]);
     }
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
     // this._router.navigate([`/${RouteConstant.AUTH_LOGIN}`]);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 200);
   }
 
   /* Shared LoggedIn Param */

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateLeagueDialogComponent } from '../create-league-dialog/create-league-dialog.component';
-import { CommonService, SharedUserService } from '@app/core';
+import { CommonService, SharedService, SharedUserService } from '@app/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { Sort } from '@angular/material/sort';
@@ -24,9 +24,11 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private commonService: CommonService,
     private sharedUserService: SharedUserService,
-    private snackbarService : SnackBarService
+    private snackbarService : SnackBarService,
+    private sharedService: SharedService
   ) {
   }
+
   ngOnInit(): void {
     this.userSubscriber();
     this.getAllLeagues();
@@ -73,25 +75,27 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
   
 // To subscribe loggedin user details
   userSubscriber = () => {
-    this.userDetailSub$ = this.sharedUserService
+    this.userDetailSub$ = this.sharedService
       .getUserDetailCall()
       .subscribe(() => {
-        this.userDetail = this.sharedUserService.getUser();
-        if(this.userDetail){
-        this.clubID = this.userDetail?.club_id;
-      }
+        this.userDetail = this.sharedService.getUser();
+        if (this.userDetail) {
+          this.clubID = this.userDetail?.club_id;
+        }
       });
   };
+
+  
+
   // To get all league's list
   getAllLeagues() {
     const urlString = `${this.clubID}`
-    this.commonService.getAllLeagues(`${urlString}`).subscribe({
+    this.commonService.getAllLeagues(urlString).subscribe({
       next: (res: any) => {
         console.log(res);
         this.leagues = Object.keys(res).map(id => ({id, ...res[id]}));
         this.sortedLeague = this.leagues.slice();
         this.sortData(this.sort)
-        console.log(this.leagues);
         },
       error: (err: any) => {
         const message = err.error.message;

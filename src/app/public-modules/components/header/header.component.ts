@@ -62,12 +62,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout = () => {
     this.sharedService.logout();
-    this.userName = '';
-    this.clubName = '';
-    localStorage.clear();
-    if (this.userDetailSub$) {
-      this.userDetailSub$.unsubscribe();
-    }
+    // this.userName = '';
+    // this.clubName = '';
+    // localStorage.clear();
+    
     // this.userAuthService.logOut().subscribe({
     //   next: (res) => {
     //     this.layoutService.setLayoutDetailCall(false);

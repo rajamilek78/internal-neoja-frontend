@@ -67,7 +67,6 @@ export class LoginComponent extends FormBaseComponent implements OnInit{
       this.userAuthService.logIn(this.loginForm.value).subscribe({
         next: (res: any) => {
           this.handleLoginResponse(res);
-          this.userSubscriber();
         },
         error: (err: any) => {
           console.log(err);

@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { APPStorage } from "@app/helpers/constants";
 // import { EncryptionFunctions } from '@app/helpers/functions';
 import { UserModel } from '@app/helpers/models';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Injectable()
 export class SharedUserService {
+
   private userFlag: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );

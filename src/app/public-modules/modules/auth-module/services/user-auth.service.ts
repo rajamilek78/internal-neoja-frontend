@@ -1,14 +1,20 @@
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import { APIManager, SharedService } from "@app/core";
+import { APIManager, SharedService, SharedUserService } from "@app/core";
 import { API_ENDPOINTS, AppConstant } from "@app/helpers/constants";
-import { Observable } from 'rxjs';
+import { UserModel } from "@app/helpers/models";
+import { Observable, Subscription } from 'rxjs';
 
 @Injectable()
 export class UserAuthService {
 
+  userDetailSub$!: Subscription;
+  userDetail!: UserModel | null;
+  userName = '';
+  clubName = '';
+
   constructor(private apiManager: APIManager,
-    private sharedService: SharedService) {
+    private sharedService: SharedService, private sharedUserService: SharedUserService) {
   }
 
   logIn = (data : any): Observable<any> => {
@@ -18,5 +24,12 @@ export class UserAuthService {
   handleAuthResponse = (response) => {
     const user = { ...response };
     this.sharedService.setUser(user);
+    this.userSubscriber();
+  };
+
+  userSubscriber = () => {
+    this.userDetailSub$ = this.sharedUserService.getUserDetailCall().subscribe(() => {
+        this.userDetail = this.sharedUserService.getUser();
+      });
   };
 }

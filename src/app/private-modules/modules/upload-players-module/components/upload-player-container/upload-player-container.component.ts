@@ -37,6 +37,7 @@ export class UploadPlayerContainerComponent implements OnInit {
     this.userSubscriber();
     this.getAllLeagues();
   }
+  
   ngOnDestroy() {
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
