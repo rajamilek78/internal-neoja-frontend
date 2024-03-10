@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { ActivatedRoute } from '@angular/router';
 import { RoundScore, ScoreModel } from '@app/helpers/models/score.model';
-import { KeyValue } from '@angular/common';
+import { KeyValue, Location } from '@angular/common';
 import { SnackBarService } from '@app/core/services/snackbar.service';
 import { Sort } from '@angular/material/sort';
 import { LeagueService } from '@app/private-modules/modules/create-league-module/services/league.service';
@@ -31,7 +31,8 @@ export class ViewScoreTableComponent implements OnInit {
     private sharedUserService: SharedUserService,
     private snackbarService: SnackBarService,
     private route: ActivatedRoute,
-    private leagueService: LeagueService
+    private leagueService: LeagueService,
+    public location: Location
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +44,10 @@ export class ViewScoreTableComponent implements OnInit {
     this.userSubscriber();
     this.getLeagueScore();
     this.getLeagueName();
+  }
+
+  onBack = () => {
+    this.location.back();
   }
 
   userSubscriber = () => {

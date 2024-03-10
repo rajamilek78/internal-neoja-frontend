@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, computed, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SharedService } from './core';
 import { SnackBarService } from './core/services/snackbar.service';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeIsLoading();
     this.snackBarService.initSnackBar();
+    console.log("environmentProd:", environment.production);
   }
 
   ngOnDestroy() {
