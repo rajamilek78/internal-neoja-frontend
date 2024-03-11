@@ -179,7 +179,7 @@
           <button
             type="submit"
             class="btn"
-            [disabled]="roundCount === undefined && playerForm.pristine || playerForm.invalid"
+            [disabled]="playerForm.pristine || playerForm.invalid"
           >
             Build
           </button>
