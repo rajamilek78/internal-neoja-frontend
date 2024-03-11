@@ -59,8 +59,9 @@ export class LockDataDialogueComponent implements OnInit {
 
     console.log(this.data.responseData.round);
     //const ownedCompanies = this.userDetail?.owned_companies;
-    const ownedClubs = this.userDetail?.owned_clubs;
-    const compnyclubnameStr = `${ownedClubs}/${this.leagueID}`;
+    // const ownedClubs = this.userDetail?.owned_clubs;
+    const clubID = this.userDetail?.club_id;
+    const compnyclubnameStr = `${clubID}/${this.leagueID}`;
     this.commonservice.creatRound(compnyclubnameStr, bodyData).subscribe({
       next: (res: any) => {
         // Handle success response
