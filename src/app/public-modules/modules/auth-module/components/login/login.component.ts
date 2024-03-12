@@ -37,8 +37,8 @@ export class LoginComponent extends FormBaseComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginForm = this.createForm({
-      id: ['aminraiyani@gmail.com', [Validators.required]],
-      password: ['abc@123', Validators.required],
+      id: ['', [Validators.required]],
+      password: ['', Validators.required],
       
     })
   }
