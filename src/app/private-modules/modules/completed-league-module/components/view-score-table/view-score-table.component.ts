@@ -38,29 +38,9 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
       this.selectedClubID = params['clubId'];
       this.leagueID = params['leagueID'];
     });
-    // this.getLeagueScore();
-    // this.getLeagueName();
-    const test:any[] = [];
-    for(let i =0 ; i<50; i++){
-      test.push(generateRandomPlayer());
+    this.getLeagueScore();
+    this.getLeagueName();
     }
-    const testOne : any[] = [];
-    for(let i=0;i<50;i++){
-      testOne.push(generateRandomPlayer());
-    }
-    this.leagueScores = {
-      "1": {
-        "cumulative": [...test],
-        "individual": [...test]
-      },
-      "2": {
-        "cumulative": [...testOne],
-        "individual": [...testOne]
-      },
-    }
-    
-    
-  }
 
   onBack = () => {
     this.location.back();
