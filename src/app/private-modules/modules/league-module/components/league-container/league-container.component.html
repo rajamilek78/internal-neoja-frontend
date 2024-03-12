@@ -7,15 +7,6 @@
         <h6>{{ leagueName }}</h6>
       </div>
       <div class="flex justify-end">
-        <!-- <div class="flex mr-1">
-          <span><img src="assets/images/club-icon.svg" alt="" /></span
-          ><small>{{selectedCompanyID}}</small>
-        </div> -->
-        <!-- <div class="flex mr-1">
-          <span><img src="assets/images/company-icon.svg" alt="" /></span
-          >
-          <small>{{ selectedClubID }}</small>
-        </div> -->
         <div class="table-buttons flex justify-end">
           <div>
             <select [(ngModel)]="selectedFormat" (change)="onSelectionChange()">
@@ -44,15 +35,6 @@
               >Download
             </button>
           </div>
-          <!-- <div class="primary-btn">
-            <button
-              class="btn flex justify-center"
-              (click)="onClickDownloadAll()"
-            >
-              <span><img src="assets/images/download-icon.svg" alt="" /></span
-              >Download All
-            </button>
-          </div> -->
         </div>
       </div>
     </div>
@@ -100,29 +82,4 @@
       </div>
     </div>
   </div>
-  <!-- <app-print-round [data]="groups"
-  #printRoundComponent
-  [leagueID]="leagueID"
-  [date]="rawData?.header?.date"
-  [clubID]="selectedClubID">
-</app-print-round>-->
-  <!-- <div *ngIf="rawData"> -->
-  <!-- <app-print-round-format-one *ngIf="isInvisilePdf"
-    [data]="rawData"
-    [groups]="groups"
-    [clubID]="selectedClubID"
-  ></app-print-round-format-one> -->
-  <!-- <app-print-round-format-two
-  [groups]="groups"
-  >
-  </app-print-round-format-two> -->
-  <!-- <app-print-container
-    [data]="rawData"
-    [groups]="groups"
-    [roundCount]="roundID"
-    [clubID]="selectedClubID">
-  </app-print-container> -->
-  <!-- <app-print-container>
-  </app-print-container> -->
-  <!-- </div> -->
 </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { CommonService, SharedService } from '@app/core';
 import { SnackBarService } from '@app/core/services/snackbar.service';
@@ -56,18 +56,10 @@ export class UploadPlayerContainerComponent implements OnInit {
   };
 
   getAllLeagues() {
-    // const ownedCompanies = this.userDetail?.owned_companies;
-    // const clubID = this.userDetail?.club_id;
     const urlString = `${this.clubID}`;
-    // const compnyclubStr = `${ownedClubs}/all`;
     this.commonService.getAllLeagues(urlString).subscribe({
       next: (res: any) => {
-        // this.leagues = Object.keys(res).map((key) => ({
-        //   name: key,
-        //   description: res[key].description,
-        // }));
         this.leagues = Object.keys(res).map((id) => ({ id, ...res[id] }));
-        console.log(this.leagues);
       },
       error: (err: any) => {
         const message = err.error.message;
@@ -88,11 +80,6 @@ export class UploadPlayerContainerComponent implements OnInit {
       next: (res: any) => {
         this.roundsLength = res ? Object.keys(res).length : 0;
         this.roundCount = this.roundsLength + 1;
-        // if (res) {
-        //   this.roundsLength = Object.keys(res).length as number;
-        // } else {
-        //   this.roundsLength = 0; // Set roundsLength to null if the response is null
-        // }
         this.selectedFormat = this.roundsLength >= 1 ? '2' : '1';
         this.SharedCommonService.setLeagueID(this.leagueID);
         this.cdr.detectChanges();
@@ -100,7 +87,6 @@ export class UploadPlayerContainerComponent implements OnInit {
       error: (err: any) => {
         const message = err.error.message;
         this.snackbarService.setSnackBarMessage(message);
-        console.error(err);
       },
     });
   }

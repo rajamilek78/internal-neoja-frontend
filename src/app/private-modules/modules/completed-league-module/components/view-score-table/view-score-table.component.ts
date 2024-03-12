@@ -4,11 +4,12 @@ import { SharedUserService } from '@app/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { ActivatedRoute } from '@angular/router';
-import { RoundScore, ScoreModel } from '@app/helpers/models/score.model';
+import { RoundScore } from '@app/helpers/models/score.model';
 import { KeyValue, Location } from '@angular/common';
 import { SnackBarService } from '@app/core/services/snackbar.service';
 import { Sort } from '@angular/material/sort';
 import { LeagueService } from '@app/private-modules/modules/create-league-module/services/league.service';
+import { generateRandomPlayer } from '@app/helpers/functions';
 
 @Component({
   selector: 'app-view-score-table',
@@ -18,12 +19,9 @@ import { LeagueService } from '@app/private-modules/modules/create-league-module
 export class ViewScoreTableComponent implements OnInit, OnDestroy{
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
-  //selectedCompanyID!: string;
   selectedClubID!: string;
   leagueID!: string;
-  // leagueScores!: ScoreModel;
-  leagueScores!: any;
-  SortedLeagueScores!: any;
+  leagueScores: any = {};
   leagueName!: string;
 
   constructor(
@@ -40,10 +38,28 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
       this.selectedClubID = params['clubId'];
       this.leagueID = params['leagueID'];
     });
-    console.log('this is selected league id ', this.leagueID);
-    this.userSubscriber();
-    this.getLeagueScore();
-    this.getLeagueName();
+    // this.getLeagueScore();
+    // this.getLeagueName();
+    const test:any[] = [];
+    for(let i =0 ; i<50; i++){
+      test.push(generateRandomPlayer());
+    }
+    const testOne : any[] = [];
+    for(let i=0;i<50;i++){
+      testOne.push(generateRandomPlayer());
+    }
+    this.leagueScores = {
+      "1": {
+        "cumulative": [...test],
+        "individual": [...test]
+      },
+      "2": {
+        "cumulative": [...testOne],
+        "individual": [...testOne]
+      },
+    }
+    
+    
   }
 
   onBack = () => {
@@ -55,54 +71,39 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
       this.userDetailSub$.unsubscribe();
     }
   }
+  getLeagueName = () => {
+    const urlString = `${this.selectedClubID}/${this.leagueID}`;
+    this.leagueService.getLeagueById(urlString).subscribe({
+      next: (res) => {
+        this.leagueName = res.header.name;
+      },
+      error: (err) => {
+        const message = err.error.message;
+        this.snackbarService.setSnackBarMessage(message);
+      },
+    });
+  };
 
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedUserService
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedUserService.getUser();
-        // console.log(this.userDetail);
         if (this.userDetail) {
-          //const companyIDs = this.userDetail.owned_companies;
-          // const clubIDs = this.userDetail.owned_clubs;
           // this.selectedClubID = this.userDetail.club_id;
-          // console.log(this.selectedClubID);
-          //this.selectedCompanyID = companyIDs[0];
         }
       });
   };
-
-  getLeagueName = () => {
-    const urlString = `${this.selectedClubID}/${this.leagueID}`;
-    this.leagueService.getLeagueById(urlString).subscribe({
-      next: (res) => {
-        this.leagueName = res.header.name
-      },
-      error: (err) => {
-        const message = err.error.message;
-        this.snackbarService.setSnackBarMessage(message);
-        console.log(err);
-      },
-    });
-  }
 
   getLeagueScore() {
     const urlString = `${this.selectedClubID}/${this.leagueID}`;
     this.completedLeagueService.getLeagueScores(urlString).subscribe({
       next: (res: any) => {
         this.leagueScores = res;
-        // this.leagueScores = Object.entries(res);
-        console.log(res);
-        // this.leagueScores = Object.entries(res);
-        // this.leagueScores = Object.keys(res).map(id => ({id, ...res[id]}));
-        // this.SortedLeagueScores = this.leagueScores.slice();
-        console.log('this is response from view score', this.leagueScores);
-        // console.log(this.leagueScores);
       },
       error: (err: any) => {
         const message = err.error.message;
         this.snackbarService.setSnackBarMessage(message);
-        console.log(err);
       },
     });
   }
@@ -113,50 +114,40 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
     return parseInt(a.key) - parseInt(b.key);
   };
 
-  sortData(sort: Sort) {
-    const data = this.SortedLeagueScores.slice();
+  sortData(sort: Sort, players :any[]) {
     if (!sort.active || sort.direction === '') {
-      this.SortedLeagueScores = data;
       return;
     }
-
-    this.SortedLeagueScores = data.sort((a, b) => {
+    players = players.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'name':
-          return this.compare(a.key, b.key, isAsc);
+        case 'player':
+          return this.compare(a.player, b.player, isAsc);
         case 'rating':
-          return this.compare(a.value.weighted_rating, b.value.weighted_rating, isAsc);
+          return this.compare(+a.weighted_rating, +b.weighted_rating, isAsc);
         case 'points_scored':
-          return this.compare(a.value.points_scored, b.value.points_scored, isAsc);
-        // case 'points_possible':
-        //   return this.compare(a.value.points_possible, b.value.points_possible, isAsc);
+          return this.compare(+a.points_scored, +b.points_scored, isAsc);
         case 'points_won_percent':
-          return this.compare(a.value.points_won_percent, b.value.points_won_percent, isAsc);
-        // case 'games_played':
-        //   return this.compare(a.value.games_played, b.value.games_played, isAsc);
-        // case 'games_possible':
-        //   return this.compare(a.value.games_possible, b.value.games_possible, isAsc);
+          return this.compare(+a.points_won_percent, +b.points_won_percent, isAsc);
         case 'games_played_percent':
-          return this.compare(a.value.games_played_percent, b.value.games_played_percent, isAsc);
+          return this.compare(+a.games_played_percent, +b.games_played_percent, isAsc);
         case 'games_won':
-          return this.compare(a.value.games_won, b.value.games_won, isAsc);
+          return this.compare(+a.games_won, +b.games_won, isAsc);
         case 'games_lost':
-          return this.compare(a.value.games_lost, b.value.games_lost, isAsc);
+          return this.compare(+a.games_lost, +b.games_lost, isAsc);
         case 'games_won_percent':
-          return this.compare(a.value.games_won_percent, b.value.games_won_percent, isAsc);
-        // case 'game_history':
-        //   return this.compare(a.value.win_lose_history, b.value.win_lose_history, isAsc);
+          return this.compare(+a.games_won_percent, +b.games_won_percent, isAsc);
         default:
           return 0;
       }
     });
   }
   compare(a: number | string, b: number | string, isAsc: boolean) {
+    if (typeof a === 'string' && typeof b === 'string') {
+      a = a.toLowerCase();
+      b = b.toLowerCase();
+    }
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-  // handleResponse(res){
-
-  // }
 }

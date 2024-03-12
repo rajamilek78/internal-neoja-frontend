@@ -2,14 +2,15 @@ export interface ScoreModel {
     [round: string]: RoundScore;
 }
 export interface RoundScore {
-    cumulative: Players;
-    individual: Players;
+    cumulative: any[];
+    individual: any[];
 }
 export interface Players {
     [playerName: string]: PlayerScore;
 }
 export interface PlayerScore {
     games_played: number;
+    player:string,
     games_possible: number;
     points_possible: number;
     games_played_percent: number;

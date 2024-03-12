@@ -20,8 +20,6 @@ export class LeagueModuleService {
 
   setRoundData(data:any){
     this.roundData.next(data);
-    // console.log(data);
-    
   }
   getRoundData() : Observable<any>{
     return this.roundData.asObservable();

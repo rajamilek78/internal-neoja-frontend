@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonService, SharedService } from '../../../../../core';
+import { CommonService,SharedService } from '@app/core';
 import { CompanyModel } from '@app/helpers/models/company.model';
 import { MatDialog } from '@angular/material/dialog';
 import { LockDataDialogueComponent } from '../../../league-module/components/lock-data-dialogue/lock-data-dialogue.component';
@@ -23,13 +23,11 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   selectedCompanyID!: string;
   selectedClubID!: string;
   roundID = '';
-
   selectedLeague!: string;
   companies: { [key: string]: { name: string; description: string } } = {};
   newCompanies!: CompanyModel[];
   clubs: { [key: string]: { name: string; phone: string; address: any } } = {};
   selectedLeagueName!: string;
-  // clubs : any;
   constructor(
     private commonService: CommonService,
     private dialog: MatDialog,
@@ -40,11 +38,8 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.roundID);
-    // this.getAllCompanies();
     this.userSubscriber();
     this.getAllLeagues();
-    // this.getAllRounds();
   }
   ngOnDestroy(): void {
     if (this.userDetailSub$) {
@@ -57,7 +52,6 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
       width: '450px',
     });
     dialogueRef.afterClosed().subscribe((result) => {
-      console.log('the dialogue is closed now');
     });
   }
   // To view score
@@ -86,21 +80,13 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedUserService.getUser();
-        console.log(this.userDetail);
         if (this.userDetail) {
-          //const companyIDs = this.userDetail.owned_companies;
-          const clubIDs = this.userDetail.owned_clubs;
           this.selectedClubID = this.userDetail.club_id;
-          //this.selectedCompanyID = companyIDs[0];
         }
       });
   };
   // To get list of leagues
   getAllLeagues() {
-    //const companyID = this.userDetail?.owned_companies;
-    // const clubID = this.userDetail?.owned_clubs;
-    // this.companyIDClubIDSTr = `${clubID}`;
-    // const companyIDclubIDStr = `${this.companyIDClubIDSTr}/all`;
     const urlString = `${this.selectedClubID}`;
     this.commonService.getAllLeagues(`${urlString}`).subscribe({
       next: (res: any) => {
@@ -108,46 +94,16 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
           id: key,
           name: res[key].name,
         }));
-        console.log(this.leagues);
-
         this.selectedLeague = this.leagues[0].id;
         this.selectedLeagueName = this.leagues[0].name;
-        console.log(this.selectedLeagueName);
-
         this.getAllRounds();
-        console.log(this.leagues);
       },
       error: (err: any) => {
         const message = err.error.message;
         this.snackbarService.setSnackBarMessage(message);
-        console.log(err);
       },
     });
   }
-  // To get list of Rounds for selected Company & Club
-  // getAllRounds() {
-  //   const urlString = `${this.companyIDClubIDSTr}/${this.selectedLeague}/all`;
-  //   this.completedLeagueService.getAllRounds(urlString).subscribe({
-  //     next: (res: any) => {
-  //       if (res) {
-  //         this.rounds = Object.keys(res).map((key) => ({
-  //           roundNumber: key,
-  //           roundDetails: res[key],
-  //         }));
-  //         console.log(this.rounds); // Log the rounds data here
-  //       } else {
-  //         console.log('No rounds data received');
-  //       }
-  //     },
-  //     error: (err: any) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
-
-  // onLeagueChange = () => {
-  //   this.getAllRounds();
-  // };
   onLeagueChange() {
     const selectedLeague = this.leagues.find(
       (league) => league.id === this.selectedLeague
@@ -159,7 +115,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
       this.selectedLeagueName = '';
     }
   }
-
+// To get data of all rounds in a league.
   getAllRounds() {
     const urlString = `${this.selectedClubID}/${this.selectedLeague}/all`;
     this.completedLeagueService.getAllRounds(urlString).subscribe({
@@ -170,17 +126,14 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
             roundDetails: res[key],
             scoreLocked: res[key].header?.score_locked, // Initialize scoreLocked to false for each round
           }));
-          console.log(this.rounds); // Log the rounds data here
           this.allRoundsLocked();
         } else {
           this.rounds = [];
-          console.log('No rounds data received');
         }
       },
       error: (err: any) => {
         const message = err.error.message;
         this.snackbarService.setSnackBarMessage(message);
-        console.log(err);
       },
     });
   }
@@ -191,50 +144,15 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     return false;
   }
   lockScore(roundID?) {
-    //const ownedCompanies = this.userDetail?.owned_companies;
-    // const ownedClubs = this.userDetail?.owned_clubs;
-    //const round = this.rounds.find(round => round.roundNumber === roundID);
     const urlString = `${this.selectedClubID}/${this.selectedLeague}/${roundID}`;
     this.commonService.lockScore(urlString).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.getAllRounds();
       },
       error: (err: any) => {
         const message = err.error.message;
         this.snackbarService.setSnackBarMessage(message);
         console.error(err);
-      },
-    });
-  }
-
-  getAllCompanies() {
-    this.commonService.getAllCompanies().subscribe({
-      next: (resp: any) => {
-        // format change
-        // [{
-        //   id:'DLF',
-        //   name:'test',
-        //   description:'test',
-        // }]
-        this.companies = resp;
-      },
-      error: (err: any) => {
-        const message = err.error.message;
-        this.snackbarService.setSnackBarMessage(message);
-        console.log(err);
-      },
-    });
-  }
-  getAllClubs() {
-    this.commonService.getAllClubs().subscribe({
-      next: (resp: any) => {
-        this.clubs = resp;
-      },
-      error: (err: any) => {
-        const message = err.error.message;
-        this.snackbarService.setSnackBarMessage(message);
-        console.log(err);
       },
     });
   }

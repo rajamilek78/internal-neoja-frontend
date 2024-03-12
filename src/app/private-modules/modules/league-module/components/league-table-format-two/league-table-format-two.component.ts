@@ -24,8 +24,6 @@ export class LeagueTableFormatTwoComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedTab.emit(this.selectedTabIndex + 1);
-    console.log(this.groups);
-    
     if (this.groups && this.groups.length > 0) {
       this.games = Object.entries(this.groups[this.selectedTabIndex].data.games);
       // Initialize score property for each game
@@ -34,9 +32,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
           game[1].score = {};
         }
       });
-      console.log(this.groups);
       this.players = this.groups.map(group => group.data.group_details.players);
-      console.log(this.players);
     }
   }
   onBlurTeamScore = () => {

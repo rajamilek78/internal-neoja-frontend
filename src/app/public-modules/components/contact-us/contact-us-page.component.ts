@@ -42,12 +42,10 @@ export class ContactUsPageComponent
         next: (res: any) => {
           this.contactUsForm.reset();
           this.router.navigate([`${RouteConstant.HOME_PAGE}`]);
-          console.log(res);
         },
         error: (err: any) => {
           const message = err.error.message;
           this.snackbarService.setSnackBarMessage(message);
-          console.log(err);
         },
       });
     }

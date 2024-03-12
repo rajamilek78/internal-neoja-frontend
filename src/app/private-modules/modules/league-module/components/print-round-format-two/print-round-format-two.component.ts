@@ -9,7 +9,6 @@ export class PrintRoundFormatTwoComponent implements OnInit{
   @Input() groups : any;
 
 ngOnInit(): void {
-  console.log(this.groups);
 }
 
 }

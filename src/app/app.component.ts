@@ -2,8 +2,6 @@ import { Component, OnDestroy, OnInit, computed, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SharedService } from './core';
 import { SnackBarService } from './core/services/snackbar.service';
-import { environment } from '@env/environment';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,10 +11,8 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'eleague-online';
   isLoading = false;
   private loaderSubscriber$!: Subscription;
-  // collapsed = signal(false);
   showSidebar = false;
 
-  // sidenavWidth = computed(() => (this.collapsed() ? '250px' : '0px'));
 
   constructor(private sharedService: SharedService, private snackBarService : SnackBarService) {
   }
@@ -24,7 +20,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeIsLoading();
     this.snackBarService.initSnackBar();
-    console.log("environmentProd:", environment.production);
   }
 
   ngOnDestroy() {

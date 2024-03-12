@@ -3,13 +3,11 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { CommonService, SharedService } from '@app/core';
-import { SharedCommonService } from '@app/helpers/services';
 import { RouteConstant } from '@app/helpers/constants';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { DeleteDetailDialogueComponent } from '../delete-detail-dialogue/delete-detail-dialogue.component';
-import { SnackBarService } from '@app/core/services/snackbar.service';
+import { SnackBarService,SharedCommonService,CommonService,SharedService } from '@app/core';
 @Component({
   selector: 'app-upload-player-data',
   templateUrl: './upload-player-data.component.html',
@@ -25,13 +23,11 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() roundsLength!: number;
   @Input() leagueID!: string;
   @Input() selectedLeague: any;
-  // @Input() selectedDay!: number;
   @Input() selectedDate!: Date;
   isDropInDisabled = true;
   isNoShowDisabled = false;
   roundOnePlayersCount!: number;
   dropInPlayersCount!: number;
-  //@Input() leagueID!: string;
   leagueIDSubscription!: Subscription;
 
   leagueSummaryData: any;
@@ -87,9 +83,7 @@ export class UploadPlayerDataComponent implements OnInit {
   createPlayer(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
-      score: ['', Validators.required],
-      // dropIn: [{ value: '', disabled: this.isDropInDisabled }],
-      // noShow: [{ value: '', disabled: this.isNoShowDisabled }],
+      score: ['', Validators.required]
     });
   }
 
@@ -115,7 +109,6 @@ export class UploadPlayerDataComponent implements OnInit {
         if (this.userDetail) {
           this.clubID = this.userDetail?.club_id;
         }
-        console.log(this.userDetail);
       });
   };
   leagueSummary() {
@@ -125,10 +118,8 @@ export class UploadPlayerDataComponent implements OnInit {
             this.roundOnePlayersCount = res.round1_player_count;
             this.dropInPlayersCount = res.drop_in_player_count;
             this.leagueSummaryData = res;
-            console.log(this.leagueSummaryData);
             let sortedPlayers = Object.entries(this.leagueSummaryData.players);
             sortedPlayers.sort((a, b) => {
-                console.log('a:', a, 'b:', b);
                 return (b[1] as any)['weighted_rating'] - (a[1] as any)['weighted_rating'];
             });
             const playersArray = this.playerForm.get('players') as FormArray;
@@ -158,9 +149,13 @@ export class UploadPlayerDataComponent implements OnInit {
             // this.updateToggleState();
         },
         error: (err: any) => {
+          this.roundOnePlayersCount = 0;
+            this.dropInPlayersCount = 0;
+            const playersArray = this.playerForm.get('players') as FormArray;
+            playersArray.clear();
+            this.addPlayer()
             const message = err.error.message;
             this.snackbarService.setSnackBarMessage(message);
-            console.log(err);
         },
     });
 }
@@ -171,10 +166,6 @@ export class UploadPlayerDataComponent implements OnInit {
       const currentCount = this.players.length;
       if (count > currentCount) {
         this.addPlayers(count - currentCount);
-      } else {
-        // for (let i = currentCount; i > count; i--) {
-        //   this.deletePlayer(i - 1);
-        // }
       }
     }
   }
@@ -215,7 +206,6 @@ export class UploadPlayerDataComponent implements OnInit {
           error: (err: any) => {
             const message = err.error.message;
             this.snackbarService.setSnackBarMessage(message);
-            console.log(err);
           },
         });
     } else {
@@ -242,13 +232,11 @@ export class UploadPlayerDataComponent implements OnInit {
         error: (err: any) => {
           const message = err.error.message;
           this.snackbarService.setSnackBarMessage(message);
-          console.log(err);
         },
       });
     }
   }
   deletePlayer(index: number): void {
-    //this.players.removeAt(index);
     this.openDialogue(index);
   }
 
@@ -264,56 +252,6 @@ export class UploadPlayerDataComponent implements OnInit {
       },
     });
     dialogueRef.afterClosed().subscribe((result) => {
-      console.log('the dialogue is closed now');
     });
   }
-  // leagueSummary() {
-  //   const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
-  //   this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
-  //     next: (res: any) => {
-  //       this.roundOnePlayersCount = res.round1_player_count;
-  //       this.dropInPlayersCount = res.drop_in_player_count;
-  //       this.leagueSummaryData = res;
-  //       console.log(this.leagueSummaryData);
-  //       let sortedPlayers = Object.entries(this.leagueSummaryData.players);
-  //       sortedPlayers.sort((a, b) => {
-  //         console.log('a:', a, 'b:', b);
-  //         return (
-  //           (a[1] as any)['weighted_rating'] - (b[1] as any)['weighted_rating']
-  //         );
-  //       });
-  //       const playersArray = this.playerForm.get('players') as FormArray;
-  //       playersArray.clear();
-  //       for (const playerName in this.leagueSummaryData.players) {
-  //         if (this.leagueSummaryData.players.hasOwnProperty(playerName)) {
-  //           const playerData = this.leagueSummaryData.players[playerName];
-  //           const winLoseHistory = playerData.win_lose_history
-  //             ? playerData.win_lose_history.split(',').reverse()
-  //             : [];
-  //           const round = playerData.in_round1;
-  //           const playerGroup = this.fb.group({
-  //             name: [
-  //               { value: playerName, disabled: true },
-  //               Validators.required,
-  //             ],
-  //             score: [
-  //               { value: playerData.weighted_rating, disabled: true },
-  //               Validators.required,
-  //             ],
-  //             winLoseHistory: [{ value: winLoseHistory, disabled: true }],
-  //             round: [{ value: round, disabled: true }],
-  //           });
-
-  //           playersArray.push(playerGroup);
-  //         }
-  //       }
-  //       // this.updateToggleState();
-  //     },
-  //     error: (err: any) => {
-  //       const message = err.error.message;
-  //       this.snackbarService.setSnackBarMessage(message);
-  //       console.log(err);
-  //     },
-  //   });
-  // }
 }

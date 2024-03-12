@@ -62,24 +62,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout = () => {
     this.sharedService.logout();
-    // this.userName = '';
-    // this.clubName = '';
-    // localStorage.clear();
-    
-    // this.userAuthService.logOut().subscribe({
-    //   next: (res) => {
-    //     this.layoutService.setLayoutDetailCall(false);
-    //   },
-    //   error: (e) => console.error(e),
-    // });
   };
 
   onOpenCloseSidebar = (val: boolean) => {
     this.openCloseSidebar.emit(val);
   };
-
-  // sidenavWidth = computed(() => (this.collapsed() ? '64px' : '250px'));
-
   get homePageUrl() {
     return `${RouteConstant.HOME_PAGE}`;
   }

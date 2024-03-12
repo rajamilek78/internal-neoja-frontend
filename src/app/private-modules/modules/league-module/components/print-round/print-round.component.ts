@@ -37,8 +37,6 @@ export class PrintRoundComponent implements OnInit{
   
 
   ngOnInit(): void {
-    console.log(this.data);
-    
     }
   print(){
     const printOptions : PrintOptions = {

@@ -26,16 +26,10 @@ export class LeagueTableFormatOneComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedTab.emit(this.selectedTabIndex + 1);
-    console.log(this.groups);
-    console.log(this.data);
-    
-    // console.log(this.isEdit)
     if (this.groups && this.groups.length > 0) {
       this.gamesArray = Object.entries(
         this.groups[this.selectedTabIndex].data.games
       );
-      console.log("this is gamesarray",this.gamesArray);
-      
       this.blurTeamScore.emit({
         groups: this.groups,
       });
@@ -53,8 +47,6 @@ export class LeagueTableFormatOneComponent implements OnInit {
 
   onBlurTeamScore = () => {
     const groups = JSON.parse(JSON.stringify(this.groups));
-    console.log(groups);
-    
     const gameObj: any = {};
     for (let i = 0; i < this.gamesArray.length; i++) {
       const game = this.gamesArray[i];

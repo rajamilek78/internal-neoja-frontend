@@ -146,7 +146,6 @@ export class UploadPlayerFileComponent {
         error: (err: any) => {
           const message = err.error.message;
           this.snackbarService.setSnackBarMessage(message);
-          console.log(err);
         },
       });
     });

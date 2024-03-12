@@ -71,12 +71,10 @@ export class CreateLeagueDialogComponent
           active: res.header.active,
           rounds_per_day: String(res.header.rounds_per_day),
         });
-        console.log('this is league', res);
       },
       error: (err) => {
         const message = err.error.message;
         this.snackbarService.setSnackBarMessage(message);
-        console.log(err);
       },
     });
   }
@@ -101,13 +99,11 @@ export class CreateLeagueDialogComponent
         .createLeague(urlString, this.leagueCRUD_Form.value)
         .subscribe({
           next: (res: any) => {
-            console.log(res);
             this.close();
           },
           error: (err: any) => {
             const message = err.error.message;
             this.snackbarService.setSnackBarMessage(message);
-            console.log(err);
           },
         });
     }
@@ -131,13 +127,11 @@ export class CreateLeagueDialogComponent
       .updateLeague(urlString, this.leagueCRUD_Form.value)
       .subscribe({
         next: (res: any) => {
-          console.log(res);
           this.close();
         },
         error: (err: any) => {
           const message = err.error.message;
           this.snackbarService.setSnackBarMessage(message);
-          console.log(err);
         },
       });
   }

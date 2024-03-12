@@ -30,7 +30,7 @@
               accept=".txt"
             />
             <div class="secondary-btn-light">
-              <button type="button" class="btn" (click)="fileInput.click()">
+              <button type="button" class="btn" (click)="fileInput.click()" [disabled]="!selectedLeague">
                 Browse
               </button>
             </div>
@@ -64,7 +64,7 @@
       <div class="upload__button">
         <div class="primary-btn">
           <!-- <button [disabled]="!leagueIdPass || roundCount === undefined" type="button" class="btn" (click)="onUpload()">Upload</button> -->
-          <button  type="button" class="btn" (click)="onUpload()">Upload</button>
+          <button  type="button" class="btn" (click)="onUpload()" [disabled]="!selectedLeague">Upload</button>
         </div>
       </div>
     </div>

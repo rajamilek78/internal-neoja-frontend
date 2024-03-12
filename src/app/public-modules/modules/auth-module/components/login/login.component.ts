@@ -37,8 +37,8 @@ export class LoginComponent extends FormBaseComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginForm = this.createForm({
-      id: ['aminraiyani@gmail.com', [Validators.required]],
-      password: ['abc@123', Validators.required],
+      id: ['amrik@megapickleball.com', [Validators.required]],
+      password: ['amrk@123', Validators.required],
       
     })
   }
@@ -69,13 +69,8 @@ export class LoginComponent extends FormBaseComponent implements OnInit{
           this.handleLoginResponse(res);
         },
         error: (err: any) => {
-          console.log(err);
           const message = err.error.message
           this.snackbarService.setSnackBarMessage(message);
-          // this.snackbar.open(`${err.error.message}`, 'Close',{
-          //   duration : 5000,
-          //   panelClass : ['mat-toolbar','mat-warn']
-          // });
         }
       })
     }
