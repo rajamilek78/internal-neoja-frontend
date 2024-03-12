@@ -80,6 +80,11 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
     this.completedLeagueService.getLeagueScores(urlString).subscribe({
       next: (res: any) => {
         this.leagueScores = res;
+        for (let roundKey in res) {
+          res[roundKey].originalCumulative = [...res[roundKey].cumulative];
+          res[roundKey].originalIndividual = [...res[roundKey].individual];
+        }
+        this.leagueScores = res;
       },
       error: (err: any) => {
         const message = err.error.message;
@@ -94,7 +99,8 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
     return parseInt(a.key) - parseInt(b.key);
   };
 
-  sortData(sort: Sort, players :any[]) {
+  sortData(sort: Sort, players :any) {
+    // const data = players.slice();
     if (!sort.active || sort.direction === '') {
       return;
     }

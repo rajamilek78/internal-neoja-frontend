@@ -19,7 +19,7 @@
           [label]="'Round ' + round.key"
         >
           <div class="overflow">
-            <table class="table-2" matSort (matSortChange)="sortData($event,round.value.cumulative)">
+            <table class="table-2" matSort (matSortChange)="sortData($event,round.value.cumulative)" matSortActive="rating" matSortDirection="asc">
               <thead>
                 <tr>
                   <th>Rank</th>
@@ -93,7 +93,7 @@
             <h6>This Round</h6>
           </div>
           <div class="overflow">
-            <table class="table-2" matSort (matSortChange)="sortData($event,round.value.individual)">
+            <table class="table-2" matSort (matSortChange)="sortData($event,round.value.individual)" matSortActive="rating" matSortDirection="asc">
               <thead>
                 <tr>
                   <th>Rank</th>

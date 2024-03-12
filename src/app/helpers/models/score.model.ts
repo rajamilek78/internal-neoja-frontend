@@ -4,6 +4,7 @@ export interface ScoreModel {
 export interface RoundScore {
     cumulative: any[];
     individual: any[];
+    originalCumulative : [];
 }
 export interface Players {
     [playerName: string]: PlayerScore;
