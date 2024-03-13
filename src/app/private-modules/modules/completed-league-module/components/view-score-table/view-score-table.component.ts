@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CompletedLeagueService } from '../../services/completed-league.service';
 import { SharedUserService } from '@app/core';
 import { Subscription } from 'rxjs';
@@ -9,14 +9,13 @@ import { KeyValue, Location } from '@angular/common';
 import { SnackBarService } from '@app/core/services/snackbar.service';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LeagueService } from '@app/private-modules/modules/create-league-module/services/league.service';
-import { generateRandomPlayer } from '@app/helpers/functions';
 
 @Component({
   selector: 'app-view-score-table',
   templateUrl: './view-score-table.component.html',
   styleUrl: './view-score-table.component.scss',
 })
-export class ViewScoreTableComponent implements OnInit, OnDestroy,AfterViewInit{
+export class ViewScoreTableComponent implements OnInit, OnDestroy{
   @ViewChild("cumulativeTable") cumulativeTableSort!: MatSort;
   @ViewChild("individualTable") individualTableSort!: MatSort;
   userDetailSub$!: Subscription;
@@ -37,10 +36,6 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy,AfterViewInit{
     private leagueService: LeagueService,
     public location: Location
   ) {}
-  ngAfterViewInit(): void {
-    
-  }
-
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.selectedClubID = params['clubId'];
