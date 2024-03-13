@@ -456,7 +456,7 @@ textarea {
 
   .cell-1 {
     color: rgba($black-color, 0.8);
-    height: 5.6rem;
+    height: 6.6rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -1774,4 +1774,8 @@ app-upload-player-file{
       }
     }
   }
+}
+
+.cell.bg-cell{
+  height: 5.6rem !important;
 }
