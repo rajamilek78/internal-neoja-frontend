@@ -2,10 +2,9 @@
   <div class="container">
     <div class="view-score-title">
       <div>
-        <a (click)="onBack()" class="go-back-link">
-          GO BACK
-        </a>
-        <h6>Score <b *ngIf="leagueName">- (League: {{leagueName}})</b>
+        <a (click)="onBack()" class="go-back-link"> GO BACK </a>
+        <h6>
+          Score <b *ngIf="leagueName">- (League: {{ leagueName }})</b>
         </h6>
         <small
           >See all the scores in here of overall rounds, clubs & company</small
@@ -19,7 +18,13 @@
           [label]="'Round ' + round.key"
         >
           <div class="overflow">
-            <table class="table-2" matSort (matSortChange)="sortData($event,round.value.cumulative)" matSortActive="rating" matSortDirection="asc">
+            <table
+              class="table-2"
+              #cumulativeTable = "matSort"
+              matSort
+              matSortActive="rating"
+              matSortDirection="desc"
+            >
               <thead>
                 <tr>
                   <th>Rank</th>
@@ -31,19 +36,22 @@
                   <th>Games Played</th>
                   <th>Games Possible</th>
                   <th mat-sort-header="games_played_percent">Games Played %</th>
-                  <th class="green-font" mat-sort-header="games_won">Games Won</th>
-                  <th class="red-font" mat-sort-header="games_lost">Games Lost</th>
+                  <th class="green-font" mat-sort-header="games_won">
+                    Games Won
+                  </th>
+                  <th class="red-font" mat-sort-header="games_lost">
+                    Games Lost
+                  </th>
                   <th mat-sort-header="games_won_percent">Games Won %</th>
-                  <th>Game History <br/>
+                  <th>
+                    Game History <br />
                     <small>(Latest game first)</small>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  *ngFor="
-                    let player of round.value.cumulative;
-                    let i = index"
+                  *ngFor="let player of getSortedCumulative(round.value.cumulative); let i = index"
                 >
                   <td>{{ i + 1 }}</td>
                   <td>{{ player.player }}</td>
@@ -61,9 +69,7 @@
                     <div class="flex justify-center">
                       <div
                         *ngFor="
-                          let winLose of player.win_lose_history.split(
-                            ','
-                          )
+                          let winLose of player.win_lose_history.split(',')
                         "
                       >
                         <div
@@ -93,7 +99,13 @@
             <h6>This Round</h6>
           </div>
           <div class="overflow">
-            <table class="table-2" matSort (matSortChange)="sortData($event,round.value.individual)" matSortActive="rating" matSortDirection="asc">
+            <table
+              class="table-2"
+              #individualTable = "matSort"
+              matSort
+              matSortActive="rating"
+              matSortDirection="desc"
+            >
               <thead>
                 <tr>
                   <th>Rank</th>
@@ -105,20 +117,22 @@
                   <th>Games Played</th>
                   <th>Games Possible</th>
                   <th mat-sort-header="games_played_percent">Games Played %</th>
-                  <th class="green-font" mat-sort-header="games_won">Games Won</th>
-                  <th class="red-font" mat-sort-header="games_lost">Games Lost</th>
+                  <th class="green-font" mat-sort-header="games_won">
+                    Games Won
+                  </th>
+                  <th class="red-font" mat-sort-header="games_lost">
+                    Games Lost
+                  </th>
                   <th mat-sort-header="games_won_percent">Games Won %</th>
-                  <th>Game History <br/>
+                  <th>
+                    Game History <br />
                     <small>(Latest game first)</small>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  *ngFor="
-                    let player of round.value.individual;
-                    let i = index
-                  "
+                  *ngFor="let player of getSortedIndividual(round.value.individual); let i = index"
                 >
                   <td>{{ i + 1 }}</td>
                   <td>{{ player.player }}</td>
@@ -136,9 +150,7 @@
                     <div class="flex justify-center">
                       <div
                         *ngFor="
-                          let winLose of player.win_lose_history.split(
-                            ','
-                          )
+                          let winLose of player.win_lose_history.split(',')
                         "
                       >
                         <div
