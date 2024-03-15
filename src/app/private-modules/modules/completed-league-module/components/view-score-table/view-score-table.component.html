@@ -12,19 +12,26 @@
       </div>
     </div>
     <div class="view-score-table">
-      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab-group
+        mat-stretch-tabs="false"
+        mat-align-tabs="start"
+        (selectedTabChange)="onSelectTabChange($event)"
+      >
         <mat-tab
-          *ngFor="let round of leagueScores | keyvalue : sortRounds"
-          [label]="'Round ' + round.key"
+          *ngFor="let round of leagueRoundWiseArray; let j = index"
+          [label]="'Round ' + round.round"
         >
           <div class="overflow">
             <table
-            matSortDisableClear
+              matSortDisableClear
               class="table-2"
-              #cumulativeTable = "matSort"
+              #cumulativeTableSort="matSort"
               matSort
               matSortActive="rating"
               matSortDirection="desc"
+              (matSortChange)="
+                onMatCumulativeSortChange(cumulativeTableSort, j)
+              "
             >
               <thead>
                 <tr>
@@ -51,9 +58,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  *ngFor="let player of getSortedCumulative(round.value.cumulative); let i = index"
-                >
+                <tr *ngFor="let player of sortedCumulative[j]; let i = index">
                   <td>{{ i + 1 }}</td>
                   <td>{{ player.player }}</td>
                   <td>{{ player.weighted_rating }}</td>
@@ -103,10 +108,11 @@
             <table
             matSortDisableClear
               class="table-2"
-              #individualTable = "matSort"
+              #individualTableSort="matSort"
               matSort
-              matSortActive="rating"
-              matSortDirection="desc"
+              (matSortChange)="
+                onMatIndividualSortChange(individualTableSort, j)
+              "
             >
               <thead>
                 <tr>
@@ -133,10 +139,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  *ngFor="let player of getSortedIndividual(round.value.individual); let i = index"
-                >
-                  <td>{{ i + 1 }}</td>
+                <tr *ngFor="let player of sortedIndividual[j]; let k = index">
+                  <td>{{ k + 1 }}</td>
                   <td>{{ player.player }}</td>
                   <td>{{ player.weighted_rating }}</td>
                   <td>{{ player.points_scored }}</td>
