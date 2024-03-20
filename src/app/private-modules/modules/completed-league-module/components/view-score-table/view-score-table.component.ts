@@ -87,7 +87,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
 
   handleLeagueScore = (res) => {
     this.leagueRoundWiseScores = res;
-    debugger;
+    // debugger;
     this.leagueRoundWiseArray = Object.keys(this.leagueRoundWiseScores).map(e => {
       return { round: e, scores: this.leagueRoundWiseScores[e] }
     });
