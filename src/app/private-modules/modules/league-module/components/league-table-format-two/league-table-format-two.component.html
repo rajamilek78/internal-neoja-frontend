@@ -105,11 +105,7 @@
           <div class="flex justify-center flex-column">
             <div class="cell bg-cell">Total</div>
             <div class="flex justify-center flex-column">
-              <div class="cell flex justify-center"></div>
-              <div class="cell flex justify-center"></div>
-              <div class="cell flex justify-center"></div>
-              <div class="cell flex justify-center"></div>
-              <div class="cell flex justify-center"></div>
+              <div *ngFor="let i of [1,2,3,4]" class="cell flex justify-center"></div>
             </div>
           </div>
         </div>
@@ -134,10 +130,10 @@
               ><img src="assets/images/receive-active-icon.svg" alt="" /></span
             ><small class="green-font">Returns</small>
           </div>
-          <div>
+          <!-- <div>
             <span><img src="assets/images/bye-default-icon.svg" alt="" /></span
             ><small class="red-font">Bye</small>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
