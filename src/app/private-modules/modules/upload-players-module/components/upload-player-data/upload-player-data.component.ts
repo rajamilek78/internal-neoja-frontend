@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
@@ -7,7 +7,12 @@ import { RouteConstant } from '@app/helpers/constants';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { DeleteDetailDialogueComponent } from '../delete-detail-dialogue/delete-detail-dialogue.component';
-import { SnackBarService,SharedCommonService,CommonService,SharedService } from '@app/core';
+import {
+  SnackBarService,
+  SharedCommonService,
+  CommonService,
+  SharedService,
+} from '@app/core';
 @Component({
   selector: 'app-upload-player-data',
   templateUrl: './upload-player-data.component.html',
@@ -66,7 +71,6 @@ export class UploadPlayerDataComponent implements OnInit {
         }
       );
   }
-
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges called', changes);
     if (changes['playerCount']) {
@@ -85,12 +89,21 @@ export class UploadPlayerDataComponent implements OnInit {
   createPlayer(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
-      score: ['', Validators.required]
+      score: ['', Validators.required],
     });
   }
 
   addPlayer(): void {
     this.players.push(this.createPlayer());
+    setTimeout(() => {
+      const playerInputs = document.querySelectorAll(
+        'input[formControlName="name"]'
+      );
+      const lastPlayerInput = playerInputs[
+        playerInputs.length - 1
+      ] as HTMLInputElement;
+      lastPlayerInput.focus();
+    });
   }
 
   addPlayers(count: number): void {
@@ -160,52 +173,50 @@ export class UploadPlayerDataComponent implements OnInit {
   leagueSummary() {
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
     this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
-        next: (res: any) => {
-            this.roundOnePlayersCount = res.round1_player_count;
-            this.dropInPlayersCount = res.drop_in_player_count;
-            this.leagueSummaryData = res;
-            let sortedPlayers = Object.entries(this.leagueSummaryData.players);
-            // sortedPlayers.sort((a, b) => {
-            //     return (b[1] as any)['weighted_rating'] - (a[1] as any)['weighted_rating'];
-            // });
-            const playersArray = this.playerForm.get('players') as FormArray;
-            playersArray.clear();
-            for (let i = 0; i < sortedPlayers.length; i++) {
-                let playerName = sortedPlayers[i][0];
-                let playerData = sortedPlayers[i][1] as any;
-                const winLoseHistory = playerData.win_lose_history
-                    ? playerData.win_lose_history.split(',').reverse()
-                    : [];
-                const round = playerData.in_round1;
-                const playerGroup = this.fb.group({
-                    name: [
-                        { value: playerName, disabled: true },
-                        Validators.required,
-                    ],
-                    score: [
-                        { value: playerData.weighted_rating, disabled: true },
-                        Validators.required,
-                    ],
-                    winLoseHistory: [{ value: winLoseHistory, disabled: true }],
-                    round: [{ value: round, disabled: true }],
-                });
+      next: (res: any) => {
+        this.roundOnePlayersCount = res.round1_player_count;
+        this.dropInPlayersCount = res.drop_in_player_count;
+        this.leagueSummaryData = res;
+        let sortedPlayers = Object.entries(this.leagueSummaryData.players);
+        sortedPlayers.sort((a, b) => {
+          return (
+            (b[1] as any)['weighted_rating'] - (a[1] as any)['weighted_rating']
+          );
+        });
+        const playersArray = this.playerForm.get('players') as FormArray;
+        playersArray.clear();
+        for (let i = 0; i < sortedPlayers.length; i++) {
+          let playerName = sortedPlayers[i][0];
+          let playerData = sortedPlayers[i][1] as any;
+          const winLoseHistory = playerData.win_lose_history
+            ? playerData.win_lose_history.split(',').reverse()
+            : [];
+          const round = playerData.in_round1;
+          const playerGroup = this.fb.group({
+            name: [{ value: playerName, disabled: true }, Validators.required],
+            score: [
+              { value: playerData.weighted_rating, disabled: true },
+              Validators.required,
+            ],
+            winLoseHistory: [{ value: winLoseHistory, disabled: true }],
+            round: [{ value: round, disabled: true }],
+          });
 
-                playersArray.push(playerGroup);
-            }
-            // this.updateToggleState();
-        },
-        error: (err: any) => {
-          this.roundOnePlayersCount = 0;
-            this.dropInPlayersCount = 0;
-            const playersArray = this.playerForm.get('players') as FormArray;
-            playersArray.clear();
-            this.addPlayer()
-            const message = err.error.message;
-            this.snackbarService.setSnackBarMessage(message);
-        },
+          playersArray.push(playerGroup);
+        }
+        // this.updateToggleState();
+      },
+      error: (err: any) => {
+        this.roundOnePlayersCount = 0;
+        this.dropInPlayersCount = 0;
+        const playersArray = this.playerForm.get('players') as FormArray;
+        playersArray.clear();
+        this.addPlayer();
+        const message = err.error.message;
+        this.snackbarService.setSnackBarMessage(message);
+      },
     });
-}
-
+  }
 
   onPlayerCountChange(count: number): void {
     if (this.players) {
@@ -297,7 +308,6 @@ export class UploadPlayerDataComponent implements OnInit {
         index: index,
       },
     });
-    dialogueRef.afterClosed().subscribe((result) => {
-    });
+    dialogueRef.afterClosed().subscribe((result) => {});
   }
 }

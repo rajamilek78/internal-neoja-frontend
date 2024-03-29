@@ -11,13 +11,13 @@
     <div>
       <div class="mb-1">
         <b
-          >Are you sure <span>{{playerName}}</span> is NOT available for round
+          >Are you sure <span>{{playerName || 'Player'}}</span> is NOT available for round
           <span>{{roundCount}}</span> ?</b
         >
       </div>
       <div>
         <small
-          >Upon confirmation, {{playerName}} will be excluded from round
+          >Upon confirmation, {{playerName || 'Player'}} will be excluded from round
           <span>{{roundCount}}</span> game fixtures.</small
         >
       </div>

@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CompletedLeagueService } from '../../services/completed-league.service';
+import { MatTabChangeEvent } from "@angular/material/tabs";
 import { SharedUserService } from '@app/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
@@ -7,22 +8,29 @@ import { ActivatedRoute } from '@angular/router';
 import { RoundScore } from '@app/helpers/models/score.model';
 import { KeyValue, Location } from '@angular/common';
 import { SnackBarService } from '@app/core/services/snackbar.service';
-import { Sort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { LeagueService } from '@app/private-modules/modules/create-league-module/services/league.service';
-import { generateRandomPlayer } from '@app/helpers/functions';
 
 @Component({
   selector: 'app-view-score-table',
   templateUrl: './view-score-table.component.html',
   styleUrl: './view-score-table.component.scss',
 })
-export class ViewScoreTableComponent implements OnInit, OnDestroy{
+export class ViewScoreTableComponent implements OnInit, OnDestroy {
+  @ViewChild("cumulativeTableSort") cumulativeTableSort!: MatSort;
+  @ViewChild("individualTableSort") individualTableSort!: MatSort;
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   selectedClubID!: string;
   leagueID!: string;
-  leagueScores: any = {};
+  leagueRoundWiseScores: any = {};
+  leagueRoundWiseArray: any[] = [];
   leagueName!: string;
+  sortedScore: any;
+  individualScores: any[] = [];
+  cumulativeScores: any[] = [];
+  sortedCumulative: any[] = [];
+  sortedIndividual: any[] = [];
 
   constructor(
     private completedLeagueService: CompletedLeagueService,
@@ -32,15 +40,17 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
     private leagueService: LeagueService,
     public location: Location
   ) {}
-
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.selectedClubID = params['clubId'];
       this.leagueID = params['leagueID'];
     });
-    this.getLeagueScore();
-    this.getLeagueName();
-    }
+    this.bindLeagueScore();
+    this.bindLeagueName();
+    // this.handleLeagueScore(leagueRoundWiseScores)
+    // this.sortedCumulative[0] = this.cumulativeScores[0]
+    // this.sortedIndividual[0] = this.individualScores[0]
+  }
 
   onBack = () => {
     this.location.back();
@@ -51,7 +61,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
       this.userDetailSub$.unsubscribe();
     }
   }
-  getLeagueName = () => {
+  bindLeagueName = () => {
     const urlString = `${this.selectedClubID}/${this.leagueID}`;
     this.leagueService.getLeagueById(urlString).subscribe({
       next: (res) => {
@@ -75,11 +85,25 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
       });
   };
 
-  getLeagueScore() {
+  handleLeagueScore = (res) => {
+    this.leagueRoundWiseScores = res;
+    // debugger;
+    this.leagueRoundWiseArray = Object.keys(this.leagueRoundWiseScores).map(e => {
+      return { round: e, scores: this.leagueRoundWiseScores[e] }
+    });
+    this.cumulativeScores.push(this.leagueRoundWiseArray[0]?.scores.cumulative || [])
+    this.individualScores.push(this.leagueRoundWiseArray[0]?.scores.cumulative || [])
+    setTimeout(() => {
+      this.onMatCumulativeSortChange(this.cumulativeTableSort, 0)
+      this.onMatIndividualSortChange(this.individualTableSort, 0)
+    }, 100)
+  }
+
+  bindLeagueScore() {
     const urlString = `${this.selectedClubID}/${this.leagueID}`;
     this.completedLeagueService.getLeagueScores(urlString).subscribe({
       next: (res: any) => {
-        this.leagueScores = res;
+        this.handleLeagueScore(res);
       },
       error: (err: any) => {
         const message = err.error.message;
@@ -87,18 +111,29 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
       },
     });
   }
-  sortRounds = (
-    a: KeyValue<string, RoundScore>,
-    b: KeyValue<string, RoundScore>
-  ): number => {
-    return parseInt(a.key) - parseInt(b.key);
-  };
 
-  sortData(sort: Sort, players :any[]) {
+  onSelectTabChange = (event: MatTabChangeEvent) => {
+    this.cumulativeScores[event.index] = this.leagueRoundWiseArray[event.index]?.scores?.cumulative || [];
+    this.individualScores[event.index] = this.leagueRoundWiseArray[event.index]?.scores?.individual || [];
+    this.cumulativeTableSort.active = 'rating';
+    this.cumulativeTableSort.direction = 'desc';
+    this.onMatCumulativeSortChange(this.cumulativeTableSort, event.index)
+    this.onMatIndividualSortChange(this.individualTableSort, event.index)
+  }
+
+  onMatCumulativeSortChange(event: MatSort, idx: number): void {
+    this.sortedCumulative[idx] = this.sortData(event, this.cumulativeScores[idx]);
+  }
+
+  onMatIndividualSortChange(event: MatSort, idx: number): void {
+    this.sortedIndividual[idx] = this.sortData(event, this.individualScores[idx]);
+  }
+
+  sortData(sort: Sort, players: any) {
     if (!sort.active || sort.direction === '') {
-      return;
+      return players;
     }
-    players = players.sort((a, b) => {
+    return players.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'player':
@@ -122,6 +157,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
       }
     });
   }
+
   compare(a: number | string, b: number | string, isAsc: boolean) {
     if (typeof a === 'string' && typeof b === 'string') {
       a = a.toLowerCase();
@@ -129,5 +165,12 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy{
     }
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
+
+  sortRounds = (
+    a: KeyValue<string, RoundScore>,
+    b: KeyValue<string, RoundScore>
+  ): number => {
+    return parseInt(a.key) - parseInt(b.key);
+  };
 
 }
