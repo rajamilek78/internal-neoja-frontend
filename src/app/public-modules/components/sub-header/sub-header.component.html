@@ -1,0 +1,16 @@
+<div class="sub-header" *ngIf="isLoggedIn">
+    <div class="dropdown-league">
+        <div><label>League</label></div>
+        <mat-form-field>
+          <mat-select
+            (selectionChange)="onLeagueSelect($event.value)"
+            [(value)]="selectedLeague"
+            placeholder="Select"
+          >
+            <mat-option *ngFor="let league of leagues" [value]="league">{{ league.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+</div>
+
+  

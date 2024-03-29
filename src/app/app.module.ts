@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,8 @@ import { CoreModule } from './core';
 import { DateFormatDirective } from './helpers/directives/date-format.directive';
 import { SignupDialogueComponent } from './public-modules/components/signup-dialogue/signup-dialogue.component';
 import { CustomSidenavComponent } from './public-modules/components/custom-sidenav/custom-sidenav.component';
+import { SubHeaderComponent } from './public-modules/components/sub-header/sub-header.component';
+import { LeagueService } from './core/services/league.service';
 
 @NgModule({
   declarations: [
@@ -28,16 +30,18 @@ import { CustomSidenavComponent } from './public-modules/components/custom-siden
     DateFormatDirective,
     SignupDialogueComponent,
     CustomSidenavComponent,
+    SubHeaderComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
     CoreModule,
     UtilityModule,
   ],
-  providers: [API_ENDPOINTS],
+  providers: [API_ENDPOINTS,  LeagueService,],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

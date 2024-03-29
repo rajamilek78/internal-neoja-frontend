@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { CommonService, SharedService } from '@app/core';
+import { LeagueService } from '@app/core/services/league.service';
 import { SnackBarService } from '@app/core/services/snackbar.service';
 import { UserModel } from '@app/helpers/models';
 import { SharedCommonService } from '@app/helpers/services';
+import { SubHeaderComponent } from '@app/public-modules/components/sub-header/sub-header.component';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-upload-player-container',
   templateUrl: './upload-player-container.component.html',
@@ -29,13 +30,18 @@ export class UploadPlayerContainerComponent implements OnInit {
     private commonService: CommonService,
     private sharedService: SharedService,
     private snackbarService: SnackBarService,
-    private SharedCommonService: SharedCommonService
+    private SharedCommonService: SharedCommonService,
+    private leagueService: LeagueService
   ) {}
 
   ngOnInit(): void {
     this.selectedDate = new Date();
     this.userSubscriber();
-    this.getAllLeagues();
+    //this.getAllLeagues();
+    this.leagueService.selectedLeague$.subscribe((league: any) => {
+      // Handle selected league changes here
+      this.onLeagueSelect(league);
+    });
   }
   
   ngOnDestroy() {
@@ -55,18 +61,18 @@ export class UploadPlayerContainerComponent implements OnInit {
       });
   };
 
-  getAllLeagues() {
-    const urlString = `${this.clubID}`;
-    this.commonService.getAllLeagues(urlString).subscribe({
-      next: (res: any) => {
-        this.leagues = Object.keys(res).map((id) => ({ id, ...res[id] }));
-      },
-      error: (err: any) => {
-        const message = err.error.message;
-        this.snackbarService.setSnackBarMessage(message);
-      },
-    });
-  }
+  // getAllLeagues() {
+  //   const urlString = `${this.clubID}`;
+  //   this.commonService.getAllLeagues(urlString).subscribe({
+  //     next: (res: any) => {
+  //       this.leagues = Object.keys(res).map((id) => ({ id, ...res[id] }));
+  //     },
+  //     error: (err: any) => {
+  //       const message = err.error.message;
+  //       this.snackbarService.setSnackBarMessage(message);
+  //     },
+  //   });
+  // }
 
   onLeagueSelect(league: any) {
     this.selectedLeague = league;

@@ -15,6 +15,7 @@ export class SharedService extends SharedUserService {
   private isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private isLoginRequired: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   userDetailSub$!: Subscription;
+  private sessionTimeout: any; 
 
   constructor(private router: Router) {
     super();
@@ -37,6 +38,18 @@ export class SharedService extends SharedUserService {
   getToken(): string {
     this._token = localStorage.getItem(APPStorage.TOKEN) || '';
     return this._token;
+  }
+
+
+  startSessionTimer(): void {
+    this.stopSessionTimer();
+    this.sessionTimeout = setTimeout(() => {
+      this.logout();
+    }, 24 * 60 * 60 * 1000);
+  }
+
+  stopSessionTimer(): void {
+    clearTimeout(this.sessionTimeout);
   }
 
   /* Shared User Token Param */

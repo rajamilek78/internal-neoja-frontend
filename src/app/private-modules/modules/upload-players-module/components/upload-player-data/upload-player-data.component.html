@@ -10,6 +10,7 @@
               'round-two': roundsLength >= 1
             }"
           >
+          <div class="sort-icon" (click)="sortPlayers('name')">Sort</div>
             <div class="row-title">
               <small>Players <span *ngIf="roundOnePlayersCount!==0 || dropInPlayersCount!==0">( Round 1 Players : <b>{{roundOnePlayersCount}}</b>, Drop In Players : <b>{{dropInPlayersCount}}</b>)</span></small>
             </div>
@@ -19,6 +20,7 @@
                 'row-title-two': roundsLength >= 1
               }"
             >
+            <div class="sort-icon" (click)="sortPlayers('score')">Sort</div>
               <small>Rating%</small>
             </div>
             <div class="row-title-two" *ngIf="roundsLength >= 1">

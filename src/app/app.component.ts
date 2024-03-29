@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, computed, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SharedService } from './core';
 import { SnackBarService } from './core/services/snackbar.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   showSidebar = false;
 
 
-  constructor(private sharedService: SharedService, private snackBarService : SnackBarService) {
+  constructor(private sharedService: SharedService, private snackBarService : SnackBarService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -39,4 +40,9 @@ export class AppComponent implements OnInit, OnDestroy {
   onOpenCloseSidebar = (val: boolean) => {
     this.showSidebar = val;
   };
+
+  isSubHeaderVisible(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute.includes('/build-round') || currentRoute.includes('/manage-rounds');
+  }
 }

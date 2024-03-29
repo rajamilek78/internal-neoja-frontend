@@ -29,6 +29,8 @@ export class UploadPlayerDataComponent implements OnInit {
   roundOnePlayersCount!: number;
   dropInPlayersCount!: number;
   leagueIDSubscription!: Subscription;
+  sortedBy: string = ''; // Track the currently sorted field
+  isAscending: boolean = true; // Track the sorting order
 
   leagueSummaryData: any;
 
@@ -97,6 +99,50 @@ export class UploadPlayerDataComponent implements OnInit {
     }
   }
 
+  sortPlayers(field: 'name' | 'score'): void {
+    const playersArray = this.playerForm.get('players') as FormArray;
+    let sortedPlayers = playersArray.controls.slice();
+
+    // Toggle sorting order or reset sorting
+    if (this.sortedBy === field) {
+      this.isAscending = !this.isAscending;
+    } else {
+      this.sortedBy = field;
+      this.isAscending = true;
+    }
+
+    // Perform sorting based on the selected field and order
+    sortedPlayers.sort((a, b) => {
+      const valueA = a.value[field];
+      const valueB = b.value[field];
+      if (field === 'name') {
+        if (this.isAscending) {
+          return valueA.localeCompare(valueB); // Compare strings for name field
+        } else {
+          return valueB.localeCompare(valueA); // Compare strings for name field in reverse order
+        }
+      } else if (field === 'score') {
+        if (this.isAscending) {
+          return valueA - valueB; // Compare numbers directly for score field in ascending order
+        } else {
+          return valueB - valueA; // Compare numbers directly for score field in descending order
+        }
+      }
+      return 0; // Default return
+    });
+
+    // Update the form array with sorted players
+    playersArray.clear();
+    sortedPlayers.forEach((player) => {
+      playersArray.push(player);
+    });
+    //  // Check if the same field is clicked thrice to reset sorting
+    //  if (this.sortedBy === field && !this.isAscending) {
+    //   this.sortedBy = ''; // Reset sortedBy field
+    //   this.isAscending = true; // Reset sorting order to ascending
+    // }
+  }
+
   get players(): FormArray {
     return this.playerForm.get('players') as FormArray;
   }
@@ -119,9 +165,9 @@ export class UploadPlayerDataComponent implements OnInit {
             this.dropInPlayersCount = res.drop_in_player_count;
             this.leagueSummaryData = res;
             let sortedPlayers = Object.entries(this.leagueSummaryData.players);
-            sortedPlayers.sort((a, b) => {
-                return (b[1] as any)['weighted_rating'] - (a[1] as any)['weighted_rating'];
-            });
+            // sortedPlayers.sort((a, b) => {
+            //     return (b[1] as any)['weighted_rating'] - (a[1] as any)['weighted_rating'];
+            // });
             const playersArray = this.playerForm.get('players') as FormArray;
             playersArray.clear();
             for (let i = 0; i < sortedPlayers.length; i++) {

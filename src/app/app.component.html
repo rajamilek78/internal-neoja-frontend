@@ -5,6 +5,10 @@
   [showSidebar]="showSidebar"
   (openCloseSidebar)="onOpenCloseSidebar($event)"
 ></app-header>
+
+<app-sub-header *ngIf="isSubHeaderVisible()"
+></app-sub-header>
+
 <div class="panel-body">
   <router-outlet />
 </div>
