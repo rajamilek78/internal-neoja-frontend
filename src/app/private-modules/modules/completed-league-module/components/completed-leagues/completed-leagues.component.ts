@@ -74,6 +74,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   }
   // To Update Score
   edit(roundID?) {
+    const labelName = this.rounds.find((round) => round.roundNumber === roundID)?.roundDetails.header?.score_locked ? 'ViewScore' : 'EditScore';
     this.router.navigate([
       RouteConstant.LEAGUE_CONTAINER,
       {
@@ -82,6 +83,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
         roundID: roundID,
         leagueID: this.selectedLeagueId,
         leagueName: this.selectedLeagueName,
+        labelName: labelName,
       },
     ]);
   }

@@ -46,6 +46,7 @@ export class LeagueContainerComponent
   isInvisilePdf = false;
   roundCount!: number;
   isTouched: boolean = false;
+  labelName: string = '';
 
   constructor(
     private SharedCommonService: SharedCommonService,
@@ -65,6 +66,7 @@ export class LeagueContainerComponent
       this.leagueID = params['leagueID'];
       this.leagueName = params['leagueName'];
       this.selectedClubID = params['clubId'];
+      this.labelName = params['labelName'];
     });
     if (this.isEdit) {
       this.getRoundById();
@@ -204,21 +206,26 @@ export class LeagueContainerComponent
   }
 
   onClickDownload() {
-    const data = document.getElementById('playerData'); // Replace with the id of your table
-    if (data) {
-      html2canvas(data, { scale: 2 }).then((canvas) => {
-        // Few necessary setting options
-        const imgWidth = 208;
-        const pageHeight = 295;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        const heightLeft = imgHeight;
-        const contentDataURL = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-        const position = 0;
-        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-        const filename = `Round ${this.roundCount}_${this.selectedGroup}.pdf`;
-        pdf.save(filename); // Generated PDF
-      });
+    // const data = document.getElementById('playerData'); // Replace with the id of your table
+    // if (data) {
+    //   html2canvas(data, { scale: 2 }).then((canvas) => {
+    //     // Few necessary setting options
+    //     const imgWidth = 208;
+    //     const pageHeight = 295;
+    //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    //     const heightLeft = imgHeight;
+    //     const contentDataURL = canvas.toDataURL('image/png');
+    //     const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+    //     const position = 0;
+    //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+    //     const filename = `Round ${this.roundCount}_${this.selectedGroup}.pdf`;
+    //     pdf.save(filename); // Generated PDF
+    //   });
+    // }
+    if (this.rawData && this.rawData.round_pdf_public_url && this.rawData.round_pdf_public_url.format1) {
+      window.open(this.rawData.round_pdf_public_url.format1, '_blank');
+    } else {
+      console.log('Round PDF URL not found or format1 is empty.');
     }
   }
 }
