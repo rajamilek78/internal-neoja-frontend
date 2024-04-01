@@ -24,7 +24,7 @@
           (click)="viewScore()"
         >
           <span><img src="assets/images/view-score-icon.svg" alt="" /></span
-          >View Score
+          >View Scoreboard
         </button>
       </div>
     </div>
@@ -66,13 +66,12 @@
           </div>
           <div class="primary-btn">
             <button
-              [disabled]="round.roundDetails.header?.score_locked"
               type="button"
               class="btn flex justify-center"
               (click)="edit(round.roundNumber)"
             >
               <span><img src="assets/images/white-edit-icon.svg" alt="" /></span
-              >Edit Score
+              > {{ round.roundDetails.header?.score_locked ? 'View Score' : 'Edit Score' }}
             </button>
           </div>
         </div>
