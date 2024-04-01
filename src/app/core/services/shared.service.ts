@@ -58,6 +58,7 @@ export class SharedService extends SharedUserService {
   // }
   isLoggedIn(): boolean {
     return !!this.getUser();
+   
 }
 
   setLoader(val: boolean): void {

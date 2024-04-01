@@ -13,6 +13,8 @@ import {
   CommonService,
   SharedService,
 } from '@app/core';
+import { MatRadioChange } from '@angular/material/radio';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 @Component({
   selector: 'app-upload-player-data',
   templateUrl: './upload-player-data.component.html',
@@ -57,8 +59,9 @@ export class UploadPlayerDataComponent implements OnInit {
   ngOnInit() {
     // this.addPlayers(this.playerCount);
     this.userSubscriber();
+    const defaultSelectedValue = '1';
     if (this.roundsLength >= 1) {
-      this.leagueSummary();
+      this.leagueSummary(defaultSelectedValue);
     } else {
       this.addPlayer();
     }
@@ -66,7 +69,7 @@ export class UploadPlayerDataComponent implements OnInit {
       this.SharedCommonService.leagueChanged.subscribe(
         (newLeagueID: string) => {
           if (this.roundsLength >= 1) {
-            this.leagueSummary();
+            this.leagueSummary(defaultSelectedValue);
           }
         }
       );
@@ -112,6 +115,24 @@ export class UploadPlayerDataComponent implements OnInit {
     }
   }
 
+  // onRadioButtonChange(event: MatRadioChange) {
+  //   const selectedValue = event.value;
+  //   console.log('Selected radio button value:', selectedValue);
+  //   if(selectedValue == "1"){
+  //     console.log(this.leagueSummaryData.players);
+  //   }
+  //   else if (selectedValue == "2") {
+  //     const roundOnePlayers = Object.entries(this.leagueSummaryData.players)
+  //           .filter(([_, playerData]: [string, any]) => playerData.in_round1 === true)
+  //           .map(([playerName, playerData]: [string, any]) => ({ playerName, playerData }));
+  //       console.log(roundOnePlayers);
+  //   }
+  // }
+  onRadioButtonChange(event: MatButtonToggleChange) {
+    const selectedValue = event.value;
+    console.log('Selected radio button value:', selectedValue);
+    this.leagueSummary(selectedValue);
+  }
   sortPlayers(field: 'name' | 'score'): void {
     const playersArray = this.playerForm.get('players') as FormArray;
     let sortedPlayers = playersArray.controls.slice();
@@ -170,40 +191,116 @@ export class UploadPlayerDataComponent implements OnInit {
         }
       });
   };
-  leagueSummary() {
+  // leagueSummary() {
+  //   const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
+  //   this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
+  //     next: (res: any) => {
+  //       this.roundOnePlayersCount = res.round1_player_count;
+  //       this.dropInPlayersCount = res.drop_in_player_count;
+  //       this.leagueSummaryData = res;
+  //       let sortedPlayers = Object.entries(this.leagueSummaryData.players);
+  //       // sortedPlayers.sort((a, b) => {
+  //       //   return (
+  //       //     (b[1] as any)['weighted_rating'] - (a[1] as any)['weighted_rating']
+  //       //   );
+  //       // });
+  //       const playersArray = this.playerForm.get('players') as FormArray;
+  //       playersArray.clear();
+  //       for (let i = 0; i < sortedPlayers.length; i++) {
+  //         let playerName = sortedPlayers[i][0];
+  //         let playerData = sortedPlayers[i][1] as any;
+  //         const winLoseHistory = playerData.win_lose_history
+  //           ? playerData.win_lose_history.split(',').reverse()
+  //           : [];
+  //         const round = playerData.in_round1;
+  //         const playerGroup = this.fb.group({
+  //           name: [{ value: playerName, disabled: true }, Validators.required],
+  //           score: [
+  //             { value: playerData.weighted_rating, disabled: true },
+  //             Validators.required,
+  //           ],
+  //           winLoseHistory: [{ value: winLoseHistory, disabled: true }],
+  //           round: [{ value: round, disabled: true }],
+  //         });
+
+  //         playersArray.push(playerGroup);
+  //       }
+  //       // this.updateToggleState();
+  //     },
+  //     error: (err: any) => {
+  //       this.roundOnePlayersCount = 0;
+  //       this.dropInPlayersCount = 0;
+  //       const playersArray = this.playerForm.get('players') as FormArray;
+  //       playersArray.clear();
+  //       this.addPlayer();
+  //       const message = err.error.message;
+  //       this.snackbarService.setSnackBarMessage(message);
+  //     },
+  //   });
+  // }
+  leagueSummary(selectedValue: string) {
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
     this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
       next: (res: any) => {
         this.roundOnePlayersCount = res.round1_player_count;
         this.dropInPlayersCount = res.drop_in_player_count;
         this.leagueSummaryData = res;
-        let sortedPlayers = Object.entries(this.leagueSummaryData.players);
-        sortedPlayers.sort((a, b) => {
-          return (
-            (b[1] as any)['weighted_rating'] - (a[1] as any)['weighted_rating']
-          );
-        });
+        const sortedPlayers = Object.entries(this.leagueSummaryData.players);
         const playersArray = this.playerForm.get('players') as FormArray;
         playersArray.clear();
-        for (let i = 0; i < sortedPlayers.length; i++) {
-          let playerName = sortedPlayers[i][0];
-          let playerData = sortedPlayers[i][1] as any;
-          const winLoseHistory = playerData.win_lose_history
-            ? playerData.win_lose_history.split(',').reverse()
-            : [];
-          const round = playerData.in_round1;
-          const playerGroup = this.fb.group({
-            name: [{ value: playerName, disabled: true }, Validators.required],
-            score: [
-              { value: playerData.weighted_rating, disabled: true },
-              Validators.required,
-            ],
-            winLoseHistory: [{ value: winLoseHistory, disabled: true }],
-            round: [{ value: round, disabled: true }],
+  
+        if (selectedValue == '1') {
+          sortedPlayers.forEach(([playerName, playerData]: [string, any]) => {
+            const winLoseHistory = playerData.win_lose_history
+              ? playerData.win_lose_history.split(',').reverse()
+              : [];
+            const round = playerData.in_round1;
+            const playerGroup = this.fb.group({
+              name: [{ value: playerName, disabled: true }, Validators.required],
+              score: [{ value: playerData.weighted_rating, disabled: true }, Validators.required],
+              winLoseHistory: [{ value: winLoseHistory, disabled: true }],
+              round: [{ value: round, disabled: true }],
+            });
+            playersArray.push(playerGroup);
           });
-
-          playersArray.push(playerGroup);
+        } else if (selectedValue == '2') {
+          const roundOnePlayers = sortedPlayers
+            .filter(([_, playerData]: [string, any]) => playerData.in_round1 === true)
+            .map(([playerName, playerData]: [string, any]) => ({ playerName, playerData }));
+  
+          roundOnePlayers.forEach(({ playerName, playerData }: { playerName: string; playerData: any }) => {
+            const winLoseHistory = playerData.win_lose_history
+              ? playerData.win_lose_history.split(',').reverse()
+              : [];
+            const round = playerData.in_round1;
+            const playerGroup = this.fb.group({
+              name: [{ value: playerName, disabled: true }, Validators.required],
+              score: [{ value: playerData.weighted_rating, disabled: true }, Validators.required],
+              winLoseHistory: [{ value: winLoseHistory, disabled: true }],
+              round: [{ value: round, disabled: true }],
+            });
+            playersArray.push(playerGroup);
+          });
+        }else if (selectedValue == '3') {
+          const previousRoundPlayers = sortedPlayers
+            .filter(([_, playerData]: [string, any]) => playerData.in_last_round === true)
+            .map(([playerName, playerData]: [string, any]) => ({ playerName, playerData }));
+  
+          previousRoundPlayers.forEach(({ playerName, playerData }: { playerName: string; playerData: any }) => {
+            const winLoseHistory = playerData.win_lose_history
+              ? playerData.win_lose_history.split(',').reverse()
+              : [];
+            const round = playerData.in_round1;
+            const playerGroup = this.fb.group({
+              name: [{ value: playerName, disabled: true }, Validators.required],
+              score: [{ value: playerData.weighted_rating, disabled: true }, Validators.required],
+              winLoseHistory: [{ value: winLoseHistory, disabled: true }],
+              round: [{ value: round, disabled: true }],
+            });
+            playersArray.push(playerGroup);
+          });
         }
+  
         // this.updateToggleState();
       },
       error: (err: any) => {
@@ -217,6 +314,8 @@ export class UploadPlayerDataComponent implements OnInit {
       },
     });
   }
+  
+
 
   onPlayerCountChange(count: number): void {
     if (this.players) {

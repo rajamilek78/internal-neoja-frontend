@@ -8,7 +8,7 @@ import { UserAuthService } from '../../services';
 import { SnackBarService } from '@app/core/services/snackbar.service';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
-import { SharedUserService } from '@app/core';
+import { SharedService, SharedUserService } from '@app/core';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +31,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit{
     private snackbarService : SnackBarService,
     private snackbar : MatSnackBar,
     private sharedUserService: SharedUserService,
+    private sharedService: SharedService,
   ) {
     super(fb)
   }
@@ -51,6 +52,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit{
 
   handleLoginResponse = (response) => {
     this.userAuthService.handleAuthResponse(response);
+    this.sharedService.startSessionTimer();
     this.router.navigate([RouteConstant.UPLOAD_PLAYER_CONTAINER]);
   }
   
