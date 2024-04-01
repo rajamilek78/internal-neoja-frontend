@@ -8,7 +8,7 @@
   left: 0rem;
   width: 100%;
   z-index: 13;
-  padding: 2rem 0rem;
+  padding: 1.5rem 0rem;
 
   &__logo {
     width: 18rem;
@@ -95,14 +95,14 @@
   }
 }
 
-.secondary-btn{
-  button{
+.secondary-btn {
+  button {
     @include respond("tab-port") {
       padding: 0.6rem !important;
     }
   }
 }
 
-.welcome-text{
+.welcome-text {
   margin-right: 0 !important;
 }

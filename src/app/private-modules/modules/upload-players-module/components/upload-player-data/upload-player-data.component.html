@@ -10,9 +10,17 @@
               'round-two': roundsLength >= 1
             }"
           >
-          <div class="sort-icon" (click)="sortPlayers('name')">Sort</div>
+            <div class="sort-icon" (click)="sortPlayers('name')">Sort</div>
             <div class="row-title">
-              <small>Players <span *ngIf="roundOnePlayersCount!==0 || dropInPlayersCount!==0">( Round 1 Players : <b>{{roundOnePlayersCount}}</b>, Drop In Players : <b>{{dropInPlayersCount}}</b>)</span></small>
+              <small
+                >Players
+                <span
+                  *ngIf="roundOnePlayersCount !== 0 || dropInPlayersCount !== 0"
+                  >( Round 1 Players : <b>{{ roundOnePlayersCount }}</b
+                  >, Drop In Players : <b>{{ dropInPlayersCount }}</b
+                  >)</span
+                ></small
+              >
             </div>
             <div
               [ngClass]="{
@@ -20,7 +28,7 @@
                 'row-title-two': roundsLength >= 1
               }"
             >
-            <div class="sort-icon" (click)="sortPlayers('score')">Sort</div>
+              <div class="sort-icon" (click)="sortPlayers('score')">Sort</div>
               <small>Rating%</small>
             </div>
             <div class="row-title-two" *ngIf="roundsLength >= 1">
@@ -53,7 +61,7 @@
                   type="text"
                   formControlName="name"
                   placeholder="Enter name"
-                  required 
+                  required
                 />
                 <div class="round-one-icon" *ngIf="player.value.round">
                   <img
@@ -171,25 +179,14 @@
             </div>
           </div>
         </div>
-        <button type="button" class="btn" (click)="addPlayer();">
+        <button type="button" class="btn" (click)="addPlayer()">
           <img src="assets/images/add-blue-icon.svg" alt="" />
           ADD NEW PLAYER
         </button>
       </div>
-      <div>
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" (change)="onRadioButtonChange($event)">
-          <mat-button-toggle [value]="1">current</mat-button-toggle>
-          <mat-button-toggle [value]="2">round 1</mat-button-toggle>
-          <mat-button-toggle [value]="3">previousround</mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
       <div class="upload__button flex justify-end">
         <div class="primary-btn">
-          <button
-            type="submit"
-            class="btn">
-            Build
-          </button>
+          <button type="submit" class="btn">Build</button>
         </div>
       </div>
       <div class="flex justify-end alert-msg" *ngIf="roundsLength >= 1">

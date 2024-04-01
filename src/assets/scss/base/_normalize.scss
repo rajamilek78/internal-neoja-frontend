@@ -366,7 +366,7 @@ textarea {
   color: $black-color;
   line-height: 1.9rem;
   border-bottom: 1px solid rgba($black-color, 0.1);
-  
+
 
   @include respond("phone") {
     min-width: 105rem;
@@ -623,7 +623,7 @@ textarea {
 .panel {
   position: relative;
   width: 100%;
-  padding-top: 8rem;
+  padding-top: 12.5rem;
 }
 
 // login page scss
@@ -856,7 +856,7 @@ app-upload-player-container {
       overflow-x: scroll !important;
     }
 
-    .tablet-width{
+    .tablet-width {
       @include respond("phone") {
         min-width: 90rem;
       }
@@ -1766,16 +1766,17 @@ app-upload-player-container {
     .sub-footer {}
   }
 }
-app-upload-player-file{
-  .secondary-btn-light{
-    .btn{
-      &:disabled{
-        cursor:not-allowed;
+
+app-upload-player-file {
+  .secondary-btn-light {
+    .btn {
+      &:disabled {
+        cursor: not-allowed;
       }
     }
   }
 }
 
-.cell.bg-cell{
+.cell.bg-cell {
   height: 5.6rem !important;
 }

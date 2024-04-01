@@ -389,6 +389,31 @@ app-conversation-list {
   }
 }
 
+.dropdown-league {
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+  }
+
+  .mat-mdc-form-field-focus-overlay {
+    background-color: transparent !important;
+  }
+
+  .mat-mdc-select {
+    color: rgba($black-color, 0.5);
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+    line-height: 1.6rem !important;
+  }
+
+  .mat-mdc-select-arrow svg {
+    top: 50% !important;
+  }
+
+  .mat-mdc-select-arrow {
+    color: #B9B9B9;
+  }
+}
+
 .mat-mdc-select-arrow svg {
   fill: currentColor;
   position: absolute;
@@ -450,6 +475,20 @@ mat-checkbox .mdc-label {
 .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
   background-color: $primary-color !important;
 }
-app-snack-bar .material-symbols-outlined{
+
+app-snack-bar .material-symbols-outlined {
   display: none;
+}
+
+// scss for toggle-group-btn
+
+.round-toggle-btn {
+  .mat-button-toggle-appearance-standard.mat-button-toggle-checked {
+    color: $primary-color;
+    background-color: rgba($primary-color, 0.1);
+  }
+
+  button-toggle-group-appearance-standard {
+    border-radius: 2.8rem !important;
+  }
 }
