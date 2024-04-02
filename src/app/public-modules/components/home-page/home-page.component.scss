@@ -1,0 +1,18 @@
+@import "../../../../assets/scss/abstracts/abstracts";
+
+.video-container {
+    border: 8px solid rgba($black-color, 0.1);
+    width: 43rem;
+    height: 24rem;
+    border-radius: 20px;
+
+    @include respond("tab-port") {
+        width: 100%;
+    }
+
+
+    @include respond("phone") {
+        width: 100%;
+        margin-top: 5rem;
+    }
+}

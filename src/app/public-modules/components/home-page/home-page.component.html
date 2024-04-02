@@ -8,12 +8,26 @@
             simplicity and efficiency never seen before on the courts.
           </h1>
           <small>Sign up to onboard your club - physical or digital! </small>
-          <div class="primary-btn" [routerLink]="loginUrl">
-            <button type="button" class="btn">Login</button>
+          <div class="flex justify-end MT-4-half">
+            <div class="primary-btn">
+              <button type="button" class="btn" (click)="openDemo()">
+                Schedule a Demo
+              </button>
+            </div>
+            <div class="secondary-btn-light" [routerLink]="loginUrl">
+              <button type="button" class="btn">Login</button>
+            </div>
           </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-          <img src="assets/images/main-image.png" alt="" />
+        <div class="col-md-6 col-sm-6 text-center">
+          <iframe
+            class="video-container"
+            src="https://www.youtube.com/embed/sJh7rgHYjj0?si=xkRh4OrWawdbvNeZ"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
       <div class="row justify-between align-start home-page__play">

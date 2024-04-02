@@ -14,4 +14,8 @@ export class HomePageComponent {
   get homePageUrl() {
     return `${RouteConstant.HOME_PAGE}`;
   }
+
+  openDemo() {
+    window.open('https://calendly.com/eleagueonline/demo', '_blank');
+  }
 }

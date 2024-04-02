@@ -381,6 +381,7 @@ app-conversation-list {
 
     @include respond("phone") {
       width: 100%;
+      margin-bottom: 1.5rem;
     }
 
     @include respond("tab-port") {
@@ -510,4 +511,17 @@ app-snack-bar .material-symbols-outlined {
   .mat-button-toggle-appearance-standard .mat-button-toggle-focus-overlay {
     background-color: $primary-color;
   }
+
+  @include respond("phone") {
+    width: 100%;
+
+    .mat-button-toggle-group {
+      width: 100%;
+
+      .mat-button-toggle {
+        width: 33.33%;
+      }
+    }
+  }
+
 }

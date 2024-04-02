@@ -333,6 +333,11 @@ label {
   font-weight: 600;
   line-height: 1.4rem;
   margin-bottom: 0.4rem;
+
+  @include respond("phone") {
+    margin-bottom: 0.8rem;
+  }
+
 }
 
 input,
@@ -1284,6 +1289,20 @@ app-upload-player-container {
     font-weight: 600;
     line-height: 1.6rem;
   }
+
+  @include respond("phone") {
+    flex-direction: column;
+
+    .primary-btn {
+      width: 100%;
+      margin-right: 0rem !important;
+      margin-top: 2rem;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .view-score-table {
@@ -1423,7 +1442,7 @@ app-upload-player-container {
 
     @include respond("tab-port") {
       margin-left: 0rem;
-      width: 90%;
+      width: 100%;
       padding: 0rem;
     }
 
@@ -1470,10 +1489,6 @@ app-upload-player-container {
     font-weight: 600;
     font-size: 2rem;
     line-height: 3rem;
-  }
-
-  .primary-btn {
-    margin-top: 4rem;
   }
 
   &__play {
