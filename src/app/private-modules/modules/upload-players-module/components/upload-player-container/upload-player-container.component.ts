@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { CommonService, SharedService } from '@app/core';
 import { LeagueService } from '@app/core/services/league.service';
 import { SnackBarService } from '@app/core/services/snackbar.service';
@@ -24,6 +25,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   selectedLeague: any;
   selectedDate!: Date;
   roundCount!: number;
+  selectedValue: any;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -39,7 +41,6 @@ export class UploadPlayerContainerComponent implements OnInit {
     this.userSubscriber();
     //this.getAllLeagues();
     this.leagueService.selectedLeague$.subscribe((league: any) => {
-      // Handle selected league changes here
       this.onLeagueSelect(league);
     });
   }
@@ -60,6 +61,12 @@ export class UploadPlayerContainerComponent implements OnInit {
         }
       });
   };
+  onToggleButtonChange(event: MatButtonToggleChange) {
+    this.selectedValue = event.value;
+    console.log('Selected radio button value:', this.selectedValue);
+    this.SharedCommonService.setSelectedValue(this.selectedValue);
+    //this.leagueSummary(selectedValue);
+  }
 
   // getAllLeagues() {
   //   const urlString = `${this.clubID}`;

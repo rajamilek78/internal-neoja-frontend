@@ -1,7 +1,7 @@
 <div class="sub-header" *ngIf="isLoggedIn">
   <div class="container flex justify-end">
     <div>
-      <b>LFTM - CROSSTOWN</b>
+      <b>{{clubID}}</b>
     </div>
     <div class="border-club"></div>
     <div class="dropdown-league">
@@ -11,9 +11,9 @@
           [(value)]="selectedLeague"
           placeholder="Select"
         >
-          <mat-option *ngFor="let league of leagues" [value]="league">{{
-            league.name
-          }}</mat-option>
+          <mat-option *ngFor="let league of leagues" [value]="league">
+            {{league.name}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
