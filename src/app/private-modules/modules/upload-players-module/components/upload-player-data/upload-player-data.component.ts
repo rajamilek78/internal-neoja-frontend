@@ -67,6 +67,14 @@ export class UploadPlayerDataComponent implements OnInit {
     } else {
       this.addPlayer();
     }
+    this.leagueIDSubscription =
+    this.SharedCommonService.leagueChanged.subscribe(
+      (newLeagueID: string) => {
+        if (this.roundsLength >= 1) {
+          this.leagueSummary(defaultSelectedValue);
+        }
+      }
+    );
     this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
       this.leagueSummary(selectedValue || defaultSelectedValue);
     });

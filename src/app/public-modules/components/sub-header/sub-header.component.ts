@@ -3,7 +3,7 @@ import { CommonService, SharedService, SnackBarService } from '@app/core';
 import { LeagueService } from '@app/core/services/league.service';
 import { UserModel } from '@app/helpers/models';
 import { SharedCommonService } from '@app/helpers/services';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-sub-header',
@@ -19,6 +19,8 @@ export class SubHeaderComponent {
   userDetail!: UserModel | null;
   leagues: any[] = [];
   selectedLeague: any;
+  selectedLeagueName:any
+  private debounceSubject = new Subject<any>();
 
   constructor(
     private commonService: CommonService,
@@ -26,9 +28,12 @@ export class SubHeaderComponent {
     private snackbarService: SnackBarService,
     private SharedCommonService: SharedCommonService,
     private leagueService: LeagueService
-  ) {}
+  ) {
+    this.debounceSubject.pipe(debounceTime(300)).subscribe(this.onLeagueSelect);
+  }
 
   ngOnInit(): void {
+   this.selectedLeague = this.leagueService.getSelectedLeague();
     this.userSubscriber();
     this.getAllLeagues();
   }
@@ -50,11 +55,36 @@ export class SubHeaderComponent {
       });
   };
 
+  // getAllLeagues() {
+  //   const urlString = `${this.clubID}`;
+  //   this.commonService.getAllLeagues(urlString).subscribe({
+  //     next: (res: any) => {
+  //       this.leagues = Object.keys(res).map((id) => ({ id, ...res[id] }));
+  //     },
+  //     error: (err: any) => {
+  //       const message = err.error.message;
+  //       this.snackbarService.setSnackBarMessage(message);
+  //     },
+  //   });
+  // }
   getAllLeagues() {
     const urlString = `${this.clubID}`;
     this.commonService.getAllLeagues(urlString).subscribe({
       next: (res: any) => {
         this.leagues = Object.keys(res).map((id) => ({ id, ...res[id] }));
+        if (this.selectedLeague) {
+          const selectedLeagueIndex = this.leagues.findIndex(league => league.id === this.selectedLeague.id);
+          if (selectedLeagueIndex !== -1) {
+            this.selectedLeague = this.leagues[selectedLeagueIndex];
+            this.selectedLeagueName = this.leagues[selectedLeagueIndex].name;
+          } else {
+            this.selectedLeague = this.leagues[0];
+            this.selectedLeagueName = this.leagues[0].name;
+          }
+        } else {
+          this.selectedLeague = this.leagues[0];
+          this.selectedLeagueName = this.leagues[0].name;
+        }
       },
       error: (err: any) => {
         const message = err.error.message;
@@ -62,9 +92,15 @@ export class SubHeaderComponent {
       },
     });
   }
+  
 
   onLeagueSelect(league: any) {
     this.leagueService.setSelectedLeague(league);
+    console.log(this.selectedLeague)
+  }
+  
+  triggerDebounce(league: any) {
+    this.debounceSubject.next(league);
   }
   
   get isLoggedIn() {

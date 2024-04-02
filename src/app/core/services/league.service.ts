@@ -11,4 +11,7 @@ export class LeagueService {
   setSelectedLeague(league: any) {
     this.selectedLeagueSubject.next(league);
   }
+  getSelectedLeague(): any {
+    return this.selectedLeagueSubject.getValue();
+  }
 }

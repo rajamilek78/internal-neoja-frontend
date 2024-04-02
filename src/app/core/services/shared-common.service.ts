@@ -14,7 +14,7 @@ export class SharedCommonService {
   private leagueID = new BehaviorSubject<any>(null);
   private roundID = new BehaviorSubject<any>(null);
   leagueChanged = new BehaviorSubject<any>(null);
-  private selectedValue = new BehaviorSubject<string>(''); // Initialize with default value
+  private selectedValue = new BehaviorSubject<string>('');
   selectedValue$: Observable<string> = this.selectedValue.asObservable();
 
   constructor() { }

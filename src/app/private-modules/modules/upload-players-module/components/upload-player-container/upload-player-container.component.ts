@@ -64,7 +64,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   onToggleButtonChange(event: MatButtonToggleChange) {
     this.selectedValue = event.value;
     console.log('Selected radio button value:', this.selectedValue);
-    this.SharedCommonService.setSelectedValue(this.selectedValue);
+   this.SharedCommonService.setSelectedValue(this.selectedValue);
     //this.leagueSummary(selectedValue);
   }
 

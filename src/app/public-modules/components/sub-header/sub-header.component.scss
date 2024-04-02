@@ -1,7 +1,7 @@
 @import "../../../../assets/scss/abstracts/abstracts";
 
 .sub-header {
-    background-color: rgba($black-color, 0.03);
+    background-color: $sub-header-color;
     position: fixed;
     top: 7.3rem;
     left: 0px;

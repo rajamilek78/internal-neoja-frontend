@@ -59,6 +59,7 @@ export class LeagueContainerComponent
     private sharedUserService: SharedUserService
   ) {}
   ngOnInit(): void {
+    console.log("calling")
     this.userSubscriber();
     this.route.params.subscribe((params) => {
       this.isEdit = params['isEdit'];
