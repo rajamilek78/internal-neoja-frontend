@@ -14,6 +14,9 @@ export class SharedCommonService {
   private leagueID = new BehaviorSubject<any>(null);
   private roundID = new BehaviorSubject<any>(null);
   leagueChanged = new BehaviorSubject<any>(null);
+  private selectedValue = new BehaviorSubject<string>(''); // Initialize with default value
+  selectedValue$: Observable<string> = this.selectedValue.asObservable();
+
   constructor() { }
 
   setMatchData( data : any){
@@ -61,4 +64,13 @@ export class SharedCommonService {
   emitLeagueChanged(leagueID: any) {
     this.leagueChanged.next(leagueID);
   }
+
+  setSelectedValue(value: string) {
+    this.selectedValue.next(value);
+  }
+
+  getSelectedValue(): Observable<string> {
+    return this.selectedValue.asObservable();
+  }
+  
 }

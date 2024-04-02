@@ -17,7 +17,7 @@ export class DeleteDetailDialogueComponent {
     this.roundCount = data.roundCount;
     this.players = data.players;
     this.playerName = data.playerName;
-    this.index = data.index; // Assign index value from data
+    this.index = data.index;
   }
   delete(index) {
     this.players.removeAt(index);

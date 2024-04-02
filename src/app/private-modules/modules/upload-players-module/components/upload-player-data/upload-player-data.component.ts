@@ -31,13 +31,14 @@ export class UploadPlayerDataComponent implements OnInit {
   @Input() leagueID!: string;
   @Input() selectedLeague: any;
   @Input() selectedDate!: Date;
+  @Input() selectedValue!: string;
   isDropInDisabled = true;
   isNoShowDisabled = false;
   roundOnePlayersCount!: number;
   dropInPlayersCount!: number;
   leagueIDSubscription!: Subscription;
-  sortedBy: string = ''; // Track the currently sorted field
-  isAscending: boolean = true; // Track the sorting order
+  sortedBy: string = '';
+  isAscending: boolean = true;
 
   leagueSummaryData: any;
 
@@ -58,6 +59,7 @@ export class UploadPlayerDataComponent implements OnInit {
 
   ngOnInit() {
     // this.addPlayers(this.playerCount);
+    console.log(this.selectedValue)
     this.userSubscriber();
     const defaultSelectedValue = '1';
     if (this.roundsLength >= 1) {
@@ -65,14 +67,9 @@ export class UploadPlayerDataComponent implements OnInit {
     } else {
       this.addPlayer();
     }
-    this.leagueIDSubscription =
-      this.SharedCommonService.leagueChanged.subscribe(
-        (newLeagueID: string) => {
-          if (this.roundsLength >= 1) {
-            this.leagueSummary(defaultSelectedValue);
-          }
-        }
-      );
+    this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
+      this.leagueSummary(selectedValue || defaultSelectedValue);
+    });
   }
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges called', changes);
@@ -128,16 +125,15 @@ export class UploadPlayerDataComponent implements OnInit {
   //       console.log(roundOnePlayers);
   //   }
   // }
-  onRadioButtonChange(event: MatButtonToggleChange) {
-    const selectedValue = event.value;
-    console.log('Selected radio button value:', selectedValue);
-    this.leagueSummary(selectedValue);
-  }
+  // onRadioButtonChange(event: MatButtonToggleChange) {
+  //   const selectedValue = event.value;
+  //   console.log('Selected radio button value:', selectedValue);
+  //   this.leagueSummary(selectedValue);
+  // }
   sortPlayers(field: 'name' | 'score'): void {
     const playersArray = this.playerForm.get('players') as FormArray;
     let sortedPlayers = playersArray.controls.slice();
 
-    // Toggle sorting order or reset sorting
     if (this.sortedBy === field) {
       this.isAscending = !this.isAscending;
     } else {
@@ -145,27 +141,25 @@ export class UploadPlayerDataComponent implements OnInit {
       this.isAscending = true;
     }
 
-    // Perform sorting based on the selected field and order
     sortedPlayers.sort((a, b) => {
       const valueA = a.value[field];
       const valueB = b.value[field];
       if (field === 'name') {
         if (this.isAscending) {
-          return valueA.localeCompare(valueB); // Compare strings for name field
+          return valueA.localeCompare(valueB);
         } else {
-          return valueB.localeCompare(valueA); // Compare strings for name field in reverse order
+          return valueB.localeCompare(valueA);
         }
       } else if (field === 'score') {
         if (this.isAscending) {
-          return valueA - valueB; // Compare numbers directly for score field in ascending order
+          return valueA - valueB;
         } else {
-          return valueB - valueA; // Compare numbers directly for score field in descending order
+          return valueB - valueA;
         }
       }
-      return 0; // Default return
+      return 0;
     });
 
-    // Update the form array with sorted players
     playersArray.clear();
     sortedPlayers.forEach((player) => {
       playersArray.push(player);
@@ -238,6 +232,7 @@ export class UploadPlayerDataComponent implements OnInit {
   //     },
   //   });
   // }
+  
   leagueSummary(selectedValue: string) {
     const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
     this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
@@ -339,12 +334,11 @@ export class UploadPlayerDataComponent implements OnInit {
         players: {},
       };
 
-      // Loop through players in the form
       this.playerForm.getRawValue().players.forEach((player) => {
         playerDataRound2.players[player.name] = {
           rating: player.score,
           in_round1: player.in_round1,
-          is_deleted: player.isDeleted || false, // Mark the player as deleted if needed
+          is_deleted: player.isDeleted || false,
         };
       });
 
@@ -371,12 +365,10 @@ export class UploadPlayerDataComponent implements OnInit {
         players: {},
       };
 
-      // Loop through players in the form
       this.playerForm.getRawValue().players.forEach((player) => {
         playerData.players[player.name] = player.score;
       });
 
-      // Upload data for round 1
       this.commonservice.uploadData(clubLeagueStr, playerData).subscribe({
         next: (res: any) => {
           this.SharedCommonService.setMatchData(res);
@@ -397,7 +389,7 @@ export class UploadPlayerDataComponent implements OnInit {
   }
 
   openDialogue(index: number): void {
-    const player = this.players.at(index).value; // Get the player at the given index
+    const player = this.players.at(index).value;
     const dialogueRef = this.dialog.open(DeleteDetailDialogueComponent, {
       width: '450px',
       data: {

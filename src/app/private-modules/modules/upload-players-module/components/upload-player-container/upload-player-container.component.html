@@ -49,7 +49,11 @@
             />
           </label>
         </div>
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle-group
+          name="fontStyle"
+          aria-label="Font Style"
+          (change)="onToggleButtonChange($event)"
+        >
           <mat-button-toggle [value]="1">All</mat-button-toggle>
           <mat-button-toggle [value]="2">Previous</mat-button-toggle>
           <mat-button-toggle [value]="3">Round 1</mat-button-toggle>
@@ -83,6 +87,7 @@
         [roundsLength]="roundsLength"
         [leagueID]="leagueID"
         [selectedLeague]="selectedLeague"
+        [selectedValue]="selectedValue"
       ></app-upload-player-data>
     </div>
   </div>
