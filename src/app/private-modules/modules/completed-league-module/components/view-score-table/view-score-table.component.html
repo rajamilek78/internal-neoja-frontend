@@ -1,6 +1,6 @@
 <div class="panel">
   <div class="container">
-    <div class="view-score-title">
+    <div class="view-score-title flex justify-between">
       <div>
         <a (click)="onBack()" class="go-back-link"> GO BACK </a>
         <h6>
@@ -9,6 +9,12 @@
         <small
           >See all the scores in here of overall rounds, clubs & company</small
         >
+      </div>
+      <div class="primary-btn">
+        <button class="btn flex justify-center">
+          <span><img src="assets/images/download-icon.svg" alt="" /></span
+          >Download PDF
+        </button>
       </div>
     </div>
     <div class="view-score-table">
@@ -106,7 +112,7 @@
           </div>
           <div class="overflow">
             <table
-            matSortDisableClear
+              matSortDisableClear
               class="table-2"
               #individualTableSort="matSort"
               matSort
