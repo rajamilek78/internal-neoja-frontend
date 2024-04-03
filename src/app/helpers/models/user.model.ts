@@ -10,4 +10,5 @@ export interface UserModel {
     first_name: string;
     owned_companies: string[];
     owned_clubs: string[];
+    session_id: string;
 }

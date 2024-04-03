@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CompletedLeagueService } from '../../services/completed-league.service';
 import { MatTabChangeEvent } from "@angular/material/tabs";
-import { SharedUserService } from '@app/core';
+import { LeaguemanageService, SharedUserService } from '@app/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { ActivatedRoute } from '@angular/router';
@@ -31,6 +31,10 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
   cumulativeScores: any[] = [];
   sortedCumulative: any[] = [];
   sortedIndividual: any[] = [];
+  selectedLeagueId:any
+  selectedLeagueName:any
+  header: any;
+  rawData: any;
 
   constructor(
     private completedLeagueService: CompletedLeagueService,
@@ -38,6 +42,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     private snackbarService: SnackBarService,
     private route: ActivatedRoute,
     private leagueService: LeagueService,
+    private leaguemanageService: LeaguemanageService,
     public location: Location
   ) {}
   ngOnInit(): void {
@@ -45,11 +50,21 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
       this.selectedClubID = params['clubId'];
       this.leagueID = params['leagueID'];
     });
-    this.bindLeagueScore();
-    this.bindLeagueName();
+    // this.bindLeagueScore();
+    // this.bindLeagueName();
     // this.handleLeagueScore(leagueRoundWiseScores)
     // this.sortedCumulative[0] = this.cumulativeScores[0]
     // this.sortedIndividual[0] = this.individualScores[0]
+    this.leaguemanageService.selectedLeague$.subscribe((selectedLeagueId: any) => {
+      if (selectedLeagueId && selectedLeagueId.id) {
+        console.log(selectedLeagueId)
+        this.selectedLeagueId = selectedLeagueId.id;
+        console.log(this.selectedLeagueId)
+        this.selectedLeagueName = selectedLeagueId.name
+        this.bindLeagueScore();
+        this.bindLeagueName();
+      }
+    });
   }
 
   onBack = () => {
@@ -62,7 +77,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     }
   }
   bindLeagueName = () => {
-    const urlString = `${this.selectedClubID}/${this.leagueID}`;
+    const urlString = `${this.selectedClubID}/${this.selectedLeagueId}`;
     this.leagueService.getLeagueById(urlString).subscribe({
       next: (res) => {
         this.leagueName = res.header.name;
@@ -86,11 +101,12 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
   };
 
   handleLeagueScore = (res) => {
-    this.leagueRoundWiseScores = res;
+    this.rawData= res
+    this.leagueRoundWiseScores = res.league_score_details;
     // debugger;
     this.leagueRoundWiseArray = Object.keys(this.leagueRoundWiseScores).map(e => {
       return { round: e, scores: this.leagueRoundWiseScores[e] }
-    });
+    }).reverse();
     this.cumulativeScores.push(this.leagueRoundWiseArray[0]?.scores.cumulative || [])
     this.individualScores.push(this.leagueRoundWiseArray[0]?.scores.cumulative || [])
     setTimeout(() => {
@@ -100,7 +116,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
   }
 
   bindLeagueScore() {
-    const urlString = `${this.selectedClubID}/${this.leagueID}`;
+    const urlString = `${this.selectedClubID}/${this.selectedLeagueId}`;
     this.completedLeagueService.getLeagueScores(urlString).subscribe({
       next: (res: any) => {
         this.handleLeagueScore(res);
@@ -172,5 +188,14 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
   ): number => {
     return parseInt(a.key) - parseInt(b.key);
   };
+
+  onClickDownload() {
+    
+    if (this.rawData && this.rawData.header.scorecard_pdf_public_url && this.rawData.header.scorecard_pdf_public_url) {
+      window.open(this.rawData.header.scorecard_pdf_public_url, '_blank');
+    } else {
+      console.log('Round PDF URL not found or format1 is empty.');
+    }
+  }
 
 }

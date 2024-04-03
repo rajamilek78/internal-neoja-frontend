@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonService, SharedService, SnackBarService } from '@app/core';
-import { LeagueService } from '@app/core/services/league.service';
+import { LeaguemanageService } from '@app/core/services/league.service';
 import { UserModel } from '@app/helpers/models';
 import { SharedCommonService } from '@app/helpers/services';
 import { Subject, Subscription, debounceTime } from 'rxjs';
@@ -27,7 +27,7 @@ export class SubHeaderComponent {
     private sharedService: SharedService,
     private snackbarService: SnackBarService,
     private SharedCommonService: SharedCommonService,
-    private leagueService: LeagueService
+    private leagueService: LeaguemanageService
   ) {
     this.debounceSubject.pipe(debounceTime(300)).subscribe(this.onLeagueSelect);
   }
@@ -81,10 +81,11 @@ export class SubHeaderComponent {
             this.selectedLeague = this.leagues[0];
             this.selectedLeagueName = this.leagues[0].name;
           }
-        } else {
-          this.selectedLeague = this.leagues[0];
-          this.selectedLeagueName = this.leagues[0].name;
-        }
+        } 
+        // else {
+        //   this.selectedLeague = this.leagues[0];
+        //   this.selectedLeagueName = this.leagues[0].name;
+        // }
       },
       error: (err: any) => {
         const message = err.error.message;

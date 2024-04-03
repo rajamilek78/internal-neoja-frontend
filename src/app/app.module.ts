@@ -17,7 +17,7 @@ import { DateFormatDirective } from './helpers/directives/date-format.directive'
 import { SignupDialogueComponent } from './public-modules/components/signup-dialogue/signup-dialogue.component';
 import { CustomSidenavComponent } from './public-modules/components/custom-sidenav/custom-sidenav.component';
 import { SubHeaderComponent } from './public-modules/components/sub-header/sub-header.component';
-import { LeagueService } from './core/services/league.service';
+import { LeaguemanageService } from './core/services/league.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { LeagueService } from './core/services/league.service';
     CoreModule,
     UtilityModule,
   ],
-  providers: [API_ENDPOINTS,  LeagueService,],
+  providers: [API_ENDPOINTS,  LeaguemanageService,],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

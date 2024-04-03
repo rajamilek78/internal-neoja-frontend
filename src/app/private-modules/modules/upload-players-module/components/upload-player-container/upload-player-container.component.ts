@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { CommonService, SharedService } from '@app/core';
-import { LeagueService } from '@app/core/services/league.service';
+import { LeaguemanageService } from '@app/core/services/league.service';
 import { SnackBarService } from '@app/core/services/snackbar.service';
 import { UserModel } from '@app/helpers/models';
 import { SharedCommonService } from '@app/helpers/services';
@@ -26,6 +26,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   selectedDate!: Date;
   roundCount!: number;
   selectedValue: any;
+  sessionId: any;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -33,7 +34,7 @@ export class UploadPlayerContainerComponent implements OnInit {
     private sharedService: SharedService,
     private snackbarService: SnackBarService,
     private SharedCommonService: SharedCommonService,
-    private leagueService: LeagueService
+    private leagueService: LeaguemanageService
   ) {}
 
   ngOnInit(): void {
@@ -56,8 +57,10 @@ export class UploadPlayerContainerComponent implements OnInit {
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
+        console.log(this.userDetail)
         if (this.userDetail) {
           this.clubID = this.userDetail?.club_id;
+          this.sessionId= this.userDetail?.session_id
         }
       });
   };

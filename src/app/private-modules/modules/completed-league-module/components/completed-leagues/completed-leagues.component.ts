@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonService,LeagueService,SharedService } from '@app/core';
+import { CommonService,LeaguemanageService,SharedService } from '@app/core';
 import { CompanyModel } from '@app/helpers/models/company.model';
 import { MatDialog } from '@angular/material/dialog';
 import { LockDataDialogueComponent } from '../../../league-module/components/lock-data-dialogue/lock-data-dialogue.component';
@@ -37,7 +37,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     private sharedUserService: SharedService,
     private snackbarService: SnackBarService,
     private completedLeagueService: CompletedLeagueService,
-    private leagueService: LeagueService
+    private leagueService: LeaguemanageService
   ) {}
 
   ngOnInit(): void {
