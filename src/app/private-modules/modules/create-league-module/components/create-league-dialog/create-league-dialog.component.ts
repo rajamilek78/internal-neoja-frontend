@@ -20,6 +20,7 @@ export class CreateLeagueDialogComponent
   formattedEndDate!: string | null;
   leagueID!: string;
   clubID!: string;
+  sessionID!: string;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: any,
@@ -37,6 +38,7 @@ export class CreateLeagueDialogComponent
       // this.leagueID = this.data.leagueID.toUpperCase();
       this.leagueID = this.data.leagueID;
       this.clubID = this.data.clubID;
+      this.sessionID = this.data.sessionID
       this.getLeagueByID();
     } else {
       this.clubID = this.data.clubID;

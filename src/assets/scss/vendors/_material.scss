@@ -394,6 +394,9 @@ app-conversation-list {
   .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: transparent !important;
   }
+  .mdc-text-field--filled.mdc-text-field--disabled {
+    background-color: transparent !important;
+}
 
   .mat-mdc-form-field-focus-overlay {
     background-color: transparent !important;

@@ -10,14 +10,13 @@
               'round-two': roundsLength >= 1
             }"
           >
-            <div (click)="sortPlayers('name')">Sort</div>
             <div class="row-title">
-              <small
+              <small  class="sort-icon" (click)="sortPlayers('name')"
                 >Players
-                <span class="sort-icon"
+                <span  *ngIf="sortedBy === 'name' && !isAscending" (click)="toggleSorting('name')"
                   ><img src="assets/images/arrow-down-icon.svg" alt=""
                 /></span>
-                <span class="sort-icon"
+                <span  *ngIf="sortedBy === 'name' && isAscending" (click)="toggleSorting('name')"
                   ><img src="assets/images/arrow-up-icon.svg" alt=""
                 /></span>
                 <span
@@ -34,14 +33,13 @@
                 'row-title-two': roundsLength >= 1
               }"
             >
-              <div (click)="sortPlayers('score')">Sort</div>
-              <small
+              <small class="sort-icon"  (click)="sortPlayers('score')"
                 >Rating%
-                <span class="sort-icon"
-                  ><img src="assets/images/arrow-down-icon.svg" alt=""
+                <span  *ngIf="sortedBy === 'score' && !isAscending"
+                  ><img src="assets/images/arrow-down-icon.svg" alt="" (click)="toggleSorting('score')"
                 /></span>
-                <span class="sort-icon"
-                  ><img src="assets/images/arrow-up-icon.svg" alt=""
+                <span  *ngIf="sortedBy === 'score' && isAscending"
+                  ><img src="assets/images/arrow-up-icon.svg" alt="" (click)="toggleSorting('score')"
                 /></span>
               </small>
             </div>

@@ -98,6 +98,7 @@ export class LeagueContainerComponent
         leagueID: this.leagueID,
         responseData: this.responseData,
         roundCount: this.roundCount,
+
       },
     });
     dialogueRef.afterClosed().subscribe((result) => {

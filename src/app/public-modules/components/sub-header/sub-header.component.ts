@@ -116,7 +116,7 @@ export class SubHeaderComponent {
   }
   isSubHeaderVisible(): boolean {
     const currentRoute = this.router.url;
-    return currentRoute.includes('/manage-rounds');
+    return currentRoute.includes('/manage-leagues');
   }
 
 }

@@ -20,6 +20,7 @@ export class LockDataDialogueComponent implements OnInit {
   leagueID!: string | null;
   roundCount!: number;
   clubID!: string;
+  sessionID!: string;
 
   constructor(
     private router: Router,
@@ -32,6 +33,7 @@ export class LockDataDialogueComponent implements OnInit {
   ngOnInit(): void {
     this.userSubscriber();
     if (this.data) {
+      console.log(this.data)
       this.roundCount = this.data.roundCount;
       this.leagueID = this.data.leagueID;
     }
@@ -49,12 +51,15 @@ export class LockDataDialogueComponent implements OnInit {
         this.userDetail = this.sharedService.getUser();
         if(this.userDetail){
           this.clubID = this.userDetail.club_id;
+          this.sessionID = this.userDetail?.session_id
         }
       });
   };
 
   lockRound() {
     const bodyData = this.data.responseData.round;
+    console.log(bodyData)
+    console.log(this.data)
     // const clubID = this.userDetail?.club_id;
     const compnyclubnameStr = `${this.clubID}/${this.leagueID}`;
     this.commonservice.creatRound(compnyclubnameStr, bodyData).subscribe({

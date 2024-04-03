@@ -4,7 +4,7 @@
       <b>{{clubID}}</b>
     </div>
     <div class="border-club"></div>
-    <div class="dropdown-league" *ngIf="isSubHeaderVisible()">
+    <div class="dropdown-league" *ngIf="!isSubHeaderVisible()">
       <mat-form-field>
         <mat-select
           (selectionChange)="onLeagueSelect($event.value)"

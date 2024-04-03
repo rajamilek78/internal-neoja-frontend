@@ -41,6 +41,7 @@ export class UploadPlayerDataComponent implements OnInit {
   isAscending: boolean = true;
 
   leagueSummaryData: any;
+  sessionID!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -138,6 +139,16 @@ export class UploadPlayerDataComponent implements OnInit {
   //   console.log('Selected radio button value:', selectedValue);
   //   this.leagueSummary(selectedValue);
   // }
+  toggleSorting(field: 'name' | 'score'): void {
+    if (this.sortedBy === field) {
+      this.isAscending = !this.isAscending;
+    } else {
+      this.sortedBy = field;
+      this.isAscending = true;
+    }
+    this.sortPlayers(field);
+  }
+
   sortPlayers(field: 'name' | 'score'): void {
     const playersArray = this.playerForm.get('players') as FormArray;
     let sortedPlayers = playersArray.controls.slice();
@@ -190,6 +201,7 @@ export class UploadPlayerDataComponent implements OnInit {
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
           this.clubID = this.userDetail?.club_id;
+          this.sessionID = this.userDetail?.session_id
         }
       });
   };
@@ -337,6 +349,7 @@ export class UploadPlayerDataComponent implements OnInit {
 
     if (this.roundsLength >= 1) {
       const playerDataRound2 = {
+        sessionID: this.sessionID,
         round: this.roundCount,
         date: formattedDate,
         players: {},
@@ -368,6 +381,7 @@ export class UploadPlayerDataComponent implements OnInit {
         });
     } else {
       const playerData = {
+        sessionID: this.sessionID,
         round: String(this.roundCount),
         date: formattedDate,
         players: {},
