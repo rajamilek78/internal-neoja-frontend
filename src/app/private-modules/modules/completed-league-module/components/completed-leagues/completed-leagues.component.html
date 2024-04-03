@@ -70,8 +70,17 @@
               class="btn flex justify-center"
               (click)="edit(round.roundNumber)"
             >
-              <span><img src="assets/images/white-edit-icon.svg" alt="" /></span
-              > {{ round.roundDetails.header?.score_locked ? 'View Score' : 'Edit Score' }}
+              <span *ngIf="!round.roundDetails.header?.score_locked"
+                ><img src="assets/images/white-edit-icon.svg" alt=""
+              /></span>
+              <span *ngIf="round.roundDetails.header?.score_locked">
+                <img src="assets/images/view-round-icon.svg" alt="" />
+              </span>
+              {{
+                round.roundDetails.header?.score_locked
+                  ? "View Score"
+                  : "Edit Score"
+              }}
             </button>
           </div>
         </div>

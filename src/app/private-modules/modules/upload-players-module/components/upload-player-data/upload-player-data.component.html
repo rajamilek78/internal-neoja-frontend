@@ -10,10 +10,16 @@
               'round-two': roundsLength >= 1
             }"
           >
-            <div class="sort-icon" (click)="sortPlayers('name')">Sort</div>
+            <div (click)="sortPlayers('name')">Sort</div>
             <div class="row-title">
               <small
                 >Players
+                <span class="sort-icon"
+                  ><img src="assets/images/arrow-down-icon.svg" alt=""
+                /></span>
+                <span class="sort-icon"
+                  ><img src="assets/images/arrow-up-icon.svg" alt=""
+                /></span>
                 <span
                   *ngIf="roundOnePlayersCount !== 0 || dropInPlayersCount !== 0"
                   >( Round 1 Players : <b>{{ roundOnePlayersCount }}</b
@@ -28,8 +34,16 @@
                 'row-title-two': roundsLength >= 1
               }"
             >
-              <div class="sort-icon" (click)="sortPlayers('score')">Sort</div>
-              <small>Rating%</small>
+              <div (click)="sortPlayers('score')">Sort</div>
+              <small
+                >Rating%
+                <span class="sort-icon"
+                  ><img src="assets/images/arrow-down-icon.svg" alt=""
+                /></span>
+                <span class="sort-icon"
+                  ><img src="assets/images/arrow-up-icon.svg" alt=""
+                /></span>
+              </small>
             </div>
             <div class="row-title-two" *ngIf="roundsLength >= 1">
               <small>History</small>
