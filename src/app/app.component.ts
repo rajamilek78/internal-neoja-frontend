@@ -41,8 +41,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.showSidebar = val;
   };
 
-  isSubHeaderVisible(): boolean {
-    const currentRoute = this.router.url;
-    return currentRoute.includes('/build-round') || currentRoute.includes('/manage-rounds');
-  }
+  // isSubHeaderVisible(): boolean {
+  //   const currentRoute = this.router.url;
+  //   return currentRoute.includes('/manage-rounds');
+  // }
 }

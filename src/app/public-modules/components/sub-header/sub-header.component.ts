@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonService, SharedService, SnackBarService } from '@app/core';
 import { LeaguemanageService } from '@app/core/services/league.service';
 import { UserModel } from '@app/helpers/models';
@@ -27,7 +28,8 @@ export class SubHeaderComponent {
     private sharedService: SharedService,
     private snackbarService: SnackBarService,
     private SharedCommonService: SharedCommonService,
-    private leagueService: LeaguemanageService
+    private leagueService: LeaguemanageService,
+    private router: Router
   ) {
     this.debounceSubject.pipe(debounceTime(300)).subscribe(this.onLeagueSelect);
   }
@@ -106,6 +108,15 @@ export class SubHeaderComponent {
   
   get isLoggedIn() {
     return this.sharedService.isLoggedIn();
+  }
+
+  isLeagueDropdownDisabled(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute.includes('/manage-leagues') || currentRoute.includes('/fixtures');
+  }
+  isSubHeaderVisible(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute.includes('/manage-rounds');
   }
 
 }

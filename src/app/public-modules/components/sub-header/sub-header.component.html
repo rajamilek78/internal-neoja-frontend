@@ -4,12 +4,13 @@
       <b>{{clubID}}</b>
     </div>
     <div class="border-club"></div>
-    <div class="dropdown-league">
+    <div class="dropdown-league" *ngIf="isSubHeaderVisible()">
       <mat-form-field>
         <mat-select
           (selectionChange)="onLeagueSelect($event.value)"
           [(value)]="selectedLeague"
           placeholder="Select"
+          [disabled]="isLeagueDropdownDisabled()"
         >
           <mat-option *ngFor="let league of leagues" [value]="league">
             {{league.name}}
