@@ -40,7 +40,13 @@ export class AppComponent implements OnInit, OnDestroy {
   get isLoggedIn() {
     return this.sharedService.isLoggedIn();
   }
-  
+
+  isSubHeaderVisible(): boolean {
+    const currentRoute = this.router.url;
+    console.log(currentRoute)
+    return currentRoute === '/' || currentRoute.includes('/about-us') || currentRoute.includes('/contact-us');
+  }
+
   onOpenCloseSidebar = (val: boolean) => {
     this.showSidebar = val;
   };

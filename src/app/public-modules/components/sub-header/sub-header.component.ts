@@ -82,10 +82,11 @@ export class SubHeaderComponent implements OnInit{
           if (selectedLeagueIndex !== -1) {
             this.selectedLeague = this.leagues[selectedLeagueIndex];
             this.selectedLeagueName = this.leagues[selectedLeagueIndex].name;
-          } else {
-            this.selectedLeague = this.leagues[0];
-            this.selectedLeagueName = this.leagues[0].name;
-          }
+          } 
+          // else {
+          //   this.selectedLeague = this.leagues[0];
+          //   this.selectedLeagueName = this.leagues[0].name;
+          // }
         } 
         // else {
         //   this.selectedLeague = this.leagues[0];
