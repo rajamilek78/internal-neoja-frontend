@@ -90,12 +90,20 @@ a {
   padding-top: 1.8rem !important;
 }
 
+.pd-1 {
+  padding: 3.5rem 0rem;
+
+  @include respond ("phone") {
+    padding: 0rem;
+  }
+}
+
 .mr-1 {
   margin-right: 1.6rem !important;
 }
 
 .mr-2 {
-  margin-right: 2.4rem;
+  margin-right: 2.4rem !important;
 }
 
 .mr-3 {
@@ -1056,7 +1064,7 @@ app-upload-player-container {
 // create-league scss
 
 .create-league {
-  margin-top: 4.7rem;
+  margin-top: 0.7rem;
 
   .table-2 {
     thead {
@@ -1087,6 +1095,10 @@ app-upload-player-container {
       }
     }
   }
+
+  .primary-btn {
+    margin-right: 0rem !important;
+  }
 }
 
 .grey-row {
@@ -1100,7 +1112,6 @@ app-upload-player-container {
 // league screen scss
 .league-title {
   position: relative;
-  margin: 1rem 0rem;
 
   h6 {
     color: $primary-color;
@@ -1127,7 +1138,7 @@ app-upload-player-container {
 
   .table-buttons {
     position: absolute;
-    top: 2rem;
+    top: 0.9rem;
     right: 0;
     z-index: 10;
 
@@ -1150,7 +1161,7 @@ app-upload-player-container {
     }
 
     @include respond("phone") {
-      top: 6rem;
+      top: 3rem;
     }
   }
 }
@@ -1231,7 +1242,7 @@ app-upload-player-container {
 
 // completed leagues scss
 .completed-leagues {
-  margin-top: 3.2rem;
+  margin-top: 1.2rem;
 
   .row {
     margin-top: 2.4rem;

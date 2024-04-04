@@ -2,11 +2,12 @@
 
 .sub-header {
     background-color: $sub-header-color;
+    border-bottom: 1px solid $sub-header-border;
     position: fixed;
     top: 7.3rem;
     left: 0px;
     width: 100%;
-    padding: 1.2rem 0rem;
+    height: 4.5rem;
     z-index: 13;
 
     b {
@@ -16,6 +17,18 @@
         line-height: 17px;
         padding-right: 2rem;
     }
+
+    .MB-1-half {
+        margin: 1.4rem 0rem !important;
+
+        @include respond ("phone") {
+            margin: 0rem !important;
+        }
+    }
+
+    @include respond ("tab-port") {
+        top: 6.3rem;
+    }
 }
 
 .container {
@@ -23,13 +36,14 @@
 }
 
 .dropdown-league {
-    padding-left: 2rem;
+    padding-left: 2.6rem;
     width: 40rem;
 }
 
 .border-club {
     border-right: 1px solid rgba($black-color, 0.15);
     position: absolute;
-    height: 4.7rem;
+    height: 4.5rem;
     left: 16rem;
+    top: 0rem;
 }
