@@ -6,7 +6,7 @@
   <mat-tab *ngFor="let group of groups" [label]="'Group ' + group.name">
     <div class="flex justify-between tab-sub-header">
       <b>Round {{ data.header?.round || data.round?.header?.round }}</b>
-      <b>{{ leagueName }}</b>
+      <!-- <b>{{ leagueName }}</b> -->
       <b>{{
         data.header?.date || data.round?.header?.date
           | date : "EEE, MMM dd yyyy"
@@ -105,7 +105,10 @@
           <div class="flex justify-center flex-column">
             <div class="cell bg-cell">Total</div>
             <div class="flex justify-center flex-column">
-              <div *ngFor="let i of [1,2,3,4]" class="cell flex justify-center"></div>
+              <div
+                *ngFor="let i of [1, 2, 3, 4]"
+                class="cell flex justify-center"
+              ></div>
             </div>
           </div>
         </div>
@@ -113,11 +116,14 @@
       <div class="table-footer flex justify-between">
         <div>
           <!-- <span><img src="assets/images/e-logo.png" alt="" /></span> -->
-          <span
-            >
-            <img style="width: 150px !important;" src="../../../../assets/images/e-league-online-main-logo.png" alt="">
-            Want to run a friends and family league?
-            Signup and build your own Digital Club.</span
+          <span>
+            <img
+              style="width: 150px !important"
+              src="../../../../assets/images/e-league-online-main-logo.png"
+              alt=""
+            />
+            Want to run a friends and family league? Signup and build your own
+            Digital Club.</span
           >
         </div>
         <div class="flex justify-start">

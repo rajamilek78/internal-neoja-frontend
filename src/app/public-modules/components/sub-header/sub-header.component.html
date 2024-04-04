@@ -1,7 +1,7 @@
 <div class="sub-header" *ngIf="isLoggedIn">
   <div class="container flex justify-end">
-    <div>
-      <b>{{clubID}}</b>
+    <div class="MB-1-half">
+      <b>{{ clubID }}</b>
     </div>
     <div class="border-club"></div>
     <div class="dropdown-league" *ngIf="!isSubHeaderVisible()">
@@ -13,7 +13,7 @@
           [disabled]="isLeagueDropdownDisabled()"
         >
           <mat-option *ngFor="let league of leagues" [value]="league">
-            {{league.name}}
+            {{ league.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>

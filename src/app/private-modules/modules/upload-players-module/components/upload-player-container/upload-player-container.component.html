@@ -38,19 +38,19 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="round-toggle-btn"  *ngIf="selectedFormat == '2'">
+      <div class="round-toggle-btn" *ngIf="selectedFormat == '2'">
         <div>
           <label
-            >Select Round
+            >Select players
             <img
               src="../../../../../../assets/images/info-icon.svg"
               alt=""
               class="label-img"
-              matTooltip="Select Round"
+              matTooltip="Select players"
             />
           </label>
         </div>
-          <mat-button-toggle-group
+        <mat-button-toggle-group
           name="fontStyle"
           aria-label="Font Style"
           (change)="onToggleButtonChange($event)"

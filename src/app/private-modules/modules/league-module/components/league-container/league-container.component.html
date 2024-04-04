@@ -6,7 +6,7 @@
       <!-- <div>
         <h6>{{ leagueName }}</h6>
       </div> -->
-      <div class="flex justify-end">
+      <div class="flex justify-end pd-1">
         <div class="table-buttons flex justify-end">
           <div>
             <select [(ngModel)]="selectedFormat" (change)="onSelectionChange()">
@@ -27,10 +27,7 @@
           </div>
 
           <div class="primary-btn">
-            <button
-              class="btn flex justify-center"
-              (click)="onClickDownload()"
-            >
+            <button class="btn flex justify-center" (click)="onClickDownload()">
               <span><img src="assets/images/download-icon.svg" alt="" /></span
               >Download
             </button>
@@ -74,8 +71,15 @@
       </div>
     </div>
     <div class="upload__button flex justify-end" *ngIf="isEdit">
-      <div class="primary-btn"  *ngIf="labelName === 'EditScore'">
-        <button type="button" class="btn" (click)="onSaveClick()" [disabled]="!isTouched">Save</button>
+      <div class="primary-btn" *ngIf="labelName === 'EditScore'">
+        <button
+          type="button"
+          class="btn"
+          (click)="onSaveClick()"
+          [disabled]="!isTouched"
+        >
+          Save
+        </button>
       </div>
       <div class="secondary-btn-light">
         <button type="button" class="btn" (click)="onCancel()">Cancel</button>
