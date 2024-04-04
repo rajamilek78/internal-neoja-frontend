@@ -92,6 +92,10 @@ a {
 
 .pd-1 {
   padding: 3.5rem 0rem;
+
+  @include respond ("phone") {
+    padding: 0rem;
+  }
 }
 
 .mr-1 {
@@ -1157,7 +1161,7 @@ app-upload-player-container {
     }
 
     @include respond("phone") {
-      top: 6rem;
+      top: 3rem;
     }
   }
 }
