@@ -9,7 +9,7 @@
         <mat-select
           (selectionChange)="onLeagueSelect($event.value)"
           [(value)]="selectedLeague"
-          placeholder="Select"
+          placeholder="Select League"
           [disabled]="isLeagueDropdownDisabled()"
         >
           <mat-option *ngFor="let league of leagues" [value]="league">
