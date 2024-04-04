@@ -43,7 +43,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isSubHeaderVisible(): boolean {
     const currentRoute = this.router.url;
-    console.log(currentRoute)
     return currentRoute === '/' || currentRoute.includes('/about-us') || currentRoute.includes('/contact-us');
   }
 
