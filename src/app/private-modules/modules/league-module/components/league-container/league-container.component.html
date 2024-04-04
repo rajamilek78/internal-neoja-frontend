@@ -2,10 +2,14 @@
 
 <div class="panel">
   <div class="container">
-    <div class="league-title">
+    <div class="league-title flex justify-between align-start">
       <!-- <div>
         <h6>{{ leagueName }}</h6>
       </div> -->
+      <div class="">
+        <h6>Round {{roundCount}} | {{roundDate | date : "EEE, MMM dd yyyy"}}</h6>
+        <!-- <b>{{ leagueName }}</b> -->
+      </div>
       <div class="flex justify-end pd-1">
         <div class="table-buttons flex justify-end">
           <div>

@@ -5,14 +5,13 @@
   (selectedTabChange)="onTabChanged($event)"
 >
   <mat-tab *ngFor="let group of groups" [label]="'Group ' + group.name">
-    <div class="flex justify-between tab-sub-header">
+    <!-- <div class="flex justify-between tab-sub-header">
       <b>Round {{ data.header?.round || data.round?.header?.round }}</b>
-      <!-- <b>{{ leagueName }}</b> -->
       <b>{{
         data.header?.date || data.round?.header?.date
           | date : "EEE, MMM dd yyyy"
       }}</b>
-    </div>
+    </div> -->
     <div class="overflow">
       <table class="table-1">
         <thead>

@@ -47,6 +47,7 @@ export class LeagueContainerComponent
   roundCount!: number;
   isTouched: boolean = false;
   labelName: string = '';
+  roundDate:any;
 
   constructor(
     private SharedCommonService: SharedCommonService,
@@ -109,7 +110,9 @@ export class LeagueContainerComponent
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.rawData = data;
       this.roundCount = this.rawData.round.header.round;
+      this.roundDate= this.rawData.round.header.date
       this.responseData = data;
+      console.log(data)
       if (this.responseData) {
         this.groups = Object.keys(this.responseData.round.groups).map(
           (key) => ({
