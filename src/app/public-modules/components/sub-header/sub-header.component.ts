@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CommonService, SharedService, SnackBarService } from '@app/core';
 import { LeaguemanageService } from '@app/core/services/league.service';
 import { UserModel } from '@app/helpers/models';
@@ -32,21 +32,28 @@ export class SubHeaderComponent implements OnInit{
     private router: Router
   ) {
     this.debounceSubject.pipe(debounceTime(300)).subscribe(this.onLeagueSelect);
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Call getAllLeagues() when navigation ends (route changes)
+        this.getAllLeagues();
+      }
+    });
   }
   
   ngOnInit(): void {
    this.selectedLeague = this.leagueService.getSelectedLeague();
     this.userSubscriber();
       this.getAllLeagues();
-    
-  }
+    }
 
   
   
   ngOnDestroy() {
+    
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();      
     }
+    //this.router.events.subscribe();
   }
 
   userSubscriber = () => {
