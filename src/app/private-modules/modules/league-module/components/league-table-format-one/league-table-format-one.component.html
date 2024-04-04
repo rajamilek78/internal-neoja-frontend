@@ -56,6 +56,7 @@
                     placeholder="0"
                     [(ngModel)]="game[1].score.team_1"
                     (keyup)="onBlurTeamScore()"
+                    [disabled]="labelName === 'ViewScore'"
                   />
                 </div>
               </td>
@@ -91,6 +92,7 @@
                     placeholder="0"
                     [(ngModel)]="game[1].score.team_2"
                     (keyup)="onBlurTeamScore()"
+                    [disabled]="labelName === 'ViewScore'"
                   />
                 </div>
               </td>

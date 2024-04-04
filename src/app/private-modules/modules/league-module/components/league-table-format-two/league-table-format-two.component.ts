@@ -21,6 +21,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   @Input() clubID!: string;
   @Input() roundCount!: string;
   @Input() leagueName!: string;
+  @Input() labelName!: string ;
 
   ngOnInit(): void {
     this.selectedTab.emit(this.selectedTabIndex + 1);

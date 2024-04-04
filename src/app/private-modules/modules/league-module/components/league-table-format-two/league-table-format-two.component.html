@@ -78,7 +78,7 @@
                     />
                   </span>
                   <input
-                    *ngIf="!isEdit"
+                    *ngIf="!isEdit && labelName !== 'ViewScore'"
                     type="number"
                     class="format-two-input"
                     disabled
@@ -89,6 +89,7 @@
                     (keyup)="onBlurTeamScore()"
                     class="format-two-input"
                     [(ngModel)]="game[1].score.team_1"
+                    [disabled]="labelName === 'ViewScore'"
                   />
                   <input
                     *ngIf="game[1].team_2.indexOf(player) > -1 && isEdit"
@@ -96,6 +97,7 @@
                     (keyup)="onBlurTeamScore()"
                     class="format-two-input"
                     [(ngModel)]="game[1].score.team_2"
+                    [disabled]="labelName === 'ViewScore'"
                   /> 
                 </div>
                 <!-- {{game[1].score | json}} -->
