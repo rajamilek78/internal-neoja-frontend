@@ -37,12 +37,11 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
+  get isLoggedIn() {
+    return this.sharedService.isLoggedIn();
+  }
+  
   onOpenCloseSidebar = (val: boolean) => {
     this.showSidebar = val;
   };
-
-  // isSubHeaderVisible(): boolean {
-  //   const currentRoute = this.router.url;
-  //   return currentRoute.includes('/manage-rounds');
-  // }
 }

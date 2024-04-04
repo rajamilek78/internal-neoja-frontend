@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService, SharedService, SnackBarService } from '@app/core';
 import { LeaguemanageService } from '@app/core/services/league.service';
@@ -11,7 +11,7 @@ import { Subject, Subscription, debounceTime } from 'rxjs';
   templateUrl: './sub-header.component.html',
   styleUrl: './sub-header.component.scss'
 })
-export class SubHeaderComponent {
+export class SubHeaderComponent implements OnInit{
   @Output() leagueSelected = new EventEmitter<any>();
 
   leagueID!: string;
@@ -33,16 +33,19 @@ export class SubHeaderComponent {
   ) {
     this.debounceSubject.pipe(debounceTime(300)).subscribe(this.onLeagueSelect);
   }
-
+  
   ngOnInit(): void {
    this.selectedLeague = this.leagueService.getSelectedLeague();
     this.userSubscriber();
-    this.getAllLeagues();
+      this.getAllLeagues();
+    
   }
+
+  
   
   ngOnDestroy() {
     if (this.userDetailSub$) {
-      this.userDetailSub$.unsubscribe();
+      this.userDetailSub$.unsubscribe();      
     }
   }
 
@@ -104,10 +107,6 @@ export class SubHeaderComponent {
   
   triggerDebounce(league: any) {
     this.debounceSubject.next(league);
-  }
-  
-  get isLoggedIn() {
-    return this.sharedService.isLoggedIn();
   }
 
   isLeagueDropdownDisabled(): boolean {

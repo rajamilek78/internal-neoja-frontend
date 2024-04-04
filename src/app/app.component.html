@@ -6,7 +6,7 @@
   (openCloseSidebar)="onOpenCloseSidebar($event)"
 ></app-header>
 
-<app-sub-header
+<app-sub-header *ngIf="isLoggedIn"
 ></app-sub-header>
 
 <div class="panel-body">
