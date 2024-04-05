@@ -401,7 +401,8 @@ app-conversation-list {
   }
 
   .mdc-text-field--filled.mdc-text-field--disabled {
-    opacity: 45% !important;
+    cursor: not-allowed;
+    background-color: transparent !important;
   }
 
   .mat-mdc-form-field-focus-overlay {
@@ -409,7 +410,7 @@ app-conversation-list {
   }
 
   .mat-mdc-select {
-    color: rgba($black-color, 0.5);
+    color: rgba($black-color, 1);
     font-size: 1.4rem !important;
     font-weight: 600 !important;
     line-height: 1.6rem !important;

@@ -37,6 +37,7 @@ export class UploadPlayerDataComponent implements OnInit {
   isNoShowDisabled = false;
   roundOnePlayersCount!: number;
   dropInPlayersCount!: number;
+  previousRoundPlayersCount!: number;
   leagueIDSubscription!: Subscription;
   sortedBy: string = '';
   isAscending: boolean = true;
@@ -104,7 +105,7 @@ export class UploadPlayerDataComponent implements OnInit {
   createPlayer(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
-      score: ['', Validators.required],
+      score: ['0', Validators.required],
     });
   }
 
@@ -265,6 +266,7 @@ export class UploadPlayerDataComponent implements OnInit {
       next: (res: any) => {
         this.roundOnePlayersCount = res.round1_player_count;
         this.dropInPlayersCount = res.drop_in_player_count;
+        this.previousRoundPlayersCount = res.last_round_player_count;
         this.leagueSummaryData = res;
         const sortedPlayers = Object.entries(this.leagueSummaryData.players);
         const playersArray = this.playerForm.get('players') as FormArray;
@@ -327,6 +329,7 @@ export class UploadPlayerDataComponent implements OnInit {
       error: (err: any) => {
         this.roundOnePlayersCount = 0;
         this.dropInPlayersCount = 0;
+        this.previousRoundPlayersCount = 0;
         const playersArray = this.playerForm.get('players') as FormArray;
         playersArray.clear();
         this.addPlayer();

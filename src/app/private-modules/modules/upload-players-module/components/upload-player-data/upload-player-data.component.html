@@ -4,7 +4,7 @@
       <div class="upload__data">
         <div class="tablet-width" formArrayName="players">
           <div
-            class="flex justify-end align-end MT-2-half title"
+            class="flex justify-end align-start MT-2-half title"
             [ngClass]="{
               'round-one': true,
               'round-two': roundsLength >= 1
@@ -19,13 +19,19 @@
                 <span  *ngIf="sortedBy === 'name' && isAscending" (click)="toggleSorting('name')"
                   ><img src="assets/images/arrow-up-icon.svg" alt=""
                 /></span>
-                <span
-                  *ngIf="roundOnePlayersCount !== 0 || dropInPlayersCount !== 0"
-                  >( Round 1 Players : <b>{{ roundOnePlayersCount }}</b
-                  >, Drop In Players : <b>{{ dropInPlayersCount }}</b
-                  >)</span
-                ></small
+                </small
               >
+              <span class="players-info" *ngIf="roundOnePlayersCount !== 0 || dropInPlayersCount !== 0 || previousRoundPlayersCount !== 0">
+                <div>
+                  Round 1 : <b>{{ roundOnePlayersCount }}</b>
+                </div>
+                <div>
+                  Drop In : <b>{{ dropInPlayersCount }}</b>
+                </div>
+                <div>
+                  Previous Round: <b>{{previousRoundPlayersCount}}</b>
+                </div>
+              </span>
             </div>
             <div
               [ngClass]="{

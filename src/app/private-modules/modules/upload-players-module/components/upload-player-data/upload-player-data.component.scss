@@ -17,3 +17,19 @@
         }
     }
 }
+
+.players-info{
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 2rem;
+    font-size: 1.4rem;
+
+    div{
+        background: #efefef;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        margin-left: 1rem;
+        color: rgba(0, 0, 0, 0.6);
+    }
+}
