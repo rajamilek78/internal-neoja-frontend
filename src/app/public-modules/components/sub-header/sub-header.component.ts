@@ -4,6 +4,7 @@ import { CommonService, SharedService, SnackBarService } from '@app/core';
 import { LeaguemanageService } from '@app/core/services/league.service';
 import { UserModel } from '@app/helpers/models';
 import { SharedCommonService } from '@app/helpers/services';
+import { LeagueService } from '@app/private-modules/modules/create-league-module/services/league.service';
 import { Subject, Subscription, debounceTime } from 'rxjs';
 
 @Component({
@@ -21,6 +22,8 @@ export class SubHeaderComponent implements OnInit{
   leagues: any[] = [];
   selectedLeague: any;
   selectedLeagueName:any
+  selectedLeagueSub$! : Subscription;
+  private leagueSub!: Subscription;
   private debounceSubject = new Subject<any>();
 
   constructor(
@@ -29,21 +32,25 @@ export class SubHeaderComponent implements OnInit{
     private snackbarService: SnackBarService,
     private SharedCommonService: SharedCommonService,
     private leagueService: LeaguemanageService,
+    private LeagueServiceEmit : LeagueService,
     private router: Router
   ) {
     this.debounceSubject.pipe(debounceTime(300)).subscribe(this.onLeagueSelect);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // Call getAllLeagues() when navigation ends (route changes)
-        this.getAllLeagues();
+        // this.getAllLeagues();
       }
     });
   }
   
   ngOnInit(): void {
-   this.selectedLeague = this.leagueService.getSelectedLeague();
+  this.selectedLeagueSub$ = this.selectedLeague = this.leagueService.getSelectedLeague();
     this.userSubscriber();
       this.getAllLeagues();
+      this.leagueSub = this.LeagueServiceEmit.leagueChanged.subscribe(() => {
+        this.getAllLeagues();
+      });
     }
 
   
@@ -52,6 +59,12 @@ export class SubHeaderComponent implements OnInit{
     
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();      
+    }
+    if(this.selectedLeagueSub$){
+      this.selectedLeagueSub$.unsubscribe();
+    }
+    if(this.leagueSub){
+      this.leagueSub.unsubscribe();
     }
     //this.router.events.subscribe();
   }

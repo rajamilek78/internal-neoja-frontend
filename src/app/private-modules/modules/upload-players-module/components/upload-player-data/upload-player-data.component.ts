@@ -24,6 +24,7 @@ export class UploadPlayerDataComponent implements OnInit , OnDestroy{
   playerForm!: FormGroup;
   isRoundTwo = false;
   selectedLeague$!:Subscription;
+  selectedPlayer$!:Subscription;
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   clubID!: string;
@@ -46,8 +47,6 @@ export class UploadPlayerDataComponent implements OnInit , OnDestroy{
   sessionID!: string;
   ld!: string;
   leagueSelect!: string;
-  sb!: Subscription;
-  sp!: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -87,7 +86,7 @@ export class UploadPlayerDataComponent implements OnInit , OnDestroy{
 
   onleagueSelect(){
     const defaultSelectedValue = '1';
-    this.sb = this.SharedCommonService.getLeagueID().subscribe((leagueID: any) => {
+    this.selectedLeague$ = this.SharedCommonService.getLeagueID().subscribe((leagueID: any) => {
       console.log(leagueID)
       this.leagueSelect=leagueID
           if (this.roundsLength >= 1) {
@@ -101,7 +100,7 @@ export class UploadPlayerDataComponent implements OnInit , OnDestroy{
 
   onplayerSelect(){
     const defaultSelectedValue = '1';
-    this.sp= this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
+    this.selectedPlayer$= this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
       console.log(selectedValue)
       if(this.roundsLength>=1){
         this.leagueSummary(selectedValue || defaultSelectedValue);
@@ -125,12 +124,10 @@ export class UploadPlayerDataComponent implements OnInit , OnDestroy{
     if(this.selectedLeague$){
       this.selectedLeague$.unsubscribe();
     }
-    if(this.sb){
-      this.sb.unsubscribe();
+    if(this.selectedPlayer$){
+      this.selectedPlayer$.unsubscribe();
     }
-    if(this.sp){
-      this.sp.unsubscribe();
-    }
+    
   }
 
   createPlayer(): FormGroup {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { APIManager } from '@app/core';
 import { API_ENDPOINTS } from '@app/helpers/constants';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LeagueService {
+  public leagueChanged = new EventEmitter<void>();
 
   constructor(private apiManager : APIManager) {  }
 

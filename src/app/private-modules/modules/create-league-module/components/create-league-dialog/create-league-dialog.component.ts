@@ -29,6 +29,7 @@ export class CreateLeagueDialogComponent
     fb: FormBuilder,
     private leagueService: LeagueService,
     private snackbarService: SnackBarService
+
   ) {
     super(fb);
   }
@@ -101,6 +102,7 @@ export class CreateLeagueDialogComponent
         .createLeague(urlString, this.leagueCRUD_Form.value)
         .subscribe({
           next: (res: any) => {
+            this.leagueService.leagueChanged.emit();
             this.close();
           },
           error: (err: any) => {
@@ -129,6 +131,7 @@ export class CreateLeagueDialogComponent
       .updateLeague(urlString, this.leagueCRUD_Form.value)
       .subscribe({
         next: (res: any) => {
+          this.leagueService.leagueChanged.emit();
           this.close();
         },
         error: (err: any) => {
