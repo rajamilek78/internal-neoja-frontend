@@ -17,6 +17,7 @@ import { SnackBarService } from '@app/core/services/snackbar.service';
 })
 export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
+  selectedLeague$!:Subscription;
   userDetail!: UserModel | null;
   leagues: any[] = [];
   rounds: any[] = [];
@@ -56,6 +57,9 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
+    }
+    if(this.selectedLeague$){
+      this.selectedLeague$.unsubscribe();
     }
   }
   // To open dialog to lock Round

@@ -20,6 +20,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
   @ViewChild("cumulativeTableSort") cumulativeTableSort!: MatSort;
   @ViewChild("individualTableSort") individualTableSort!: MatSort;
   userDetailSub$!: Subscription;
+  selectedLeague$!: Subscription;
   userDetail!: UserModel | null;
   selectedClubID!: string;
   leagueID!: string;
@@ -74,6 +75,9 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
+    }
+    if(this.selectedLeague$){
+      this.selectedLeague$.unsubscribe();
     }
   }
   bindLeagueName = () => {

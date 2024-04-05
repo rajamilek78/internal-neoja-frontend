@@ -23,6 +23,7 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
 export class UploadPlayerDataComponent implements OnInit {
   playerForm!: FormGroup;
   isRoundTwo = false;
+  selectedLeague$!:Subscription;
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   clubID!: string;
@@ -63,16 +64,18 @@ export class UploadPlayerDataComponent implements OnInit {
     console.log(this.selectedValue)
     this.userSubscriber();
     const defaultSelectedValue = '1';
-    if (this.roundsLength >= 1) {
-      this.leagueSummary(defaultSelectedValue);
-    } else {
-      this.addPlayer();
-    }
+    // if (this.roundsLength >= 1) {
+    //   this.leagueSummary(defaultSelectedValue);
+    // } else {
+    //   this.addPlayer();
+    // }
     this.leagueIDSubscription =
     this.SharedCommonService.leagueChanged.subscribe(
       (newLeagueID: string) => {
         if (this.roundsLength >= 1) {
           this.leagueSummary(defaultSelectedValue);
+        }else {
+          this.addPlayer();
         }
       }
     );
@@ -89,9 +92,12 @@ export class UploadPlayerDataComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.leagueIDSubscription.unsubscribe();
+    //this.leagueIDSubscription.unsubscribe();
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
+    }
+    if(this.selectedLeague$){
+      this.selectedLeague$.unsubscribe();
     }
   }
 
