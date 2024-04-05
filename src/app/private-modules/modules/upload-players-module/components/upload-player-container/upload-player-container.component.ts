@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 export class UploadPlayerContainerComponent implements OnInit {
   // roundCount = 5;
   roundsLength!: number;
+  selectedLeague$!:Subscription;
   leagueID!: string;
   clubID!: string;
   selectedFormat = '1';
@@ -41,7 +42,8 @@ export class UploadPlayerContainerComponent implements OnInit {
     this.selectedDate = new Date();
     this.userSubscriber();
     //this.getAllLeagues();
-    this.leagueService.selectedLeague$.subscribe((league: any) => {
+   this.selectedLeague$= this.leagueService.selectedLeague$.subscribe((league: any) => {
+      console.log(this.roundsLength)
       this.onLeagueSelect(league);
     });
   }
@@ -49,6 +51,9 @@ export class UploadPlayerContainerComponent implements OnInit {
   ngOnDestroy() {
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
+    }
+    if(this.selectedLeague$){
+      this.selectedLeague$.unsubscribe();
     }
   }
 
@@ -87,17 +92,17 @@ export class UploadPlayerContainerComponent implements OnInit {
   onLeagueSelect(league: any) {
     this.selectedLeague = league;
     this.leagueID = league.id;
-    if (league) {
-      localStorage.setItem('leagueID', this.selectedLeague.id);
-      localStorage.setItem('leagueName', this.selectedLeague.name);
-    }
+    // if (league) {
+    //   localStorage.setItem('leagueID', this.selectedLeague.id);
+    //   localStorage.setItem('leagueName', this.selectedLeague.name);
+    // }
     const clubLeagueStr = `${this.clubID}/${this.leagueID}/all`;
     this.commonService.getRounds(clubLeagueStr).subscribe({
       next: (res: any) => {
         this.roundsLength = res ? Object.keys(res).length : 0;
         this.roundCount = this.roundsLength + 1;
         this.selectedFormat = this.roundsLength >= 1 ? '2' : '1';
-        this.SharedCommonService.setLeagueID(this.leagueID);
+       this.SharedCommonService.setLeagueID(this.leagueID);
         this.cdr.detectChanges();
       },
       error: (err: any) => {

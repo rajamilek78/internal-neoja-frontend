@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
@@ -20,7 +20,7 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
   templateUrl: './upload-player-data.component.html',
   styleUrl: './upload-player-data.component.scss',
 })
-export class UploadPlayerDataComponent implements OnInit {
+export class UploadPlayerDataComponent implements OnInit , OnDestroy{
   playerForm!: FormGroup;
   isRoundTwo = false;
   selectedLeague$!:Subscription;
@@ -44,6 +44,10 @@ export class UploadPlayerDataComponent implements OnInit {
 
   leagueSummaryData: any;
   sessionID!: string;
+  ld!: string;
+  leagueSelect!: string;
+  sb!: Subscription;
+  sp!: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -64,26 +68,48 @@ export class UploadPlayerDataComponent implements OnInit {
     // this.addPlayers(this.playerCount);
     console.log(this.selectedValue)
     this.userSubscriber();
-    const defaultSelectedValue = '1';
+    //const defaultSelectedValue = '1';
     // if (this.roundsLength >= 1) {
     //   this.leagueSummary(defaultSelectedValue);
     // } else {
     //   this.addPlayer();
     // }
-    this.leagueIDSubscription =
-    this.SharedCommonService.leagueChanged.subscribe(
-      (newLeagueID: string) => {
-        if (this.roundsLength >= 1) {
-          this.leagueSummary(defaultSelectedValue);
-        }else {
-          this.addPlayer();
-        }
-      }
-    );
-    this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
-      this.leagueSummary(selectedValue || defaultSelectedValue);
+      this.onleagueSelect();
+      this.onplayerSelect();
+
+    // this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
+    //   console.log(selectedValue)
+    //   if(this.roundsLength>=1){
+    //     this.leagueSummary(selectedValue || defaultSelectedValue);
+    //   }
+    // });
+  }
+
+  onleagueSelect(){
+    const defaultSelectedValue = '1';
+    this.sb = this.SharedCommonService.getLeagueID().subscribe((leagueID: any) => {
+      console.log(leagueID)
+      this.leagueSelect=leagueID
+          if (this.roundsLength >= 1) {
+            this.leagueSummary(defaultSelectedValue);
+          }else {
+            this.addPlayer();
+          }
+      console.log('League ID in UploadPlayerDataComponent:', leagueID);
     });
   }
+
+  onplayerSelect(){
+    const defaultSelectedValue = '1';
+    this.sp= this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
+      console.log(selectedValue)
+      if(this.roundsLength>=1){
+        this.leagueSummary(selectedValue || defaultSelectedValue);
+      }
+    });
+  }
+  
+
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges called', changes);
     if (changes['playerCount']) {
@@ -93,12 +119,17 @@ export class UploadPlayerDataComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    //this.leagueIDSubscription.unsubscribe();
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
     if(this.selectedLeague$){
       this.selectedLeague$.unsubscribe();
+    }
+    if(this.sb){
+      this.sb.unsubscribe();
+    }
+    if(this.sp){
+      this.sp.unsubscribe();
     }
   }
 
@@ -261,7 +292,7 @@ export class UploadPlayerDataComponent implements OnInit {
   // }
   
   leagueSummary(selectedValue: string) {
-    const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
+    const clubLeagueStr = `${this.clubID}/${this.leagueSelect}`;
     this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
       next: (res: any) => {
         this.roundOnePlayersCount = res.round1_player_count;
@@ -330,9 +361,9 @@ export class UploadPlayerDataComponent implements OnInit {
         this.roundOnePlayersCount = 0;
         this.dropInPlayersCount = 0;
         this.previousRoundPlayersCount = 0;
+        this.addPlayer();
         const playersArray = this.playerForm.get('players') as FormArray;
         playersArray.clear();
-        this.addPlayer();
         const message = err.error.message;
         this.snackbarService.setSnackBarMessage(message);
       },

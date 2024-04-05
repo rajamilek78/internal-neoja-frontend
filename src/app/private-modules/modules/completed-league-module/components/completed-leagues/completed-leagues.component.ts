@@ -44,7 +44,11 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userSubscriber();
     //this.getAllLeagues();
-    this.leagueService.selectedLeague$.subscribe((selectedLeagueId: any) => {
+    this.onLeagueSelect();
+  }
+
+  onLeagueSelect(){
+   this.selectedLeague$ =  this.leagueService.selectedLeague$.subscribe((selectedLeagueId: any) => {
       if (selectedLeagueId && selectedLeagueId.id) {
         console.log(selectedLeagueId)
         this.selectedLeagueId = selectedLeagueId.id;
