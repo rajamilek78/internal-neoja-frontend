@@ -51,12 +51,26 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
       this.selectedClubID = params['clubId'];
       this.leagueID = params['leagueID'];
     });
+    this.userSubscriber();
+    this.onLeagueSelect()
     // this.bindLeagueScore();
     // this.bindLeagueName();
     // this.handleLeagueScore(leagueRoundWiseScores)
     // this.sortedCumulative[0] = this.cumulativeScores[0]
     // this.sortedIndividual[0] = this.individualScores[0]
-    this.leaguemanageService.selectedLeague$.subscribe((selectedLeagueId: any) => {
+    
+  }
+  ngOnDestroy(): void {
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
+    if(this.selectedLeague$){
+      this.selectedLeague$.unsubscribe();
+    }
+  }
+
+  onLeagueSelect(){
+   this.selectedLeague$= this.leaguemanageService.selectedLeague$.subscribe((selectedLeagueId: any) => {
       if (selectedLeagueId && selectedLeagueId.id) {
         console.log(selectedLeagueId)
         this.selectedLeagueId = selectedLeagueId.id;
@@ -72,14 +86,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  ngOnDestroy(): void {
-    if (this.userDetailSub$) {
-      this.userDetailSub$.unsubscribe();
-    }
-    if(this.selectedLeague$){
-      this.selectedLeague$.unsubscribe();
-    }
-  }
+ 
   bindLeagueName = () => {
     const urlString = `${this.selectedClubID}/${this.selectedLeagueId}`;
     this.leagueService.getLeagueById(urlString).subscribe({
