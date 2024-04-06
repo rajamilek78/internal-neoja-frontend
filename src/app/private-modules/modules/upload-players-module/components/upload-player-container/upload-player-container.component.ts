@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { CommonService, SharedService } from '@app/core';
 import { LeaguemanageService } from '@app/core/services/league.service';
@@ -42,8 +43,7 @@ export class UploadPlayerContainerComponent implements OnInit {
     this.selectedDate = new Date();
     this.userSubscriber();
     //this.getAllLeagues();
-   this.selectedLeague$= this.leagueService.selectedLeague$.subscribe((league: any) => {
-      console.log(this.roundsLength)
+    this.selectedLeague$= this.leagueService.selectedLeague$.subscribe((league: any) => {
       this.onLeagueSelect(league);
     });
   }
@@ -102,7 +102,7 @@ export class UploadPlayerContainerComponent implements OnInit {
         this.roundsLength = res ? Object.keys(res).length : 0;
         this.roundCount = this.roundsLength + 1;
         this.selectedFormat = this.roundsLength >= 1 ? '2' : '1';
-       this.SharedCommonService.setLeagueID(this.leagueID);
+        this.SharedCommonService.setLeagueID(this.leagueID);
         this.cdr.detectChanges();
       },
       error: (err: any) => {

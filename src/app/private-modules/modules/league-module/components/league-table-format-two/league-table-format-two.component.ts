@@ -52,14 +52,13 @@ export class LeagueTableFormatTwoComponent implements OnInit {
     });
 };
 
-onTabChanged($event) {
-    let clickedIndex = $event.index;
-    this.selectedTabIndex = clickedIndex;
-    this.selectedTab.emit(this.selectedTabIndex + 1);
-    this.games = Object.entries(
-      this.groups[this.selectedTabIndex].data.games
-    );
-};
-
+  onTabChanged($event) {
+      let clickedIndex = $event.index;
+      this.selectedTabIndex = clickedIndex;
+      this.selectedTab.emit(this.selectedTabIndex + 1);
+      this.games = Object.entries(
+        this.groups[this.selectedTabIndex].data.games
+      );
+  };
 }
 

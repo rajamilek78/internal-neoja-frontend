@@ -400,10 +400,11 @@ textarea {
     th,
     td {
       border: 1px solid rgba($black-color, 0.1);
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       line-height: 1.9rem;
+      font-weight: 600;
 
-      padding: 1rem 0.4rem 1rem 1.4rem;
+      padding: 2rem 0.4rem 2rem 1.4rem;
     }
 
     th {
@@ -426,7 +427,8 @@ textarea {
       input {
         background-color: transparent !important;
         text-align: center;
-        font-size: 18px;
+        font-size: 1.8rem;
+        font-weight: 600;
 
         &:focus {
           outline: none;

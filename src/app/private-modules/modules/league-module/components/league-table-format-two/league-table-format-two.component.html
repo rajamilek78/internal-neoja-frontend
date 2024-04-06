@@ -90,6 +90,7 @@
                     class="format-two-input"
                     [(ngModel)]="game[1].score.team_1"
                     [disabled]="labelName === 'ViewScore'"
+                    [id]="game[1].team_1.indexOf(player) + 'a'"
                   />
                   <input
                     *ngIf="game[1].team_2.indexOf(player) > -1 && isEdit"

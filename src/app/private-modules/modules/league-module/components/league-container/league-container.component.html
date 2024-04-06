@@ -7,7 +7,7 @@
         <h6>{{ leagueName }}</h6>
       </div> -->
       <div class="">
-        <h6>Round {{roundCount}} | {{roundDate | date : "EEE, MMM dd yyyy"}}</h6>
+        <h6 *ngIf="roundCount">Round {{roundCount}} <span *ngIf="roundDate">| {{roundDate | date : "EEE, MMM dd yyyy"}}</span></h6>
         <!-- <b>{{ leagueName }}</b> -->
       </div>
       <div class="flex justify-end pd-1">
@@ -30,7 +30,7 @@
             </button>
           </div>
 
-          <div class="primary-btn">
+          <div *ngIf="!isEdit" class="primary-btn">
             <button class="btn flex justify-center" (click)="onClickDownload()">
               <span><img src="assets/images/download-icon.svg" alt="" /></span
               >Download
