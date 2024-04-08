@@ -55,7 +55,7 @@
           aria-label="Font Style"
           (change)="onToggleButtonChange($event)"
         >
-          <mat-button-toggle [value]="1" checked>All</mat-button-toggle>
+          <mat-button-toggle [value]="1" [checked]="selectedValue === 1">All</mat-button-toggle>
           <mat-button-toggle [value]="3">Previous</mat-button-toggle>
           <mat-button-toggle [value]="2">Round 1</mat-button-toggle>
         </mat-button-toggle-group>

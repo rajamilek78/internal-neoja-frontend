@@ -92,6 +92,10 @@ export class UploadPlayerContainerComponent implements OnInit {
   onLeagueSelect(league: any) {
     this.selectedLeague = league;
     this.leagueID = league.id;
+    if (this.selectedValue == 2 || this.selectedValue == 3 || this.selectedValue == undefined) {
+      this.selectedValue = 1;
+      this.SharedCommonService.setSelectedValue(this.selectedValue);
+  }
     // if (league) {
     //   localStorage.setItem('leagueID', this.selectedLeague.id);
     //   localStorage.setItem('leagueName', this.selectedLeague.name);
