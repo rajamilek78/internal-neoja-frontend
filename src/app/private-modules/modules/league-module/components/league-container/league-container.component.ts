@@ -27,9 +27,7 @@ import { SnackBarService } from '@app/core/services/snackbar.service';
   templateUrl: './league-container.component.html',
   styleUrl: './league-container.component.scss',
 })
-export class LeagueContainerComponent
-  implements OnInit, OnDestroy
-{
+export class LeagueContainerComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   groups: any;
@@ -47,7 +45,7 @@ export class LeagueContainerComponent
   roundCount!: number;
   isTouched: boolean = false;
   labelName: string = '';
-  roundDate:any;
+  roundDate: any;
 
   constructor(
     private SharedCommonService: SharedCommonService,
@@ -60,7 +58,8 @@ export class LeagueContainerComponent
     private sharedUserService: SharedUserService
   ) {}
   ngOnInit(): void {
-    console.log("calling")
+    window.scrollTo(0, 0);
+    console.log('calling');
     this.userSubscriber();
     this.route.params.subscribe((params) => {
       this.isEdit = params['isEdit'];
@@ -99,20 +98,18 @@ export class LeagueContainerComponent
         leagueID: this.leagueID,
         responseData: this.responseData,
         roundCount: this.roundCount,
-
       },
     });
-    dialogueRef.afterClosed().subscribe((result) => {
-    });
+    dialogueRef.afterClosed().subscribe((result) => {});
   }
   // To get Match Data
   getMatchData() {
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.rawData = data;
       this.roundCount = this.rawData.round.header.round;
-      this.roundDate= this.rawData.round.header.date
+      this.roundDate = this.rawData.round.header.date;
       this.responseData = data;
-      console.log(data)
+      console.log(data);
       if (this.responseData) {
         this.groups = Object.keys(this.responseData.round.groups).map(
           (key) => ({
@@ -227,7 +224,11 @@ export class LeagueContainerComponent
     //     pdf.save(filename); // Generated PDF
     //   });
     // }
-    if (this.rawData && this.rawData.round_pdf_public_url && this.rawData.round_pdf_public_url.format1) {
+    if (
+      this.rawData &&
+      this.rawData.round_pdf_public_url &&
+      this.rawData.round_pdf_public_url.format1
+    ) {
       window.open(this.rawData.round_pdf_public_url.format1, '_blank');
     } else {
       console.log('Round PDF URL not found or format1 is empty.');
