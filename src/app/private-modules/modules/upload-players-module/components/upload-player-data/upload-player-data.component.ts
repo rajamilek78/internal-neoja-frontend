@@ -98,6 +98,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
         this.leagueSelect = leagueID;
         if (this.roundsLength >= 1) {
           this.leagueSummary(defaultSelectedValue);
+          //this.isAscending = false;
         } else {
           this.addPlayer();
         }
@@ -112,6 +113,10 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
         (selectedValue: string) => {
           if (this.roundsLength >= 1) {
             this.leagueSummary(selectedValue || defaultSelectedValue);
+            //this.isAscending = false;
+            // this.sortedBy = 'score'; // or 'name' depending on your default sorting preference
+            // this.isAscending = true;
+            // this.sortPlayers('score');
           }
         }
       );
@@ -324,6 +329,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
               round: [{ value: round, disabled: true }],
             });
             playersArray.push(playerGroup);
+            this.isAscending = true;
             this.sortPlayers('score');
           });
         } else if (selectedValue == '2') {
@@ -361,6 +367,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
                 round: [{ value: round, disabled: true }],
               });
               playersArray.push(playerGroup);
+              this.isAscending = true;
               this.sortPlayers('score');
             }
           );
@@ -400,6 +407,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
                 round: [{ value: round, disabled: true }],
               });
               playersArray.push(playerGroup);
+              this.isAscending = true;
               this.sortPlayers('score');
             }
           );

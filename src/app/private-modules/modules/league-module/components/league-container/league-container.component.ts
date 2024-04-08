@@ -46,6 +46,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
   isTouched: boolean = false;
   labelName: string = '';
   roundDate: any;
+  sessionID!: string;
 
   constructor(
     private SharedCommonService: SharedCommonService,
@@ -86,6 +87,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.userDetail = this.sharedUserService.getUser();
         if (this.userDetail) {
+          this.sessionID = this.userDetail?.session_id
           // this.selectedClubID = this.userDetail.club_id;
         }
       });
@@ -159,7 +161,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
         round: this.rawData.header.round,
         score_locked: false,
       },
-
+      sessionID: this.rawData.sessionID,
       groups: groups,
       players: this.rawData.players,
     };

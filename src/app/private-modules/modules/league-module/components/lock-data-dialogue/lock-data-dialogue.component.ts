@@ -58,11 +58,15 @@ export class LockDataDialogueComponent implements OnInit {
 
   lockRound() {
     const bodyData = this.data.responseData.round;
+    const body ={
+      ...bodyData,
+      sessionID: this.sessionID
+    }
     console.log(bodyData)
     console.log(this.data)
     // const clubID = this.userDetail?.club_id;
     const compnyclubnameStr = `${this.clubID}/${this.leagueID}`;
-    this.commonservice.creatRound(compnyclubnameStr, bodyData).subscribe({
+    this.commonservice.creatRound(compnyclubnameStr, body).subscribe({
       next: (res: any) => {
         // Navigate to the completed leagues page
         this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);

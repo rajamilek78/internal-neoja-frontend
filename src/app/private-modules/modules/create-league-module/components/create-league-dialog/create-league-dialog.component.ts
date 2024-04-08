@@ -98,8 +98,13 @@ export class CreateLeagueDialogComponent
       this.updateLeague();
     } else {
       const urlString = `${this.data.clubID}`;
+      const bodyData = this.leagueCRUD_Form.value
+      const body = {
+        ...bodyData,
+        sessionId : this.sessionID
+      }
       this.leagueService
-        .createLeague(urlString, this.leagueCRUD_Form.value)
+        .createLeague(urlString, body)
         .subscribe({
           next: (res: any) => {
             this.leagueService.leagueChanged.emit();
@@ -127,8 +132,13 @@ export class CreateLeagueDialogComponent
       end_date: formattedEndDate,
     });
     const urlString = `${this.data.clubID}/${this.leagueID}`;
+    const bodyData = this.leagueCRUD_Form.value
+    const body = {
+      ...bodyData,
+      sessionId : this.sessionID
+    }
     this.leagueService
-      .updateLeague(urlString, this.leagueCRUD_Form.value)
+      .updateLeague(urlString, body)
       .subscribe({
         next: (res: any) => {
           this.leagueService.leagueChanged.emit();
