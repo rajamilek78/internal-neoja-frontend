@@ -44,7 +44,9 @@ export class UploadPlayerContainerComponent implements OnInit {
     this.userSubscriber();
     //this.getAllLeagues();
     this.selectedLeague$= this.leagueService.selectedLeague$.subscribe((league: any) => {
-      this.onLeagueSelect(league);
+      if(league){
+        this.onLeagueSelect(league);
+      }
     });
   }
   
