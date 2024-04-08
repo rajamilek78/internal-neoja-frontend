@@ -55,7 +55,7 @@ export class CreateLeagueDialogComponent
       type: [''],
       doubles: [true],
       active: [true],
-      rounds_per_day: [0],
+      rounds_per_day: ['1'],
     });
   }
 
