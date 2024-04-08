@@ -20,16 +20,14 @@
 
     .MB-1-half {
         margin: 1.4rem 0rem !important;
-        width: 12%;
+        width: auto;
 
         @include respond ("tab-port") {
             margin: 0rem !important;
-            width: 19%;
         }
 
         @include respond ("phone") {
             margin: 0rem !important;
-            width: 42%;
         }
     }
 
@@ -43,14 +41,7 @@
 }
 
 .dropdown-league {
+    border-left: 1px solid rgba($black-color, 0.15);
     padding-left: 2.6rem;
     width: 40rem;
-}
-
-.border-club {
-    border-right: 1px solid rgba($black-color, 0.15);
-    position: absolute;
-    height: 4.5rem;
-    left: 16rem;
-    top: 0rem;
 }

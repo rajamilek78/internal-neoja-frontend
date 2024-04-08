@@ -47,7 +47,6 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     public location: Location
   ) {}
   ngOnInit(): void {
-    window.scrollTo(0, 0);
     this.route.params.subscribe((params) => {
       this.selectedClubID = params['clubId'];
       this.leagueID = params['leagueID'];

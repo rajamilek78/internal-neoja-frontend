@@ -14,18 +14,17 @@ export class LeagueTableFormatOneComponent implements OnInit {
   @Input() roundCount!: string;
   @Input() leagueName!: string;
   @Input() groups: any;
-  @Input() labelName!: string ;
+  @Input() labelName!: string;
   @Output() blurTeamScore = new EventEmitter<any>();
   @Output() selectedTab = new EventEmitter<number>();
-  @Input() isEdit !: boolean 
+  @Input() isEdit!: boolean;
   gamesArray: any;
   selectedTabIndex = 0;
 
-  constructor(
-    private SharedCommonService: SharedCommonService,
-    ) {}
+  constructor(private SharedCommonService: SharedCommonService) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.selectedTab.emit(this.selectedTabIndex + 1);
     if (this.groups && this.groups.length > 0) {
       this.gamesArray = Object.entries(
@@ -58,7 +57,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
     groups[this.selectedTabIndex].data.games = { ...gameObj };
     this.blurTeamScore.emit({
       groups: [...groups],
-      isTouched: true
+      isTouched: true,
     });
   };
 }
