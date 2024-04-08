@@ -17,13 +17,13 @@
 .panel-body {
   min-height: calc(100vh - 22rem);
 
-  // @include respond("tab-port") {
-  //   display: none;
-  // }
+  @include respond("tab-port") {
+    min-height: calc(100vh - 20rem);
+  }
 
-  // @include respond("phone") {
- //   min-height: calc(100vh - 20rem);
- // }
+  @include respond("phone") {
+    min-height: calc(100vh - 20rem);
+  }
 }
 
 .loader {

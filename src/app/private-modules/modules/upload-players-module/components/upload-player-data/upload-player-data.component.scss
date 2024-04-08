@@ -1,35 +1,42 @@
 @import "../../../../../../assets/scss/abstracts/abstracts";
 
-.null-img{
-    img{
+.null-img {
+    img {
         @include respond("tab-port") {
             width: 2.4rem;
         }
     }
 }
 
-.sort-icon{
+.sort-icon {
     cursor: pointer;
-    span{
+
+    span {
         vertical-align: middle;
-        img{
+
+        img {
             width: 15px;
         }
     }
 }
 
-.players-info{
+.players-info {
     position: absolute;
     display: flex;
     top: 0;
     right: 2rem;
     font-size: 1.4rem;
 
-    div{
+    div {
         background: #efefef;
         padding: 0.5rem 1rem;
         border-radius: 0.5rem;
         margin-left: 1rem;
         color: rgba(0, 0, 0, 0.6);
+    }
+
+    @include respond ("phone") {
+        top: 2rem;
+        right: 3rem;
     }
 }
