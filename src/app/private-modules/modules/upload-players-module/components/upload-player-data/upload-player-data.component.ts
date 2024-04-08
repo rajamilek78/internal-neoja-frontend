@@ -70,6 +70,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     // this.addPlayers(this.playerCount);
     console.log(this.selectedValue);
     this.userSubscriber();
