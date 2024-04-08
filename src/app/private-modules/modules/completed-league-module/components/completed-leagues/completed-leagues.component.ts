@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonService,LeaguemanageService,SharedService } from '@app/core';
+import { CommonService, LeaguemanageService, SharedService } from '@app/core';
 import { CompanyModel } from '@app/helpers/models/company.model';
 import { MatDialog } from '@angular/material/dialog';
 import { LockDataDialogueComponent } from '../../../league-module/components/lock-data-dialogue/lock-data-dialogue.component';
@@ -17,7 +17,7 @@ import { SnackBarService } from '@app/core/services/snackbar.service';
 })
 export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
-  selectedLeague$!:Subscription;
+  selectedLeague$!: Subscription;
   userDetail!: UserModel | null;
   leagues: any[] = [];
   rounds: any[] = [];
@@ -42,27 +42,30 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.userSubscriber();
     //this.getAllLeagues();
     this.onLeagueSelect();
   }
 
-  onLeagueSelect(){
-   this.selectedLeague$ =  this.leagueService.selectedLeague$.subscribe((selectedLeagueId: any) => {
-      if (selectedLeagueId && selectedLeagueId.id) {
-        console.log(selectedLeagueId)
-        this.selectedLeagueId = selectedLeagueId.id;
-        console.log(this.selectedLeagueId)
-        this.selectedLeagueName = selectedLeagueId.name
-        this.getAllRounds();
+  onLeagueSelect() {
+    this.selectedLeague$ = this.leagueService.selectedLeague$.subscribe(
+      (selectedLeagueId: any) => {
+        if (selectedLeagueId && selectedLeagueId.id) {
+          console.log(selectedLeagueId);
+          this.selectedLeagueId = selectedLeagueId.id;
+          console.log(this.selectedLeagueId);
+          this.selectedLeagueName = selectedLeagueId.name;
+          this.getAllRounds();
+        }
       }
-    });
+    );
   }
   ngOnDestroy(): void {
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
-    if(this.selectedLeague$){
+    if (this.selectedLeague$) {
       this.selectedLeague$.unsubscribe();
     }
   }
@@ -71,8 +74,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
       width: '450px',
     });
-    dialogueRef.afterClosed().subscribe((result) => {
-    });
+    dialogueRef.afterClosed().subscribe((result) => {});
   }
   // To view score
   viewScore() {
@@ -83,7 +85,10 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   }
   // To Update Score
   edit(roundID?) {
-    const labelName = this.rounds.find((round) => round.roundNumber === roundID)?.roundDetails.header?.score_locked ? 'ViewScore' : 'EditScore';
+    const labelName = this.rounds.find((round) => round.roundNumber === roundID)
+      ?.roundDetails.header?.score_locked
+      ? 'ViewScore'
+      : 'EditScore';
     this.router.navigate([
       RouteConstant.LEAGUE_CONTAINER,
       {
@@ -137,7 +142,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   //     this.selectedLeagueName = '';
   //   }
   // }
-// To get data of all rounds in a league.
+  // To get data of all rounds in a league.
   getAllRounds() {
     const urlString = `${this.selectedClubID}/${this.selectedLeagueId}/all`;
     this.completedLeagueService.getAllRounds(urlString).subscribe({
