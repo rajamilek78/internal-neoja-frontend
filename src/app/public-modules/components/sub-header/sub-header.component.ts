@@ -45,7 +45,7 @@ export class SubHeaderComponent implements OnInit{
   }
   
   ngOnInit(): void {
-  this.selectedLeagueSub$ = this.selectedLeague = this.leagueService.getSelectedLeague();
+ this.selectedLeague = this.leagueService.getSelectedLeague();
     this.userSubscriber();
       this.getAllLeagues();
       this.leagueSub = this.LeagueServiceEmit.leagueChanged.subscribe(() => {

@@ -10,7 +10,7 @@ import {
   Input,
 } from '@angular/core';
 import { RouteConstant } from '../../../helpers/constants';
-import { SharedService } from '@app/core';
+import { LeaguemanageService, SharedCommonService, SharedService } from '@app/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
 import { MatDialog } from '@angular/material/dialog';
@@ -35,7 +35,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private sharedService: SharedService,
     private cdr: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private SharedCommonService: SharedCommonService,
+    private leagueService: LeaguemanageService,
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout = () => {
     this.sharedService.logout();
+    this.leagueService.setSelectedLeague(null)
   };
 
   onOpenCloseSidebar = (val: boolean) => {
