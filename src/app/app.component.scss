@@ -1,3 +1,6 @@
+@import '../assets/scss/abstracts/abstracts';
+
+
 .app-loader {
   background-color: rgba(0, 0, 0, 0.2);
   position: fixed;
@@ -13,6 +16,14 @@
 
 .panel-body {
   min-height: calc(100vh - 22rem);
+
+  // @include respond("tab-port") {
+  //   display: none;
+  // }
+
+  // @include respond("phone") {
+ //   min-height: calc(100vh - 20rem);
+ // }
 }
 
 .loader {

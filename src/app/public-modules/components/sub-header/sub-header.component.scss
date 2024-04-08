@@ -20,9 +20,16 @@
 
     .MB-1-half {
         margin: 1.4rem 0rem !important;
+        width: 12%;
+
+        @include respond ("tab-port") {
+            margin: 0rem !important;
+            width: 19%;
+        }
 
         @include respond ("phone") {
             margin: 0rem !important;
+            width: 42%;
         }
     }
 
