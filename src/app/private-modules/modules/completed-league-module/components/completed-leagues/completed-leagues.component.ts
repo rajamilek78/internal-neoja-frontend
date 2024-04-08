@@ -31,6 +31,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   clubs: { [key: string]: { name: string; phone: string; address: any } } = {};
   selectedLeagueName!: string;
   selectedLeagueId: any;
+  sessionID!: string;
   constructor(
     private commonService: CommonService,
     private dialog: MatDialog,
@@ -109,6 +110,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
         this.userDetail = this.sharedUserService.getUser();
         if (this.userDetail) {
           this.selectedClubID = this.userDetail.club_id;
+          this.sessionID = this.userDetail?.session_id
         }
       });
   };
@@ -172,7 +174,8 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
   }
   lockScore(roundID?) {
     const urlString = `${this.selectedClubID}/${this.selectedLeagueId}/${roundID}`;
-    this.commonService.lockScore(urlString).subscribe({
+    const body = this.sessionID
+    this.commonService.lockScore(urlString, body).subscribe({
       next: (res: any) => {
         this.viewScore();
         this.getAllRounds();

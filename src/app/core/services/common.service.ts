@@ -36,8 +36,8 @@ export class CommonService {
   creatRound(path : string , bodyData){
     return this.apiManager.postApis(`${API_ENDPOINTS.CREAT_ROUND}/${path}`, bodyData, false,true)
   }
-  lockScore(path: string){
-    return this.apiManager.postApis(`${API_ENDPOINTS.LOCK_SCORE}/${path}`, false,true)
+  lockScore(path: string, bodyData){
+    return this.apiManager.postApis(`${API_ENDPOINTS.LOCK_SCORE}/${path}`,bodyData, false,true)
   }
   contactUs(data :any){
     return this.apiManager.postApis(`${API_ENDPOINTS.CONTACT_US}`, data,false,true)
