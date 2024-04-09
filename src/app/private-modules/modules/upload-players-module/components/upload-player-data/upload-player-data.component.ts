@@ -73,6 +73,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    //this.selectedValue = '1'
     // this.addPlayers(this.playerCount);
     this.userSubscriber();
     this.onleagueSelect();
@@ -97,7 +98,8 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     this.selectedPlayer$ =
       this.SharedCommonService.getSelectedValue().subscribe(
         (selectedValue: string) => {
-          if (this.roundsLength >= 1) {
+          this.selectedValue= selectedValue
+          if (this.roundsLength >= 1 && selectedValue) {
             this.leagueSummary(selectedValue || defaultSelectedValue);
           }
         }
@@ -135,6 +137,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     if (this.selectedPlayer$) {
       this.selectedPlayer$.unsubscribe();
     }
+    this.SharedCommonService.setSelectedValue(null);
   }
 
   createPlayer(): FormGroup {

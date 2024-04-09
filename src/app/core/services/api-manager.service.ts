@@ -1,19 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { AppLogger } from '@app/helpers/functions';
 import { AppConstant, HttpMethodsTypeEnum, } from '@app/helpers/constants';
 import { SharedService } from './shared.service';
 import { HttpHelperService } from './http-helper.service';
 import { SnackBarService } from './snackbar.service';
+import { UserModel } from '@app/helpers/models';
 
 @Injectable()
 export class APIManager extends HttpHelperService {
-
+  userDetail!: UserModel | null;
+  sessionID!: string;
+  userDetailSub$!: Subscription;
+  
   constructor(sharedService: SharedService,
     snackBarService: SnackBarService,
     http: HttpClient) {
     super(sharedService, http,snackBarService);
+
+    this.userDetailSub$ = this.sharedService
+      .getUserDetailCall()
+      .subscribe(() => {
+        this.userDetail = this.sharedService.getUser();
+        if (this.userDetail) {
+          //this.clubID = this.userDetail?.club_id;
+          this.sessionID = this.userDetail?.session_id;
+        }
+      });
   }
 
   // return authorization header
@@ -40,7 +54,8 @@ export class APIManager extends HttpHelperService {
     const authToken = this.sharedService.getToken();
     const httpOptions = new HttpHeaders({
       Authorization: `${authToken}`,
-      'API-Key': `${AppConstant.API_KEY}`
+      'API-Key': `${AppConstant.API_KEY}`,
+      'sessionId': this.sessionID
     });
     return { headers: httpOptions };
   }

@@ -5,6 +5,9 @@ import { LeagueService } from '../../services/league.service';
 import { DatePipe } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnackBarService } from '@app/core/services/snackbar.service';
+import { SharedService } from '@app/core';
+import { Subscription } from 'rxjs';
+import { UserModel } from '@app/helpers/models';
 
 @Component({
   selector: 'app-create-league-dialog',
@@ -19,6 +22,8 @@ export class CreateLeagueDialogComponent
   formattedStartDate!: string | null;
   formattedEndDate!: string | null;
   leagueID!: string;
+  userDetailSub$!: Subscription;
+  userDetail!: UserModel | null;
   clubID!: string;
   sessionID!: string;
   constructor(
@@ -28,23 +33,31 @@ export class CreateLeagueDialogComponent
     private dialog: MatDialogRef<CreateLeagueDialogComponent>,
     fb: FormBuilder,
     private leagueService: LeagueService,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
+    private sharedService: SharedService,
 
   ) {
     super(fb);
   }
   ngOnInit(): void {
     this.initLeagueForm();
+    this.userSubscriber();
     if (this.data.leagueID) {
       // this.leagueID = this.data.leagueID.toUpperCase();
       this.leagueID = this.data.leagueID;
       this.clubID = this.data.clubID;
-      this.sessionID = this.data.sessionID
       this.getLeagueByID();
     } else {
       this.clubID = this.data.clubID;
     }
   }
+
+  ngOnDestroy() {
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
+  }
+
   initLeagueForm() {
     this.leagueCRUD_Form = this.createForm({
       name: ['', [Validators.maxLength(60)]],
@@ -58,6 +71,18 @@ export class CreateLeagueDialogComponent
       rounds_per_day: ['1'],
     });
   }
+
+  userSubscriber = () => {
+    this.userDetailSub$ = this.sharedService
+      .getUserDetailCall()
+      .subscribe(() => {
+        this.userDetail = this.sharedService.getUser();
+        if (this.userDetail) {
+          //this.clubID = this.userDetail?.club_id;
+          this.sessionID = this.userDetail?.session_id
+        }
+      });
+  };
 
   getLeagueByID() {
     const urlString = `${this.clubID}/${this.leagueID}`;

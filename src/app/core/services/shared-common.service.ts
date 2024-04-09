@@ -58,14 +58,16 @@ export class SharedCommonService {
   setRoundID( data : any){
     this.roundID.next(data);
   }
+
   getRoundID(){
     return this.roundID.asObservable();
   }
+
   emitLeagueChanged(leagueID: any) {
     this.leagueChanged.next(leagueID);
   }
 
-  setSelectedValue(value: string) {
+  setSelectedValue(value: any) {
     this.selectedValue.next(value);
   }
 
