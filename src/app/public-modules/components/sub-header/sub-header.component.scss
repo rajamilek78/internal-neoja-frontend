@@ -4,6 +4,9 @@
     background-color: $sub-header-color;
     border-bottom: 1px solid $sub-header-border;
     position: fixed;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     top: 7.3rem;
     left: 0px;
     width: 100%;
@@ -18,19 +21,6 @@
         padding-right: 2rem;
     }
 
-    .MB-1-half {
-        margin: 1.4rem 0rem !important;
-        width: auto;
-
-        @include respond ("tab-port") {
-            margin: 0rem !important;
-        }
-
-        @include respond ("phone") {
-            margin: 0rem !important;
-        }
-    }
-
     @include respond ("tab-port") {
         top: 6.3rem;
     }
@@ -42,6 +32,5 @@
 
 .dropdown-league {
     border-left: 1px solid rgba($black-color, 0.15);
-    padding-left: 2.6rem;
     width: 40rem;
 }
