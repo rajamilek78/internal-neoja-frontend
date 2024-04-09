@@ -12,7 +12,7 @@ import { Subject, Subscription, debounceTime } from 'rxjs';
   templateUrl: './sub-header.component.html',
   styleUrl: './sub-header.component.scss'
 })
-export class SubHeaderComponent implements OnInit{
+export class SubHeaderComponent implements OnInit {
   @Output() leagueSelected = new EventEmitter<any>();
 
   leagueID!: string;
@@ -21,8 +21,8 @@ export class SubHeaderComponent implements OnInit{
   userDetail!: UserModel | null;
   leagues: any[] = [];
   selectedLeague: any;
-  selectedLeagueName:any
-  selectedLeagueSub$! : Subscription;
+  selectedLeagueName: any
+  selectedLeagueSub$!: Subscription;
   private leagueSub!: Subscription;
   private debounceSubject = new Subject<any>();
 
@@ -31,8 +31,8 @@ export class SubHeaderComponent implements OnInit{
     private sharedService: SharedService,
     private snackbarService: SnackBarService,
     private SharedCommonService: SharedCommonService,
-    private leagueService: LeaguemanageService,
-    private LeagueServiceEmit : LeagueService,
+    private leagueManagerService: LeaguemanageService,
+    private leagueService: LeagueService,
     private router: Router
   ) {
     this.debounceSubject.pipe(debounceTime(300)).subscribe(this.onLeagueSelect);
@@ -43,27 +43,27 @@ export class SubHeaderComponent implements OnInit{
       }
     });
   }
-  
-  ngOnInit(): void {
- this.selectedLeague = this.leagueService.getSelectedLeague();
-    this.userSubscriber();
-      this.getAllLeagues();
-      this.leagueSub = this.LeagueServiceEmit.leagueChanged.subscribe(() => {
-        this.getAllLeagues();
-      });
-    }
 
-  
-  
+  ngOnInit(): void {
+    this.selectedLeague = this.leagueManagerService.getSelectedLeague();
+    this.userSubscriber();
+    this.getAllLeagues();
+    this.leagueSub = this.leagueService.leagueChanged.subscribe(() => {
+      this.getAllLeagues();
+    });
+  }
+
+
+
   ngOnDestroy() {
-    
+
     if (this.userDetailSub$) {
-      this.userDetailSub$.unsubscribe();      
+      this.userDetailSub$.unsubscribe();
     }
-    if(this.selectedLeagueSub$){
+    if (this.selectedLeagueSub$) {
       this.selectedLeagueSub$.unsubscribe();
     }
-    if(this.leagueSub){
+    if (this.leagueSub) {
       this.leagueSub.unsubscribe();
     }
     //this.router.events.subscribe();
@@ -102,12 +102,12 @@ export class SubHeaderComponent implements OnInit{
           if (selectedLeagueIndex !== -1) {
             this.selectedLeague = this.leagues[selectedLeagueIndex];
             this.selectedLeagueName = this.leagues[selectedLeagueIndex].name;
-          } 
+          }
           // else {
           //   this.selectedLeague = this.leagues[0];
           //   this.selectedLeagueName = this.leagues[0].name;
           // }
-        } 
+        }
         // else {
         //   this.selectedLeague = this.leagues[0];
         //   this.selectedLeagueName = this.leagues[0].name;
@@ -119,13 +119,12 @@ export class SubHeaderComponent implements OnInit{
       },
     });
   }
-  
+
 
   onLeagueSelect(league: any) {
-    this.leagueService.setSelectedLeague(league);
-    console.log(this.selectedLeague)
+    this.leagueManagerService.setSelectedLeague(league);
   }
-  
+
   triggerDebounce(league: any) {
     this.debounceSubject.next(league);
   }

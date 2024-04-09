@@ -26,14 +26,13 @@ export class LockDataDialogueComponent implements OnInit {
     private router: Router,
     private dialogeref: MatDialogRef<LockDataDialogueComponent>,
     private sharedService: SharedService,
-    private snackbarService : SnackBarService,
+    private snackbarService: SnackBarService,
     private commonservice: CommonService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.userSubscriber();
     if (this.data) {
-      console.log(this.data)
       this.roundCount = this.data.roundCount;
       this.leagueID = this.data.leagueID;
     }
@@ -49,7 +48,7 @@ export class LockDataDialogueComponent implements OnInit {
       .getUserDetailCall()
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
-        if(this.userDetail){
+        if (this.userDetail) {
           this.clubID = this.userDetail.club_id;
           this.sessionID = this.userDetail?.session_id
         }
@@ -58,12 +57,10 @@ export class LockDataDialogueComponent implements OnInit {
 
   lockRound() {
     const bodyData = this.data.responseData.round;
-    const body ={
+    const body = {
       ...bodyData,
       sessionID: this.sessionID
     }
-    console.log(bodyData)
-    console.log(this.data)
     // const clubID = this.userDetail?.club_id;
     const compnyclubnameStr = `${this.clubID}/${this.leagueID}`;
     this.commonservice.creatRound(compnyclubnameStr, body).subscribe({

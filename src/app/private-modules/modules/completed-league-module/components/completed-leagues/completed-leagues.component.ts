@@ -53,9 +53,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     this.selectedLeague$ = this.leagueService.selectedLeague$.subscribe(
       (selectedLeagueId: any) => {
         if (selectedLeagueId && selectedLeagueId.id) {
-          console.log(selectedLeagueId);
           this.selectedLeagueId = selectedLeagueId.id;
-          console.log(this.selectedLeagueId);
           this.selectedLeagueName = selectedLeagueId.name;
           this.getAllRounds();
         }

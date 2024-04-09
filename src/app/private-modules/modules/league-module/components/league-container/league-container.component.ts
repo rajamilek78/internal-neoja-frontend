@@ -57,10 +57,9 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
     private snackbarService: SnackBarService,
     private leagueService: LeagueModuleService,
     private sharedUserService: SharedUserService
-  ) {}
+  ) { }
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    console.log('calling');
     this.userSubscriber();
     this.route.params.subscribe((params) => {
       this.isEdit = params['isEdit'];
@@ -102,7 +101,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
         roundCount: this.roundCount,
       },
     });
-    dialogueRef.afterClosed().subscribe((result) => {});
+    dialogueRef.afterClosed().subscribe((result) => { });
   }
   // To get Match Data
   getMatchData() {
@@ -111,7 +110,6 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
       this.roundCount = this.rawData.round.header.round;
       this.roundDate = this.rawData.round.header.date;
       this.responseData = data;
-      console.log(data);
       if (this.responseData) {
         this.groups = Object.keys(this.responseData.round.groups).map(
           (key) => ({

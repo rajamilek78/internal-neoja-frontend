@@ -72,9 +72,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     this.selectedLeague$ = this.leaguemanageService.selectedLeague$.subscribe(
       (selectedLeagueId: any) => {
         if (selectedLeagueId && selectedLeagueId.id) {
-          console.log(selectedLeagueId);
           this.selectedLeagueId = selectedLeagueId.id;
-          console.log(this.selectedLeagueId);
           this.selectedLeagueName = selectedLeagueId.name;
           this.bindLeagueScore();
           this.bindLeagueName();

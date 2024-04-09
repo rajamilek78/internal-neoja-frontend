@@ -18,6 +18,7 @@ import {
   SharedCommonService,
   CommonService,
   SharedService,
+  LeaguemanageService,
 } from '@app/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
@@ -62,6 +63,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     private snackbarService: SnackBarService,
     private datePipe: DatePipe,
     private SharedCommonService: SharedCommonService,
+    private leagueManagerService: LeaguemanageService,
     private dialog: MatDialog
   ) {
     this.playerForm = this.fb.group({
@@ -72,37 +74,21 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
   ngOnInit() {
     window.scrollTo(0, 0);
     // this.addPlayers(this.playerCount);
-    console.log(this.selectedValue);
     this.userSubscriber();
-    //const defaultSelectedValue = '1';
-    // if (this.roundsLength >= 1) {
-    //   this.leagueSummary(defaultSelectedValue);
-    // } else {
-    //   this.addPlayer();
-    // }
     this.onleagueSelect();
     this.onplayerSelect();
-
-    // this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
-    //   console.log(selectedValue)
-    //   if(this.roundsLength>=1){
-    //     this.leagueSummary(selectedValue || defaultSelectedValue);
-    //   }
-    // });
   }
 
   onleagueSelect() {
     const defaultSelectedValue = '1';
-    this.selectedLeague$ = this.SharedCommonService.getLeagueID().subscribe(
-      (leagueID: any) => {
-        this.leagueSelect = leagueID;
-        if (this.roundsLength >= 1) {
-          this.leagueSummary(defaultSelectedValue);
-          //this.isAscending = false;
-        } else {
-          this.addPlayer();
-        }
+    this.selectedLeague$ = this.leagueManagerService.getSelectedLeague().subscribe((lague: any) => {
+      this.leagueSelect = lague.id;
+      if (this.roundsLength >= 1) {
+        this.leagueSummary(defaultSelectedValue);
+      } else {
+        this.addPlayer();
       }
+    }
     );
   }
 
@@ -113,14 +99,25 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
         (selectedValue: string) => {
           if (this.roundsLength >= 1) {
             this.leagueSummary(selectedValue || defaultSelectedValue);
-            //this.isAscending = false;
-            // this.sortedBy = 'score'; // or 'name' depending on your default sorting preference
-            // this.isAscending = true;
-            // this.sortPlayers('score');
           }
         }
       );
   }
+  // onSelectChange() {
+  //   const defaultSelectedValue = '1';
+  //   this.selectedLeague$ = this.leagueManagerService.getSelectedLeague().subscribe((league: any) => {
+  //     this.leagueSelect = league.id;
+  //     console.log(this.leagueSelect);
+
+  //     this.selectedPlayer$ = this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
+  //       if (this.roundsLength >= 1) {
+  //         this.leagueSummary(selectedValue || defaultSelectedValue);
+  //       } else {
+  //         this.addPlayer();
+  //       }
+  //     });
+  //   });
+  // }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['playerCount']) {
@@ -517,6 +514,6 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
         index: index,
       },
     });
-    dialogueRef.afterClosed().subscribe((result) => {});
+    dialogueRef.afterClosed().subscribe((result) => { });
   }
 }

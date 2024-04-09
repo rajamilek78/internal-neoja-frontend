@@ -11,7 +11,10 @@ export class LeaguemanageService {
   setSelectedLeague(league: any) {
     this.selectedLeagueSubject.next(league);
   }
-  getSelectedLeague(): any {
-    return this.selectedLeagueSubject.getValue();
+  // getSelectedLeague(): any {
+  //   return this.selectedLeagueSubject.getValue();
+  // }
+  getSelectedLeague(){
+    return this.selectedLeagueSubject.asObservable();
   }
 }
