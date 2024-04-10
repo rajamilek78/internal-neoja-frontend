@@ -50,13 +50,28 @@ export class APIManager extends HttpHelperService {
   // }
 
   // return authorization header
+  // get Authorized_HttpOptionsWithKey() {
+  //   const authToken = this.sharedService.getToken();
+  //   const httpOptions = new HttpHeaders({
+  //     Authorization: `${authToken}`,
+  //     'API-Key': `${AppConstant.API_KEY}`,
+  //     'sessionId': this.sessionID
+  //   });
+  //   return { headers: httpOptions };
+  // }
   get Authorized_HttpOptionsWithKey() {
     const authToken = this.sharedService.getToken();
-    const httpOptions = new HttpHeaders({
+    const httpHeaders = {
       Authorization: `${authToken}`,
       'API-Key': `${AppConstant.API_KEY}`,
-      'sessionId': this.sessionID
-    });
+    };
+  
+    // Check if sessionID is available before adding it to the headers
+    if (this.sessionID) {
+      httpHeaders['sessionId'] = this.sessionID;
+    }
+  
+    const httpOptions = new HttpHeaders(httpHeaders);
     return { headers: httpOptions };
   }
 

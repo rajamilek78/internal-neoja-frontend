@@ -40,7 +40,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     private snackbarService: SnackBarService,
     private completedLeagueService: CompletedLeagueService,
     private leagueService: LeaguemanageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -73,7 +73,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
       width: '450px',
     });
-    dialogueRef.afterClosed().subscribe((result) => {});
+    dialogueRef.afterClosed().subscribe((result) => { });
   }
   // To view score
   viewScore() {
@@ -151,8 +151,9 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
           this.rounds = Object.keys(res).map((key) => ({
             roundNumber: Number(key), // Convert key to number if needed
             roundDetails: res[key],
-            scoreLocked: res[key].header?.score_locked, // Initialize scoreLocked to false for each round
+            scoreLocked: res[key].header?.score_locked,
           }));
+          console.log(this.rounds)
           this.allRoundsLocked();
         } else {
           this.rounds = [];
@@ -184,5 +185,13 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
         console.error(err);
       },
     });
+  }
+  download(roundID?) {
+    const round = this.rounds.find((r) => r.roundNumber === roundID);
+    if (round && round.roundDetails.round_pdf_urls && round.roundDetails.round_pdf_urls.fixture_format1) {
+      window.open(round.roundDetails.round_pdf_urls.fixture_format1, '_blank');
+    } else {
+      console.log('Round PDF URL not found or empty.');
+    }
   }
 }

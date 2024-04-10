@@ -162,6 +162,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
       sessionID: this.rawData.sessionID,
       groups: groups,
       players: this.rawData.players,
+      round_pdf_urls: this.rawData.round_pdf_urls
     };
     setTimeout(() => {
       this.leagueService.updateScore(urlString, body).subscribe({

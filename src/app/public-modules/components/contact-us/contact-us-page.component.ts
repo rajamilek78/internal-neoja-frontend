@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '@app/core';
+import { CommonService, SharedService } from '@app/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormBaseComponent } from '@app/utility/components';
 import { RouteConstant } from '@app/helpers/constants';
 import { SnackBarService } from '@app/core/services/snackbar.service';
+import { UserModel } from '@app/helpers/models';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact-us-page',
@@ -16,17 +18,32 @@ export class ContactUsPageComponent
   implements OnInit
 {
   contactUsForm!: FormGroup;
+  userDetailSub$!: Subscription;
+  userDetail!: UserModel | null;
+  clubID!: string;
+  sessionID!: string;
+  
   constructor(
     private commonService: CommonService,
     private snackbarService: SnackBarService,
     private router: Router,
-    fb: FormBuilder
+    fb: FormBuilder,
+    private sharedService: SharedService,
   ) {
     super(fb);
   }
+  
   ngOnInit(): void {
     this.initContactUsForm();
+    this.userSubscriber();
   }
+
+  ngOnDestroy() {
+    if (this.userDetailSub$) {
+      this.userDetailSub$.unsubscribe();
+    }
+  }
+
   initContactUsForm() {
     this.contactUsForm = this.createForm({
       first_name: ['', [Validators.required]],
@@ -36,9 +53,26 @@ export class ContactUsPageComponent
     });
   }
 
+  userSubscriber = () => {
+    this.userDetailSub$ = this.sharedService
+      .getUserDetailCall()
+      .subscribe(() => {
+        this.userDetail = this.sharedService.getUser();
+        if (this.userDetail) {
+          //this.clubID = this.userDetail?.club_id;
+          this.sessionID = this.userDetail?.session_id
+        }
+      });
+  };
+
   onClickSubmit() {
     if (this.contactUsForm.valid) {
-      this.commonService.contactUs(this.contactUsForm.value).subscribe({
+    const bodydata = this.contactUsForm.value
+      const body = {
+        ...bodydata,
+        sessionID : this.sessionID
+      }
+      this.commonService.contactUs(body).subscribe({
         next: (res: any) => {
           this.contactUsForm.reset();
           this.router.navigate([`${RouteConstant.HOME_PAGE}`]);
