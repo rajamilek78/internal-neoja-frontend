@@ -225,12 +225,13 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
     //     pdf.save(filename); // Generated PDF
     //   });
     // }
+    console.log(this.rawData)
     if (
       this.rawData &&
-      this.rawData.round_pdf_public_url &&
-      this.rawData.round_pdf_public_url.format1
+      this.rawData.round.round_pdf_urls &&
+      this.rawData.round.round_pdf_urls.fixture_format1
     ) {
-      window.open(this.rawData.round_pdf_public_url.format1, '_blank');
+      window.open(this.rawData.round.round_pdf_urls.fixture_format1, '_blank');
     } else {
       console.log('Round PDF URL not found or format1 is empty.');
     }

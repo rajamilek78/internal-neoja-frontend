@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonService, SharedService } from '@app/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class ContactUsPageComponent
   extends FormBaseComponent
-  implements OnInit
+  implements OnInit , OnDestroy
 {
   contactUsForm!: FormGroup;
   userDetailSub$!: Subscription;
@@ -32,7 +32,7 @@ export class ContactUsPageComponent
   ) {
     super(fb);
   }
-  
+
   ngOnInit(): void {
     this.initContactUsForm();
     this.userSubscriber();
@@ -59,7 +59,6 @@ export class ContactUsPageComponent
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
-          //this.clubID = this.userDetail?.club_id;
           this.sessionID = this.userDetail?.session_id
         }
       });
