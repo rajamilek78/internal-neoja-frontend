@@ -404,7 +404,7 @@ textarea {
       line-height: 1.9rem;
       font-weight: 600;
 
-      padding: 0.7rem 0.4rem 0.7rem 1rem;
+      padding: 1.5rem 0.4rem 1.5rem 1rem;
     }
 
     th {
@@ -1814,4 +1814,12 @@ app-upload-player-file {
 
 .cell.bg-cell {
   height: 5.6rem !important;
+}
+
+app-league-table-format-one{
+  .table-1{
+    input[type="number"]{
+      padding: 0.35rem 1.6rem;
+    }
+  }
 }
