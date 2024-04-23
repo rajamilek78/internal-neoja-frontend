@@ -60,6 +60,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     // this.sortedIndividual[0] = this.individualScores[0]
   }
   ngOnDestroy(): void {
+    // Unsubscribe from subscriptions
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
@@ -68,6 +69,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Subscribe to selected league changes
   onLeagueSelect() {
     this.selectedLeague$ = this.leaguemanageService.selectedLeague$.subscribe(
       (selectedLeagueId: any) => {
@@ -81,10 +83,12 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     );
   }
 
+   // Go back to previous location
   onBack = () => {
     this.location.back();
   };
 
+   // Bind league name based on selected club and league
   bindLeagueName = () => {
     const urlString = `${this.selectedClubID}/${this.selectedLeagueId}`;
     this.leagueService.getLeagueById(urlString).subscribe({
@@ -98,6 +102,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     });
   };
 
+  // Subscribe to logged-in user's details
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedUserService
       .getUserDetailCall()
@@ -109,6 +114,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
       });
   };
 
+  // Handle league scores data
   handleLeagueScore = (res) => {
     this.rawData = res;
     this.leagueRoundWiseScores = res.league_score_details;
@@ -130,6 +136,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     }, 100);
   };
 
+   // Bind league scores based on selected club and league
   bindLeagueScore() {
     const urlString = `${this.selectedClubID}/${this.selectedLeagueId}`;
     this.completedLeagueService.getLeagueScores(urlString).subscribe({
@@ -143,6 +150,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     });
   }
 
+   // Handle tab change in score table view
   onSelectTabChange = (event: MatTabChangeEvent) => {
     this.cumulativeScores[event.index] =
       this.leagueRoundWiseArray[event.index]?.scores?.cumulative || [];
@@ -154,6 +162,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     this.onMatIndividualSortChange(this.individualTableSort, event.index);
   };
 
+  // Handle sorting change for cumulative table
   onMatCumulativeSortChange(event: MatSort, idx: number): void {
     this.sortedCumulative[idx] = this.sortData(
       event,
@@ -161,6 +170,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     );
   }
 
+   // Handle sorting change for individual table
   onMatIndividualSortChange(event: MatSort, idx: number): void {
     this.sortedIndividual[idx] = this.sortData(
       event,
@@ -168,6 +178,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     );
   }
 
+  // Sort data based on sort direction and column
   sortData(sort: Sort, players: any) {
     if (!sort.active || sort.direction === '') {
       return players;
@@ -209,6 +220,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     });
   }
 
+   // Comparison function for sorting
   compare(a: number | string, b: number | string, isAsc: boolean) {
     if (typeof a === 'string' && typeof b === 'string') {
       a = a.toLowerCase();
@@ -217,6 +229,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
+  // Sort rounds by key
   sortRounds = (
     a: KeyValue<string, RoundScore>,
     b: KeyValue<string, RoundScore>
@@ -224,6 +237,7 @@ export class ViewScoreTableComponent implements OnInit, OnDestroy {
     return parseInt(a.key) - parseInt(b.key);
   };
 
+  // Download score data
   onClickDownload() {
     if (
       this.rawData &&

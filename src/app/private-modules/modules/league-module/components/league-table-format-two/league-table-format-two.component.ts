@@ -37,6 +37,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   }
 
   onTabChanged($event) {
+     // Handle tab change event
     let clickedIndex = $event.index;
     this.selectedTabIndex = clickedIndex;
     this.selectedTab.emit(this.selectedTabIndex + 1);
@@ -46,6 +47,7 @@ export class LeagueTableFormatTwoComponent implements OnInit {
   }
 
   onBlurTeamScore = () => {
+     // Emit event on team score blur
     const groups = JSON.parse(JSON.stringify(this.groups));
     const gameObj: any = {};
     for (let i = 0; i < this.gamesArray.length; i++) {

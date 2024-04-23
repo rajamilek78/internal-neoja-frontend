@@ -66,6 +66,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     private leagueManagerService: LeaguemanageService,
     private dialog: MatDialog
   ) {
+    // Initialize form and other services
     this.playerForm = this.fb.group({
       players: this.fb.array([]),
     });
@@ -73,8 +74,6 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    //this.selectedValue = '1'
-    // this.addPlayers(this.playerCount);
     this.userSubscriber();
     this.onleagueSelect();
     this.onplayerSelect();
@@ -105,29 +104,16 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
         }
       );
   }
-  // onSelectChange() {
-  //   const defaultSelectedValue = '1';
-  //   this.selectedLeague$ = this.leagueManagerService.getSelectedLeague().subscribe((league: any) => {
-  //     this.leagueSelect = league.id;
-  //     console.log(this.leagueSelect);
-
-  //     this.selectedPlayer$ = this.SharedCommonService.getSelectedValue().subscribe((selectedValue: string) => {
-  //       if (this.roundsLength >= 1) {
-  //         this.leagueSummary(selectedValue || defaultSelectedValue);
-  //       } else {
-  //         this.addPlayer();
-  //       }
-  //     });
-  //   });
-  // }
-
+ 
   ngOnChanges(changes: SimpleChanges) {
+    // Handle changes in input properties
     if (changes['playerCount']) {
       this.onPlayerCountChange(this.roundCount);
     }
   }
 
   ngOnDestroy() {
+    // Clean up subscriptions
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
@@ -140,6 +126,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     this.SharedCommonService.setSelectedValue(null);
   }
 
+   // Create a player form group
   createPlayer(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
@@ -147,6 +134,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Add a new player to the form
   addPlayer(): void {
     this.players.push(this.createPlayer());
     setTimeout(() => {
@@ -160,30 +148,14 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Add multiple players at once
   addPlayers(count: number): void {
     for (let i = 0; i < count; i++) {
       this.addPlayer();
     }
   }
 
-  // onRadioButtonChange(event: MatRadioChange) {
-  //   const selectedValue = event.value;
-  //   console.log('Selected radio button value:', selectedValue);
-  //   if(selectedValue == "1"){
-  //     console.log(this.leagueSummaryData.players);
-  //   }
-  //   else if (selectedValue == "2") {
-  //     const roundOnePlayers = Object.entries(this.leagueSummaryData.players)
-  //           .filter(([_, playerData]: [string, any]) => playerData.in_round1 === true)
-  //           .map(([playerName, playerData]: [string, any]) => ({ playerName, playerData }));
-  //       console.log(roundOnePlayers);
-  //   }
-  // }
-  // onRadioButtonChange(event: MatButtonToggleChange) {
-  //   const selectedValue = event.value;
-  //   console.log('Selected radio button value:', selectedValue);
-  //   this.leagueSummary(selectedValue);
-  // }
+  // Toggle sorting of players by name or score
   toggleSorting(field: 'name' | 'score'): void {
     if (this.sortedBy === field) {
       this.isAscending = !this.isAscending;
@@ -194,10 +166,11 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     this.sortPlayers(field);
   }
 
+  // Sort players based on the specified field
   sortPlayers(field: 'name' | 'score'): void {
     const playersArray = this.playerForm.get('players') as FormArray;
     let sortedPlayers = playersArray.controls.slice();
-
+    // Sort players
     if (this.sortedBy === field) {
       this.isAscending = !this.isAscending;
     } else {
@@ -228,17 +201,14 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     sortedPlayers.forEach((player) => {
       playersArray.push(player);
     });
-    //  // Check if the same field is clicked thrice to reset sorting
-    //  if (this.sortedBy === field && !this.isAscending) {
-    //   this.sortedBy = ''; // Reset sortedBy field
-    //   this.isAscending = true; // Reset sorting order to ascending
-    // }
   }
 
+  // Get the players form array
   get players(): FormArray {
     return this.playerForm.get('players') as FormArray;
   }
 
+  // Handle user subscription
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedService
       .getUserDetailCall()
@@ -250,55 +220,10 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
         }
       });
   };
-  // leagueSummary() {
-  //   const clubLeagueStr = `${this.clubID}/${this.leagueID}`;
-  //   this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
-  //     next: (res: any) => {
-  //       this.roundOnePlayersCount = res.round1_player_count;
-  //       this.dropInPlayersCount = res.drop_in_player_count;
-  //       this.leagueSummaryData = res;
-  //       let sortedPlayers = Object.entries(this.leagueSummaryData.players);
-  //       // sortedPlayers.sort((a, b) => {
-  //       //   return (
-  //       //     (b[1] as any)['weighted_rating'] - (a[1] as any)['weighted_rating']
-  //       //   );
-  //       // });
-  //       const playersArray = this.playerForm.get('players') as FormArray;
-  //       playersArray.clear();
-  //       for (let i = 0; i < sortedPlayers.length; i++) {
-  //         let playerName = sortedPlayers[i][0];
-  //         let playerData = sortedPlayers[i][1] as any;
-  //         const winLoseHistory = playerData.win_lose_history
-  //           ? playerData.win_lose_history.split(',').reverse()
-  //           : [];
-  //         const round = playerData.in_round1;
-  //         const playerGroup = this.fb.group({
-  //           name: [{ value: playerName, disabled: true }, Validators.required],
-  //           score: [
-  //             { value: playerData.weighted_rating, disabled: true },
-  //             Validators.required,
-  //           ],
-  //           winLoseHistory: [{ value: winLoseHistory, disabled: true }],
-  //           round: [{ value: round, disabled: true }],
-  //         });
-
-  //         playersArray.push(playerGroup);
-  //       }
-  //       // this.updateToggleState();
-  //     },
-  //     error: (err: any) => {
-  //       this.roundOnePlayersCount = 0;
-  //       this.dropInPlayersCount = 0;
-  //       const playersArray = this.playerForm.get('players') as FormArray;
-  //       playersArray.clear();
-  //       this.addPlayer();
-  //       const message = err.error.message;
-  //       this.snackbarService.setSnackBarMessage(message);
-  //     },
-  //   });
-  // }
-
+ 
+  // Fetch league summary data based on selected value
   leagueSummary(selectedValue: string) {
+    // Logic to fetch and process league summary data
     const clubLeagueStr = `${this.clubID}/${this.leagueSelect}`;
     this.commonservice.getLeaguesSummary(clubLeagueStr).subscribe({
       next: (res: any) => {
@@ -433,6 +358,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Handle player count change
   onPlayerCountChange(count: number): void {
     if (this.players) {
       const currentCount = this.players.length;
@@ -442,6 +368,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     }
   }
   submitData(): void {
+     // Logic to submit player data
     this.playerForm.getRawValue().players;
     const formattedDate = this.datePipe.transform(
       this.selectedDate,
@@ -510,6 +437,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
   }
 
   deletePlayer(index: number): void {
+    // Delete a player
     this.openDialogue(index);
   }
 
@@ -517,6 +445,8 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
    * Change Player Availability
    * @param player 
    */
+
+  // Change player status
   changePlayerStatus(playerIndex: number) {
     const playersArray = this.playerForm.get('players') as FormArray;
     const playerGroup = playersArray.at(playerIndex) as FormGroup;
@@ -526,6 +456,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Open delete player dialogue
   openDialogue(index: number): void {
     const player = this.players.at(index).value;
     const dialogueRef = this.dialog.open(DeleteDetailDialogueComponent, {

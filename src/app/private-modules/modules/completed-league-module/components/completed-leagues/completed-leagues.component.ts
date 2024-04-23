@@ -49,6 +49,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     this.onLeagueSelect();
   }
 
+  // Subscribe to selected league changes
   onLeagueSelect() {
     this.selectedLeague$ = this.leagueService.selectedLeague$.subscribe(
       (selectedLeagueId: any) => {
@@ -61,6 +62,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
     );
   }
   ngOnDestroy(): void {
+     // Unsubscribe from subscriptions
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
@@ -112,36 +114,7 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
         }
       });
   };
-  // To get list of leagues
-  // getAllLeagues() {
-  //   const urlString = `${this.selectedClubID}`;
-  //   this.commonService.getAllLeagues(`${urlString}`).subscribe({
-  //     next: (res: any) => {
-  //       this.leagues = Object.keys(res).map((key) => ({
-  //         id: key,
-  //         name: res[key].name,
-  //       }));
-  //       this.selectedLeague = this.leagues[0].id;
-  //       this.selectedLeagueName = this.leagues[0].name;
-  //       this.getAllRounds();
-  //     },
-  //     error: (err: any) => {
-  //       const message = err.error.message;
-  //       this.snackbarService.setSnackBarMessage(message);
-  //     },
-  //   });
-  // }
-  // onLeagueChange() {
-  //   const selectedLeague = this.leagues.find(
-  //     (league) => league.id === this.selectedLeague
-  //   );
-  //   if (selectedLeague) {
-  //     this.getAllRounds();
-  //     this.selectedLeagueName = selectedLeague.name;
-  //   } else {
-  //     this.selectedLeagueName = '';
-  //   }
-  // }
+ 
   // To get data of all rounds in a league.
   getAllRounds() {
     const urlString = `${this.selectedClubID}/${this.selectedLeagueId}/all`;
@@ -165,12 +138,16 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+   // Check if all rounds are locked
   allRoundsLocked() {
     if (this.rounds && this.rounds.length > 0) {
       return this.rounds.every((round) => round.scoreLocked);
     }
     return false;
   }
+
+   // Lock score for a round
   lockScore(roundID?) {
     const urlString = `${this.selectedClubID}/${this.selectedLeagueId}/${roundID}`;
     const body = this.sessionID
@@ -186,6 +163,8 @@ export class CompletedLeaguesComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+  // Download round data
   download(roundID?) {
     const round = this.rounds.find((r) => r.roundNumber === roundID);
     if (round && round.roundDetails.round_pdf_urls && round.roundDetails.round_pdf_urls.fixture_format1) {

@@ -61,6 +61,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   }
 
   userSubscriber = () => {
+    // This method subscribes to user details
     this.userDetailSub$ = this.sharedService
       .getUserDetailCall()
       .subscribe(() => {
@@ -72,11 +73,13 @@ export class UploadPlayerContainerComponent implements OnInit {
       });
   };
   onToggleButtonChange(event: MatButtonToggleChange) {
+    // Handle toggle button change event
     this.selectedValue = event.value;
     this.SharedCommonService.setSelectedValue(this.selectedValue);
   }
 
   onLeagueSelect(league: any) {
+     // Handle league selection logic
     this.selectedLeague = league;
     this.leagueID = league.id;
     this.selectedValue = 1;
@@ -97,10 +100,12 @@ export class UploadPlayerContainerComponent implements OnInit {
   }
 
   get isDisableUploadByFile(): boolean {
+    // Return whether upload by file is disabled
     return this.roundsLength >= 1;
   }
 
   onRadioButtonChange() {
+    // Handle radio button change event
     this.cdr.detectChanges();
   }
 }

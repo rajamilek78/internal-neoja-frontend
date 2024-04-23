@@ -46,11 +46,13 @@ export class UploadPlayerFileComponent {
   }
 
   ngOnDestroy() {
+     // Clean up subscriptions
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
   }
 
+  // Subscribe to user detail changes
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedService
       .getUserDetailCall()
@@ -59,6 +61,7 @@ export class UploadPlayerFileComponent {
       });
   };
 
+   // Drag and drop event handlers
   @HostListener('dragover', ['$event']) onDragOver(event: any) {
     event.preventDefault();
     this.isDragging = true;
@@ -72,6 +75,7 @@ export class UploadPlayerFileComponent {
     event.preventDefault();
     this.isDragging = false;
 
+    // Handle dropped files
     const transferredFiles = event.dataTransfer.files;
     for (let i = 0; i < transferredFiles.length; i++) {
       if (this.files.length + i < 3) {
@@ -83,6 +87,7 @@ export class UploadPlayerFileComponent {
     }
   }
 
+   // Handle file selection from input
   onFileSelect(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files) {
@@ -105,6 +110,7 @@ export class UploadPlayerFileComponent {
     inputElement.value = '';
   }
 
+   // Remove a file from the list
   onFileRemoved(file: File) {
     const index = this.files.indexOf(file);
     if (index > -1) {
@@ -113,9 +119,12 @@ export class UploadPlayerFileComponent {
     this.fileInput.nativeElement.value = '';
   }
 
+   // Handle file drag and drop reordering
   onFileDropped(event: CdkDragDrop<File[]>) {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
+
+  // Upload files
   onUpload() {
     const formattedDate = this.datePipe.transform(
       this.selectedDate,

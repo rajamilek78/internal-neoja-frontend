@@ -63,6 +63,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.userSubscriber();
+     // Subscribe to route params changes
     this.route.params.subscribe((params) => {
       this.isEdit = params["isEdit"];
       this.roundID = params["roundID"];
@@ -77,18 +78,22 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
       this.getMatchData();
     }
 
+    // Subscribe to selected league changes
     this.leagueMangeService.getSelectedLeague().subscribe((league: any) => {
       if (league) {
         this.leagueType = league.type;
       }
     });
   }
+
+   // Unsubscribe from subscriptions
   ngOnDestroy(): void {
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
   }
   userSubscriber = () => {
+     // Subscribe to user detail changes
     this.userDetailSub$ = this.sharedUserService
       .getUserDetailCall()
       .subscribe(() => {
@@ -101,6 +106,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
   };
 
   openDialogue(): void {
+    // Open lock data dialogue
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
       width: "450px",
       data: {
@@ -113,6 +119,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
   }
   // To get Match Data
   getMatchData() {
+     // Fetch match data
     this.SharedCommonService.getMatchData().subscribe((data) => {
       this.rawData = data;
       this.roundCount = this.rawData.round.header.round;
@@ -132,6 +139,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
   }
 
   getRoundById() {
+     // Get round data by ID
     const urlString = `${this.selectedClubID}/${this.leagueID}/${this.roundID}`;
     this.leagueService.getRoundByID(urlString).subscribe({
       next: (res: any) => {
@@ -154,6 +162,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
     });
   }
   onSaveClick() {
+     // Save changes
     this.groupsArrayToBeUpdated = this.groupsArrayToBeUpdated.map((e) => {
       const obj: any = { [e.name]: e.data };
       return obj;
@@ -186,26 +195,33 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
   }
 
   onBlurTeamScore = (event) => {
+    // Handle team score changes
     const { groups } = event;
     this.isTouched = event.isTouched;
     this.groupsArrayToBeUpdated = [...groups];
   };
+   // Handle tab change event
   handleTabChange(event) {
     this.selectedGroup = `Group ${event}`;
   }
   saveRound() {
+     // Save round data
     this.router.navigate(["players-league/completed-leagues"]);
   }
   onCancel() {
+    // Cancel action
     this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
   }
   onSelectionChange() {
+     // Detect changes
     this.cdr.detectChanges();
   }
   onTabChange(event: MatTabChangeEvent) {
+     // Handle tab change event
     this.selectedGroup = this.groups[event.index];
   }
   onClickDownloadAll() {
+     // Download all data
     const data = {
       rawData: this.rawData,
       groups: this.groups,
@@ -217,23 +233,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
   }
 
   onClickDownload() {
-    // const data = document.getElementById('playerData'); // Replace with the id of your table
-    // if (data) {
-    //   html2canvas(data, { scale: 2 }).then((canvas) => {
-    //     // Few necessary setting options
-    //     const imgWidth = 208;
-    //     const pageHeight = 295;
-    //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    //     const heightLeft = imgHeight;
-    //     const contentDataURL = canvas.toDataURL('image/png');
-    //     const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-    //     const position = 0;
-    //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-    //     const filename = `Round ${this.roundCount}_${this.selectedGroup}.pdf`;
-    //     pdf.save(filename); // Generated PDF
-    //   });
-    // }
-    console.log(this.rawData);
+     // Download PDF
     if (
       this.rawData &&
       this.rawData.round.round_pdf_urls &&

@@ -73,6 +73,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
       }
     });
   }
+  // Helper function for sorting
   compare(a: number | string, b: number | string, isAsc: boolean) {
     if (typeof a === 'string' && typeof b === 'string') {
       a = a.toLowerCase();

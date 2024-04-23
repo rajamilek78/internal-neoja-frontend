@@ -38,6 +38,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   }
 
   onTabChanged($event) {
+     // Handle tab change event
     let clickedIndex = $event.index;
     this.selectedTabIndex = clickedIndex;
     this.selectedTab.emit(this.selectedTabIndex + 1);
@@ -47,6 +48,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   }
 
   onBlurTeamScore = () => {
+    // Emit event on team score blur
     const groups = JSON.parse(JSON.stringify(this.groups));
     const gameObj: any = {};
     for (let i = 0; i < this.gamesArray.length; i++) {
@@ -63,6 +65,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   };
 
   updateScore(currentPlayerObj: any, gamesArr: any) {
+    // Update score
     // force same score if the league type is doubles-individual...
     if (this.leagueType === "doubles-individual") {
       let index = gamesArr.findIndex(
@@ -78,6 +81,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   }
 
   getPlayerNamesColumnTitle() {
+    // Get player names column title based on league type
     let plyaerNamesColTitle: string = "";
     switch (this.leagueType) {
       case "singles":
@@ -97,6 +101,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   }
 
   getPlayerRolesColumnTitle() {
+    // Get player roles column title based on league type
     let plyaerRolesColTitle: string = "";
     switch (this.leagueType) {
       case "singles":

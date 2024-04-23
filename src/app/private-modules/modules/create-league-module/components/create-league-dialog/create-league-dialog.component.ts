@@ -53,11 +53,13 @@ export class CreateLeagueDialogComponent
   }
 
   ngOnDestroy() {
+    // Clean up subscriptions
     if (this.userDetailSub$) {
       this.userDetailSub$.unsubscribe();
     }
   }
 
+  // Initialize form with default values and validation rules
   initLeagueForm() {
     this.leagueCRUD_Form = this.createForm({
       name: ['', [Validators.maxLength(60)]],
@@ -72,6 +74,7 @@ export class CreateLeagueDialogComponent
     });
   }
 
+  // Subscribe to user details
   userSubscriber = () => {
     this.userDetailSub$ = this.sharedService
       .getUserDetailCall()
@@ -84,10 +87,12 @@ export class CreateLeagueDialogComponent
       });
   };
 
+  // Fetch league details by ID
   getLeagueByID() {
     const urlString = `${this.clubID}/${this.leagueID}`;
     this.leagueService.getLeagueById(urlString).subscribe({
       next: (res) => {
+        // Populate form with fetched data
         this.leagueCRUD_Form.patchValue({
           name: res.header.name,
           description: res.header.description,
@@ -106,6 +111,8 @@ export class CreateLeagueDialogComponent
       },
     });
   }
+
+  // Handle add or update league based on form data
   onClickAddLeague() {
     const formattedStartDate = this.datePipe.transform(
       this.leagueCRUD_Form.value.start_date,
@@ -175,17 +182,24 @@ export class CreateLeagueDialogComponent
         },
       });
   }
+
+   // Handle add or update league based on form data
   onFormSubmit() {
     if (this.leagueID) {
+      // Update existing league
       this.updateLeague();
     } else {
+      // Add new league
       this.onClickAddLeague();
     }
   }
 
+  // Close the dialog
   close() {
     this.dialog.close();
   }
+
+   // Getter for form controls
   get formControls() {
     return this.leagueCRUD_Form.controls;
   }
