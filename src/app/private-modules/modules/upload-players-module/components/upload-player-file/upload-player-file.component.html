@@ -2,37 +2,26 @@
   <div class="upload-by-file">
     <div class="upload">
       <div>
-        <div
-          class="upload__section flex justify-center flex-column"
-          [class.is-dragging]="isDragging"
-        >
+        <div class="upload__section flex justify-center flex-column" [class.is-dragging]="isDragging">
           <div class="upload__file-icon flex justify-center">
-            <img
-              src="assets/images/browse-file-icon.svg"
-              alt=""
-            />
+            <img src="assets/images/browse-file-icon.svg" alt="" />
           </div>
           <div class="text-center">
             <div><b>Drag & drop players TXT file here</b></div>
             <div>
-              <small
-                >Supported file format is TXT only.</small
-              >
+              <small>Supported file format is TXT only.</small>
             </div>
             <div>
-              <small
-                >Each line should hold comma separated ‘name, score’ to sort the players by score, or just ‘name’ to sort the players in the order provided.</small
-              >
+              <small *ngIf="!overrideSystemFixtures">Each line should hold comma separated ‘name, score’ to sort the
+                players by score, or just ‘name’ to sort the players in the order provided.</small>
+              <small *ngIf="overrideSystemFixtures">
+                Each line should hold comma separated ‘name,integer_value’; the integer value will be used to form the
+                groups.
+              </small>
             </div>
           </div>
           <div>
-            <input
-              type="file"
-              #fileInput
-              style="display: none"
-              (change)="onFileSelect($event)"
-              accept=".txt"
-            />
+            <input type="file" #fileInput style="display: none" (change)="onFileSelect($event)" accept=".txt" />
             <div class="secondary-btn-light">
               <button type="button" class="btn" (click)="fileInput.click()" [disabled]="!selectedLeague">
                 Browse
@@ -49,26 +38,22 @@
       <div class="upload__file flex justify-between" *ngFor="let file of files">
         <div class="flex justify-end align-start">
           <div class="file-img">
-            <img
-              src="assets/images/file-ext-icon.svg"
-              alt=""
-            />
+            <img src="assets/images/file-ext-icon.svg" alt="" />
           </div>
           <div>
-            <small>{{ file.name }}</small
-            ><span>({{ file.size / 1024 | number : "1.2-2" }}) KB</span>
+            <small>{{ file.name }}</small><span>({{ file.size / 1024 | number : "1.2-2" }}) KB</span>
           </div>
         </div>
         <div>
           <a (click)="onFileRemoved(file)">
-            <img src="assets/images/close-icon.svg" alt=""/>
+            <img src="assets/images/close-icon.svg" alt="" />
           </a>
         </div>
       </div>
       <div class="upload__button">
         <div class="primary-btn">
           <!-- <button [disabled]="!leagueIdPass || roundCount === undefined" type="button" class="btn" (click)="onUpload()">Upload</button> -->
-          <button  type="button" class="btn" (click)="onUpload()" [disabled]="!selectedLeague">Upload</button>
+          <button type="button" class="btn" (click)="onUpload()" [disabled]="!selectedLeague">Upload</button>
         </div>
       </div>
     </div>

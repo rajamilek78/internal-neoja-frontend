@@ -29,6 +29,7 @@ export class UploadPlayerFileComponent {
   @Input() roundCount!: number | undefined;
   @Input() selectedDate!: Date;
   @Input() selectedLeague: any;
+  @Input() overrideSystemFixtures: boolean = false
 
   constructor(
     private commonservice: CommonService,
@@ -37,7 +38,7 @@ export class UploadPlayerFileComponent {
     private router: Router,
     private datePipe: DatePipe,
     private sharedService: SharedService
-  ) {}
+  ) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -133,6 +134,8 @@ export class UploadPlayerFileComponent {
       if (formattedDate !== null) {
         data.append('date', formattedDate);
       }
+      // Append Over ride system fixtures property
+      data.append('override_system_fixtures', this.overrideSystemFixtures.toString());
       this.commonservice.uploadFile(clubLeagueStr, data).subscribe({
         next: (res: any) => {
           this.SharedCommonService.setMatchData(res);

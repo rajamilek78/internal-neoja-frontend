@@ -1,51 +1,55 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { SharedCommonService } from "../../../../../core/services/shared-common.service";
+import { SnackBarService } from "@app/core/services/snackbar.service";
+
 @Component({
-  selector: 'app-league-table-format-two',
-  templateUrl: './league-table-format-two.component.html',
-  styleUrl: './league-table-format-two.component.scss',
+  selector: "app-league-table-format-two",
+  templateUrl: "./league-table-format-two.component.html",
+  styleUrl: "./league-table-format-two.component.scss",
 })
 export class LeagueTableFormatTwoComponent implements OnInit {
-  gamesArray: any;
-  league: any;
-  games: any;
-  players: any;
-  isServing: boolean = true;
-  selectedTabIndex = 0;
-  @Output() blurTeamScore = new EventEmitter<any>();
-  @Output() selectedTab = new EventEmitter<number>();
-  @Input() isEdit!: boolean;
-  @Input() groups: any;
   @Input() data: any;
-  @Input() responseData: any;
   @Input() leagueID!: string;
   @Input() clubID!: string;
   @Input() roundCount!: string;
   @Input() leagueName!: string;
+  @Input() groups: any;
   @Input() labelName!: string;
+  @Output() blurTeamScore = new EventEmitter<any>();
+  @Output() selectedTab = new EventEmitter<number>();
+  @Input() isEdit!: boolean;
+  gamesArray: any;
+  selectedTabIndex = 0;
+
+  constructor(private SharedCommonService: SharedCommonService) {}
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.selectedTab.emit(this.selectedTabIndex + 1);
     if (this.groups && this.groups.length > 0) {
-      this.games = Object.entries(
+      this.gamesArray = Object.entries(
         this.groups[this.selectedTabIndex].data.games
       );
-      // Initialize score property for each game
-      this.games.forEach((game) => {
-        if (!game[1].score) {
-          game[1].score = {};
-        }
+      this.blurTeamScore.emit({
+        groups: this.groups,
       });
-      this.players = this.groups.map(
-        (group) => group.data.group_details.players
-      );
     }
   }
+
+  onTabChanged($event) {
+    let clickedIndex = $event.index;
+    this.selectedTabIndex = clickedIndex;
+    this.selectedTab.emit(this.selectedTabIndex + 1);
+    this.gamesArray = Object.entries(
+      this.groups[this.selectedTabIndex].data.games
+    );
+  }
+
   onBlurTeamScore = () => {
     const groups = JSON.parse(JSON.stringify(this.groups));
     const gameObj: any = {};
-    for (let i = 0; i < this.games.length; i++) {
-      const game = this.games[i];
+    for (let i = 0; i < this.gamesArray.length; i++) {
+      const game = this.gamesArray[i];
       const gameName = game[0];
       const gameVal = game[1];
       gameObj[gameName] = gameVal;
@@ -56,11 +60,4 @@ export class LeagueTableFormatTwoComponent implements OnInit {
       isTouched: true,
     });
   };
-
-  onTabChanged($event) {
-    let clickedIndex = $event.index;
-    this.selectedTabIndex = clickedIndex;
-    this.selectedTab.emit(this.selectedTabIndex + 1);
-    this.games = Object.entries(this.groups[this.selectedTabIndex].data.games);
-  }
 }

@@ -29,6 +29,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   roundCount!: number;
   selectedValue: any;
   sessionId: any;
+  overrideSystemFixtures: boolean = false;
 
   constructor(
     private cdr: ChangeDetectorRef,

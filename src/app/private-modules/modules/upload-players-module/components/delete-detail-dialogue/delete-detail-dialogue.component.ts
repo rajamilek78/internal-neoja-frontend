@@ -7,24 +7,20 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrl: './delete-detail-dialogue.component.scss',
 })
 export class DeleteDetailDialogueComponent {
-  roundCount! : number;
-  players: any;
-  index: number;
-  playerName!:string;
-  
+  roundCount!: number;
+  playerName!: string;
+
   constructor(private dialog: MatDialogRef<DeleteDetailDialogueComponent>, @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.roundCount = data.roundCount;
-    this.players = data.players;
     this.playerName = data.playerName;
-    this.index = data.index;
   }
-  delete(index) {
-    this.players.removeAt(index);
-    //this.dialog.close();
-    this.close();
+
+  delete(): void {
+    this.close(true);
   }
-  close(){
-    this.dialog.close();
+
+  close(isAccepted: boolean = false): void {
+    this.dialog.close(isAccepted);
   }
 }

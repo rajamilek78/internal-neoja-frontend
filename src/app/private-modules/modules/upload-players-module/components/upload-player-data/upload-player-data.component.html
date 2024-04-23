@@ -3,25 +3,19 @@
     <div class="upload">
       <div class="upload__data">
         <div class="tablet-width" formArrayName="players">
-          <div
-            class="flex justify-end align-start MT-2-half title"
-            [ngClass]="{
+          <div class="flex justify-end align-start MT-2-half title" [ngClass]="{
               'round-one': true,
               'round-two': roundsLength >= 1
-            }"
-          >
+            }">
             <div class="row-title">
-              <small class="sort-icon" (click)="sortPlayers('name')"
-                >Players
-                <span  *ngIf="sortedBy === 'name' && !isAscending" (click)="toggleSorting('name')"
-                  ><img src="assets/images/arrow-down-icon.svg" alt=""
-                /></span>
-                <span  *ngIf="sortedBy === 'name' && isAscending" (click)="toggleSorting('name')"
-                  ><img src="assets/images/arrow-up-icon.svg" alt=""
-                /></span>
-                </small
-              >
-              <span class="players-info" *ngIf="roundOnePlayersCount !== 0 || dropInPlayersCount !== 0 || previousRoundPlayersCount !== 0">
+              <small class="sort-icon" (click)="sortPlayers('name')">Players
+                <span *ngIf="sortedBy === 'name' && !isAscending" (click)="toggleSorting('name')"><img
+                    src="assets/images/arrow-down-icon.svg" alt="" /></span>
+                <span *ngIf="sortedBy === 'name' && isAscending" (click)="toggleSorting('name')"><img
+                    src="assets/images/arrow-up-icon.svg" alt="" /></span>
+              </small>
+              <span class="players-info"
+                *ngIf="roundOnePlayersCount !== 0 || dropInPlayersCount !== 0 || previousRoundPlayersCount !== 0">
                 <div>
                   Round 1 : <b>{{ roundOnePlayersCount }}</b>
                 </div>
@@ -33,76 +27,53 @@
                 </div>
               </span>
             </div>
-            <div
-              [ngClass]="{
+            <div [ngClass]="{
                 'row-title': true,
                 'row-title-two': roundsLength >= 1
-              }"
-            >
-              <small class="sort-icon"  (click)="sortPlayers('score')"
-                >Rating%
-                <span  *ngIf="sortedBy === 'score' && !isAscending"
-                  ><img src="assets/images/arrow-down-icon.svg" alt="" (click)="toggleSorting('score')"
-                /></span>
-                <span  *ngIf="sortedBy === 'score' && isAscending"
-                  ><img src="assets/images/arrow-up-icon.svg" alt="" (click)="toggleSorting('score')"
-                /></span>
+              }">
+              <small class="sort-icon" (click)="sortPlayers('score')">Rating%
+                <span *ngIf="sortedBy === 'score' && !isAscending"><img src="assets/images/arrow-down-icon.svg" alt=""
+                    (click)="toggleSorting('score')" /></span>
+                <span *ngIf="sortedBy === 'score' && isAscending"><img src="assets/images/arrow-up-icon.svg" alt=""
+                    (click)="toggleSorting('score')" /></span>
               </small>
             </div>
             <div class="row-title-two" *ngIf="roundsLength >= 1">
               <small>History</small>
             </div>
-            <div
-              [ngClass]="{
+            <div [ngClass]="{
                 'row-title-dlt': true,
                 'row-title-two-dlt': roundsLength >= 1
-              }"
-            >
+              }">
               <small>No-Show</small>
             </div>
             <!-- <div><small>Rating</small></div> -->
           </div>
 
-          <div
-            *ngFor="let player of players.controls; let i = index"
-            [formGroupName]="i"
-            class="flex justify-end MT-2-half"
-            [ngClass]="{
+          <div *ngFor="let player of players.controls; let i = index" [formGroupName]="i"
+            class="flex justify-end MT-2-half" [ngClass]="{
               'round-one': true,
               'round-two': roundsLength >= 1
-            }"
-          >
+            }">
             <div class="row-field">
               <mat-form-field>
-                <input
-                  matInput
-                  type="text"
-                  formControlName="name"
-                  placeholder="Enter name"
-                  required
+                <input matInput type="text" formControlName="name" placeholder="Enter name" required
+                [ngStyle]="{'text-decoration': player.value.isDeleted ? 'line-through' : 'none'}"
+                
                 />
+
+               
                 <div class="round-one-icon" *ngIf="player.value.round">
-                  <img
-                    src="../../../../../../assets/images/blue-circle-icon.svg"
-                    alt=""
-                  />
+                  <img src="../../../../../../assets/images/blue-circle-icon.svg" alt="" />
                 </div>
               </mat-form-field>
             </div>
-            <div
-              [ngClass]="{
+            <div [ngClass]="{
                 'row-field': true,
                 'row-field-two': roundsLength >= 1
-              }"
-            >
+              }">
               <mat-form-field>
-                <input
-                  matInput
-                  type="number"
-                  formControlName="score"
-                  placeholder="Enter score"
-                  required
-                />
+                <input matInput type="number" formControlName="score" placeholder="Enter score" required />
               </mat-form-field>
             </div>
             <div class="row-field-two" *ngIf="roundsLength >= 1">
@@ -110,89 +81,53 @@
               <div class="flex justify-end">
                 <ng-container *ngIf="player.value.winLoseHistory">
                   <div *ngFor="let winLose of player.value.winLoseHistory">
-                    <div
-                      class="status-square bg-red flex justify-center"
-                      [ngClass]="{
+                    <div class="status-square bg-red flex justify-center" [ngClass]="{
                         'bg-green': winLose === '1',
                         'bg-red': winLose === '0'
-                      }"
-                    >
-                      <img
-                        [src]="
+                      }">
+                      <img [src]="
                           winLose === '1'
                             ? 'assets/images/w-latter.svg'
                             : 'assets/images/l-latter.svg'
-                        "
-                        alt=""
-                      />
+                        " alt="" />
                     </div>
                   </div>
                 </ng-container>
-                <div
-                  *ngIf="!player.value.winLoseHistory"
-                  class="flex justify-center mr-3 null-img"
-                >
+                <div *ngIf="!player.value.winLoseHistory" class="flex justify-center mr-3 null-img">
                   <div class="mr-3">
-                    <span
-                      ><img
-                        src="../../../../../../assets/images/null-icon.svg"
-                        alt=""
-                    /></span>
+                    <span><img src="../../../../../../assets/images/null-icon.svg" alt="" /></span>
                   </div>
                   <div class="mr-3">
-                    <span
-                      ><img
-                        src="../../../../../../assets/images/null-icon.svg"
-                        alt=""
-                    /></span>
+                    <span><img src="../../../../../../assets/images/null-icon.svg" alt="" /></span>
                   </div>
                   <div class="mr-3">
-                    <span
-                      ><img
-                        src="../../../../../../assets/images/null-icon.svg"
-                        alt=""
-                    /></span>
+                    <span><img src="../../../../../../assets/images/null-icon.svg" alt="" /></span>
                   </div>
                   <div class="mr-3">
-                    <span
-                      ><img
-                        src="../../../../../../assets/images/null-icon.svg"
-                        alt=""
-                    /></span>
+                    <span><img src="../../../../../../assets/images/null-icon.svg" alt="" /></span>
                   </div>
                   <div class="mr-3">
-                    <span
-                      ><img
-                        src="../../../../../../assets/images/null-icon.svg"
-                        alt=""
-                    /></span>
+                    <span><img src="../../../../../../assets/images/null-icon.svg" alt="" /></span>
                   </div>
                   <div>
-                    <span
-                      ><img
-                        src="../../../../../../assets/images/null-icon.svg"
-                        alt=""
-                    /></span>
+                    <span><img src="../../../../../../assets/images/null-icon.svg" alt="" /></span>
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              [ngClass]="{
+            <div [ngClass]="{
                 'row-field-dlt': true,
                 'row-field-two-dlt': roundsLength >= 1
-              }"
-            >
-              <button
-                (click)="deletePlayer(i)"
-                type="button"
-                class="delete-icon flex justify-center"
-                matTooltip="No show"
-              >
-                <img
-                  src="../../../../../../assets/images/no-show iocn.svg"
-                  alt=""
-                />
+              }">
+              <button (click)="changePlayerStatus(i)" type="button" class="delete-icon flex justify-center"
+                [matTooltip]="player.value.isDeleted ? 'Not Availble' : 'Available'"
+                [ngStyle]="{'background-color': !player.value.isDeleted ? '#f2f8f4
+                ' : ''}"
+                >
+                <img *ngIf="player.value.isDeleted" src="../../../../../../assets/images/no-show iocn.svg" alt="" />
+                <img *ngIf="!player.value.isDeleted" src="../../../../../../assets/images/show-icon.svg" alt="" />
+
+
               </button>
             </div>
           </div>
@@ -209,11 +144,7 @@
       </div>
       <div class="flex justify-end alert-msg" *ngIf="roundsLength >= 1">
         <div>
-          <span
-            ><img
-              src="../../../../../../assets/images/blue-circle-icon.svg"
-              alt=""
-          /></span>
+          <span><img src="../../../../../../assets/images/blue-circle-icon.svg" alt="" /></span>
         </div>
         <div>
           <p>
@@ -224,11 +155,7 @@
       </div>
       <div class="flex justify-end alert-msg-yellow" *ngIf="roundsLength >= 1">
         <div>
-          <span
-            ><img
-              src="../../../../../../assets/images/alert-yellow-icon.svg"
-              alt=""
-          /></span>
+          <span><img src="../../../../../../assets/images/alert-yellow-icon.svg" alt="" /></span>
         </div>
         <div>
           <p>

@@ -1,148 +1,90 @@
-<mat-tab-group
-  mat-stretch-tabs="false"
-  mat-align-tabs="start"
-  (selectedTabChange)="onTabChanged($event)"
->
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" [(selectedIndex)]="selectedTabIndex"
+  (selectedTabChange)="onTabChanged($event)">
   <mat-tab *ngFor="let group of groups" [label]="'Group ' + group.name">
     <!-- <div class="flex justify-between tab-sub-header">
       <b>Round {{ data.header?.round || data.round?.header?.round }}</b>
-      <b>{{ leagueName }}</b>
       <b>{{
         data.header?.date || data.round?.header?.date
           | date : "EEE, MMM dd yyyy"
       }}</b>
     </div> -->
     <div class="overflow">
-      <div class="parent-table flex justify-center align-start">
-        <div
-          class="player-name name-cell flex justify-center align-start flex-column"
-        >
-          <div class="cell bg-cell justify-end">Players</div>
-          <div
-            *ngFor="let player of group.data.group_details.players"
-            class="cell-1 justify-end"
-          >
-            {{ player }}
-          </div>
-        </div>
-        <div class="player-game flex justify-end align-start">
-          <div class="border-1" *ngFor="let game of games">
-            <div
-              class="flex justify-center align-center flex-column game-header"
-            >
-              <div class="cell bg-cell">
-                {{ game[0] }}
-              </div>
-              <div
-                class="flex justify-space-even width-100"
-                *ngFor="let player of group.data.group_details.players"
-              >
-                <div class="td-cell cell">
-                  <span>
-                    <img
-                      *ngIf="game[1].server === player"
-                      src="assets/images/serve-active-icon.svg"
-                      alt=""
-                      width="26px"
-                    />
-                    <img
-                      *ngIf="
-                        game[1].server !== player &&
-                        game[1].team_1.indexOf(player) > -1
-                      "
-                      src="assets/images/serve-inactive-icon.svg"
-                      alt=""
-                    />
-                  </span>
-                  <span>
-                    <img
-                      *ngIf="game[1].returner === player"
-                      src="assets/images/receive-active-icon.svg"
-                      alt=""
-                      width="26px"
-                    />
-                    <img
-                      *ngIf="
-                        game[1].returner !== player &&
-                        game[1].team_2.indexOf(player) > -1
-                      "
-                      src="assets/images/receive-inactive-icon.svg"
-                      alt=""
-                    />
-                  </span>
-                  <span *ngIf="game[1].bye.indexOf(player) > -1">
-                    <img
-                      src="assets/images/bye-default-icon.svg"
-                      alt=""
-                      width="26px"
-                    />
-                  </span>
-                  <input
-                    *ngIf="!isEdit && labelName !== 'ViewScore'"
-                    type="number"
-                    class="format-two-input"
-                    disabled
-                  />
-                  ⁠ <input
-                    *ngIf="game[1].team_1.indexOf(player) > -1 && isEdit"
-                    type="number"
-                    (keyup)="onBlurTeamScore()"
-                    class="format-two-input"
-                    [(ngModel)]="game[1].score.team_1"
-                    [disabled]="labelName === 'ViewScore'"
-                    [id]="game[1].team_1.indexOf(player) + 'a'"
-                  />
-                  <input
-                    *ngIf="game[1].team_2.indexOf(player) > -1 && isEdit"
-                    type="number"
-                    (keyup)="onBlurTeamScore()"
-                    class="format-two-input"
-                    [(ngModel)]="game[1].score.team_2"
-                    [disabled]="labelName === 'ViewScore'"
-                  /> 
+      <table class="table-1">
+        <thead>
+          <tr>
+            <th>Match</th>
+            <th colspan="2">Players</th>
+            <th>Score</th>
+            <th>Bye</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let game of gamesArray">
+            <tr>
+              <td rowspan="2" class="text-center">{{ game[0] }}</td>
+              <td>
+                <span><img [src]="
+                      game[1].team_1[0] === game[1].server
+                        ? 'assets/images/serve-active-icon.svg'
+                        : 'assets/images/serve-inactive-icon.svg'
+                    " alt="" /></span>{{ game[1].team_1[0] }}
+              </td>
+              <td>
+                <span><img [src]="
+                      game[1].team_1[1] === game[1].server
+                        ? 'assets/images/serve-active-icon.svg'
+                        : 'assets/images/serve-inactive-icon.svg'
+                    " alt="" /></span>{{ game[1].team_1[1] }}
+              </td>
+              <td class="text-center">
+                <div *ngIf="isEdit">
+                  <input type="number" placeholder="0" [(ngModel)]="game[1].score.team_1" (keyup)="onBlurTeamScore()"
+                    [disabled]="labelName === 'ViewScore'" />
                 </div>
-                <!-- {{game[1].score | json}} -->
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-center flex-column">
-            <div class="cell bg-cell">Total</div>
-            <div class="flex justify-center flex-column">
-              <div
-                *ngFor="let i of [1, 2, 3, 4]"
-                class="cell flex justify-center"
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </td>
+              <td rowspan="2" class="bye-name">{{ game[1].bye.join(",") }}</td>
+            </tr>
+            <tr>
+              <td>
+                <span><img [src]="
+                      game[1].team_2[0] === game[1].returner
+                        ? 'assets/images/receive-active-icon.svg'
+                        : 'assets/images/receive-inactive-icon.svg'
+                    " alt="" /></span>{{ game[1].team_2[0] }}
+              </td>
+              <td>
+                <span><img [src]="
+                      game[1].team_2[1] === game[1].returner
+                        ? 'assets/images/receive-active-icon.svg'
+                        : 'assets/images/receive-inactive-icon.svg'
+                    " alt="" /></span>{{ game[1].team_2[1] }}
+              </td>
+              <td class="text-center">
+                <div *ngIf="isEdit">
+                  <input type="number" placeholder="0" [(ngModel)]="game[1].score.team_2" (keyup)="onBlurTeamScore()"
+                    [disabled]="labelName === 'ViewScore'" />
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
       <div class="table-footer flex justify-between">
         <div>
           <!-- <span><img src="assets/images/e-logo.png" alt="" /></span> -->
           <span>
-            <img
-              style="width: 150px !important"
-              src="../../../../assets/images/e-league-online-main-logo.png"
-              alt=""
-            />
+            <img style="width: 150px !important" src="../../../../assets/images/e-league-online-main-logo.png" alt="" />
             Want to run a friends and family league? Signup and build your own
-            Digital Club.</span
-          >
+            Digital Club.</span>
         </div>
         <div class="flex justify-start">
           <div>
-            <span><img src="assets/images/serve-active-icon.svg" alt="" /></span
-            ><small>Serves</small>
+            <span><img src="assets/images/serve-active-icon.svg" alt="" /></span><small>Serves</small>
           </div>
           <div>
-            <span
-              ><img src="assets/images/receive-active-icon.svg" alt="" /></span
-            ><small class="green-font">Returns</small>
+            <span><img src="assets/images/receive-active-icon.svg" alt="" /></span><small
+              class="green-font">Returns</small>
           </div>
-          <!-- <div>
-            <span><img src="assets/images/bye-default-icon.svg" alt="" /></span
-            ><small class="red-font">Bye</small>
-          </div> -->
         </div>
       </div>
     </div>

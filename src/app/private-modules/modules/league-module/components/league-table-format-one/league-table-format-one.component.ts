@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { SharedCommonService } from '../../../../../core/services/shared-common.service';
-import { SnackBarService } from '@app/core/services/snackbar.service';
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { SharedCommonService } from "../../../../../core/services/shared-common.service";
+import { SnackBarService } from "@app/core/services/snackbar.service";
 
 @Component({
-  selector: 'app-league-table-format-one',
-  templateUrl: './league-table-format-one.component.html',
-  styleUrl: './league-table-format-one.component.scss',
+  selector: "app-league-table-format-one",
+  templateUrl: "./league-table-format-one.component.html",
+  styleUrl: "./league-table-format-one.component.scss",
 })
 export class LeagueTableFormatOneComponent implements OnInit {
   @Input() data: any;
@@ -13,6 +13,7 @@ export class LeagueTableFormatOneComponent implements OnInit {
   @Input() clubID!: string;
   @Input() roundCount!: string;
   @Input() leagueName!: string;
+  @Input() leagueType!: string;
   @Input() groups: any;
   @Input() labelName!: string;
   @Output() blurTeamScore = new EventEmitter<any>();
@@ -60,4 +61,57 @@ export class LeagueTableFormatOneComponent implements OnInit {
       isTouched: true,
     });
   };
+
+  updateScore(currentPlayerObj: any, gamesArr: any) {
+    // force same score if the league type is doubles-individual...
+    if (this.leagueType === "doubles-individual") {
+      let index = gamesArr.findIndex(
+        (x: any) =>
+          x.subgroup === currentPlayerObj.subgroup &&
+          x.player !== currentPlayerObj.player
+      );
+      if (index > -1) {
+        gamesArr[index].score = currentPlayerObj.score;
+      }
+    }
+    this.onBlurTeamScore();
+  }
+
+  getPlayerNamesColumnTitle() {
+    let plyaerNamesColTitle: string = "";
+    switch (this.leagueType) {
+      case "singles":
+        plyaerNamesColTitle = "Player";
+        break;
+      case "doubles-individual":
+        plyaerNamesColTitle = "Player";
+        break;
+      case "doubles-partner":
+        plyaerNamesColTitle = "Team";
+        break;
+      default:
+        plyaerNamesColTitle = "Players";
+    }
+
+    return plyaerNamesColTitle;
+  }
+
+  getPlayerRolesColumnTitle() {
+    let plyaerRolesColTitle: string = "";
+    switch (this.leagueType) {
+      case "singles":
+        plyaerRolesColTitle = "Set";
+        break;
+      case "doubles-partner":
+        plyaerRolesColTitle = "Set";
+        break;
+      case "doubles-individual":
+        plyaerRolesColTitle = "Game";
+        break;
+      default:
+        plyaerRolesColTitle = "";
+    }
+
+    return plyaerRolesColTitle;
+  }
 }

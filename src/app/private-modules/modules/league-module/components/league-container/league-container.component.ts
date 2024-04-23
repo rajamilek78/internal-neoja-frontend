@@ -4,28 +4,28 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
-} from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
-import { SharedCommonService } from '../../../../../core/services/shared-common.service';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
-import 'jspdf-autotable';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { LockDataDialogueComponent } from '../lock-data-dialogue/lock-data-dialogue.component';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LeagueModuleService } from '../../services/league-module.service';
-import { Subscription } from 'rxjs';
-import { UserModel } from '@app/helpers/models';
-import { SharedUserService } from '@app/core';
-import { RouteConstant } from '@app/helpers/constants';
-import { PrintRoundFormatOneComponent } from '../print-round-format-one/print-round-format-one.component';
-import { SnackBarService } from '@app/core/services/snackbar.service';
+} from "@angular/core";
+import { ChangeDetectorRef } from "@angular/core";
+import { SharedCommonService } from "../../../../../core/services/shared-common.service";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
+import "jspdf-autotable";
+import { MatTabChangeEvent } from "@angular/material/tabs";
+import { LockDataDialogueComponent } from "../lock-data-dialogue/lock-data-dialogue.component";
+import { MatDialog } from "@angular/material/dialog";
+import { ActivatedRoute, Router } from "@angular/router";
+import { LeagueModuleService } from "../../services/league-module.service";
+import { Subscription } from "rxjs";
+import { UserModel } from "@app/helpers/models";
+import { LeaguemanageService, SharedUserService } from "@app/core";
+import { RouteConstant } from "@app/helpers/constants";
+import { PrintRoundFormatOneComponent } from "../print-round-format-one/print-round-format-one.component";
+import { SnackBarService } from "@app/core/services/snackbar.service";
 
 @Component({
-  selector: 'app-league-container',
-  templateUrl: './league-container.component.html',
-  styleUrl: './league-container.component.scss',
+  selector: "app-league-container",
+  templateUrl: "./league-container.component.html",
+  styleUrl: "./league-container.component.scss",
 })
 export class LeagueContainerComponent implements OnInit, OnDestroy {
   userDetailSub$!: Subscription;
@@ -33,20 +33,21 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
   groups: any;
   responseData: any;
   rawData: any;
-  selectedFormat = '2';
+  selectedFormat = "1";
   selectedGroup!: any;
   isEdit: boolean = false;
   selectedClubID!: string;
   leagueName!: string;
   leagueID!: string;
-  roundID: string = '';
+  roundID: string = "";
   groupsArrayToBeUpdated: any[] = [];
   isInvisilePdf = false;
   roundCount!: number;
   isTouched: boolean = false;
-  labelName: string = '';
+  labelName: string = "";
   roundDate: any;
   sessionID!: string;
+  leagueType!: string;
 
   constructor(
     private SharedCommonService: SharedCommonService,
@@ -56,24 +57,31 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
     private router: Router,
     private snackbarService: SnackBarService,
     private leagueService: LeagueModuleService,
+    private leagueMangeService: LeaguemanageService,
     private sharedUserService: SharedUserService
-  ) { }
+  ) {}
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.userSubscriber();
     this.route.params.subscribe((params) => {
-      this.isEdit = params['isEdit'];
-      this.roundID = params['roundID'];
-      this.leagueID = params['leagueID'];
-      this.leagueName = params['leagueName'];
-      this.selectedClubID = params['clubId'];
-      this.labelName = params['labelName'];
+      this.isEdit = params["isEdit"];
+      this.roundID = params["roundID"];
+      this.leagueID = params["leagueID"];
+      this.leagueName = params["leagueName"];
+      this.selectedClubID = params["clubId"];
+      this.labelName = params["labelName"];
     });
     if (this.isEdit) {
       this.getRoundById();
     } else {
       this.getMatchData();
     }
+
+    this.leagueMangeService.getSelectedLeague().subscribe((league: any) => {
+      if (league) {
+        this.leagueType = league.type;
+      }
+    });
   }
   ngOnDestroy(): void {
     if (this.userDetailSub$) {
@@ -86,7 +94,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.userDetail = this.sharedUserService.getUser();
         if (this.userDetail) {
-          this.sessionID = this.userDetail?.session_id
+          this.sessionID = this.userDetail?.session_id;
           // this.selectedClubID = this.userDetail.club_id;
         }
       });
@@ -94,14 +102,14 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
 
   openDialogue(): void {
     const dialogueRef = this.dialog.open(LockDataDialogueComponent, {
-      width: '450px',
+      width: "450px",
       data: {
         leagueID: this.leagueID,
         responseData: this.responseData,
         roundCount: this.roundCount,
       },
     });
-    dialogueRef.afterClosed().subscribe((result) => { });
+    dialogueRef.afterClosed().subscribe((result) => {});
   }
   // To get Match Data
   getMatchData() {
@@ -118,7 +126,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
           })
         );
       } else {
-        console.log('No fixtures found in responseData.');
+        console.log("No fixtures found in responseData.");
       }
     });
   }
@@ -136,7 +144,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
             data: this.responseData[key],
           }));
         } else {
-          console.log('No data found in responseData.');
+          console.log("No data found in responseData.");
         }
       },
       error: (err: any) => {
@@ -162,7 +170,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
       sessionID: this.rawData.sessionID,
       groups: groups,
       players: this.rawData.players,
-      round_pdf_urls: this.rawData.round_pdf_urls
+      round_pdf_urls: this.rawData.round_pdf_urls,
     };
     setTimeout(() => {
       this.leagueService.updateScore(urlString, body).subscribe({
@@ -186,7 +194,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
     this.selectedGroup = `Group ${event}`;
   }
   saveRound() {
-    this.router.navigate(['players-league/completed-leagues']);
+    this.router.navigate(["players-league/completed-leagues"]);
   }
   onCancel() {
     this.router.navigate([RouteConstant.COMPLETED_LEAGUES]);
@@ -205,7 +213,7 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
       clubID: this.selectedClubID,
     };
     this.leagueService.setRoundData(data);
-    window.open(`${RouteConstant.PRINT_CONTAINER}`, '_blank');
+    window.open(`${RouteConstant.PRINT_CONTAINER}`, "_blank");
   }
 
   onClickDownload() {
@@ -225,15 +233,15 @@ export class LeagueContainerComponent implements OnInit, OnDestroy {
     //     pdf.save(filename); // Generated PDF
     //   });
     // }
-    console.log(this.rawData)
+    console.log(this.rawData);
     if (
       this.rawData &&
       this.rawData.round.round_pdf_urls &&
       this.rawData.round.round_pdf_urls.fixture_format1
     ) {
-      window.open(this.rawData.round.round_pdf_urls.fixture_format1, '_blank');
+      window.open(this.rawData.round.round_pdf_urls.fixture_format1, "_blank");
     } else {
-      console.log('Round PDF URL not found or format1 is empty.');
+      console.log("Round PDF URL not found or format1 is empty.");
     }
   }
 }

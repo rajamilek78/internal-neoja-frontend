@@ -98,7 +98,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     this.selectedPlayer$ =
       this.SharedCommonService.getSelectedValue().subscribe(
         (selectedValue: string) => {
-          this.selectedValue= selectedValue
+          this.selectedValue = selectedValue
           if (this.roundsLength >= 1 && selectedValue) {
             this.leagueSummary(selectedValue || defaultSelectedValue);
           }
@@ -327,6 +327,8 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
               ],
               winLoseHistory: [{ value: winLoseHistory, disabled: true }],
               round: [{ value: round, disabled: true }],
+              isDeleted: [{ value: false, disabled: true }],
+
             });
             playersArray.push(playerGroup);
             this.isAscending = true;
@@ -365,6 +367,8 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
                 ],
                 winLoseHistory: [{ value: winLoseHistory, disabled: true }],
                 round: [{ value: round, disabled: true }],
+                isDeleted: [{ value: false, disabled: true }],
+
               });
               playersArray.push(playerGroup);
               this.isAscending = true;
@@ -405,6 +409,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
                 ],
                 winLoseHistory: [{ value: winLoseHistory, disabled: true }],
                 round: [{ value: round, disabled: true }],
+                isDeleted: [{ value: false, disabled: true }],
               });
               playersArray.push(playerGroup);
               this.isAscending = true;
@@ -437,6 +442,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
     }
   }
   submitData(): void {
+    this.playerForm.getRawValue().players;
     const formattedDate = this.datePipe.transform(
       this.selectedDate,
       'MM/dd/yyyy'
@@ -502,8 +508,22 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
       });
     }
   }
+
   deletePlayer(index: number): void {
     this.openDialogue(index);
+  }
+
+  /**
+   * Change Player Availability
+   * @param player 
+   */
+  changePlayerStatus(playerIndex: number) {
+    const playersArray = this.playerForm.get('players') as FormArray;
+    const playerGroup = playersArray.at(playerIndex) as FormGroup;
+    const isDeletedControl = playerGroup.get('isDeleted');
+    if (isDeletedControl) {
+      isDeletedControl.setValue(!isDeletedControl.value);
+    }
   }
 
   openDialogue(index: number): void {
@@ -513,10 +533,12 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
       data: {
         roundCount: this.roundCount,
         playerName: player.name,
-        players: this.players,
-        index: index,
       },
     });
-    dialogueRef.afterClosed().subscribe((result) => { });
+    dialogueRef.afterClosed().subscribe((accpted: boolean) => {
+      if (!accpted) return
+      this.players.removeAt(index);
+
+    });
   }
 }

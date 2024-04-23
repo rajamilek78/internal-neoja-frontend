@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LeagueTableFormatTwoComponent } from './league-table-format-two.component';
+import { LeagueTableFormatTwooComponent } from "./league-table-format-two.component";
 
-describe('LeagueTableFormatTwoComponent', () => {
-  let component: LeagueTableFormatTwoComponent;
-  let fixture: ComponentFixture<LeagueTableFormatTwoComponent>;
+describe("LeagueTableFormatOneComponent", () => {
+  let component: LeagueTableFormatTwooComponent;
+  let fixture: ComponentFixture<LeagueTableFormatTwooComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LeagueTableFormatTwoComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(LeagueTableFormatTwoComponent);
+      declarations: [LeagueTableFormatTwooComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LeagueTableFormatTwooComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
