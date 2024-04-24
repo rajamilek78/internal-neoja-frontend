@@ -28,7 +28,7 @@ export class UploadPlayerContainerComponent implements OnInit {
   selectedDate!: Date;
   roundCount!: number;
   selectedValue: any;
-  sessionId: any;
+  session_id: any;
   overrideSystemFixtures: boolean = false;
 
   constructor(
@@ -68,7 +68,7 @@ export class UploadPlayerContainerComponent implements OnInit {
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
           this.clubID = this.userDetail?.club_id;
-          this.sessionId = this.userDetail?.session_id
+          this.session_id = this.userDetail?.session_id
         }
       });
   };

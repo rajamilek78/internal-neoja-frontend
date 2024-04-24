@@ -53,4 +53,4 @@ export const publicRoutes = [
     `/auth/${RouteConstant.LOGIN}`,
   ];
 
-  export const RoundsPerDayValues = ['1', '2', '3'];
+  export const RoundsPerDayValues = ['1', '2'];

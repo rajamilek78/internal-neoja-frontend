@@ -11,7 +11,7 @@ import { UserModel } from '@app/helpers/models';
 @Injectable()
 export class APIManager extends HttpHelperService {
   userDetail!: UserModel | null;
-  sessionID!: string;
+  session_id!: string;
   userDetailSub$!: Subscription;
   
   constructor(sharedService: SharedService,
@@ -25,7 +25,7 @@ export class APIManager extends HttpHelperService {
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
           //this.clubID = this.userDetail?.club_id;
-          this.sessionID = this.userDetail?.session_id;
+          this.session_id = this.userDetail?.session_id;
         }
       });
   }
@@ -55,7 +55,7 @@ export class APIManager extends HttpHelperService {
   //   const httpOptions = new HttpHeaders({
   //     Authorization: `${authToken}`,
   //     'API-Key': `${AppConstant.API_KEY}`,
-  //     'sessionId': this.sessionID
+  //     'sessionId': this.session_id
   //   });
   //   return { headers: httpOptions };
   // }
@@ -66,9 +66,9 @@ export class APIManager extends HttpHelperService {
       'API-Key': `${AppConstant.API_KEY}`,
     };
   
-    // Check if sessionID is available before adding it to the headers
-    if (this.sessionID) {
-      httpHeaders['sessionId'] = this.sessionID;
+    // Check if session_id is available before adding it to the headers
+    if (this.session_id) {
+      httpHeaders['session_id'] = this.session_id;
     }
   
     const httpOptions = new HttpHeaders(httpHeaders);

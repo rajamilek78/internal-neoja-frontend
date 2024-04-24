@@ -19,7 +19,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
   clubID!: string;
   leagues!: any[];
   sortedLeague!: any[];
-  sessionID!: string;
+  session_id!: string;
   sort: Sort = { active: 'active', direction: 'asc' };
   constructor(
     private dialog: MatDialog,
@@ -90,7 +90,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
           this.clubID = this.userDetail?.club_id;
-          this.sessionID = this.userDetail?.session_id;
+          this.session_id = this.userDetail?.session_id;
         }
       });
   };
@@ -117,7 +117,7 @@ export class CreateLeagueComponent implements OnInit, OnDestroy {
       data: {
         clubID: this.clubID,
         leagueID: leagueID,
-        sessionID: this.sessionID,
+        session_id: this.session_id,
       },
     });
     dialogueRef.afterClosed().subscribe((result) => {

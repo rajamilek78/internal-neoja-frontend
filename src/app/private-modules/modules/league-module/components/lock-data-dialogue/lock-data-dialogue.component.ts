@@ -20,7 +20,7 @@ export class LockDataDialogueComponent implements OnInit {
   leagueID!: string | null;
   roundCount!: number;
   clubID!: string;
-  sessionID!: string;
+  session_id!: string;
 
   constructor(
     private router: Router,
@@ -50,7 +50,7 @@ export class LockDataDialogueComponent implements OnInit {
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
           this.clubID = this.userDetail.club_id;
-          this.sessionID = this.userDetail?.session_id
+          this.session_id = this.userDetail?.session_id
         }
       });
   };
@@ -59,7 +59,7 @@ export class LockDataDialogueComponent implements OnInit {
     const bodyData = this.data.responseData.round;
     const body = {
       ...bodyData,
-      sessionID: this.sessionID
+      session_id: this.session_id
     }
     // const clubID = this.userDetail?.club_id;
     const compnyclubnameStr = `${this.clubID}/${this.leagueID}`;

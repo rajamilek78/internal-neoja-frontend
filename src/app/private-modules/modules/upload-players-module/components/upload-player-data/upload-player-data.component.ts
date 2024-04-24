@@ -51,7 +51,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
   isAscending: boolean = true;
 
   leagueSummaryData: any;
-  sessionID!: string;
+  session_id!: string;
   ld!: string;
   leagueSelect!: string;
 
@@ -216,7 +216,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
           this.clubID = this.userDetail?.club_id;
-          this.sessionID = this.userDetail?.session_id;
+          this.session_id = this.userDetail?.session_id;
         }
       });
   };
@@ -378,7 +378,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
 
     if (this.roundsLength >= 1) {
       const playerDataRound2 = {
-        sessionID: this.sessionID,
+        session_id: this.session_id,
         round: this.roundCount,
         date: formattedDate,
         players: {},
@@ -410,7 +410,7 @@ export class UploadPlayerDataComponent implements OnInit, OnDestroy {
         });
     } else {
       const playerData = {
-        sessionID: this.sessionID,
+        session_id: this.session_id,
         round: String(this.roundCount),
         date: formattedDate,
         players: {},

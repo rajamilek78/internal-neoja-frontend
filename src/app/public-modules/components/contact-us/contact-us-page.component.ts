@@ -21,7 +21,7 @@ export class ContactUsPageComponent
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   clubID!: string;
-  sessionID!: string;
+  session_id!: string;
   
   constructor(
     private commonService: CommonService,
@@ -59,7 +59,7 @@ export class ContactUsPageComponent
       .subscribe(() => {
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
-          this.sessionID = this.userDetail?.session_id
+          this.session_id = this.userDetail?.session_id
         }
       });
   };
@@ -69,7 +69,7 @@ export class ContactUsPageComponent
     const bodydata = this.contactUsForm.value
       const body = {
         ...bodydata,
-        sessionID : this.sessionID
+        session_id : this.session_id
       }
       this.commonService.contactUs(body).subscribe({
         next: (res: any) => {

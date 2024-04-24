@@ -31,8 +31,9 @@
       <label>Rounds/day</label>
       <mat-form-field>
         <mat-select placeholder="Select" formControlName="rounds_per_day">
-          <mat-option value="1">1</mat-option>
-          <mat-option value="2">2</mat-option>
+          <!-- <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option> -->
+          <mat-option *ngFor="let rounds of roundsPerDayValues" [value]="rounds">{{ rounds }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>

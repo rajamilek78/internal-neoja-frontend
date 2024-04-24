@@ -8,6 +8,7 @@ import { SnackBarService } from '@app/core/services/snackbar.service';
 import { SharedService } from '@app/core';
 import { Subscription } from 'rxjs';
 import { UserModel } from '@app/helpers/models';
+import { RoundsPerDayValues } from '@app/helpers/constants';
 
 @Component({
   selector: 'app-create-league-dialog',
@@ -25,7 +26,8 @@ export class CreateLeagueDialogComponent
   userDetailSub$!: Subscription;
   userDetail!: UserModel | null;
   clubID!: string;
-  sessionID!: string;
+  session_id!: string;
+  roundsPerDayValues = RoundsPerDayValues;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: any,
@@ -72,6 +74,7 @@ export class CreateLeagueDialogComponent
       active: [true],
       rounds_per_day: ['1'],
     });
+    this.leagueCRUD_Form.get('rounds_per_day')?.setValue(RoundsPerDayValues[0]); // Set default value from constants
   }
 
   // Subscribe to user details
@@ -82,7 +85,7 @@ export class CreateLeagueDialogComponent
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
           //this.clubID = this.userDetail?.club_id;
-          this.sessionID = this.userDetail?.session_id
+          this.session_id = this.userDetail?.session_id
         }
       });
   };
@@ -133,7 +136,7 @@ export class CreateLeagueDialogComponent
       const bodyData = this.leagueCRUD_Form.value
       const body = {
         ...bodyData,
-        sessionId : this.sessionID
+        session_id : this.session_id
       }
       this.leagueService
         .createLeague(urlString, body)
@@ -167,7 +170,7 @@ export class CreateLeagueDialogComponent
     const bodyData = this.leagueCRUD_Form.value
     const body = {
       ...bodyData,
-      sessionId : this.sessionID
+      session_id : this.session_id
     }
     this.leagueService
       .updateLeague(urlString, body)
