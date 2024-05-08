@@ -1,7 +1,0 @@
-@import "../../../../../../assets/scss/abstracts/abstracts";
-
-table{
-    @include respond("tab-port") {
-        width: 1200px;
-    }
-}

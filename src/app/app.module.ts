@@ -6,31 +6,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { UtilityModule } from './utility/utility.module';
-import { HeaderComponent } from './public-modules/components/header/header.component';
-import { FooterComponent } from './public-modules/components/footer/footer.component';
-import { ContactUsPageComponent } from './public-modules/components/contact-us/contact-us-page.component';
-import { AboutUsPageComponent } from './public-modules/components/about-us/about-us-page.component';
-import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
-import { API_ENDPOINTS } from './helpers/constants/api-constants';
-import { CoreModule } from './core';
-import { DateFormatDirective } from './helpers/directives/date-format.directive';
-import { SignupDialogueComponent } from './public-modules/components/signup-dialogue/signup-dialogue.component';
-import { CustomSidenavComponent } from './public-modules/components/custom-sidenav/custom-sidenav.component';
-import { SubHeaderComponent } from './public-modules/components/sub-header/sub-header.component';
 import { LeaguemanageService } from './core/services/league.service';
+import { CoreModule } from './core';
+import { API_ENDPOINTS } from './helpers/constants';
+import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    ContactUsPageComponent,
-    AboutUsPageComponent,
-    HomePageComponent,
-    DateFormatDirective,
-    SignupDialogueComponent,
-    CustomSidenavComponent,
-    SubHeaderComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +23,7 @@ import { LeaguemanageService } from './core/services/league.service';
     BrowserAnimationsModule,
     MaterialModule,
     CoreModule,
-    UtilityModule,
+    UtilityModule
   ],
   providers: [API_ENDPOINTS,  LeaguemanageService,],
   bootstrap: [AppComponent],

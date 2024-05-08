@@ -1,7 +1,7 @@
 @import "../abstracts/abstracts";
 
 * {
-  font-family: $font-family;
+  // font-family: $font-family;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -36,7 +36,8 @@ html {
 }
 
 body {
-  background-color: $white-color;
+  background: linear-gradient(0deg, #FFFFFF, #FFFFFF),
+linear-gradient(60.64deg, rgba(255, 255, 255, 0) 0%, rgba(245, 131, 53, 0.25) 100%) !important;
   overflow-y: auto;
   overflow-x: hidden !important;
   margin: 0;
@@ -1360,7 +1361,7 @@ app-upload-player-container {
     }
 
     p {
-      font-family: $font-family;
+      // font-family: $font-family;
       color: rgba($black-color, 0.5);
       font-size: 1.6rem;
       font-weight: 500;
@@ -1504,7 +1505,7 @@ app-upload-player-container {
   }
 
   small {
-    font-family: $font-family;
+    // font-family: $font-family;
     color: rgba($black-color, 0.35);
     font-weight: 600;
     font-size: 2rem;
@@ -1531,7 +1532,7 @@ app-upload-player-container {
     }
 
     p {
-      font-family: $font-family;
+      // font-family: $font-family;
       color: rgba($black-color, 0.5);
       font-size: 1.6rem;
       font-weight: 500;
@@ -1562,7 +1563,7 @@ app-upload-player-container {
 
         small {
           color: rgba($black-color, 0.5);
-          font-family: $font-family;
+          // font-family: $font-family;
           display: block;
           font-size: 1.6rem;
           font-weight: 500;
@@ -1621,7 +1622,7 @@ app-upload-player-container {
 
     small {
       color: rgba($black-color, 0.5);
-      font-family: $font-family;
+      // font-family: $font-family;
       display: block;
       font-size: 1.4rem;
       font-weight: 500;
@@ -1631,7 +1632,7 @@ app-upload-player-container {
 
     b {
       color: rgba($black-color, 0.5);
-      font-family: $font-family;
+      // font-family: $font-family;
       font-size: 1.6rem;
       font-weight: 700;
       line-height: 2.4rem;
@@ -1645,7 +1646,7 @@ app-upload-player-container {
       div {
         background-color: $primary-color;
         color: $white-color;
-        font-family: $font-family;
+        // font-family: $font-family;
         display: flex;
         justify-content: center;
         align-items: center;

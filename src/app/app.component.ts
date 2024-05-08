@@ -9,10 +9,9 @@ import { Router } from '@angular/router';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'eleague-online';
+  title = 'neoja';
   isLoading = false;
   private loaderSubscriber$!: Subscription;
-  showSidebar = false;
 
 
   constructor(private sharedService: SharedService, private snackBarService : SnackBarService, private router: Router) {
@@ -41,12 +40,4 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.sharedService.isLoggedIn();
   }
 
-  isSubHeaderVisible(): boolean {
-    const currentRoute = this.router.url;
-    return currentRoute === '/' || currentRoute.includes('/about-us') || currentRoute.includes('/contact-us');
-  }
-
-  onOpenCloseSidebar = (val: boolean) => {
-    this.showSidebar = val;
-  };
 }

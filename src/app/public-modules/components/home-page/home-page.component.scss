@@ -1,18 +1,44 @@
 @import "../../../../assets/scss/abstracts/abstracts";
-
-.video-container {
-    border: 8px solid rgba($black-color, 0.1);
-    width: 43rem;
-    height: 24rem;
-    border-radius: 20px;
-
-    @include respond("tab-port") {
-        width: 100%;
-    }
-
-
-    @include respond("phone") {
-        width: 100%;
-        margin-top: 5rem;
-    }
+.logo{
+  width: 104px;
+  height: 104px;
+}
+.menu-img{
+  width: 640px;
+  height: 504px;
+}
+.panel{
+  padding-top: 0px;
+}
+.card-1{
+  width: 448px;
+  height: 504px;
+  padding: 24px;
+  border: 2px black dotted;
+  border-radius: 24px;
+  position: relative;
+  font-size: 4.8rem;
+  color: white;
+}
+.score-feed{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  left:5%;
+}
+.bg-img-1{
+  background-image: url('../../../../assets/images/scorefeed-image.png');
+  background-size: cover;
+}
+.bg-img-2{
+  background-image: url('../../../../assets/images/highscore-image.png');
+  background-size: cover;
+}
+.bg-img-3{
+  background-image: url('../../../../assets/images/manager-image.png');
+  background-size: cover;
+}
+.arrow-icon{
+  width: 55.27px;
 }

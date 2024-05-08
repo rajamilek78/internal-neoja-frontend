@@ -1,19 +1,7 @@
 <div *ngIf="isLoading" class="app-loader">
   <span class="loader"></span>
 </div>
-<app-header
-  [showSidebar]="showSidebar"
-  (openCloseSidebar)="onOpenCloseSidebar($event)"
-></app-header>
-
-<app-sub-header *ngIf="isLoggedIn && !isSubHeaderVisible()"
-></app-sub-header>
 
 <div class="panel-body">
   <router-outlet />
 </div>
-<app-custom-sidenav
-  *ngIf="showSidebar"
-  (openCloseSidebar)="onOpenCloseSidebar($event)"
-></app-custom-sidenav>
-<app-footer></app-footer>
