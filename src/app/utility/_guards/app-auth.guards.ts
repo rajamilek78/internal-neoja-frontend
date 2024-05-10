@@ -6,14 +6,11 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { SharedService } from '@app/core';
-import {
-  publicRoutes,
-  RouteConstant,
-} from '@app/helpers/constants';
+import { publicRoutes, RouteConstant } from '@app/helpers/constants';
 
 @Injectable()
 export class AppAuthGuard implements CanActivate {
-  constructor(private router: Router, private _sharedService: SharedService) { }
+  constructor(private router: Router, private _sharedService: SharedService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -27,14 +24,13 @@ export class AppAuthGuard implements CanActivate {
     if (this._sharedService.isLoggedIn()) {
       if (isPublicRoute) {
         activateRoute = false;
-        this.router.navigate([`/${RouteConstant.UPLOAD_PLAYER_CONTAINER}`]);
+        // this.router.navigate([`/${RouteConstant.UPLOAD_PLAYER_CONTAINER}`]);
       }
     } else {
       if (!isPublicRoute) {
         activateRoute = false;
         this.router.navigate([`/${RouteConstant.LOGIN}`]);
       }
-
     }
     return activateRoute;
   }

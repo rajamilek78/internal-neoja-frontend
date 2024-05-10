@@ -10,11 +10,13 @@ import { LeaguemanageService } from './core/services/league.service';
 import { CoreModule } from './core';
 import { API_ENDPOINTS } from './helpers/constants';
 import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
+import { HeaderComponent } from './public-modules/components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

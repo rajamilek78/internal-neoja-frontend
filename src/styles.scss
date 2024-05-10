@@ -1,15 +1,7 @@
 @use "@angular/material"as mat;
 // @include mat.all-legacy-component-typographies();
 // @include mat.legacy-core();
-
-@font-face {
-  font-family: 'NeueMontreal';
-  src: url('/src/assets/fonts/NeueMontreal-Regular.otf') format('truetype');
-  /* Add additional src lines for different font file formats if available */
-}
-
-$my-palette-primary: (
-  50: #fdede5,
+$my-palette-primary: (50: #fdede5,
   100: #fbd1be,
   200: #f9b393,
   300: #f69567,
@@ -112,24 +104,14 @@ $eleague-frontend-theme: mat.define-light-theme((color: (primary: $eleague-front
 }
 
 
-.material-symbols-outlined{
+.material-symbols-outlined {
   font-family: 'Material Icons Outlined' !important;
 }
 
-.tooltip-message-box{
-  .material-symbols-outlined{
+.tooltip-message-box {
+  .material-symbols-outlined {
     position: relative;
     top: 6px;
-  }
-}
-
-table{
-  th{
-    font-weight: 700 !important;
-  }
-
-  td{
-    color: #000 !important;
   }
 }
 
@@ -137,8 +119,9 @@ table{
   font-weight: 500 !important;
   color: #8a8a8a !important;
 }
-.tooltip-message-box{
-  .material-symbols-outlined{
+
+.tooltip-message-box {
+  .material-symbols-outlined {
     position: relative;
     top: 6px;
   }

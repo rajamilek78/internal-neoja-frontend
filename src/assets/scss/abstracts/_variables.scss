@@ -1,17 +1,21 @@
+@font-face {
+    font-family: NeueMontreal;
+    src: url(../../fonts/NeueMontreal-Regular.otf);
+}
+
 // font family
 $font-bebas:'Bebas Neue',
-sans-serif ;
+sans-serif;
 $font-montreal:'NeueMontreal';
 // colors
-$primary-color:#187AE8;
-$primary-hover-color:#0D58AD;
-$primary-hover-color:#0D58AD;
-$header-color: linear-gradient(90deg, #05155E 0%, #4A97FE 100%);
-$black-color: #000000;
+$body-color: linear-gradient(60.64deg, rgba(255, 255, 255, 0) 0%, rgba(245, 131, 53, 0.25) 100%);
+$primary-color:#F58335;
+$black-color: #373535;
 $white-color: #ffffff;
-$red-color:#EF0000;
-$green-color:#007A31;
-$gray-color: #131313;
-$yellow-color:#CE7409;
-$sub-header-color:#f7f7f7;
-$sub-header-border:#E2E2E2;
+$green-color:#25B800;
+$blue-color :#1F1BD1;
+$orange-color :#FF473C;
+$yellow-color:#BBB409;
+$hover-color:#DA691B;
+$orange-hover-color: #D12B21;
+$gray-color: #B0B0B0;

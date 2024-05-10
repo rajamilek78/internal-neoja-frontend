@@ -1,102 +1,42 @@
 @import "../../scss/abstracts/abstracts";
 
 .btn {
-    font-size: 1.4rem;
-    font-weight: 600;
-    line-height: 1.6rem;
-    padding: 1.2rem 2.4rem;
-    border-radius: 10rem;
+    font-family: $font-bebas;
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 3.12rem;
+    padding: 2rem 3.2rem;
+    border-radius: 1rem;
 }
-
-.btn-sm {
-    font-size: 1.2rem;
-    font-weight: 600;
-    line-height: 1.4;
-    padding: 0.4rem 1.2rem;
-    border-radius: 10rem;
-}
-
-.red-btn {
-    button {
-        background-color: rgba($red-color, 0.2);
-        color: rgba($red-color, 0.8);
-        border: none !important;
-
-        &:disabled {
-            cursor: not-allowed;
-        }
-        &:hover {
-            background-color: rgba($red-color, 0.3);
-        // color: rgba($red-color, 0.6);
-        }
-    }
-}
-
-.red-btn-dark {
-    margin-right: 0.8rem;
-
-    button {
-        background-color: $red-color;
-        color: $white-color;
-        border: none !important;
-    }
-}
-
-.primary-btn-light {
-    margin-right: 0.8rem;
-
-    button {
-        background-color: $white-color;
-        border: 1px solid transparent !important;
-        color: $primary-color;
-
-        &:hover {
-            background-color: rgba($white-color, 0.85);
-        }
-    }
-}
-
 
 .primary-btn {
-    margin-right: 0.8rem;
+    background-color: $primary-color;
+    color: $white-color;
+    border: 1px solid transparent;
 
-    button {
-        background-color: $primary-color;
-        color: $white-color;
-        border: none !important;
-
-        &:hover {
-            background-color: $primary-hover-color;
-        }
-
-        &:disabled {
-            cursor: not-allowed;
-        }
+    &:hover {
+        background-color: $hover-color;
     }
 }
 
 .secondary-btn {
-    margin-right: 0.8rem;
+    background-color: $white-color;
+    color: $primary-color;
+    border: 1px solid $primary-color;
 
-    button {
-        border: 1px solid rgba($white-color, 0.25);
+    &:hover {
+        background-color: $primary-color;
         color: $white-color;
-        background-color: transparent !important;
-
-        &:hover {
-            border: 1px solid rgba($white-color, 0.5) !important;
-        }
     }
 }
 
-.secondary-btn-light {
-    button {
-        background-color: $white-color !important;
-        color: rgba($black-color, 0.5);
-        border: 1px solid rgba($black-color, 0.1);
+.orange-btn {
+    background-color: $orange-color;
+    color: $white-color;
+    border: 1px solid transparent;
 
-        &:hover {
-            border: 1px solid rgba($black-color, 0.25) !important;
-        }
+    &:hover {
+        background-color: $orange-hover-color;
+        color: $white-color;
     }
 }

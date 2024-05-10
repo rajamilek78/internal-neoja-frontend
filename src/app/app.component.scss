@@ -14,17 +14,17 @@
   z-index: 9999999;
 }
 
-.panel-body {
-  min-height: calc(100vh - 22rem);
+// .panel-body {
+//   min-height: calc(100vh - 10rem);
 
-  @include respond("tab-port") {
-    min-height: calc(100vh - 20rem);
-  }
+//   @include respond("tab-port") {
+//     min-height: calc(100vh - 20rem);
+//   }
 
-  @include respond("phone") {
-    min-height: calc(100vh - 20rem);
-  }
-}
+//   @include respond("phone") {
+//     min-height: calc(100vh - 20rem);
+//   }
+// }
 
 .loader {
   width: 48px;

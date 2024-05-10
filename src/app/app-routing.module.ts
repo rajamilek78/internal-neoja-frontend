@@ -6,13 +6,38 @@ import { HomePageComponent } from './public-modules/components/home-page/home-pa
 const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent
+    component: HomePageComponent,
   },
+
+  {
+    path: RouteConstant.HIGH_SCORE,
+    loadChildren: () =>
+      import('./private-modules/high-score-module/high-score.module').then(
+        (m) => m.HighScoreModule
+      ),
+  },
+
+  {
+    path: RouteConstant.MANAGER,
+    loadChildren: () =>
+      import('./private-modules/manager-module/manager.module').then(
+        (m) => m.ManagerModule
+      ),
+  },
+
+  {
+    path: RouteConstant.SCORE_FEED,
+    loadChildren: () =>
+      import('./private-modules/score-feed-module/score-feed.module').then(
+        (m) => m.ScoreFeedModule
+      ),
+  },
+
   {
     path: '**',
     component: HomePageComponent,
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
 
 @NgModule({

@@ -1,53 +1,61 @@
 @import "../../../../assets/scss/abstracts/abstracts";
-.logo{
-  width: 10.4rem;
-  height: 10.4rem;
-}
-.menu-img{
-  width: 64rem;
-  height: 50.4rem;
-}
-.panel{
-  padding-top: 0rem;
-}
-.card-1{
-  width: 44.8rem;
-  height: 50.4rem;
-  padding: 2.4rem;
-  border: 0.2rem black dotted;
-  border-radius: 2.4rem;
-  position: relative;
-  font-size: 4.8rem;
-  color: white;
-  .score-feed{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    left:5%;
 
-    h2{
-      font-family:$font-bebas ;
+
+.home-panel {
+  position: relative;
+  width: 100%;
+  padding: 2.4rem 0rem;
+}
+
+h1 {
+  font-family: $font-montreal;
+  color: $black-color;
+  font-size: 4.8rem;
+  font-weight: 500;
+  line-height: 5.76rem;
+}
+
+.card-1 {
+  display: block;
+  height: 54.4rem;
+  position: relative;
+
+  .score-feed {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: -1.3rem;
+
+    h2 {
+      font-family: $font-bebas;
       font-weight: 400;
       font-size: 8rem;
       line-height: 9.6rem;
-      color: white;
+      color: $white-color;
     }
   }
 }
 
-.bg-img-1{
+.bg-img-1,
+.bg-img-2,
+.bg-img-3 {
+  background-size: cover;
+  height: 100%;
+  border-radius: 2.4rem;
+}
+
+.bg-img-1 {
   background-image: url('../../../../assets/images/scorefeed-image.png');
-  background-size: cover;
 }
-.bg-img-2{
+
+.bg-img-2 {
   background-image: url('../../../../assets/images/highscore-image.png');
-  background-size: cover;
 }
-.bg-img-3{
+
+.bg-img-3 {
   background-image: url('../../../../assets/images/manager-image.png');
-  background-size: cover;
 }
-.arrow-icon{
-  width: 55.27px;
+
+.arrow-icon {
+  width: 5.5rem;
 }
