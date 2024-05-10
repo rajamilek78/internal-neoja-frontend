@@ -13,9 +13,11 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoading = false;
   private loaderSubscriber$!: Subscription;
 
-
-  constructor(private sharedService: SharedService, private snackBarService : SnackBarService, private router: Router) {
-  }
+  constructor(
+    private sharedService: SharedService,
+    private snackBarService: SnackBarService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.subscribeIsLoading();
@@ -40,4 +42,8 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.sharedService.isLoggedIn();
   }
 
+  isHeaderVisible(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute === '/';
+  }
 }

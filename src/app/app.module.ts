@@ -11,12 +11,14 @@ import { CoreModule } from './core';
 import { API_ENDPOINTS } from './helpers/constants';
 import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
 import { HeaderComponent } from './public-modules/components/header/header.component';
+import { CodeDialogueComponent } from './public-modules/components/code-dialogue/code-dialogue.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    HeaderComponent
+    HeaderComponent,
+    CodeDialogueComponent
   ],
   imports: [
     BrowserModule,
