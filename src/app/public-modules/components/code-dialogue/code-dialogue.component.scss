@@ -1,0 +1,48 @@
+@import "../../../../assets/scss/abstracts/abstracts";
+
+.dialogue {
+    padding: 2.4rem;
+
+    b {
+        color: $black-color;
+        font-family: $font-bebas;
+        font-size: 3.2rem;
+        font-weight: 400;
+        line-height: 3.8rem;
+    }
+
+    a {
+        img {
+            width: 2rem;
+        }
+    }
+
+    input {
+        color: $black-color;
+        border: 1px solid rgba($black-color, 0.1);
+        border-radius: 1.2rem;
+        padding: 2.4rem 1.6rem;
+        width: 100%;
+        font-size: 4.8rem;
+        font-weight: 400;
+        line-height: 5.7rem;
+        letter-spacing: 2rem !important;
+
+        &::placeholder {
+            font-family: $font-bebas;
+            color: rgba($black-color, 0.1);
+            font-size: 4.8rem;
+            font-weight: 400;
+            line-height: 5.7rem;
+            letter-spacing: 2rem !important;
+        }
+
+        &:focus-visible {
+            outline: none !important;
+        }
+
+        &:focus {
+            border: 1px solid $primary-color;
+        }
+    }
+}

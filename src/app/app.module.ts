@@ -11,13 +11,18 @@ import { CoreModule } from './core';
 import { API_ENDPOINTS } from './helpers/constants';
 import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
 import { HeaderComponent } from './public-modules/components/header/header.component';
+<<<<<<< HEAD
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+=======
+import { CodeDialogueComponent } from './public-modules/components/code-dialogue/code-dialogue.component';
+>>>>>>> c2ebd682499ebe207e32b8f86c04df5242f5819a
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    HeaderComponent
+    HeaderComponent,
+    CodeDialogueComponent
   ],
   imports: [
     BrowserModule,
