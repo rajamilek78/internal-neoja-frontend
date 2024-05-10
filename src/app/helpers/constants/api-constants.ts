@@ -1,18 +1,18 @@
-import { environment } from "../../../environments/environment";
+import { environment } from "@env/environment";
 
-const AUTH_BASE_URL = `${environment.eloBuildRoundURL}/auth`;
-const COMMON_URL = `${environment.eloBuildRoundURL}`;
-const COMPANY_URL = `${environment.eloDbOperationURL}`
+// const AUTH_BASE_URL = `${environment.eloBuildRoundURL}/auth`;
+const COMPANY_URL = `${environment.apiUrl}`;
+
+const API_URL = `${environment.apiUrl}`
 
 export class API_ENDPOINTS{
     public static LOGIN = `${COMPANY_URL}/login`
     public static CONTACT_US = `${COMPANY_URL}/contactus`
-    //upload player's data 
+    
+    // Taam add 
+    public static TEAM_ADD = `${API_URL}/team/add`;
 
-    public static UPLOAD_DATA = `${COMMON_URL}/upload-by-data`;
-    public static UPLOAD_DATA_Round2 = `${COMMON_URL}/upload-by-data-round2`;
-    public static UPLOAD_FILE = `${COMMON_URL}/upload-by-file`;
-    public static UPLOAD_CSV = `${COMMON_URL}/csv`;
+    
 
     //Companies
     public static GET_ALL_COMPANIES = `${COMPANY_URL}/get-companies/all`;
@@ -24,23 +24,4 @@ export class API_ENDPOINTS{
     public static GET_CLUBS = `${COMPANY_URL}/get-clubs/all`;
     public static GET_CLUB_BY_ID = `${COMPANY_URL}/get-club-by-id`;
 
-    //Leagues
-    public static GET_LEAGUES = `${COMPANY_URL}/get-leagues`;
-    public static GET_LEAGUE_BY_ID = `${COMPANY_URL}/get-league-by-id`;
-    public static CREATE_LEAGUE = `${COMPANY_URL}/create-league`;
-    public static UPDATE_LEAGUE = `${COMPANY_URL}/update-league-by-id`;
-    public static GET_LEAGUES_SUMMARY = `${COMPANY_URL}/get-league-summary`;
-
-
-    //Rounds
-    public static GET_ROUND_BY_ID = `${COMPANY_URL}/get-round-by-id`;
-    public static GET_ROUND = `${COMPANY_URL}/get-rounds`;
-    public static CREAT_ROUND = `${COMPANY_URL}/create-round`;
-    public static UPDATE_ROUND_BY_ID = `${COMPANY_URL}/update-round-by-id`;
-
-
-
-    //Scores
-    public static GET_SCORE = `${COMPANY_URL}/get-league-scores`;
-    public static LOCK_SCORE = `${COMPANY_URL}/lock-score`;
 }

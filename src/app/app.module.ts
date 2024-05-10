@@ -11,6 +11,7 @@ import { CoreModule } from './core';
 import { API_ENDPOINTS } from './helpers/constants';
 import { HomePageComponent } from './public-modules/components/home-page/home-page.component';
 import { HeaderComponent } from './public-modules/components/header/header.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { HeaderComponent } from './public-modules/components/header/header.compo
     BrowserAnimationsModule,
     MaterialModule,
     CoreModule,
-    UtilityModule
+    UtilityModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [API_ENDPOINTS,  LeaguemanageService,],
   bootstrap: [AppComponent],
