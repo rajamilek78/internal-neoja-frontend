@@ -1,37 +1,24 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-} from '@angular/router';
-import { SharedService } from '@app/core';
-import { publicRoutes, RouteConstant } from '@app/helpers/constants';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { SharedCommonService } from '@app/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class AppAuthGuard implements CanActivate {
-  constructor(private router: Router, private _sharedService: SharedService) {}
+  constructor(private router: Router, private SharedCommonService : SharedCommonService) {}
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    let activateRoute = true;
-    const readURL = state.url.split('?')[0];
-    const isPublicRoute = publicRoutes.includes(readURL);
-    // redirect to login or dashboard according to logged in status and current url
-    const user = this._sharedService.getUser();
-    if (this._sharedService.isLoggedIn()) {
-      if (isPublicRoute) {
-        activateRoute = false;
-        // this.router.navigate([`/${RouteConstant.UPLOAD_PLAYER_CONTAINER}`]);
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean {
+      const isAuthenticated = this.SharedCommonService.getIsAuthenticated(); // Check if the user is authenticated
+
+      if (isAuthenticated) {
+        return true; // Allow navigation
+      } else {
+        this.router.navigate(['']); // Redirect to home if not authenticated
+        return false; // Block navigation
       }
-    } else {
-      if (!isPublicRoute) {
-        activateRoute = false;
-        this.router.navigate([`/${RouteConstant.LOGIN}`]);
-      }
-    }
-    return activateRoute;
   }
 }

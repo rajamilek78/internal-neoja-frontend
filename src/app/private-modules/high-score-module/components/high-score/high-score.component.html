@@ -15,84 +15,84 @@
     </div>
     <div class="row flex justify-center align-end mt-1">
       <div class="col-lg-4 col-md-4 PLR-0">
-        <div class="flex justify-center align-center box gray-box mr-2">
+        <div class="flex justify-center align-center box gray-box mr-2" *ngIf="players.length > 0 && players[0]">
           <div class="chip__gray"><strong>#2</strong></div>
           <div class="chip__white flex justify-between align-center">
             <div>
-              <div><b>Marvin McKinney</b></div>
+              <div><b>{{players[1].player.name}}</b></div>
               <div class="flex justify-start align-center MT-1-half">
                 <img
                   src="../../../../../assets/images/team-icon.svg"
                   alt=""
-                /><small>Red United</small>
+                /><small>{{players[1].team_name}}</small>
               </div>
             </div>
-            <div><strong>155</strong></div>
+            <div><strong>{{players[1].player.score.total}}</strong></div>
           </div>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 PLR-0">
-        <div class="flex justify-center align-center box yellow-box mr-2">
+        <div class="flex justify-center align-center box yellow-box mr-2" *ngIf="players.length > 1 && players[0]">
           <div class="chip__yellow"><strong>#1</strong></div>
           <div class="chip__white flex justify-between align-center">
             <div>
-              <div><b>Marvin McKinney</b></div>
+              <div><b>{{players[0].player.name}}</b></div>
               <div class="flex justify-start align-center MT-1-half">
                 <img
                   src="../../../../../assets/images/team-icon.svg"
                   alt=""
-                /><small>Red United</small>
+                /><small>{{players[0].team_name}}</small>
               </div>
             </div>
-            <div><strong>155</strong></div>
+            <div><strong>{{players[0].player.score.total}}</strong></div>
           </div>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 PLR-0">
-        <div class="flex justify-center align-center box brown-box">
+        <div class="flex justify-center align-center box brown-box" *ngIf="players.length > 2 && players[2]">
           <div class="chip__brown"><strong>#3</strong></div>
           <div class="chip__white flex justify-between align-center">
             <div>
-              <div><b>Marvin McKinney</b></div>
+              <div><b>{{players[2].player.name}}</b></div>
               <div class="flex justify-start align-center MT-1-half">
                 <img
                   src="../../../../../assets/images/team-icon.svg"
                   alt=""
-                /><small>Red United</small>
+                /><small>{{players[2].team_name}}</small>
               </div>
             </div>
-            <div><strong>155</strong></div>
+            <div><strong>{{players[0].player.score.total}}</strong></div>
           </div>
         </div>
       </div>
     </div>
     <div class="m-auto">
       <div class="MT-2-half flex flex-column justify-center align-center">
-        <div class="flex justify-center align-center chip">
+        <div class="flex justify-center align-center chip" *ngIf="players.length > 3 && players[3]">
           <div class="chip__orange"><strong>#4</strong></div>
           <div class="chip__white flex justify-start align-center">
-            <div class="mr-2"><strong>155</strong></div>
-            <div class="mr-2 w-50"><b>Marvin McKinney</b></div>
+            <div class="mr-2"><strong>{{players[3].player.score.total}}</strong></div>
+            <div class="mr-2 w-50"><b>{{players[3].player.name}}</b></div>
             <div class="flex justify-start align-center w-50">
               <img
                 src="../../../../../assets/images/team-icon.svg"
                 alt=""
-              /><small>Red United</small>
+              /><small>{{players[3].team_name}}</small>
             </div>
           </div>
         </div>
       </div>
       <div class="MT-2-half flex flex-column justify-center align-center">
-        <div class="flex justify-center align-center chip">
+        <div class="flex justify-center align-center chip" *ngIf="players.length > 4 && players[4]">
           <div class="chip__orange"><strong>#5</strong></div>
           <div class="chip__white flex justify-start align-center">
-            <div class="mr-2"><strong>154</strong></div>
-            <div class="mr-2 w-50"><b>Albert Flores</b></div>
+            <div class="mr-2"><strong>{{players[4].player.score.total}}</strong></div>
+            <div class="mr-2 w-50"><b>{{players[4].player.name}}</b></div>
             <div class="flex justify-start align-center w-50">
               <img
                 src="../../../../../assets/images/team-icon.svg"
                 alt=""
-              /><small>Neoja Nests</small>
+              /><small>{{players[4].team_name}}</small>
             </div>
           </div>
         </div>

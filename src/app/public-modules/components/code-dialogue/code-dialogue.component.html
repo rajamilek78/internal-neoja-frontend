@@ -5,15 +5,14 @@
       ><img src="../../../../assets/images/close-icon.svg" alt=""
     /></a>
   </div>
-  <form>
+  <form (ngSubmit)="submitCode()">
     <div class="mt-1">
-      <input type="text" placeholder="0000" />
+      <input type="text" placeholder="0000" [(ngModel)]="enteredCode" name="enteredCode" />
     </div>
     <div class="mt-1">
       <button
         type="submit"
         class="btn primary-btn mr-1 width-100"
-        (click)="close()"
       >
         Take me in
       </button>

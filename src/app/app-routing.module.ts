@@ -15,6 +15,7 @@ const routes: Routes = [
       import('./private-modules/high-score-module/high-score.module').then(
         (m) => m.HighScoreModule
       ),
+      canActivate: [AppAuthGuard]
   },
 
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
       import('./private-modules/manager-module/manager.module').then(
         (m) => m.ManagerModule
       ),
+      canActivate: [AppAuthGuard]
   },
 
   {
@@ -31,6 +33,7 @@ const routes: Routes = [
       import('./private-modules/score-feed-module/score-feed.module').then(
         (m) => m.ScoreFeedModule
       ),
+      canActivate: [AppAuthGuard]
   },
 
   {

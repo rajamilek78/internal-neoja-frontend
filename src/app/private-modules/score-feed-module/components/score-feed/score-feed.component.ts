@@ -56,8 +56,46 @@ constructor(
     console.log(form.value)
     if (this.onSubmit(form)) {
       const params = {
-        ...form.value
-      }
+        team_name: form.value.teamName,
+        players: [
+          {
+            name: form.value.playername1,
+            score: {
+              game1: form.value.player1game1Score,
+              game2: form.value.player1game2Score,
+              game3: form.value.player1game3Score,
+              game4: form.value.player1game4Score,
+            }
+          },
+          {
+            name: form.value.playername2,
+            score: {
+              game1: form.value.player2game1Score,
+              game2: form.value.player2game2Score,
+              game3: form.value.player2game3Score,
+              game4: form.value.player2game4Score,
+            }
+          },
+          {
+            name: form.value.playername3,
+            score: {
+              game1: form.value.player3game1Score,
+              game2: form.value.player3game2Score,
+              game3: form.value.player3game3Score,
+              game4: form.value.player3game4Score,
+            }
+          },
+          {
+            name: form.value.playername4,
+            score: {
+              game1: form.value.player4game1Score,
+              game2: form.value.player4game2Score,
+              game3: form.value.player4game3Score,
+              game4: form.value.player4game4Score,
+            }
+          }
+        ]
+      };
       this.commonService.addTeam(params).subscribe({
         next: (res) => {
           console.log("add sucessfully")
