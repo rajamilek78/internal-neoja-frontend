@@ -59,3 +59,20 @@ h1 {
 .arrow-icon {
   width: 5.5rem;
 }
+
+@include respond ("phone") {
+  .players-img {
+    img {
+      display: none;
+    }
+  }
+
+  .mr-2 {
+    margin-right: 0rem !important;
+    margin-bottom: 2.4rem !important;
+  }
+
+  .MT-2-half {
+    margin-top: 4rem !important;
+  }
+}

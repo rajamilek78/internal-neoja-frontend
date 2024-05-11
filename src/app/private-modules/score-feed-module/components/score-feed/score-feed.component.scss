@@ -13,6 +13,7 @@ form {
 
     input {
         color: $black-color;
+        font-family: $font-bebas;
         background-color: rgba($black-color, 0.01);
         border: 1px solid rgba($black-color, 0.1);
         border-radius: 1.2rem;
@@ -58,6 +59,11 @@ form {
             font-size: 2.6rem;
             font-weight: 400;
             line-height: 3.12rem;
+
+            &::placeholder {
+                font-size: 2.6rem;
+                line-height: 3.12rem;
+            }
         }
 
         img {
@@ -66,5 +72,37 @@ form {
             right: 4rem;
             bottom: 0rem;
         }
+    }
+}
+
+@include respond ("phone") {
+    .col-md-8 {
+        margin-bottom: 2.4rem;
+        width: 100%;
+    }
+
+    .col-md-1 {
+        width: 25%;
+
+        .row-title {
+            display: none;
+
+            small {
+                display: none;
+            }
+        }
+    }
+
+    .pr-1 {
+        padding-right: 0rem !important;
+    }
+
+    .pl-1 {
+        padding-left: 0rem !important;
+    }
+
+    .PLR-0 {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
     }
 }
