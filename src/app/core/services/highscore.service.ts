@@ -22,6 +22,10 @@ export class HighscoreService {
     return this.apiManager.getApis(API_ENDPOINTS.HIGHSCORE, {}, true)
   }
 
+  getAllTeamData(): Observable<any[]> {
+    return this.apiManager.getApis(API_ENDPOINTS.ALLTEAMDATA, {}, true)
+  }
+
   getSocket(): any {
     return this.socket;
   }

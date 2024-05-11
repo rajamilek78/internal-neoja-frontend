@@ -13,8 +13,11 @@ export class API_ENDPOINTS{
     public static TEAM_ADD = `${API_URL}/team/add`;
 
     // highscore 
-
     public static HIGHSCORE = `${API_URL}/highscore/top-10`;
+
+    //All team
+    public static ALLTEAMDATA = `${API_URL}/team/get-all-teams`;
+
 
     //Companies
     public static GET_ALL_COMPANIES = `${COMPANY_URL}/get-companies/all`;

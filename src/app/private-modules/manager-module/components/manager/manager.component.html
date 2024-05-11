@@ -22,17 +22,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="odd-row">
-            <td class="black-font pl-1">Courtney Henry</td>
-            <td>NEOJA NINJAS</td>
-            <td class="text-center">52</td>
-            <td class="text-center">84</td>
+          <ng-container *ngFor="let team of teams"> 
+          <tr  *ngFor="let player of team.players">
+            <td class="black-font pl-1">{{player.name}}</td>
+            <td>{{team.team_name}}</td>
+            <td class="text-center">{{player.score.game1}}</td>
+            <td class="text-center">{{player.score.game2}}</td>
+            <td class="text-center">{{player.score.game3}}</td>
+            <td class="text-center">{{player.score.game4}}</td>
             <td class="text-center">125</td>
-            <td class="text-center">79</td>
-            <td class="text-center">125</td>
-            <td class="text-center black-font pr-1">351</td>
+            <td class="text-center black-font pr-1">{{player.score.total}}</td>
           </tr>
-          <tr>
+        </ng-container>
+          <!-- <tr>
             <td class="black-font pl-1">Ralph Edwards</td>
             <td>RED UNITED</td>
             <td class="text-center">36</td>
@@ -61,7 +63,7 @@
             <td class="text-center">79</td>
             <td class="text-center">125</td>
             <td class="text-center black-font pr-1">332</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
