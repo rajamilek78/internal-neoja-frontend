@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HighscoreService } from '@app/core/services/highscore.service';
 
 
@@ -9,7 +10,7 @@ import { HighscoreService } from '@app/core/services/highscore.service';
 })
 export class HighScoreComponent implements OnInit {
   players: any[] = [];
-  constructor(private highscoreService: HighscoreService) { }
+  constructor(private highscoreService: HighscoreService,private router: Router,) { }
 
   ngOnInit(): void {
     this.initialize();
@@ -39,5 +40,8 @@ export class HighScoreComponent implements OnInit {
     });
   }
   
+  onBackToMenu = () => {
+    this.router.navigate(['']);
+  };
 
 }

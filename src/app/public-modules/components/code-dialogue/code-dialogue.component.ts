@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { SharedCommonService } from '@app/core';
+import { SharedCommonService, SnackBarService } from '@app/core';
 
 @Component({
   selector: 'app-code-dialogue',
@@ -14,7 +14,8 @@ export class CodeDialogueComponent {
   constructor(private dialogue: MatDialogRef<CodeDialogueComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router,
-    private SharedCommonService : SharedCommonService
+    private SharedCommonService : SharedCommonService,
+    private snackBarService: SnackBarService,
   ) {}
 
   close() {
@@ -26,6 +27,8 @@ export class CodeDialogueComponent {
       this.SharedCommonService.setIsAuthenticated(true);
       this.dialogue.close(this.data.card);
       this.router.navigate([this.data.card]);
+    }else{
+      this.snackBarService.openSnackBar('Please Enter valid code ')
     }
   }
 }
