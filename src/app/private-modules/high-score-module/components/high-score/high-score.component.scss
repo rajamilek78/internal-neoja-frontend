@@ -1,0 +1,190 @@
+@import "../../../../../assets/scss/abstracts/abstracts";
+
+.page-panel {
+    position: relative;
+
+    .basketball {
+        img {
+            width: 36rem;
+            position: absolute;
+            top: -4rem;
+            right: 6rem;
+        }
+    }
+}
+
+.chip {
+    border-radius: 1.2rem;
+    box-shadow: 1px 1px 10px 0px rgba($black-color, 0.08);
+    width: 100%;
+
+    &__orange {
+        background-color: $primary-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top-left-radius: 1.2rem;
+        border-bottom-left-radius: 1.2rem;
+        width: 10%;
+        padding: 1.77rem;
+
+        strong {
+            color: $white-color;
+            font-family: $font-bebas;
+            font-size: 2.6rem;
+            font-weight: 400;
+            line-height: 3.12rem;
+        }
+    }
+
+    &__white {
+        background-color: $white-color;
+        border-top-right-radius: 1.2rem;
+        border-bottom-right-radius: 1.2rem;
+        width: 90%;
+        padding: 1rem;
+
+        strong {
+            color: $primary-color;
+            font-family: $font-bebas;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 4.8rem;
+            padding-left: 1.4rem;
+        }
+
+        b {
+            color: $black-color;
+            font-family: $font-bebas;
+            font-size: 2.6rem;
+            font-weight: 400;
+            line-height: 3.12rem;
+        }
+
+        small {
+            color: rgba($black-color, 0.5);
+            font-family: $font-montreal;
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: 1.9rem;
+        }
+
+        img {
+            width: 1.9rem;
+            margin-right: 0.8rem;
+        }
+    }
+}
+
+.box {
+    border-radius: 1.2rem;
+    box-shadow: 1px 1px 10px 0px rgba($black-color, 0.08);
+}
+
+.gray-box {
+    .chip__gray {
+        background-color: $gray-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top-left-radius: 1.2rem;
+        border-bottom-left-radius: 1.2rem;
+        height: 14rem;
+        padding: 0rem 1.6rem;
+
+        strong {
+            color: $white-color;
+            font-family: $font-bebas;
+            font-size: 2.6rem;
+            font-weight: 400;
+            line-height: 3.12rem;
+        }
+    }
+
+    .chip__white {
+        background-color: $white-color;
+        border-top-right-radius: 1.2rem;
+        border-bottom-right-radius: 1.2rem;
+        padding: 0rem 2.4rem;
+        height: 14rem;
+        width: 100% !important;
+
+        strong {
+            font-size: 8rem;
+            line-height: 9.6rem;
+            padding-left: 0rem !important;
+        }
+    }
+}
+
+.yellow-box {
+    .chip__yellow {
+        background-color: $dark-yellow-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top-left-radius: 1.2rem;
+        border-bottom-left-radius: 1.2rem;
+        height: 18rem;
+        padding: 0rem 1.6rem;
+
+        strong {
+            color: $white-color;
+            font-family: $font-bebas;
+            font-size: 2.6rem;
+            font-weight: 400;
+            line-height: 3.12rem;
+        }
+    }
+
+    .chip__white {
+        background-color: $white-color;
+        border-top-right-radius: 1.2rem;
+        border-bottom-right-radius: 1.2rem;
+        padding: 0rem 2.4rem;
+        height: 18rem;
+        width: 100% !important;
+
+        strong {
+            font-size: 8rem;
+            line-height: 9.6rem;
+            padding-left: 0rem !important;
+        }
+    }
+}
+
+.brown-box {
+    .chip__brown {
+        background-color: $brown-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top-left-radius: 1.2rem;
+        border-bottom-left-radius: 1.2rem;
+        height: 10.4rem;
+        padding: 0rem 1.6rem;
+
+        strong {
+            color: $white-color;
+            font-family: $font-bebas;
+            font-size: 2.6rem;
+            font-weight: 400;
+            line-height: 3.12rem;
+        }
+    }
+
+    .chip__white {
+        background-color: $white-color;
+        border-top-right-radius: 1.2rem;
+        border-bottom-right-radius: 1.2rem;
+        padding: 0rem 2.4rem;
+        height: 10.4rem;
+        width: 100% !important;
+
+        strong {
+            font-size: 8rem;
+            line-height: 9.6rem;
+            padding-left: 0rem !important;
+        }
+    }
+}

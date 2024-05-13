@@ -1,0 +1,23 @@
+@font-face {
+    font-family: NeueMontreal;
+    src: url(../../fonts/NeueMontreal-Regular.otf);
+}
+
+// font family
+$font-bebas:'Bebas Neue',
+sans-serif;
+$font-montreal:'NeueMontreal';
+// colors
+$body-color: linear-gradient(60.64deg, rgba(255, 255, 255, 0) 0%, rgba(245, 131, 53, 0.25) 100%);
+$primary-color:#F58335;
+$black-color: #373535;
+$white-color: #ffffff;
+$green-color:#25B800;
+$blue-color :#1F1BD1;
+$orange-color :#FF473C;
+$yellow-color:#BBB409;
+$hover-color:#DA691B;
+$orange-hover-color: #D12B21;
+$gray-color: #B0B0B0;
+$dark-yellow-color:#E4BD31;
+$brown-color:#AC5D31;

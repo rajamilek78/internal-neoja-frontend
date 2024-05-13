@@ -1,0 +1,61 @@
+@import "../../../../assets/scss/abstracts/abstracts";
+
+
+.home-panel {
+  position: relative;
+  width: 100%;
+  padding: 2.4rem 0rem;
+}
+
+h1 {
+  font-family: $font-montreal;
+  color: $black-color;
+  font-size: 4.8rem;
+  font-weight: 500;
+  line-height: 5.76rem;
+}
+
+.card-1 {
+  display: block;
+  height: 54.4rem;
+  position: relative;
+
+  .score-feed {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: -1.3rem;
+
+    h2 {
+      font-family: $font-bebas;
+      font-weight: 400;
+      font-size: 8rem;
+      line-height: 9.6rem;
+      color: $white-color;
+    }
+  }
+}
+
+.bg-img-1,
+.bg-img-2,
+.bg-img-3 {
+  background-size: cover;
+  height: 100%;
+  border-radius: 2.4rem;
+}
+
+.bg-img-1 {
+  background-image: url('../../../../assets/images/scorefeed-image.png');
+}
+
+.bg-img-2 {
+  background-image: url('../../../../assets/images/highscore-image.png');
+}
+
+.bg-img-3 {
+  background-image: url('../../../../assets/images/manager-image.png');
+}
+
+.arrow-icon {
+  width: 5.5rem;
+}

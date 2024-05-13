@@ -1,0 +1,108 @@
+@mixin clearfix {
+
+  &::after,
+  &::before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin square($size) {
+  height: $size;
+  width: $size;
+}
+
+@mixin squareImportant($size) {
+  height: $size !important;
+  width: $size !important;
+}
+
+@mixin respond($breakPoint) {
+  @if $breakPoint==phone {
+    @media (max-width:767px) {
+      @content;
+    }
+  }
+
+  @if $breakPoint==tab-port {
+    @media (min-width: 768px) and (max-width: 1179px) {
+      @content;
+    }
+  }
+
+  @if $breakPoint==small-desktop {
+    @media (min-width: 1025px) and (max-width: 1439px) {
+      @content;
+    }
+  }
+
+  @if $breakPoint==regular-desktop {
+    @media (min-width: 1180px) and (max-width: 1679px) {
+      @content;
+    }
+  }
+
+  @if $breakPoint==large-desktop {
+    @media (min-width: 1680px) {
+      @content;
+    }
+  }
+}
+
+@mixin flex($alignItem, $justifyContent, $direction) {
+  align-items: $alignItem;
+  justify-content: $justifyContent;
+  flex-direction: $direction;
+  display: flex;
+}
+
+@mixin pos($pos, $top, $right, $bottom, $left) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  position: $pos;
+}
+
+@mixin placeholderWithFontSize($color, $fontSize, $fontWeight) {
+  ::placeholder {
+    color: $color;
+    opacity: 1;
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+  }
+
+  :-ms-input-placeholder {
+    color: $color;
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+  }
+
+  ::-ms-input-placeholder {
+    color: $color;
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+  }
+}
+
+// text-selection
+@mixin textSelectionNone {
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+/*transition*/
+@mixin transition {
+  -webkit-transition: 0.3s all ease-in;
+  -moz-transition: 0.3s all ease-in;
+  -o-transition: 0.3s all ease-in;
+  transition: 0.3s all ease-in;
+}

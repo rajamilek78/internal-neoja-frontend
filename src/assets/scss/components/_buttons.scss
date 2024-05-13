@@ -1,0 +1,42 @@
+@import "../../scss/abstracts/abstracts";
+
+.btn {
+    font-family: $font-bebas;
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 3.12rem;
+    padding: 2rem 3.2rem;
+    border-radius: 1rem;
+}
+
+.primary-btn {
+    background-color: $primary-color;
+    color: $white-color;
+    border: 1px solid transparent;
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}
+
+.secondary-btn {
+    background-color: $white-color;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+
+    &:hover {
+        background-color: $primary-color;
+        color: $white-color;
+    }
+}
+
+.orange-btn {
+    background-color: $orange-color;
+    color: $white-color;
+    border: 1px solid transparent;
+
+    &:hover {
+        background-color: $orange-hover-color;
+        color: $white-color;
+    }
+}

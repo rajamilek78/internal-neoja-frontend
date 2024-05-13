@@ -1,0 +1,21 @@
+<div class="dialogue">
+  <div class="flex justify-between align-center">
+    <div><b>Enter the code</b></div>
+    <a (click)="close()"
+      ><img src="../../../../assets/images/close-icon.svg" alt=""
+    /></a>
+  </div>
+  <form (ngSubmit)="submitCode()">
+    <div class="mt-1">
+      <input type="text" placeholder="0000" [(ngModel)]="enteredCode" name="enteredCode" />
+    </div>
+    <div class="mt-1">
+      <button
+        type="submit"
+        class="btn primary-btn mr-1 width-100"
+      >
+        Take me in
+      </button>
+    </div>
+  </form>
+</div>

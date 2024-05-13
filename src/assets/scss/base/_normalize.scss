@@ -1,0 +1,272 @@
+@import "../abstracts/abstracts";
+
+* {
+  // font-family: $font-family;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  letter-spacing: unset !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-size: 10px;
+
+  // @include respond("small-desktop") {
+  //   font-size: 7px;
+  // }
+
+  // @include respond("regular-desktop") {
+  //   font-size: 8px;
+  // }
+
+  @include respond("tab-port") {
+    font-size: 8.5px;
+  }
+
+  @include respond("phone") {
+    font-size: 8px;
+  }
+}
+
+body {
+  background: $body-color;
+  overflow-y: auto;
+  overflow-x: hidden !important;
+  margin: 0;
+  height: 100%;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.align-top {
+  vertical-align: top !important;
+}
+
+.align-middle {
+  vertical-align: middle !important;
+}
+
+.display-inline {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.display-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.pl-1 {
+  padding-left: 2.4rem !important;
+}
+
+.pr-1 {
+  padding-right: 2.4rem !important;
+}
+
+.mr-1 {
+  margin-right: 1.6rem !important;
+}
+
+.mr-2 {
+  margin-right: 2.4rem !important;
+}
+
+.mt-1 {
+  margin-top: 3rem !important;
+}
+
+.m-auto {
+  margin: 0 auto;
+  width: 50%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+
+.container {
+  margin: 0 auto;
+  width: 95.5% !important;
+
+  @include respond("tab-port") {
+    width: 95% !important;
+  }
+}
+
+.search {
+  .container {
+    min-height: 600px;
+
+    position: relative;
+  }
+}
+
+.material-icons {
+  font-family: "Material Icons" !important;
+}
+
+.material-icons-outline {
+  font-family: "Material Icons Outlined" !important;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center !important;
+}
+
+.justify-between {
+  justify-content: space-between !important;
+}
+
+.justify-space-even {
+  justify-content: space-evenly !important;
+}
+
+.justify-space-around {
+  justify-content: space-around !important;
+}
+
+.justify-start {
+  justify-content: flex-start !important;
+}
+
+.justify-end {
+  justify-content: flex-end !important;
+}
+
+.align-start {
+  align-items: flex-start !important;
+}
+
+.align-end {
+  align-items: flex-end !important;
+}
+
+.align-center {
+  align-items: center !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.odd-row {
+  background-color: rgba($black-color, 0.03) !important;
+}
+
+.black-font {
+  color: rgba($black-color, 0.8) !important;
+}
+
+
+img {
+  width: 100%;
+}
+
+
+.logo {
+  img {
+    width: 10.4rem;
+    margin-right: 1.6rem;
+  }
+}
+
+.neoja-title {
+  padding-left: 1.6rem;
+  border-left: 1px solid rgba($black-color, 0.2);
+
+  h4 {
+    font-family: $font-montreal;
+    color: $black-color;
+    font-size: 2.8rem;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 3.36rem;
+  }
+}
+
+.page-panel {
+  width: 100%;
+  height: calc(100% - 10.4rem);
+}
+
+.title {
+  font-family: $font-montreal;
+  color: $primary-color;
+  font-size: 4.8rem;
+  font-weight: 500;
+  line-height: 5.76rem;
+  margin: 4rem 0rem 3.2rem 0rem;
+}
+
+.green-input {
+  background-color: rgba($green-color, 0.1) !important;
+  border: 1px solid rgba($green-color, 0.25) !important;
+
+  &:focus {
+    border: 1px solid $green-color !important;
+  }
+}
+
+.blue-input {
+  background-color: rgba($blue-color, 0.1) !important;
+  border: 1px solid rgba($blue-color, 0.25) !important;
+
+  &:focus {
+    border: 1px solid $blue-color !important;
+  }
+}
+
+.orange-input {
+  background-color: rgba($orange-color, 0.1) !important;
+  border: 1px solid rgba($orange-color, 0.25) !important;
+
+  &:focus {
+    border: 1px solid $orange-color !important;
+  }
+}
+
+.yellow-input {
+  background-color: rgba($yellow-color, 0.1) !important;
+  border: 1px solid rgba($yellow-color, 0.25) !important;
+
+  &:focus {
+    border: 1px solid $yellow-color !important;
+  }
+}

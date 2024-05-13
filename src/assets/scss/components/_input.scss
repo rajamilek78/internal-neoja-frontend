@@ -1,0 +1,124 @@
+@import "../abstracts/abstracts";
+
+
+.form-control .mobile-field-inner__country-code .mat-focused .mdc-notched-outline__leading,
+.form-control .mobile-field-inner__country-code .mat-focused .mdc-notched-outline__notch,
+.form-control .mobile-field-inner__country-code .mat-focused .mdc-notched-outline__trailing {
+  color: transparent !important;
+}
+
+.mobile-field-inner {
+  position: relative !important;
+  height: auto !important;
+
+  &__country-code {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    width: 10rem;
+    display: flex;
+    align-items: center;
+
+    +mat-form-field {
+      input {
+        padding-left: 12rem;
+        width: calc(100% - 12rem);
+
+        @media(max-width:767px) {
+          width: 100%;
+        }
+      }
+    }
+
+    mat-form-field {
+      position: absolute;
+      height: 3.5em;
+      bottom: 0;
+
+      .mat-mdc-text-field-wrapper {
+        display: flex;
+        align-items: center;
+      }
+
+      input {
+        height: 3.5rem;
+        font-size: 1.4rem;
+      }
+    }
+
+    &:after {
+      background-color: rgba($black-color, 0.1);
+      position: absolute;
+      left: 10rem;
+      width: 1px;
+      height: 3.3em;
+      bottom: 0;
+      content: "";
+    }
+  }
+}
+
+.mobile-field-inner {
+  &__country-code {
+    input {
+      padding-left: 0;
+      width: calc(100% - 0rem);
+    }
+  }
+}
+
+.mobile-field-inner__country-code {
+
+  .mdc-text-field--outlined .mdc-notched-outline,
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    color: transparent !important;
+  }
+
+  .mat-form-field-flex {
+    margin-top: 0;
+  }
+
+  .mat-mdc-form-field-infix {
+    padding: 0 !important;
+  }
+}
+
+.mdc-text-field--outlined {
+  padding-left: 0.75em !important;
+
+  .mdc-notched-outline {
+    z-index: 0 !important;
+  }
+}
+
+.mat-mdc-form-field-icon-suffix {
+  mat-datepicker-toggle {
+    button {
+      padding: 0 !important;
+      height: 2.5rem;
+      width: 4.5rem;
+      line-height: 3.5rem;
+
+      svg {
+        @include square(2rem);
+        position: relative;
+        top: 0.3em;
+
+        path {
+          fill: rgba(#6f6f6f, 0.5) !important;
+        }
+      }
+    }
+  }
+}
+
+.mat-mdc-select-panel,
+.mat-mdc-autocomplete-panel {
+  box-shadow: 0 2px 4px -1px #0003, 0 4px 5px #00000024, 0 1px 10px #0000001f;
+}
+
+.mdc-text-field--filled.mdc-text-field--disabled .mdc-text-field__input{
+  color: rgba($black-color, 0.6) !important;
+}
