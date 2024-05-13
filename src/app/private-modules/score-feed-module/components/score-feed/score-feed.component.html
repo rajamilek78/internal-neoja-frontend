@@ -7,14 +7,20 @@
         </div>
       </div>
     </div>
-    <form [formGroup]="scoreFeedForm" (submit)="onScoreFeedFormSubmit(scoreFeedForm)">
+    <form
+      [formGroup]="scoreFeedForm"
+      (submit)="onScoreFeedFormSubmit(scoreFeedForm)"
+    >
       <div class="white-box">
         <div class="row">
           <div class="col-lg-12 col-md-12 PLR-0">
             <div class="pl-1 pr-1">
-              <input type="text" formControlName="teamName" placeholder="Enter your team name" />
+              <input
+                type="text"
+                formControlName="teamName"
+                placeholder="Enter your team name"
+              />
             </div>
-           
           </div>
         </div>
         <div class="row mt-1">
@@ -47,7 +53,12 @@
         <div class="row MT-2-half">
           <div class="col-lg-8 col-md-8 PLR-0">
             <div class="pl-1 pr-1 form-field">
-              <input type="text" formControlName="playername1" class="green-input" />
+              <input
+                type="text"
+                formControlName="playername1"
+                class="green-input"
+                placeholder="Enter PLAYER 1 NAME"
+              />
               <img
                 src="../../../../../assets/images/player1-text-image.png"
                 alt=""
@@ -56,29 +67,54 @@
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player1game1Score" class="text-center green-input" />
+              <input
+                type="text"
+                formControlName="player1game1Score"
+                class="text-center green-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player1game2Score" class="text-center green-input" />
+              <input
+                type="text"
+                formControlName="player1game2Score"
+                class="text-center green-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player1game3Score" class="text-center green-input" />
+              <input
+                type="text"
+                formControlName="player1game3Score"
+                class="text-center green-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player1game4Score" class="text-center green-input" />
+              <input
+                type="text"
+                formControlName="player1game4Score"
+                class="text-center green-input"
+                placeholder="00"
+              />
             </div>
           </div>
         </div>
         <div class="row MT-2-half">
           <div class="col-lg-8 col-md-8 PLR-0">
             <div class="pl-1 pr-1 form-field">
-              <input type="text" formControlName="playername2" class="blue-input" />
+              <input
+                type="text"
+                formControlName="playername2"
+                class="blue-input"
+                placeholder="Enter PLAYER 2 NAME"
+              />
               <img
                 src="../../../../../assets/images/player2-text-image.png"
                 alt=""
@@ -87,29 +123,54 @@
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player2game1Score" class="text-center blue-input" />
+              <input
+                type="text"
+                formControlName="player2game1Score"
+                class="text-center blue-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text"  formControlName="player2game2Score" class="text-center blue-input" />
+              <input
+                type="text"
+                formControlName="player2game2Score"
+                class="text-center blue-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text"  formControlName="player2game3Score" class="text-center blue-input" />
+              <input
+                type="text"
+                formControlName="player2game3Score"
+                class="text-center blue-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text"  formControlName="player2game4Score" class="text-center blue-input" />
+              <input
+                type="text"
+                formControlName="player2game4Score"
+                class="text-center blue-input"
+                placeholder="00"
+              />
             </div>
           </div>
         </div>
         <div class="row MT-2-half">
           <div class="col-lg-8 col-md-8 PLR-0">
             <div class="pl-1 pr-1 form-field">
-              <input type="text" formControlName="playername3" class="orange-input" />
+              <input
+                type="text"
+                formControlName="playername3"
+                class="orange-input"
+                placeholder="Enter PLAYER 3 NAME"
+              />
               <img
                 src="../../../../../assets/images/player3-text-image.png"
                 alt=""
@@ -118,29 +179,54 @@
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player3game1Score" class="text-center orange-input" />
+              <input
+                type="text"
+                formControlName="player3game1Score"
+                class="text-center orange-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player3game2Score" class="text-center orange-input" />
+              <input
+                type="text"
+                formControlName="player3game2Score"
+                class="text-center orange-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player3game3Score" class="text-center orange-input" />
+              <input
+                type="text"
+                formControlName="player3game3Score"
+                class="text-center orange-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player3game4Score" class="text-center orange-input" />
+              <input
+                type="text"
+                formControlName="player3game4Score"
+                class="text-center orange-input"
+                placeholder="00"
+              />
             </div>
           </div>
         </div>
         <div class="row MT-2-half">
           <div class="col-lg-8 col-md-8 PLR-0">
             <div class="pl-1 pr-1 form-field">
-              <input type="text" formControlName="playername4" class="yellow-input" />
+              <input
+                type="text"
+                formControlName="playername4"
+                class="yellow-input"
+                placeholder="Enter PLAYER 4 NAME"
+              />
               <img
                 src="../../../../../assets/images/player4-text-image.png"
                 alt=""
@@ -149,22 +235,42 @@
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player4game1Score" class="text-center yellow-input" />
+              <input
+                type="text"
+                formControlName="player4game1Score"
+                class="text-center yellow-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player4game2Score" class="text-center yellow-input" />
+              <input
+                type="text"
+                formControlName="player4game2Score"
+                class="text-center yellow-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player4game3Score" class="text-center yellow-input" />
+              <input
+                type="text"
+                formControlName="player4game3Score"
+                class="text-center yellow-input"
+                placeholder="00"
+              />
             </div>
           </div>
           <div class="col-lg-1 col-md-1 PLR-0">
             <div class="pr-1 form-field">
-              <input type="text" formControlName="player4game4Score" class="text-center yellow-input" />
+              <input
+                type="text"
+                formControlName="player4game4Score"
+                class="text-center yellow-input"
+                placeholder="00"
+              />
             </div>
           </div>
         </div>
@@ -173,7 +279,11 @@
         <div class="col-lg-12 col-md-12 PLR-0">
           <div class="flex justify-start align-start">
             <button type="submit" class="btn primary-btn mr-1">SUBMIT</button>
-            <button type="button" (click)="onBackToMenu()" class="btn secondary-btn">
+            <button
+              type="button"
+              (click)="onBackToMenu()"
+              class="btn secondary-btn"
+            >
               BACK TO MAIN MENU
             </button>
           </div>
