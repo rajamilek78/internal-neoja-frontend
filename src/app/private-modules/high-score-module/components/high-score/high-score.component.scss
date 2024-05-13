@@ -188,3 +188,63 @@
         }
     }
 }
+
+@include respond ("phone") {
+    .m-auto {
+        margin: 0rem !important;
+        width: 100%;
+    }
+
+    .box-1 {
+        order: 1;
+    }
+
+    .box-2 {
+        order: 2;
+    }
+
+    .box-3 {
+        order: 3;
+    }
+
+    .basketball {
+        img {
+            display: none !important;
+        }
+    }
+
+    .mb {
+        margin-bottom: 2.4rem !important;
+        margin-right: 0rem !important;
+    }
+}
+
+@include respond ("tab-port") {
+    .m-auto {
+        margin: 0rem !important;
+        width: 100%;
+    }
+
+    .box-1 {
+        order: 1;
+    }
+
+    .box-2 {
+        order: 2;
+    }
+
+    .box-3 {
+        order: 3;
+    }
+
+    .basketball {
+        img {
+            display: none !important;
+        }
+    }
+
+    .mb {
+        margin-bottom: 2.4rem !important;
+        margin-right: 0rem !important;
+    }
+}

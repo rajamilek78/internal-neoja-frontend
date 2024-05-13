@@ -27,7 +27,7 @@ html {
   // }
 
   @include respond("tab-port") {
-    font-size: 8.5px;
+    font-size: 9px;
   }
 
   @include respond("phone") {
@@ -121,7 +121,11 @@ a {
   width: 95.5% !important;
 
   @include respond("tab-port") {
-    width: 95% !important;
+    width: 90% !important;
+  }
+
+  @include respond("phone") {
+    width: 90% !important;
   }
 }
 
@@ -227,12 +231,23 @@ img {
 }
 
 .title {
-  font-family: $font-montreal;
-  color: $primary-color;
-  font-size: 4.8rem;
-  font-weight: 500;
-  line-height: 5.76rem;
   margin: 4rem 0rem 3.2rem 0rem;
+
+  h2 {
+    font-family: $font-montreal;
+    color: $primary-color;
+    font-size: 4.8rem;
+    font-weight: 600;
+    line-height: 5.76rem;
+  }
+
+  @include respond ('phone') {
+    margin: 2.4rem 0rem 3.2rem 0rem;
+  }
+
+  @include respond ('tab-port') {
+    margin: 2.4rem 0rem 3.2rem 0rem;
+  }
 }
 
 .green-input {

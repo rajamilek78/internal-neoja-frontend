@@ -13,9 +13,9 @@
         </div>
       </div>
     </div>
-    <div class="row flex justify-center align-end mt-1">
-      <div class="col-lg-4 col-md-4 PLR-0">
-        <div class="flex justify-center align-center box gray-box mr-2" *ngIf="players.length > 0 && players[0]">
+    <div class="row flex justify-center align-end">
+      <div class="col-lg-4 col-md-4 PLR-0 box-2">
+        <div class="flex justify-center align-center box gray-box mr-2 mb" *ngIf="players.length > 0 && players[0]">
           <div class="chip__gray"><strong>#2</strong></div>
           <div class="chip__white flex justify-between align-center">
             <div>
@@ -31,8 +31,8 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4 PLR-0">
-        <div class="flex justify-center align-center box yellow-box mr-2" *ngIf="players.length > 1 && players[0]">
+      <div class="col-lg-4 col-md-4 PLR-0 box-1">
+        <div class="flex justify-center align-center box yellow-box mr-2 mb" *ngIf="players.length > 1 && players[0]">
           <div class="chip__yellow"><strong>#1</strong></div>
           <div class="chip__white flex justify-between align-center">
             <div>
@@ -48,7 +48,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4 PLR-0">
+      <div class="col-lg-4 col-md-4 PLR-0 box-3">
         <div class="flex justify-center align-center box brown-box" *ngIf="players.length > 2 && players[2]">
           <div class="chip__brown"><strong>#3</strong></div>
           <div class="chip__white flex justify-between align-center">
