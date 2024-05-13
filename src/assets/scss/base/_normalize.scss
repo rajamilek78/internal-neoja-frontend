@@ -240,6 +240,14 @@ img {
     font-weight: 600;
     line-height: 5.76rem;
   }
+
+  @include respond ('phone') {
+    margin: 2.4rem 0rem 3.2rem 0rem;
+  }
+
+  @include respond ('tab-port') {
+    margin: 2.4rem 0rem 3.2rem 0rem;
+  }
 }
 
 .green-input {
