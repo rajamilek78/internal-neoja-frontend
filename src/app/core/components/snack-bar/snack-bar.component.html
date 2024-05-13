@@ -1,7 +1,4 @@
 <span class="tooltip-message-box">
   {{ body || body.message }}
-  <span class="close-snackbar"
-  (click)="onCloseClick()" class="material-symbols-outlined">
-    close
-    </span>
+  <mat-icon (click)="onCloseClick()">close</mat-icon>
 </span>
