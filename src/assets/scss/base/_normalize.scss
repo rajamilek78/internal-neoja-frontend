@@ -27,7 +27,7 @@ html {
   // }
 
   @include respond("tab-port") {
-    font-size: 8.5px;
+    font-size: 9px;
   }
 
   @include respond("phone") {
@@ -121,7 +121,7 @@ a {
   width: 95.5% !important;
 
   @include respond("tab-port") {
-    width: 95% !important;
+    width: 90% !important;
   }
 
   @include respond("phone") {

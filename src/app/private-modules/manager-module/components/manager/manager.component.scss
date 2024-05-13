@@ -40,3 +40,13 @@ table {
         width: 215%;
     }
 }
+
+@include respond ("tab-port") {
+    .overflow {
+        overflow-x: auto !important;
+    }
+
+    table {
+        width: 150%;
+    }
+}
