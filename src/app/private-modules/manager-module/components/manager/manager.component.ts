@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { HighscoreService } from '@app/core/services/highscore.service';
 
 @Component({
@@ -15,7 +15,12 @@ export class ManagerComponent {
   ) {}
 
   ngOnInit(): void {
-    window.scrollTo(0, 0);
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
     this.initialize();
   }
 

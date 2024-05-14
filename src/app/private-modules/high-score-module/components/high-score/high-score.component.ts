@@ -1,5 +1,6 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { HighscoreService } from '@app/core/services/highscore.service';
 
 @Component({
@@ -11,11 +12,17 @@ export class HighScoreComponent implements OnInit {
   players: any[] = [];
   constructor(
     private highscoreService: HighscoreService,
-    private router: Router
+    private router: Router,
+    private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
-    window.scrollTo(0, 0);
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
     this.initialize();
   }
 

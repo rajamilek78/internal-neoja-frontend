@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CommonService, SnackBarService } from '@app/core';
 import { FormBaseComponent } from '@app/utility/components';
 
@@ -22,7 +22,12 @@ export class ScoreFeedComponent extends FormBaseComponent {
   }
 
   ngOnInit(): void {
-    window.scrollTo(0, 0);
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
     this.initialize();
   }
 
