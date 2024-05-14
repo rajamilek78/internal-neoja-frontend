@@ -11,11 +11,12 @@ import { SharedCommonService, SnackBarService } from '@app/core';
 export class CodeDialogueComponent {
   enteredCode: string = '';
 
-  constructor(private dialogue: MatDialogRef<CodeDialogueComponent>,
+  constructor(
+    private dialogue: MatDialogRef<CodeDialogueComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router,
-    private SharedCommonService : SharedCommonService,
-    private snackBarService: SnackBarService,
+    private SharedCommonService: SharedCommonService,
+    private snackBarService: SnackBarService
   ) {}
 
   close() {
@@ -27,8 +28,8 @@ export class CodeDialogueComponent {
       this.SharedCommonService.setIsAuthenticated(true);
       this.dialogue.close(this.data.card);
       this.router.navigate([this.data.card]);
-    }else{
-      this.snackBarService.openSnackBar('Please Enter valid code ')
+    } else {
+      this.snackBarService.openSnackBar('Please Enter valid code ');
     }
   }
 }
