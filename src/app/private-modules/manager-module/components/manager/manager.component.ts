@@ -42,16 +42,19 @@ export class ManagerComponent {
         console.log(res);
       },
       error : (err : any) =>{
+        this.router.navigate(['']);
         console.log(err);
       }
     })
   }
-  getSocetData = () => {
-    this.highscoreService.listenForScoreUpdates().subscribe((newData) => {
-      this.teams = newData;
-      console.log("Event emitted by server", this.teams);
-    });
-  }
+
+  // getSocetData = () => {
+  //   this.highscoreService.listenForScoreUpdates().subscribe((newData) => {
+  //     this.teams = newData;
+  //     console.log("Event emitted by server", this.teams);
+  //   });
+  // }
+  
   onBackToMenu = () => {
     this.router.navigate(['']);
   };

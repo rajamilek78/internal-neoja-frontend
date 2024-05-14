@@ -5,6 +5,6 @@ export const environment = {
   // eloBuildRoundURL: 'http://localhost:8080',
   // eloDbOperationURL: 'http://localhost:8081',
   // apiUrl: 'http://localhost:8181',
-  apiUrl: 'http://192.168.1.2:8181',
+  apiUrl: 'http://192.168.1.6:8181',
 
 };

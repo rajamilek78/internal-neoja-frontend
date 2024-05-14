@@ -3,5 +3,5 @@ export const environment = {
     demo: false,
     dev: false,
     // apiUrl: 'http://localhost:8181',
-    apiUrl: 'http://192.168.1.2:8181',
+    apiUrl: 'http://192.168.1.6:8181',
 };
