@@ -102,7 +102,6 @@ constructor(
       this.commonService.addTeam(params).subscribe({
         next: (res) => {
       this.snackBarService.openSnackBar('Team added Successfully ')
-          this.scoreFeedForm.reset();
         },
         error: (error) => {
   

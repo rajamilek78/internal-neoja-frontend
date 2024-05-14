@@ -38,7 +38,7 @@ export class ManagerComponent {
     const data = {};
     this.highscoreService.resetTeam(data).subscribe({
       next : (res : any) =>{
-        this.getAllTeams();
+        this.router.navigate(['']);
         console.log(res);
       },
       error : (err : any) =>{
