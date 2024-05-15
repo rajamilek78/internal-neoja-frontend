@@ -77,6 +77,21 @@ form {
 }
 
 @include respond ("phone") {
+
+    .title {
+        margin: 1.8rem 0rem 2.2rem 0rem;
+
+        h2 {
+            font-size: 4rem;
+        }
+    }
+
+    form {
+        input {
+            padding: 1.2rem;
+        }
+    }
+
     .col-md-8 {
         width: 100%;
 
