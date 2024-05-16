@@ -1,5 +1,8 @@
-mat-icon {
-    position: absolute;
-    right: 2rem;
-    top: 1.2rem;
+.flex {
+    width: auto;
+
+    mat-icon {
+        margin-top: 0.2rem;
+        margin-left: 2rem;
+    }
 }

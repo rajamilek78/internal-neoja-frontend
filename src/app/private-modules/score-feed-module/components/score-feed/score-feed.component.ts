@@ -1,28 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CommonService, SnackBarService } from '@app/core';
 import { FormBaseComponent } from '@app/utility/components';
 
 @Component({
   selector: 'app-score-feed',
   templateUrl: './score-feed.component.html',
-  styleUrl: './score-feed.component.scss'
+  styleUrl: './score-feed.component.scss',
 })
 export class ScoreFeedComponent extends FormBaseComponent {
-scoreFeedForm!: FormGroup;
+  scoreFeedForm!: FormGroup;
 
-constructor(
-  fb: FormBuilder,
-  private commonService: CommonService,
-  private router: Router,
-  private snackBarService : SnackBarService
-) {
-  super(fb);
-}
+  constructor(
+    fb: FormBuilder,
+    private commonService: CommonService,
+    private router: Router,
+    private snackBarService: SnackBarService
+  ) {
+    super(fb);
+  }
 
   ngOnInit(): void {
-     this.initialize();
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
+    this.initialize();
   }
 
   initialize = () => {
@@ -56,7 +62,7 @@ constructor(
   };
 
   onScoreFeedFormSubmit = (form: FormGroup) => {
-    console.log(form.value)
+    console.log(form.value);
     if (this.onSubmit(form)) {
       const params = {
         team_name: form.value.teamName,
@@ -68,7 +74,7 @@ constructor(
               game2: +form.value.player1game2Score,
               game3: +form.value.player1game3Score,
               game4: +form.value.player1game4Score,
-            }
+            },
           },
           {
             name: form.value.playername2,
@@ -77,7 +83,7 @@ constructor(
               game2: +form.value.player2game2Score,
               game3: +form.value.player2game3Score,
               game4: +form.value.player2game4Score,
-            }
+            },
           },
           {
             name: form.value.playername3,
@@ -86,7 +92,7 @@ constructor(
               game2: +form.value.player3game2Score,
               game3: +form.value.player3game3Score,
               game4: +form.value.player3game4Score,
-            }
+            },
           },
           {
             name: form.value.playername4,
@@ -95,22 +101,19 @@ constructor(
               game2: +form.value.player4game2Score,
               game3: +form.value.player4game3Score,
               game4: +form.value.player4game4Score,
-            }
-          }
-        ]
+            },
+          },
+        ],
       };
       this.commonService.addTeam(params).subscribe({
         next: (res) => {
           this.scoreFeedForm.reset();
           this.snackBarService.openSnackBar('Team added Successfully ')
         },
-        error: (error) => {
-  
-        }
+        error: (error) => {},
       });
     }
-    
-  }
+  };
 
   onBackToMenu = () => {
     this.router.navigate(['']);
